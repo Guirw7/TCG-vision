@@ -1,0 +1,33 @@
+@use "../../styles/reset";
+@use "../../styles/variables" as v;
+
+@media screen and (max-width: 949px) {
+  #header__icon:hover {
+    cursor: pointer;
+  }
+
+  .header__icon-opened {
+    transition: 2s;
+    color: v.$font-color;
+    display: block;
+    font-size: 2.4rem;
+    margin-left: 15rem;
+  }
+  
+  .header__icon-closed {
+    transition: 2s;
+    display: block;
+    color: v.$font-color;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    display: block;
+    font-size: 2.4rem;
+    margin-left: 2rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  #header__icon {
+    display: none;
+  }
+};

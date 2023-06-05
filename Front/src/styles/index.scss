@@ -1,0 +1,9 @@
+@use "./reset";
+@use "./variables" as v;
+
+body {
+  background: v.$background-color-yugioh;
+  font-family: v.$font-family;
+  font-size: v.$font-size;
+}
+
