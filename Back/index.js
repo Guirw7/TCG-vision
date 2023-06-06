@@ -1,3 +1,8 @@
+// Load environnement variables
+const dotenv = require('dotenv');
+dotenv.config();
+
+
 const express = require('express');
 const router = require('./routers/index.js');
 
