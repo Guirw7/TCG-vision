@@ -1,0 +1,58 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/reset.scss';
+@use '../../styles/index';
+
+@media screen and (min-width: 950px) {
+  .header__nav {
+    display: flex;
+    flex-direction: row;
+  };
+  
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    min-width: 25rem;
+  };
+  
+  .nav-links__link {
+    text-decoration: none;
+    color: v.$font-color;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: v.$font-size * 2.8;
+    font-weight: 500;
+  };
+  
+  .header-searchbar {
+    display: flex;
+    flex-direction: column;
+    min-width: 10rem;
+    width: 20rem;
+    font-size: v.$font-size * 2.4;
+    border: none;
+  };
+
+  .header-searchbar__input {
+    height: 2.5rem;
+  };
+
+  .header-searchbar__button {
+    height: 2rem;
+  };
+};
+
+
+@media screen and (max-width: 949px) {
+  .header__nav {
+    display: none;
+  };
+  .nav-links {
+    display: none;  
+  };
+  .header-searchbar {
+    display: none;
+  };
+};
