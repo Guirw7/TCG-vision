@@ -1,0 +1,20 @@
+@use '../../styles/reset';
+@use '../../styles/variables' as v;
+
+
+.game-container {
+  margin: 0 auto;
+  min-height: 76vh;
+  width: 90vw;
+  background: v.$background-color-app;
+  box-shadow: v.$box-shadow;
+  transition: v.$transition-speed;
+}
+
+.game-title {
+  font-size: v.$font-size * 3.2;
+  color: v.$font-color;
+  text-align: center;
+  padding-top: 2rem;
+  font-weight: 700;
+}

@@ -1,0 +1,63 @@
+@use "../../styles/reset";
+@use "../../styles/variables" as v;
+
+.header {
+  box-shadow: v.$box-shadow;
+  color: v.$font-color-dark;
+  background-color: v.$background-color-header;
+  border-radius: 5px 5px 0px 0px / 5px 5px 5px 5px;
+  // Règles pour rendre le header fixe au défilement
+  // position: fixed;
+  // top: 0;
+  // left: 5%;
+  // right: 50;
+  // width: 90vw;
+  // z-index: 100;
+}
+
+.header-logo {
+  color: v.$font-color-test;
+}
+
+@media screen and (min-width: 950px){
+  .header {
+    width: 90vw;
+    min-height: 20vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem 1rem;
+    transition: v.$transition-speed;
+  };
+  
+  .header-logo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    font-size: v.$font-size * 3;
+    min-width: 15rem;
+
+  };
+};
+
+@media screen and (max-width: 949px){
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    min-height: 20vh;
+    width: 90vw;
+    transition: v.$transition-speed;
+    font-size: v.$font-size * 3;
+  };
+
+  .header-logo {
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+  };
+};
