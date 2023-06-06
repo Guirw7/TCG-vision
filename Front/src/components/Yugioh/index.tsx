@@ -26,7 +26,8 @@ export default function Yugioh() {
   const [card, setCard] = useState<Card | undefined>(undefined);
   useEffect(() => {
   const fetchCards = async () => {
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
+    // les calls API sont à faire en français (espace = %20)
+    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dragon%20Blanc%20aux%20Yeux%20Bleus&language=fr');
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
@@ -46,7 +47,7 @@ export default function Yugioh() {
                 <p>{card.name}</p>
                 <p>{card.id}</p>
                 <p>{card.type}</p>
-                {/* <p>{card.desc}</p> */}
+                <p>{card.desc}</p>
               </div>
 
             </article>
