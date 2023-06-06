@@ -2,7 +2,9 @@
 @use "./variables" as v;
 
 body {
-  background: v.$background-color-yugioh;
+  background-image: v.$background-color-yugioh;
+  background-attachment: fixed;
+  min-height: 1000vh;
   font-family: v.$font-family;
   font-size: v.$font-size;
 }

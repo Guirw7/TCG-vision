@@ -7,12 +7,13 @@
   background-color: v.$background-color-header;
   border-radius: 5px 5px 0px 0px / 5px 5px 5px 5px;
   // Règles pour rendre le header fixe au défilement
-  // position: fixed;
-  // top: 0;
-  // left: 5%;
-  // right: 50;
-  // width: 90vw;
-  // z-index: 100;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
 .header-logo {

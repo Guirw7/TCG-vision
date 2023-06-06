@@ -11,10 +11,18 @@
   transition: v.$transition-speed;
 }
 
+.game-container-background {
+  background-color: white;
+  margin: 0 auto;
+  width: 98%;
+  min-height: 90vh;
+}
+
 .game-title {
   font-size: v.$font-size * 3.2;
-  color: v.$font-color;
+  color: v.$font-color-dark;
   text-align: center;
   padding-top: 2rem;
   font-weight: 700;
+  padding-top: 20vh;
 }
