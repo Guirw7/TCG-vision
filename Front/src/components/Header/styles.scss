@@ -3,9 +3,20 @@
 
 .header {
   box-shadow: v.$box-shadow;
-  color: v.$font-color;
+  color: v.$font-color-dark;
   background-color: v.$background-color-header;
   border-radius: 5px 5px 0px 0px / 5px 5px 5px 5px;
+  // Règles pour rendre le header fixe au défilement
+  // position: fixed;
+  // top: 0;
+  // left: 5%;
+  // right: 50;
+  // width: 90vw;
+  // z-index: 100;
+}
+
+.header-logo {
+  color: v.$font-color-test;
 }
 
 @media screen and (min-width: 950px){
