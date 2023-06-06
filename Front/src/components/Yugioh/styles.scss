@@ -5,7 +5,7 @@
 .game-container {
   margin: 0 auto;
   min-height: 76vh;
-  width: 90vw;
+  width: 95vw;
   background: v.$background-color-app;
   box-shadow: v.$box-shadow;
   transition: v.$transition-speed;
@@ -15,7 +15,7 @@
   background-color: white;
   margin: 0 auto;
   width: 98%;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 
 .game-title {
@@ -24,5 +24,35 @@
   text-align: center;
   padding-top: 2rem;
   font-weight: 700;
-  padding-top: 20vh;
+  padding-top: 15vh;
+}
+
+.card-container {
+}
+
+.card-item {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 2rem;
+  max-width: 20rem;
+  max-height: 20rem;
+  border: 1px solid black;
+
+}
+
+.card-item-img {
+  box-sizing: border-box;
+  max-width: 50%;
+  max-height: 100%;
+}
+
+.card-item-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
