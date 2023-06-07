@@ -4,7 +4,7 @@
 
 .game-container {
   margin: 0 auto;
-  min-height: 76vh;
+  // min-height: 76vh;
   width: 95vw;
   background: v.$background-color-app;
   box-shadow: v.$box-shadow;
@@ -35,9 +35,11 @@
   flex-direction: row;
   margin: 0 auto;
   margin-top: 2rem;
-  max-width: 20rem;
+  max-width: 25rem;
   max-height: 20rem;
   border: 1px solid black;
+  padding: 1rem 1rem;
+  border-radius: 5px;
 
 }
 
