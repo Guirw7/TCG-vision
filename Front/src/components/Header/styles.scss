@@ -44,6 +44,9 @@
 };
 
 @media screen and (max-width: 949px){
+  .header-logo {
+    margin: 0 auto;
+  }
   .header {
     display: flex;
     flex-direction: row;
