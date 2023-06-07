@@ -1,11 +1,11 @@
 const express = require('express');
 
-const routerPublic = express.Router();
+const router = express.Router();
 
-//Public Router:
-router.post('/signin', userController );// a modifier les controllers
-router.get('/deck/:id', deckController );
+// Public Router:
+router.post('/signin', userController);// a modifier les controllers
+router.get('/deck/:id', deckController);
 router.get('/api/card', cardController);
 router.post('/login', userControler);
 
-module.export = RouterPublic
+module.export = router;
