@@ -24,7 +24,7 @@ const cardsSlice = createSlice({
         // state.status = 'chargement en cours';
         // state.entities = [];
       })
-      .addCase(fetchCards.fulfilled, (state, action: PayloadAction<>) => {
+      .addCase(fetchCards.fulfilled, (state, action) => {
         // state.status = 'chargement terminé';
         // state.entities = action.payload;
       })

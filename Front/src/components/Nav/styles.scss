@@ -24,13 +24,22 @@
     margin-right: auto;
     font-size: v.$font-size * 2.8;
     font-weight: 500;
+    padding: 0.2rem;
+    transition: v.$transition-speed;
+  };
+
+  .nav-links__link:hover {
+    text-decoration: none;
+    color: v.$font-color-test;
+    font-weight: 700;
+    transition: v.$transition-speed;
   };
   
   .header-searchbar {
     display: flex;
     flex-direction: column;
     min-width: 10rem;
-    width: 20rem;
+    width: 15rem;
     font-size: v.$font-size * 2.4;
     border: none;
   };
@@ -41,6 +50,17 @@
 
   .header-searchbar__button {
     height: 2rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: v.$font-color-test;
+    color: v.$font-color;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,25%);
+  };
+
+  .header-searchbar__button:hover {
+    color: v.$font-color-test;
+    background-color: v.$font-color;
+    cursor: pointer;
   };
 };
 
