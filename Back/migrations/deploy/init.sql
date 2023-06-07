@@ -51,6 +51,6 @@ CREATE TABLE "deck_has_card" (
   "deck_id" INT REFERENCES "deck"("id"),
   "card_id" INT REFERENCES "card"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now()
-)
+);
 
 COMMIT;
