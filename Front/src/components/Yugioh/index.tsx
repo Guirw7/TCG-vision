@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 
 import './styles.scss';
 
-import test from '../../assets/img/91998119.jpg';
-
 
 interface Card {
   id: number;
@@ -42,7 +40,7 @@ export default function Yugioh() {
         <div className='cards-container'>
           {card && (
             <article className='card-item'>
-              <img className= "card-item-img"src={test} alt="" />
+              <img className= "card-item-img"src="" alt="" />
               <div className="card-item-infos">
                 <p>{card.name}</p>
                 <p>{card.id}</p>
