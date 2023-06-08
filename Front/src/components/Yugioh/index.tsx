@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 
 import './styles.scss';
 
-import test from '../../assets/img/91998119.jpg';
-
 
 interface Card {
   id: number;
@@ -23,14 +21,24 @@ interface Card {
 }
 
 export default function Yugioh() {
-  const [card, setCard] = useState<Card | undefined>(undefined);
+  const [card, setCard] = useState<Card | null>(null);
+  const [cardID, setCardID] = useState<any>(null);
+  // const [image, setImage] = useState<any>(null);
   useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
-    const data: any | undefined = await response.json();
-    setCard(data.data[0]);
-    return data;
+    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
+    try {
+      if (response.ok) {
+        const data: any | undefined = await response.json();
+        setCard(data.data[0]);
+        setCardID(data.data[0].id);
+        return data;
+      }
+      // Comment afficher à l'utilisateur que la requête n'a pas fonctionné ?
+    } catch (error) {
+      console.log(error);
+    }
   }
   fetchCards();
 }, []);
@@ -42,7 +50,6 @@ export default function Yugioh() {
         <div className='cards-container'>
           {card && (
             <article className='card-item'>
-              <img className= "card-item-img"src={test} alt="" />
               <div className="card-item-infos">
                 <p>{card.name}</p>
                 <p>{card.id}</p>
