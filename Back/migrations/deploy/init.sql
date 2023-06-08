@@ -35,7 +35,7 @@ CREATE TABLE "deck" (
 );
 
 CREATE TABLE "card" (
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "id" INT PRIMARY KEY,
   "set_code" TEXT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
