@@ -7,7 +7,9 @@ export default function Header() {
   return(
     <header className="header">
       <Icon />
-        <img className="header-logo" src={logo} alt="" />
+      <a className="header-logo" href="/">
+        <img src={logo} alt="logo-de-TCG-Vision" />
+      </a>
       <Nav />
     </header>
   );

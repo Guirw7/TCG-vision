@@ -12,18 +12,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  height: 15vh;
+  height: 10vh;
   z-index: 100;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .header-logo {
-  width: 25%;
-  margin: 0 auto;
+  max-width: 25%;
+  min-width: 20%;
   transition: v.$transition-speed;
-  margin-left: 1rem;
-  margin-right: -1rem;
+  position: relative;
+  left: 0;
 }
 
 .header-logo:hover {
@@ -37,9 +37,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 1rem 1rem;
-    transition: v.$transition-speed;
+    transition: 0.2s;
   };
 };
 
