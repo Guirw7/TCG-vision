@@ -1,13 +1,9 @@
-import Header from '../Header';
 import Yugioh from '../Yugioh';
 import Footer from '../Footer';
 
-import "./styles.scss";
-
-export default function Home() {
+export default function HomePage() {
   return(
     <>
-    <Header />
     <Yugioh />
     <Footer />
     </>

@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 
 import './styles.scss';
 
-import test from '../../assets/img/91998119.jpg';
-
 
 interface Card {
   id: number;
@@ -38,21 +36,7 @@ export default function Yugioh() {
   return(
     <div className='game-container'>
       <div className="game-container-background">
-        <p className="game-title">Yu-Gi-Oh Trading Card Game</p>
-        <div className='cards-container'>
-          {card && (
-            <article className='card-item'>
-              <img className= "card-item-img"src={test} alt="" />
-              <div className="card-item-infos">
-                <p>{card.name}</p>
-                <p>{card.id}</p>
-                <p>{card.type}</p>
-                <p>{card.desc}</p>
-              </div>
-
-            </article>
-          )}
-        </div>
+        <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
       </div>
     </div>
   )
