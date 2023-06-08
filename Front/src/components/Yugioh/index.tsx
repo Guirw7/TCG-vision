@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 
 import './styles.scss';
 
-import test from '../../assets/img/91998119.jpg';
-
 
 interface Card {
   id: number;
@@ -23,11 +21,13 @@ interface Card {
 }
 
 export default function Yugioh() {
-  const [card, setCard] = useState<Card | undefined>(undefined);
+  const [card, setCard] = useState<Card | null>(null);
+  // const [image, setImage] = useState<any>(null);
   useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
+    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
+
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
@@ -39,20 +39,6 @@ export default function Yugioh() {
     <div className='game-container'>
       <div className="game-container-background">
         <p className="game-title">Yu-Gi-Oh Trading Card Game</p>
-        <div className='cards-container'>
-          {card && (
-            <article className='card-item'>
-              <img className= "card-item-img"src={test} alt="" />
-              <div className="card-item-infos">
-                <p>{card.name}</p>
-                <p>{card.id}</p>
-                <p>{card.type}</p>
-                <p>{card.desc}</p>
-              </div>
-
-            </article>
-          )}
-        </div>
       </div>
     </div>
   )
