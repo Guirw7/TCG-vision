@@ -21,11 +21,13 @@ interface Card {
 }
 
 export default function Yugioh() {
-  const [card, setCard] = useState<Card | undefined>(undefined);
+  const [card, setCard] = useState<Card | null>(null);
+  // const [image, setImage] = useState<any>(null);
   useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
+    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
+
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
@@ -36,7 +38,6 @@ export default function Yugioh() {
   return(
     <div className='game-container'>
       <div className="game-container-background">
-        <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
       </div>
     </div>
   )
