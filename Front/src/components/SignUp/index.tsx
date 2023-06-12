@@ -21,14 +21,14 @@ export default function SignUp() {
     // clearErrors, 
     formState: { errors } 
   } = useForm<Data>(
-    // {defaultValues : 
-    //   {
-    //     username: 'kevin',
-    //     mail: 'kk@k.com',
-    //     password: 'LolXd69240',
-    //     passwordConfirmation: 'LolXd69240',
-    //   },
-    // }
+    {defaultValues : 
+      {
+        username: 'kevin',
+        mail: 'kk@k.com',
+        password: 'LolXd69240',
+        passwordConfirmation: 'LolXd69240',
+      },
+    }
   );
 
   // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
@@ -43,6 +43,7 @@ export default function SignUp() {
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
             // On vérifie que les mots de passe correspondent :
+            console.log(data);
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
                 type: 'custom',
@@ -51,7 +52,7 @@ export default function SignUp() {
             }
           })}
             >
-            <input autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur" 
+            <input autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur"
               // Méthode de react-hook form:
               {...register(
                 "username", 
@@ -66,7 +67,11 @@ export default function SignUp() {
                 },
                 })} />
             {/* Message d'erreur à placer à l'endroit désiré: */}
-            <p className='error-message'>{errors.username?.message}</p>
+            {
+              errors.username?.message && (
+                <p className='error-message'>{errors.username?.message}</p>
+              )
+            }
             <input autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
               {...register(
                 "mail", 
@@ -74,9 +79,19 @@ export default function SignUp() {
                   maxLength: 64, 
                   pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
                 })} />
-                <p className='error-message'>{errors.mail?.message}</p>
+                {/* <p className='error-message'>{errors.mail?.message}</p>
                 {errors.mail && errors.mail.type === 'pattern' && (
                 <p className='error-message'>Le format de l'adresse mail est incorrect.</p>)
+                } */}
+                {
+                  errors.mail?.message && (
+                    <p className='error-message'>{errors.mail?.message}</p>
+                  )
+                }
+                {
+                  errors.mail && errors.mail.type === 'pattern' && (
+                    <p className='error-message'>Le format de l'adresse mail est incorrect.</p>
+                  )
                 }
             <input autoComplete='off' className="signup-input-password" type="password" placeholder="Mot de passe"
             {...register(
@@ -90,7 +105,7 @@ export default function SignUp() {
                 value: 32,
                 message: 'Votre mot de passe doit contenir entre 8 et 32 caractères.',
               }, 
-              pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,32}$/i
+              pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-z]{8,}$/i
               })} 
             />
             {errors.password && errors.password.type === 'required' && (
@@ -103,7 +118,11 @@ export default function SignUp() {
                 }
               )}
               />
-              {errors.passwordConfirmation && <p className='error-message'>{errors.passwordConfirmation.message}</p>}
+              {
+                errors.passwordConfirmation && (
+                <p className='error-message'>{errors.passwordConfirmation.message}</p>
+                )
+              }
             <input className="signup-input-button" type="submit"/>
           </form>
         </div>

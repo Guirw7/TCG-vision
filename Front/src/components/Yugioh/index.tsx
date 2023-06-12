@@ -33,10 +33,22 @@ export default function Yugioh() {
   fetchCards();
 }, []);
 
+  const handleButton = async () => {
+    const response = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
+    const card: any = await response.json();
+    console.log(card);
+  };
+
   return(
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
+        <button onClick={handleButton}>Clique moi</button>
+        {
+          card && (
+            <p>{card.name}</p>
+          )
+        }
       </div>
     </div>
   )

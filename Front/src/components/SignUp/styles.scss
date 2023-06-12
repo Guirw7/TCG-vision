@@ -62,6 +62,10 @@
   box-shadow: v.$box-shadow;
 };
 
+.signup-input-button:hover {
+  cursor: pointer;
+};
+
 .error-message {
   color: v.$font-color-error;
 };
