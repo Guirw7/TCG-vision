@@ -47,9 +47,6 @@
   justify-content: center;
 }
 
-.card-modal-type {
-}
-
 .card-modal-level {
   margin-top: 1rem;
 }
@@ -93,10 +90,28 @@
   margin-left: 2rem;
 }
 
+.card-modal-quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-modal-quantity-increment {
+  padding: 0.5rem 2rem;
+}
+
+.card-modal-quantity-decrement {
+  padding: 0.5rem 2rem;
+}
+
+.card-modal-quantity-counter {
+  margin: 0rem 2rem;
+}
+
 .card-modal-buttons {
   margin-top: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   font-size: v.$font-size * 2.4;
 }

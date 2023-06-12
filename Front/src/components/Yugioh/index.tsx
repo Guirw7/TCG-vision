@@ -43,7 +43,7 @@ export default function Yugioh() {
     // On fait la requête avec l'ID
     const dragonCanonXYZ = 91998119;
     const carteNomSuperLong = 29913783;
-    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${carteNomSuperLong}&language=fr`);
+    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${dragonCanonXYZ}&language=fr`);
     const data: any = await response.json();
     if (data) {
       setSingleCard(data.data[0]);

@@ -1,9 +1,14 @@
+import { useState } from 'react';
+
 // import '../Yugioh/Card';
 import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
 import './styles.scss';
 
 export default function Card(singleCard: any) {
+  // const [counter, setCounter] = useState(0);
   const data = singleCard.singleCard;
+
+
   console.log(data);
 
   return (
@@ -36,9 +41,9 @@ export default function Card(singleCard: any) {
         <div className='card-modal-buttons'>
           <div>
             <section className='card-modal-quantity'>
-            <button className='card-modal-quantity-increment'>-</button>
-            <p>placeholder</p>
-            <button className='card-modal-quantity-decrement'>+</button>
+              <button className='card-modal-quantity-increment'>-</button>
+              <p className='card-modal-quantity-counter'>placeholder</p>
+              <button className='card-modal-quantity-decrement'>+</button>
             </section>
           </div>
           <button className='card-modal-submit-button'>Ajouter à la Collection</button>
