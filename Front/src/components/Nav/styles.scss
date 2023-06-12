@@ -26,6 +26,10 @@
     font-weight: 500;
     padding: 0.2rem;
     transition: v.$transition-speed;
+    text-shadow: v.$text-shadow;
+    min-width: 5rem;
+    max-width: 10rem;
+    text-align: center;
   };
 
   .nav-links__link:hover {
@@ -33,34 +37,39 @@
     color: v.$font-color-test;
     font-weight: 700;
     transition: v.$transition-speed;
+    font-size: v.$font-size * 3.2;
   };
   
   .header-searchbar {
     display: flex;
     flex-direction: column;
-    min-width: 10rem;
-    width: 15rem;
+    min-width: 15rem;
     font-size: v.$font-size * 2.4;
     border: none;
   };
 
   .header-searchbar__input {
-    height: 2.5rem;
+    height: 2rem;
+    border-radius: 5px;
+    min-width: 15rem;
   };
 
   .header-searchbar__button {
-    height: 2rem;
+    height: 1.5rem;
     border: none;
-    border-radius: 0.2rem;
+    border-radius: 5px;
     background-color: v.$font-color-test;
     color: v.$font-color;
     box-shadow: 1px 1px 1px 1px rgba(0,0,0,25%);
+    transition: v.$transition-speed;
+    min-width: 15rem;
   };
 
   .header-searchbar__button:hover {
     color: v.$font-color-test;
     background-color: v.$font-color;
     cursor: pointer;
+    transition: v.$transition-speed;
   };
 };
 

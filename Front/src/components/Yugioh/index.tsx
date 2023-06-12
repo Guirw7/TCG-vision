@@ -22,13 +22,12 @@ export interface Card {
 }
 
 export default function Yugioh() {
-  const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const [card, setCard] = useState<Card | undefined>(undefined);
-  const [singleCard, setSingleCard] = useState<any | undefined>(undefined);
   useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Canon%20Dragon-XYZ&language=fr');
+    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
+
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
@@ -46,8 +45,8 @@ export default function Yugioh() {
     const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${dragonCanonXYZ}&language=fr`);
     const data: any = await response.json();
     if (data) {
-      setSingleCard(data.data[0]);
-      setSelectedCard(true);
+      // setSingleCard(data.data[0]);
+      // setSelectedCard(true);
     }
     
     // On envoie les données de la carte à la page Card
@@ -58,12 +57,12 @@ export default function Yugioh() {
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
-        <button onClick={handleClick} value={singleCard}>Clique moi</button>
-        {
+        <button onClick={handleClick}>Clique moi</button>
+        {/* {
           selectedCard && (
             <Card singleCard={singleCard}/>
           )
-        }
+        } */}
       </div>
     </div>
   )
