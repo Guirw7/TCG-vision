@@ -7,7 +7,7 @@ const Joi = require('joi');
  */
 const userBody = Joi.object({
   email: Joi.string()
-  /**
+    /**
    * On utilise une regex pour spécifier des règles de création d'addresse mail
    * Un ou plusieurs caractères en minuscules, chiffres, points,
    *  tirets bas, pourcentages ou signes plus ou moins [a-z0-9._%+-]+
@@ -18,11 +18,18 @@ const userBody = Joi.object({
    * Mode insensible à la casse /i
    */
     // eslint-disable-next-line prefer-regex-literals, no-useless-escape
-    .email().pattern(new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i')),
+    .pattern(new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'))
+    .messages({
+      'string.pattern.base': 'Veuillez rentrez un email valide',
+    }),
   username: Joi.string()
     .alphanum()
     .min(4)
-    .max(16),
+    .max(16)
+    .messages({
+      'string.min': 'Username doit avoir 4 caractère minimum',
+      'string.max': 'Username doit avoir 16 caractère maximum',
+    }),
   password: Joi.string()
   /**
    * On utilise une regex pour spécifier des règles de création de mot de passe
@@ -34,7 +41,10 @@ const userBody = Joi.object({
    * $ signifie la fin de la regex
    */
     // eslint-disable-next-line prefer-regex-literals
-    .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,32}$')),
+    .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,32}$'))
+    .messages({
+      'string.pattern.base': 'Password doit contenir au moins 1 lettres minuscule et majuscule, 1 chiffre et doit faire au minimum 8 caractères.',
+    }),
 }).required();
 
 // On exporte l'objet userBody

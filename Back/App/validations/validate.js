@@ -9,9 +9,6 @@ function validate(schema) {
   return (req, res, next) => {
     const { error } = schema.validate(req.body, {
       abortEarly: false,
-      messages: {
-        'string.pattern.base': 'Password doit contenir au moins 1 lettres minuscule et majuscule, 1 chiffre et doit faire au minimum 8 caractères.',
-      },
     });
 
     if (error) {
