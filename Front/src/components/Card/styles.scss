@@ -1,0 +1,102 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/reset.scss';
+
+.card-modal {
+  width: 60vw;
+  margin: 0 auto;
+  box-shadow: v.$box-shadow;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.card-modal-name {
+  margin-top: 2rem;
+  font-size: v.$font-size * 5;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.card-modal-informations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  align-items: stretch;
+
+}
+
+.card-modal-image {
+  // width: 50%;
+  max-width: 50%;
+  max-height: 25rem;
+}
+
+.card-modal-data {
+  // max-width: 50%;
+  width: 274.27px;
+  max-height: 25rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  font-size: v.$font-size * 2.8;
+  text-align: center;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.card-modal-type {
+}
+
+.card-modal-level {
+  margin-top: 1rem;
+}
+
+.card-modal-archetype {
+  margin-top: 1rem;
+}
+
+.card-modal-attribute {
+  margin-top: 1rem;
+}
+
+.card-modal-stats {
+  margin-top: 1rem;
+}
+
+.card-modal-description {
+  margin-top: 2rem;
+  font-size: v.$font-size * 2.4;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card-modal-extension {
+  font-size: v.$font-size * 2.4;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: v.$box-shadow;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: rox;
+  justify-content: center;
+}
+
+.card-modal-extension-label {
+  font-weight: 700;
+  font-size: v.$font-size * 2;
+}
+
+.card-modal-extension-select {
+  margin-left: 2rem;
+}
+
+.card-modal-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: v.$font-size * 2.4;
+}
