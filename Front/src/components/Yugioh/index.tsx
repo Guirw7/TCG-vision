@@ -61,7 +61,7 @@ export default function Yugioh() {
         <button onClick={handleClick}>Clique moi</button>
         {
           selectedCard && (
-            <Card singleCard={singleCard}/>
+            <Card singleCard={singleCard} selectedCard={selectedCard}/>
           )
         }
       </div>

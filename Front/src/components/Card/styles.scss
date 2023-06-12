@@ -1,16 +1,35 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/reset.scss';
 
+.behind-card-modal {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 5%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
 .card-modal {
+  max-height: 90vh; /* change here */
   width: 60vw;
   margin: 0 auto;
   box-shadow: v.$box-shadow;
   border-radius: 5px;
   padding: 1rem;
+  z-index: 100;
+  background-color: v.$background-color-modal;
+  overflow-y: auto; /* add this */
+  transition: v.$transition-speed;
 }
 
 .card-modal-name {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: v.$font-size * 5;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -40,10 +59,11 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: left;
-  font-size: v.$font-size * 2.8;
+  font-size: 175%;
   text-align: center;
   font-weight: 600;
+  align-content: flex-end;
+  align-items: center;
   justify-content: center;
 }
 
@@ -74,6 +94,7 @@
   font-size: v.$font-size * 2.4;
   text-align: center;
   padding: 1rem;
+  background-color: v.$raw-color-blue-bright-3;
   box-shadow: v.$box-shadow;
   border-radius: 5px;
   display: flex;
@@ -98,10 +119,20 @@
 
 .card-modal-quantity-increment {
   padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: v.$raw-color-blue-bright-1;
+  color: v.$font-color;
+  font-weight: 700;
 }
 
 .card-modal-quantity-decrement {
   padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: v.$raw-color-blue-bright-1;
+  color: v.$font-color;
+  font-weight: 700;
 }
 
 .card-modal-quantity-counter {
@@ -114,4 +145,12 @@
   flex-direction: row;
   justify-content: space-between;
   font-size: v.$font-size * 2.4;
+}
+
+.card-modal-submit-button {
+  background-color: v.$raw-color-purple;
+  border-radius: 5px;
+  color: v.$font-color;
+  border: none;
+  padding: 0.5rem 2rem;
 }
