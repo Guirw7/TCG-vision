@@ -18,12 +18,14 @@ const userController = {
 
     res.status(200).json(newUser);
   },
+  
+  //* requete + reponse de la fonction demandée.
   async modifyUser(req, res) {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id);//* requete de de l'id recherché.
     const {
       email, username, password,
     } = req.body;
-    const user = await userDataMapper.getOneProfil(id);
+    const user = await userDataMapper.getOneProfil(id);//* recherche et modification d'un profil via son id.
     if (user) {
       user.email = email ||user.email,
       user.username = username ||user.username,
@@ -31,8 +33,7 @@ const userController = {
 
       
     }
-    res.status(200).json(user);
+    res.status(200).json(user);//* status de l'user concerné.
   },
 };
-
 module.exports = userController;
