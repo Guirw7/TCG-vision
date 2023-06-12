@@ -18,6 +18,7 @@ const userDataMapper = {
     const results = await client.query(preparedQuery);
     return results.rows[0];
   },
+
   async modifyUser(user) {
     const preparedQuery = {
       //* modification des informations de l'user concernés.
@@ -26,6 +27,13 @@ const userDataMapper = {
     };
     const results = await client.query(preparedQuery);
     return results.rows; //* retourne le resultat de la requete.
+
+  /**
+   * Requête SQL pour  récupérer le détail de tout les users
+   */
+  async detailUsers() {
+    const results = await client.query('SELECT * FROM "user"');
+    return results.rows[0];
   },
 };
 
