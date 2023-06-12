@@ -19,9 +19,10 @@ const userDataMapper = {
     return results.rows[0];
   },
 
+  // Requête SQL pour  récupérer le détail de tout les users
   async detailUsers() {
     const results = await client.query('SELECT * FROM "user"');
-    return results;
+    return results.rows[0];
   },
 };
 
