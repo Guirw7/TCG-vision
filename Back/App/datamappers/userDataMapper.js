@@ -18,6 +18,11 @@ const userDataMapper = {
     const results = await client.query(preparedQuery);
     return results.rows[0];
   },
+
+  async detailUsers() {
+    const results = await client.query('SELECT * FROM "user"');
+    return results;
+  },
 };
 
 // On exporte le userDataMapper

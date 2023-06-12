@@ -28,6 +28,11 @@ const userController = {
     // On renvoie la réponse au format JSON avec un status 200 (OK)
     res.status(200).json(newUser);
   },
+
+  async detailUsers(req, res) {
+    const results = await userDataMapper.detailUsers();
+    res.status(200).json(results);
+  },
 };
 
 module.exports = userController;
