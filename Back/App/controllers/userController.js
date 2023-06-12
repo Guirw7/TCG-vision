@@ -18,6 +18,21 @@ const userController = {
 
     res.status(200).json(newUser);
   },
+  async modifyUser(req, res) {
+    const id = Number(req.params.id);
+    const {
+      email, username, password,
+    } = req.body;
+    const user = await userDataMapper.getOneProfil(id);
+    if (user) {
+      user.email = email ||user.email,
+      user.username = username ||user.username,
+      user.password = password ||user.password,
+
+      
+    }
+    res.status(200).json(user);
+  },
 };
 
 module.exports = userController;

@@ -14,9 +14,18 @@ const userDataMapper = {
       values: [user.email, user.username, user.password],
     };
 
-    // On récupère le résultat de la requête préparer
+    //* On récupère le résultat de la requête préparer
     const results = await client.query(preparedQuery);
     return results.rows[0];
+  },
+  async modifyUser(user) {
+    const preparedQuery = {
+      //* modification des informations de l'user concernés.
+      text: 'UPDATE "user" SET email=$1 ,username=$2, password=$3 WHERE "id"=$4',
+      values: [user.email, user.username, user.password, user.id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows; //* retourne le resultat de la requete.
   },
 };
 
