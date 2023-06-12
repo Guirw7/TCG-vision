@@ -29,6 +29,8 @@ const userController = {
     res.status(200).json(newUser);
   },
 
+  /* On créer une variable en utilisant la méthode detailUsers */
+
   async detailUsers(req, res) {
     const results = await userDataMapper.detailUsers();
     res.status(200).json(results);
