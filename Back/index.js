@@ -5,7 +5,8 @@ dotenv.config();
 
 const express = require('express');
 const cors = require('cors');
-/* const router = require('.routers/index.js/'); */
+const routerPublic = require('./App/routers/routerPublic');
+const routerPrivate = require('./App/routers/routerPrivate');
 
 // creation de l'application
 const app = express();
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors('*'));
 
 // Application routers
-/* app.use(router); */
+app.use(routerPublic);
+app.use(routerPrivate);
 
 // Demarrage serveur
 const PORT = process.env.PORT || 5430;
