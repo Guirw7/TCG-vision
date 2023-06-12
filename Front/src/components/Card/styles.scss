@@ -15,6 +15,24 @@
   overflow-y: auto;
 }
 
+.card-modal-exit {
+  width: 3rem;
+  height: 3rem;
+  color: v.$font-color;
+  position: absolute;
+  z-index: 101;
+  top: 6%;
+  right: 22%;
+  color: v.$font-color;
+  font-size: v.$font-size * 5;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  background-color: v.$raw-color-purple-bright-1;
+  box-shadow: v.$box-shadow;
+}
+
 .card-modal {
   max-height: 90vh; /* change here */
   width: 60vw;
@@ -124,6 +142,7 @@
   background-color: v.$raw-color-blue-bright-1;
   color: v.$font-color;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .card-modal-quantity-decrement {
@@ -133,6 +152,7 @@
   background-color: v.$raw-color-blue-bright-1;
   color: v.$font-color;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .card-modal-quantity-counter {
@@ -153,4 +173,5 @@
   color: v.$font-color;
   border: none;
   padding: 0.5rem 2rem;
+  cursor: pointer;
 }

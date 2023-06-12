@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 
+/*
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal } from '../Card/cardSlice';
+*/
+
 import Card from '../Card';
 import './styles.scss';
 
@@ -22,37 +27,41 @@ export interface Card {
 }
 
 export default function Yugioh() {
-  const [card, setCard] = useState<Card | undefined>(undefined);
   const [singleCard, setSingleCard] = useState<Card | undefined>(undefined);
-  const [selectedCard, setSelectedCard] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+
   useEffect(() => {
+  /*
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
     const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
-
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
+    fetchCards();
   }
-  fetchCards();
+  */
 }, []);
 
-  const handleClick = async () => {
-    // On récupère l'ID de la carte sur laquelle l'utilisateur a cliqué
-    // req.params.id
-    // On fait la requête avec l'ID
-    const dragonCanonXYZ = 91998119;
-    const carteNomSuperLong = 29913783;
-    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${dragonCanonXYZ}&language=fr`);
-    const data: any = await response.json();
-    if (data) {
-      setSingleCard(data.data[0]);
-      setSelectedCard(true);
-    }
-    
-    // On envoie les données de la carte à la page Card
-    // On affiche la page Card
-  };
+const handleClick = async () => {
+  // Test avec react-redux :
+  // const dispatch = useDispatch();
+  // On récupère l'ID de la carte sur laquelle l'utilisateur a cliqué
+  // req.params.id
+  // On fait la requête avec l'ID
+  const dragonCanonXYZ = 91998119;
+  // const carteNomSuperLong = 29913783;
+  const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${dragonCanonXYZ}&language=fr`);
+  const data: any = await response.json();
+  if (data) {
+    setSingleCard(data.data[0]);
+    setIsOpen(true);
+    // dispatch(openModal());
+  }
+  // On envoie les données de la carte à la page Card
+  // On affiche la page Card
+};
 
   return (
     <div className='game-container'>
@@ -60,8 +69,8 @@ export default function Yugioh() {
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
         <button onClick={handleClick}>Clique moi</button>
         {
-          selectedCard && (
-            <Card singleCard={singleCard} selectedCard={selectedCard}/>
+          isOpen && (
+            <Card singleCard={singleCard} isOpen={isOpen}/>
           )
         }
       </div>

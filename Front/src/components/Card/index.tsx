@@ -1,15 +1,19 @@
 import { useState } from 'react';
-
-// import '../Yugioh/Card';
+/*
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal } from './cardSlice';
+*/
+import Yugioh from '../Yugioh';
 import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
 import './styles.scss';
 
 
-export default function Card(singleCard: any, selectedCard: any) {
+export default function Card(singleCard: any, { isOpen }) {
+  // const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
-  const [modal, setModal] = useState(undefined);
-  // console.log(selectedCard);
+  // const [isModalOpen, setIsModalOpen] = useState(isOpen);
   const data = singleCard.singleCard;
+  console.log(isOpen);
 
   const increment = (event: any) => {
     event?.preventDefault();
@@ -23,9 +27,14 @@ export default function Card(singleCard: any, selectedCard: any) {
     }
     setCounter(counter - 1);
   }
+  /*----- Reprendre ici pour changer l'état de la modale de l'élément parent -----*/
+  const handleClick = () => {
+    // setIsOpen(false);
+  }
 
   return (
-    <div className='behind-card-modal'>
+    <div onClick={handleClick} className='behind-card-modal'>
+      <button onClick={handleClick} className='card-modal-exit'>X</button>
       <article className = "card-modal">
           <h2 className='card-modal-name'>{data.name}</h2>
         <section className='card-modal-informations'>
