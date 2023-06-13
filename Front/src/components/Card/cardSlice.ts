@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchCard = createAsyncThunk(
   'card/fetchCard',
-  async () => {
-    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=dragonCanonXYZ&language=fr`);
+  async (cardID) => {
+    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
     const data = await response.json();
-    return data;
+    const treatedData = data.data[0];
+    return treatedData;
   }
 );
 
@@ -32,7 +33,7 @@ const cardSlice: any = createSlice({
     })
     .addCase(fetchCard.rejected, (state: any) => {
       state.status = 'erreur lors du chargement';
-      state.entities = [];
+      state.entities = ['erreur'];
     })
   }
 });

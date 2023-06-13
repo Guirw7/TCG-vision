@@ -30,7 +30,6 @@ export default function Yugioh() {
   const [selectedCard, setSelectedCard] = useState<number>(0);
   const modal = useSelector((state: RootState) => state.modal.value);
   const dispatch = useDispatch();
-
   /*
   useEffect(() => {
   const fetchCards = async () => {
