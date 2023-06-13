@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal } from '../Card/modalSlice';
 
-import state from '../Card/modalSlice';
+// import state from '../Card/modalSlice';
 
 import Card from '../Card';
 import './styles.scss';
@@ -58,19 +58,28 @@ const handleClick = async () => {
     setSelectedCard(dragonCanonXYZ);
     // Passer l'état de la modale à true dans le slice Redux
     dispatch(openModal());
-  }
-  
+  };
+
+
+
   return (
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
         <button onClick={handleClick}>Clique moi</button>
         {
-          modal && (
+          (modal)  && (
             <Card selectedCard={selectedCard}/>
+          )
+        }
+        {
+          (!modal) && (
+            <h1>hello world</h1>
           )
         }
       </div>
     </div>
   )
 };
+
+
