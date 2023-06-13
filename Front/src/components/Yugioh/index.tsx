@@ -7,6 +7,7 @@ import { openModal, closeModal } from '../Card/cardSlice';
 
 import Card from '../Card';
 import './styles.scss';
+import { set } from 'react-hook-form';
 
 
 export interface Card {
@@ -28,11 +29,17 @@ export interface Card {
 
 export default function Yugioh() {
   const [singleCard, setSingleCard] = useState<Card | undefined>(undefined);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<any>(false);
+  const [test, setTest] = useState(() => {
+    const handleClick = () => {
+      setIsOpen(false);
+    }
+  });
 
+  
 
-  useEffect(() => {
   /*
+  useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
     const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
@@ -41,8 +48,13 @@ export default function Yugioh() {
     return data;
     fetchCards();
   }
-  */
 }, []);
+*/
+/*
+  const handleModalClick = () => {
+  setIsOpen(false);
+  }
+*/
 
 const handleClick = async () => {
   // Test avec react-redux :
@@ -61,7 +73,11 @@ const handleClick = async () => {
   }
   // On envoie les données de la carte à la page Card
   // On affiche la page Card
+
+
 };
+
+
 
   return (
     <div className='game-container'>
@@ -70,7 +86,7 @@ const handleClick = async () => {
         <button onClick={handleClick}>Clique moi</button>
         {
           isOpen && (
-            <Card singleCard={singleCard} isOpen={isOpen}/>
+            <Card singleCard={singleCard} setIsOpen={setIsOpen}/>
           )
         }
       </div>

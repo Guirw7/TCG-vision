@@ -8,13 +8,13 @@ import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
 import './styles.scss';
 
 
-export default function Card(singleCard: any, { isOpen }) {
-  // const dispatch = useDispatch();
-  const [counter, setCounter] = useState(0);
-  // const [isModalOpen, setIsModalOpen] = useState(isOpen);
-  const data = singleCard.singleCard;
-  console.log(isOpen);
 
+export default function Card(singleCard: any, { setIsOpen }) {
+  const [counter, setCounter] = useState(0);
+  console.log(setIsOpen);
+
+  const data = singleCard.singleCard;
+  
   const increment = (event: any) => {
     event?.preventDefault();
     setCounter(counter + 1);
@@ -28,13 +28,11 @@ export default function Card(singleCard: any, { isOpen }) {
     setCounter(counter - 1);
   }
   /*----- Reprendre ici pour changer l'état de la modale de l'élément parent -----*/
-  const handleClick = () => {
-    // setIsOpen(false);
-  }
+
 
   return (
-    <div onClick={handleClick} className='behind-card-modal'>
-      <button onClick={handleClick} className='card-modal-exit'>X</button>
+    <div onClick={() => setIsOpen(false)} className='behind-card-modal'>
+      <button onClick = {() => setIsOpen(false)}className='card-modal-exit'>X</button>
       <article className = "card-modal">
           <h2 className='card-modal-name'>{data.name}</h2>
         <section className='card-modal-informations'>
