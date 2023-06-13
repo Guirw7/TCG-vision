@@ -34,7 +34,7 @@ export default function Yugioh() {
   useEffect(() => {
   const fetchCards = async () => {
     // les calls API sont à faire en français (espace = %20)
-    const response: any = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Kuriboh&language=fr');
+    const response: any = await fetch('npm');
     const data: any | undefined = await response.json();
     setCard(data.data[0]);
     return data;
@@ -53,7 +53,7 @@ const handleClick = async () => {
 ---------------------------------*/
 
 // handleClick avec Redux
-  const handleClick = async () => {
+  const handleClick = () => {
     const dragonCanonXYZ = 91998119;
     setSelectedCard(dragonCanonXYZ);
     // Passer l'état de la modale à true dans le slice Redux
