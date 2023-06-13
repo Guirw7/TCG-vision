@@ -50,6 +50,30 @@ const userDataMapper = {
     // On ne récupère que le premier résultat du tableau de rows.
     return results.rows[0];
   },
+
+  /* Requête SQL pour supprimer le profil d'un user */
+  async deleteUser(user) {
+    // Mettre à jour les clés étrangères sur NULL dans la table "collection"
+    const updateQuery = {
+      text: 'UPDATE collection SET user_id = NULL WHERE user_id = $1',
+      values: [user.id],
+    };
+    await client.query(updateQuery);
+    // Mettre à jour les clés étrangères sur NULL dans la table "deck"
+    const updateQuery2 = {
+      text: 'UPDATE deck SET user_id = NULL WHERE user_id = $1',
+      values: [user.id],
+    };
+    await client.query(updateQuery2);
+    // Supprimer l'utilisateur de la table "user"
+    const deleteQuery = {
+      text: 'DELETE FROM "user" WHERE "id" = $1',
+      values: [user.id],
+    };
+    // Exécuter la requête de suppression de l'utilisateur
+    const deleteResult = await client.query(deleteQuery);
+    return deleteResult.rows[0];
+  },
 };
 
 // On exporte le userDataMapper
