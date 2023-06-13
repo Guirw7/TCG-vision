@@ -70,6 +70,20 @@ const userController = {
     const user = await userDataMapper.getOneProfil(id);
     res.status(200).json(user);
   },
+
+  /**
+   * Fonction pour delete le profil d'un utilisateur,
+   * On récupere l'utilisateur via son id,
+   * On renvoie la réponse au format json avec un status 200 (OK).
+   */
+  async deleteUser(req, res) {
+    const id = Number(req.params.id);
+    const user = await userDataMapper.getOneProfil(id);
+    if (user) {
+      const result = await userDataMapper.deleteUser(user);
+      res.status(200).json(result);
+    }
+  },
 };
 
 module.exports = userController;
