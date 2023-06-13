@@ -28,30 +28,61 @@ const userController = {
     // On renvoie la réponse au format JSON avec un status 200 (OK)
     res.status(200).json(newUser);
   },
-  
+
   /**
    * Fonction pour modifié les infos de l'utilsateur.
    */
   async modifyUser(req, res) {
-    const id = Number(req.params.id); 
+    const id = Number(req.params.id);
     const {
       email, username, password,
     } = req.body;
-    const user = await userDataMapper.getOneProfil(id);// recherche et modification d'un profil d'utilisateur
+    // recherche et modification d'un profil d'utilisateur
+    const user = await userDataMapper.getOneProfil(id);
     if (user) {
-      user.email = email ||user.email,
-      user.username = username ||user.username,
-      user.password = password ||user.password,
-    },
-    res.status(200).json(user);// On renvoie la réponse au format JSON avec un status 200 (OK)
+      user.email = email || user.email;
+      user.username = username || user.username;
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword || user.password;
+      }
+    }
+    const updateUser = await userDataMapper.modifyUser(user);
+    // On renvoie la réponse au format JSON avec un status 200 (OK)
+    res.status(200).json(updateUser);
   },
-        
-  /** 
+
+  /**
    * On créer une variable en utilisant la méthode detailUsers
    */
   async detailUsers(req, res) {
     const results = await userDataMapper.detailUsers();
     res.status(200).json(results);
+  },
+
+  /**
+   * Fonction pour récuperer le profil d'un utilisateur,
+   * On récupere l'utilisateur via son id,
+   * On renvoie la réponse au format json avec un status 200 (OK).
+   */
+  async getOneUser(req, res) {
+    const id = Number(req.params.id);
+    const user = await userDataMapper.getOneProfil(id);
+    res.status(200).json(user);
+  },
+
+  /**
+   * Fonction pour delete le profil d'un utilisateur,
+   * On récupere l'utilisateur via son id,
+   * On renvoie la réponse au format json avec un status 200 (OK).
+   */
+  async deleteUser(req, res) {
+    const id = Number(req.params.id);
+    const user = await userDataMapper.getOneProfil(id);
+    if (user) {
+      const result = await userDataMapper.deleteUser(user);
+      res.status(200).json(result);
+    }
   },
 };
 
