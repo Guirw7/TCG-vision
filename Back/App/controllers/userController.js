@@ -42,7 +42,10 @@ const userController = {
     if (user) {
       user.email = email || user.email;
       user.username = username || user.username;
-      user.password = password || user.password;
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword || user.password;
+      }
     }
     res.status(200).json(user);// On renvoie la réponse au format JSON avec un status 200 (OK)
   },
