@@ -1,19 +1,23 @@
-import { useState } from 'react';
-/*
+import { useEffect, useState } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from './cardSlice';
-*/
+import { openModal, closeModal } from './modalSlice';
+
 import Yugioh from '../Yugioh';
 import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
 import './styles.scss';
 
 
 
-export default function Card(singleCard: any, { setIsOpen }) {
+export default function Card(selectedCard: any) {
   const [counter, setCounter] = useState(0);
-  console.log(setIsOpen);
-
-  const data = singleCard.singleCard;
+  const dispatch = useDispatch();
+  const modal = useSelector((state: any) => state.modal.value);
+  const cardID = selectedCard.selectedCard;
+  
+  useEffect(() => {
+    const data = useSelector((state: any) => state.card);
+  }, []);
   
   const increment = (event: any) => {
     event?.preventDefault();
@@ -29,10 +33,9 @@ export default function Card(singleCard: any, { setIsOpen }) {
   }
   /*----- Reprendre ici pour changer l'état de la modale de l'élément parent -----*/
 
-
   return (
-    <div onClick={() => setIsOpen(false)} className='behind-card-modal'>
-      <button onClick = {() => setIsOpen(false)}className='card-modal-exit'>X</button>
+    <div className='behind-card-modal'>
+      <button className='card-modal-exit'>X</button>
       <article className = "card-modal">
           <h2 className='card-modal-name'>{data.name}</h2>
         <section className='card-modal-informations'>
@@ -54,7 +57,7 @@ export default function Card(singleCard: any, { setIsOpen }) {
             <select className='card-modal-extension-select'>
               {data.card_sets.map((extension: any) => {
                 return (
-                  <option key= {extension.set_name} value={extension.set_name}>{extension.set_name}</option>
+                  <option key= {extension.set_name} value={extension.set_code}>{extension.set_name}</option>
                 )
               })}
             </select>

@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 
-/*
+
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../Card/cardSlice';
-*/
+import { openModal, closeModal } from '../Card/modalSlice';
+
+import state from '../Card/modalSlice';
 
 import Card from '../Card';
 import './styles.scss';
-import { set } from 'react-hook-form';
-
 
 export interface Card {
   id: number;
@@ -28,15 +27,9 @@ export interface Card {
 }
 
 export default function Yugioh() {
-  const [singleCard, setSingleCard] = useState<Card | undefined>(undefined);
-  const [isOpen, setIsOpen] = useState<any>(false);
-  const [test, setTest] = useState(() => {
-    const handleClick = () => {
-      setIsOpen(false);
-    }
-  });
-
-  
+  const [selectedCard, setSelectedCard] = useState<number>(0);
+  const modal = useSelector((state: RootState) => state.modal.value);
+  const dispatch = useDispatch();
 
   /*
   useEffect(() => {
@@ -50,46 +43,35 @@ export default function Yugioh() {
   }
 }, []);
 */
-/*
-  const handleModalClick = () => {
-  setIsOpen(false);
-  }
-*/
-
+/* -- handleClick à l'ancienne
 const handleClick = async () => {
-  // Test avec react-redux :
-  // const dispatch = useDispatch();
-  // On récupère l'ID de la carte sur laquelle l'utilisateur a cliqué
-  // req.params.id
-  // On fait la requête avec l'ID
   const dragonCanonXYZ = 91998119;
-  // const carteNomSuperLong = 29913783;
   const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${dragonCanonXYZ}&language=fr`);
   const data: any = await response.json();
   if (data) {
     setSingleCard(data.data[0]);
-    setIsOpen(true);
-    // dispatch(openModal());
   }
-  // On envoie les données de la carte à la page Card
-  // On affiche la page Card
+---------------------------------*/
 
-
-};
-
-
-
+// handleClick avec Redux
+  const handleClick = async () => {
+    const dragonCanonXYZ = 91998119;
+    setSelectedCard(dragonCanonXYZ);
+    // Passer l'état de la modale à true dans le slice Redux
+    dispatch(openModal());
+  }
+  
   return (
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
         <button onClick={handleClick}>Clique moi</button>
         {
-          isOpen && (
-            <Card singleCard={singleCard} setIsOpen={setIsOpen}/>
+          modal && (
+            <Card selectedCard={selectedCard}/>
           )
         }
       </div>
     </div>
   )
-}
+};
