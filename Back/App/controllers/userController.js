@@ -53,6 +53,17 @@ const userController = {
     const results = await userDataMapper.detailUsers();
     res.status(200).json(results);
   },
+
+  /**
+   * Fonction pour récuperer le profil d'un utilisateur,
+   * On récupere l'utilisateur via son id,
+   * On renvoie la réponse au format json avec un status 200 (OK).
+   */
+  async getOneUser(req, res) {
+    const id = Number(req.params.id);
+    const user = await userDataMapper.getOneProfil(id);
+    res.status(200).json(user);
+  },
 };
 
 module.exports = userController;
