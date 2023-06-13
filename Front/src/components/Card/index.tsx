@@ -39,14 +39,14 @@ export default function Card({selectedCard}: any) {
     setCounter(counter - 1);
   };
 
-  const closeModal = () => {
+  const closeModalFunction = () => {
     dispatch(closeModal());
   }
 
   return (
     cardData && (
-      <div onClick={closeModal} className='behind-card-modal'>
-        <button onClick={closeModal} className='card-modal-exit'>X</button>
+      <div onClick={closeModalFunction} className='behind-card-modal'>
+        <button onClick={closeModalFunction} className='card-modal-exit'>X</button>
         <article className = "card-modal">
           <h2 className='card-modal-name'>{cardData.name}</h2>
           <section className='card-modal-informations'>
