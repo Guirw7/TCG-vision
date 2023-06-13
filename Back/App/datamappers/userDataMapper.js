@@ -27,7 +27,7 @@ const userDataMapper = {
     };
     const results = await client.query(preparedQuery);
     return results.rows; //* retourne le resultat de la requete.
-
+  },
   /**
    * Requête SQL pour  récupérer le détail de tout les users
    */
