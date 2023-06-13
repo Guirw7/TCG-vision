@@ -47,7 +47,9 @@ const userController = {
         user.password = hashedPassword || user.password;
       }
     }
-    res.status(200).json(user);// On renvoie la réponse au format JSON avec un status 200 (OK)
+    const updateUser = await userDataMapper.modifyUser(user);
+    // On renvoie la réponse au format JSON avec un status 200 (OK)
+    res.status(200).json(updateUser);
   },
 
   /**

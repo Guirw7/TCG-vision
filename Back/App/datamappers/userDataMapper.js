@@ -22,7 +22,7 @@ const userDataMapper = {
   async modifyUser(user) {
     const preparedQuery = {
       //* modification des informations de l'user concernés.
-      text: 'UPDATE "user" SET email=$1 ,username=$2, password=$3 WHERE "id"=$4',
+      text: 'UPDATE "user" SET email = $1 ,username = $2, password = $3 WHERE "id" = $4',
       values: [user.email, user.username, user.password, user.id],
     };
     const results = await client.query(preparedQuery);
