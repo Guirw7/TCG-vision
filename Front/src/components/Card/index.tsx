@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 
 import { openModal, closeModal } from './modalSlice';
 
-import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
+import dragon from '../../assets/img/91998119.jpg';
 import './styles.scss';
 
 export default function Card({selectedCard}: any) {
   const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any>(null);
-  const [cardID, setCardID] = useState<any>(selectedCard);
+  const [cardID, _setCardID] = useState<any>(selectedCard);
   const [counter, setCounter] = useState<number>(1);
 
   useEffect(() => {
