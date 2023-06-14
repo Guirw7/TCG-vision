@@ -46,8 +46,8 @@ export default function Card({selectedCard}: any) {
   return (
     cardData && (
       <div onClick={closeModalFunction} className='behind-card-modal'>
-        <button onClick={closeModalFunction} className='card-modal-exit'>X</button>
-        <article className = "card-modal">
+        <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='card-modal-exit'>X</button>
+        <article onClick={(e) => e.stopPropagation()} className = "card-modal">
           <h2 className='card-modal-name'>{cardData.name}</h2>
           <section className='card-modal-informations'>
             <img className="card-modal-image" src={dragon}></img>
