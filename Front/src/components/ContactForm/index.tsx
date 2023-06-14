@@ -30,7 +30,7 @@ export default function ContactForm() {
         <input
           className="contact-input contact-input-username"
           type="text"
-          placeholder="Votre Nom"
+          placeholder="Nom d'utilisateur"
           {...register("userName", {
           })}
         />
