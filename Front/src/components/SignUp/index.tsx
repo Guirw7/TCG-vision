@@ -52,6 +52,7 @@ export default function SignUp() {
             }
           })}
             >
+            <label className='signup-input-username-label' htmlFor="">Nom d'utilisateur :</label>
             <input autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur"
               // Méthode de react-hook form:
               {...register(
@@ -72,6 +73,7 @@ export default function SignUp() {
                 <p className='error-message'>{errors.username?.message}</p>
               )
             }
+            <label className="signup-input-email-label" htmlFor="">Adresse mail :</label>
             <input autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
               {...register(
                 "mail", 
@@ -93,6 +95,7 @@ export default function SignUp() {
                     <p className='error-message'>Le format de l'adresse mail est incorrect.</p>
                   )
                 }
+            <label className='signup-input-password-label' htmlFor="">Mot de passe :</label>
             <input autoComplete='off' className="signup-input-password" type="password" placeholder="Mot de passe"
             {...register(
               "password", 
@@ -111,6 +114,7 @@ export default function SignUp() {
             {errors.password && errors.password.type === 'required' && (
               <p className='error-message'>Le mot de passe est obligatoire.</p>)
             }
+            <label className='signup-input-password-confirm-label' htmlFor="">Confirmez votre mot de passe :</label>
             <input autoComplete='off' className="signup-input-password-confirm" type="password" placeholder="Confirmez votre mot de passe" 
               {...register(
                 "passwordConfirmation", {

@@ -21,8 +21,8 @@
   color: v.$font-color;
   position: absolute;
   z-index: 101;
-  top: 6%;
-  right: 22%;
+  top: 1rem;
+  right: 1rem;
   color: v.$font-color;
   font-size: v.$font-size * 5;
   cursor: pointer;
@@ -44,6 +44,7 @@
   background-color: v.$background-color-modal;
   overflow-y: auto; /* add this */
   transition: v.$transition-speed;
+  position: relative;
 }
 
 .card-modal-name {

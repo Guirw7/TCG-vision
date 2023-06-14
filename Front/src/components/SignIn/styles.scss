@@ -1,8 +1,7 @@
-@use '../../styles/variables.scss' as v;
 @use '../../styles/reset.scss';
+@use '../../styles/variables.scss' as v;
 
-
-.signup-container {
+.signin-container {
   margin: 0 auto;
   min-height: 95vh;
   width: 95vw;
@@ -11,7 +10,7 @@
   transition: v.$transition-speed;
 };
 
-.signup-container-background {
+.signin-container-background {
   background-color: white;
   margin: 0 auto;
   width: 98%;
@@ -27,7 +26,7 @@
   padding-top: 15vh;
 };
 
-.signup-form {
+.signin-form {
   margin: 0 auto;
   margin-top: 2rem;
   font-size: v.$font-size * 2.4;
@@ -41,19 +40,7 @@
   box-shadow: v.$box-shadow;
 };
 
-.signup-input-email-label {
-  margin-top: 2rem;
-};
-
-.signup-input-password-label {
-  margin-top: 2rem;
-};
-
-.signup-input-password-confirm-label {
-  margin-top: 1rem;
-}
-
-.signup-input-button {
+.signin-input-button {
   margin-top: 5rem;
   height: 2rem;
   background-color: v.$raw-color-blue-bright-3;
@@ -62,10 +49,18 @@
   box-shadow: v.$box-shadow;
 };
 
-.signup-input-button:hover {
+.signin-input-button:hover {
   cursor: pointer;
 };
 
-.error-message {
-  color: v.$font-color-error;
+.signin-forgotten-password-message {
+  margin-top: 1rem;
+}
+
+.signin-input-password-label{
+  margin-top: 2rem;
+};
+
+.signup-message {
+  margin-top: 5rem;
 };
