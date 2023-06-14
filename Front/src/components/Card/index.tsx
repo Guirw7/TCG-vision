@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { openModal, closeModal } from './modalSlice';
 
-import dragon from '../../../../../../../../kevin/Desktop/91998119.jpg';
+import dragon from '../../assets/img/91998119.jpg';
 import './styles.scss';
 
 export default function Card({selectedCard}: any) {
