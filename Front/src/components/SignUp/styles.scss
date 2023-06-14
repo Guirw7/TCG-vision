@@ -9,14 +9,14 @@
   background: v.$background-color-app;
   box-shadow: v.$box-shadow;
   transition: v.$transition-speed;
-}
+};
 
 .signup-container-background {
   background-color: white;
   margin: 0 auto;
   width: 98%;
   min-height: 95vh;
-}
+};
 
 .page-title {
   font-size: v.$font-size * 3.2;
@@ -25,24 +25,47 @@
   padding-top: 2rem;
   font-weight: 700;
   padding-top: 15vh;
-}
+};
 
 .signup-form {
   margin: 0 auto;
   margin-top: 2rem;
-  font-size: v.$font-size * 2.4;
+  font-size: 150%;
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
-  border: 1px solid black;
+  max-width: 30rem;
+  height: 30rem;
   border-radius: 5px;
   padding: 1rem;
-}
+  justify-content: center;
+  box-shadow: v.$box-shadow;
+};
 
 .signup-input-email {
+  margin-top: 2rem;
+};
+
+.signup-input-password {
+  margin-top: 2rem;
+};
+
+.signup-input-password-confirm {
   margin-top: 1rem;
 }
 
-.signup-input-password {
-  margin-top: 1rem;
-}
+.signup-input-button {
+  margin-top: 5rem;
+  height: 2rem;
+  background-color: v.$raw-color-blue-bright-3;
+  border: none;
+  border-radius: 5px;
+  box-shadow: v.$box-shadow;
+};
+
+.signup-input-button:hover {
+  cursor: pointer;
+};
+
+.error-message {
+  color: v.$font-color-error;
+};
