@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import HomePage from '../../components/HomePage';
 import SignUpPage from '../../components/SignUpPage';
 import Yugioh from '../../components/Yugioh';
+import ContactPage from "../ContactPage";
 
 /*-- Routers --*/
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage />,
+  },
+  {
+    path: "/contact",
+    element: <ContactPage />,
   },
   {
     //page temporaire:
