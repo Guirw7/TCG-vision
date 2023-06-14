@@ -84,6 +84,31 @@ const userController = {
       res.status(200).json(result);
     }
   },
+
+  async login(req, res) {
+    const { email, password } = req.body;
+
+    // Vérifiez si l'e-mail et le mot de passe sont présents dans la demande
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Veuillez fournir un e-mail et un mot de passe.' });
+    }
+    // Recherchez l'utilisateur dans la base de données en utilisant l'e-mail
+    const user = await userDataMapper.getUserByEmail(email);
+
+    // Vérifiez si l'utilisateur existe
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur introuvable.' });
+    }
+
+    // Vérifiez si le mot de passe correspond
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Mot de passe incorrect.' });
+    }
+
+    // Renvoyez une réponse réussie
+    return res.json({ message: 'Connexion réussie.' });
+  },
 };
 
 module.exports = userController;
