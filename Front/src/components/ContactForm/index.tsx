@@ -1,49 +1,49 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import "./styles.scss";
 
+// Interface pour représenter les données du formulaire de contact
 interface ContactData {
-  username: string;
+  userName: string;
   email: string;
-  contactReason: string;
-  Message: string;
+  message: string;
+  reason: string;
 }
 
 export default function ContactForm() {
+  // Initialisation du formulaire avec la fonction useForm de 'react-hook-form'
   const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<ContactData>();
+    register, // Fonction pour enregistrer les champs du formulaire
+    handleSubmit, // Fonction pour gérer la soumission du formulaire
+    formState: { errors } // Objet contenant les erreurs de validation
+  } = useForm<ContactData>(); // Utilisation de l'interface ContactData pour le formulaire
 
+  // Fonction appelée lors de la soumission du formulaire
   const onSubmit: SubmitHandler<ContactData> = data => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div className='contact-container'>
+      <div className='contact-container-background'>
+        <h1 className='page-title'>Contact</h1>
+    <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
       <div>
+        <label className='contact-input-username-label' htmlFor="">Nom d'utilisateur :</label>
         <input
+          className="contact-input contact-input-username"
           type="text"
-          autoComplete="username"
-          placeholder="Nom d'utilisateur"
-          {...register("username", {
-            required: 'Ce champ est obligatoire',
-            minLength: {
-              value: 4,
-              message: 'Votre nom d\'utilisateur doit contenir entre 4 et 16 caractères.',
-            },
-            maxLength: {
-              value: 16,
-              message: 'Votre nom d\'utilisateur doit contenir entre 4 et 16 caractères.',
-            },
+          placeholder="Votre Nom"
+          {...register("userName", {
           })}
         />
-        {errors.username && (
-          <ErrorMessage>{errors.username.message}</ErrorMessage>
+        {errors.userName && (
+          <ErrorMessage>{errors.userName.message}</ErrorMessage>
         )}
       </div>
 
       <div>
+      <label className='contact-input-email-label' htmlFor="">Adresse Mail :</label>
         <input
           type="email"
+          className="contact-input contact-input-email"
           autoComplete="email"
           placeholder="Adresse mail"
           {...register("email", {
@@ -65,24 +65,47 @@ export default function ContactForm() {
         )}
       </div>
 
-      <select {...register("contactReason")}>
-        <option value="Bug/Erreur">Bug/Erreur</option>
-        <option value="Autre">Autre</option>
-      </select>
-
       <div>
+        <label className='contact-input-reason-label' htmlFor="">Objet :</label>
         <input
-          type="text"
-          placeholder="Message"
-          {...register("Message", { maxLength: 5000 })}
+          type="reason"
+          className="contact-input contact-input-reason"
+          placeholder="Raison du contact"
+          {...register("reason", {
+            required: 'Ce champ est obligatoire.'
+          })}
         />
+        {errors.email && (
+          <ErrorMessage>
+            {errors.email.message || 'Une erreur est survenue.'}
+          </ErrorMessage>
+        )}
       </div>
 
-      <input type="submit" />
+      <div>
+        {/* <label htmlFor="">Message :</label> */}
+        <textarea
+          className="contact-input contact-input-message"
+          placeholder="Message"
+          {...register("message", {
+            required: 'Ce champ est obligatoire.', 
+            maxLength: 5000 })}
+        />
+        {errors.message && (
+          <ErrorMessage>
+            {errors.message.message || 'Une erreur est survenue.'}
+          </ErrorMessage>
+        )}
+      </div>
+
+      <input className="contact-input-button" type="submit" />
     </form>
+    </div>
+    </div>
   );
 }
 
+// Composant fonctionnel pour afficher les messages d'erreur
 function ErrorMessage({ children }: { children: React.ReactNode }) {
   return <p className='error-message'>{children}</p>;
 }
