@@ -5,6 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import HomePage from '../../components/HomePage';
 import SignUpPage from '../../components/SignUpPage';
+import SignInPage from '../../components/SignInPage';
 import Yugioh from '../../components/Yugioh';
 import ContactPage from "../ContactPage";
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage />,
+  },
+  {
+    path: "/signin",
+    element: <SignInPage />
   },
   {
     path: "/contact",
@@ -37,4 +42,4 @@ export default function App() {
     <Footer />
     </>
   )
-}
+};
