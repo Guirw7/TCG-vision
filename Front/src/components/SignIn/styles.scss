@@ -25,3 +25,42 @@
   font-weight: 700;
   padding-top: 15vh;
 };
+
+.signin-form {
+  margin: 0 auto;
+  margin-top: 2rem;
+  font-size: v.$font-size * 2.4;
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+  height: 30rem;
+  border-radius: 5px;
+  padding: 1rem;
+  justify-content: center;
+  box-shadow: v.$box-shadow;
+};
+
+.signin-input-button {
+  margin-top: 5rem;
+  height: 2rem;
+  background-color: v.$raw-color-blue-bright-3;
+  border: none;
+  border-radius: 5px;
+  box-shadow: v.$box-shadow;
+};
+
+.signin-input-button:hover {
+  cursor: pointer;
+};
+
+.signin-forgotten-password-message {
+  margin-top: 1rem;
+}
+
+.signin-input-password-label{
+  margin-top: 2rem;
+};
+
+.signup-message {
+  margin-top: 5rem;
+};

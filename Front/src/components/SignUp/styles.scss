@@ -30,7 +30,7 @@
 .signup-form {
   margin: 0 auto;
   margin-top: 2rem;
-  font-size: 150%;
+  font-size: v.$font-size * 2.4;
   display: flex;
   flex-direction: column;
   max-width: 30rem;
@@ -41,15 +41,15 @@
   box-shadow: v.$box-shadow;
 };
 
-.signup-input-email {
+.signup-input-email-label {
   margin-top: 2rem;
 };
 
-.signup-input-password {
+.signup-input-password-label {
   margin-top: 2rem;
 };
 
-.signup-input-password-confirm {
+.signup-input-password-confirm-label {
   margin-top: 1rem;
 }
 

@@ -22,18 +22,49 @@ import './styles.scss';
 // );
 
 export default function SignIn() {
+
+  /* Logique ici : */
+  const { 
+    register, 
+    handleSubmit,
+    // permet de générer des erreurs personnalisées
+    setError,
+    // watch, 
+    // clearErrors, 
+    formState: { errors } 
+  } = useForm(
+    {defaultValues : 
+      {
+        username: 'kevin',
+        password: 'LolXd69240',
+      },
+    }
+  );
+
   return (
     <div className='signin-container'>
       <div className='signin-container-background'>
         <h1 className='page-title'>Connexion</h1>
-        <form className="signup-form"
+        <form className="signin-form" onSubmit={handleSubmit((data) => {
+          console.log(data);
+        })}
             >
-          <label htmlFor="">Nom d'utilisateur</label>
-          <input type="text" />
-          <label htmlFor="">Mot de passe</label>
-          <input type="password" name="" id="" />
-          <button>Se connecter</button>
+          <label className='signin-input-username-label' htmlFor="">Nom d'utilisateur :</label>
+          <input className="signin-input-username" type="text" 
+            {...register(
+              "username", 
+              {required: 'Ce champ est obligatoire'})}/>
+          <label className='signin-input-password-label' htmlFor="">Mot de passe :</label>
+          <input className='signin-input-password' type ="password" id="" 
+            {...register(
+              "password", 
+              {required: 'Ce champ est obligatoire'})}/>
+          <input className="signin-input-button" type="submit"/>
+          <a className='signin-forgotten-password-message' href="">Mot de passe oublié</a>
+          <p className='signup-message'>Pas encore inscrit ?</p>
+          <a className='signup-message-link'href="/signup">Inscrivez vous!</a>
         </form>
+
       </div>
     </div>
   )
