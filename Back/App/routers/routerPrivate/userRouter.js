@@ -1,5 +1,7 @@
 const express = require('express');
 
+const controllerHandler = require('../../helpers/controllerHandler');
+
 /* --------------- Controllers ---------------*/
 const userController = require('../../controllers/userController');
 
@@ -10,11 +12,11 @@ const validate = require('../../validations/validate');
 const router = express.Router();
 
 /* --------------- Routes ---------------*/
-router.get('/', userController.detailUsers);
+router.get('/', controllerHandler(userController.detailUsers));
 // (\\d+) expression régulière qui definit une contrainte sur l'id.
-router.get('/:id(\\d+)', userController.getOneUser);
+router.get('/:id(\\d+)', controllerHandler(userController.getOneUser));
 
-router.put('/:id(\\d+)', validate(userBody), userController.modifyUser);
-router.delete('/:id(\\d+)', userController.deleteUser);
+router.put('/:id(\\d+)', validate(userBody), controllerHandler(userController.modifyUser));
+router.delete('/:id(\\d+)', controllerHandler(userController.deleteUser));
 
 module.exports = router;
