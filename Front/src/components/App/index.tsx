@@ -5,6 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import HomePage from '../../components/HomePage';
 import SignUpPage from '../../components/SignUpPage';
+import SignInPage from '../../components/SignInPage';
 import Yugioh from '../../components/Yugioh';
 import ContactPage from "../ContactPage";
 import PasswordResetPage from "../PasswordResetPage";
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/reset-password",
-    element: <PasswordResetPage />,
+    element: <PasswordResetPage />
+  },
+  {
+    path: "/signin",
+    element: <SignInPage />
   },
   {
     path: "/contact",
@@ -42,4 +47,4 @@ export default function App() {
     <Footer />
     </>
   )
-}
+};
