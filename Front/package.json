@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "crypto-js": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.44.3"
+    "react-hook-form": "^7.44.3",
+    "react-redux": "^8.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
@@ -24,9 +26,9 @@
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9",
     "react-router-dom": "^6.12.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
   }
 }

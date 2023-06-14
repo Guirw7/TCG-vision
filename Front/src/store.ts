@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-// gestion de la liste des films
-import cardsReducer from './components/Cards/cardsSlice';
+import modalReducer from './components/Card/modalSlice';
 
 
 export const store = configureStore({
   reducer: {
-    cards: cardsReducer,
+    modal: modalReducer,
   },
 })
 
