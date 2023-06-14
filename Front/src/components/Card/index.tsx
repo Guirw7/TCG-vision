@@ -9,7 +9,7 @@ import './styles.scss';
 export default function Card({selectedCard}: any) {
   const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any>(null);
-  const [cardID, setCardID] = useState<any>(selectedCard);
+  const [cardID, _setCardID] = useState<any>(selectedCard);
   const [counter, setCounter] = useState<number>(1);
 
   useEffect(() => {
@@ -46,8 +46,8 @@ export default function Card({selectedCard}: any) {
   return (
     cardData && (
       <div onClick={closeModalFunction} className='behind-card-modal'>
-        <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='card-modal-exit'>X</button>
         <article onClick={(e) => e.stopPropagation()} className = "card-modal">
+        <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='card-modal-exit'>X</button>
           <h2 className='card-modal-name'>{cardData.name}</h2>
           <section className='card-modal-informations'>
             <img className="card-modal-image" src={dragon}></img>
