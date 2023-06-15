@@ -16,6 +16,7 @@
   margin: 0 auto;
   width: 98%;
   min-height: 95vh;
+  padding-bottom: 5rem;
 };
 
 .page-title {
@@ -53,6 +54,22 @@
   margin-top: 1rem;
 }
 
+.signup-input-username {
+  margin-bottom: 1rem;
+}
+
+.signup-input-email {
+  margin-bottom: 1rem;
+};
+
+.signup-input-password {
+  margin-bottom: 1rem;
+};
+
+.signup-input-password-confirm {
+  margin-bottom: 1rem;
+}
+
 .signup-input-button {
   margin-top: 5rem;
   height: 2rem;
@@ -67,6 +84,5 @@
 };
 
 .error-message {
-  margin-top: 2rem;
   color: v.$font-color-error;
 };
