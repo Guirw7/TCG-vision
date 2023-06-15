@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 import './styles.scss';
 
@@ -41,12 +42,28 @@ export default function Login() {
     // }
   );
 
+  /*-- Actualiser les noms de classe pour match avec 'Login' --*/
+
+  const getUser = async (form: any) => {
+    try {
+      const response = axios.post(
+        'https://daoust-jason-server.eddi.cloud/user/login', {
+          email: form.username,
+          password: form.password,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='signin-container'>
       <div className='signin-container-background'>
         <h1 className='page-title'>Connexion</h1>
         <form className="signin-form" onSubmit={handleSubmit((data) => {
-          console.log(data);
+          getUser(data);
         })}
             >
           <label className='signin-input-username-label' htmlFor="">Nom d'utilisateur :</label>
