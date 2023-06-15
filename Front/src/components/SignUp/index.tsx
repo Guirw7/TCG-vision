@@ -26,7 +26,7 @@ export default function SignUp() {
         username: 'kevin',
         mail: 'kk@k.com',
         password: 'LolXd69240',
-        passwordConfirmation: 'LolXd69240',
+        passwordConfirmation: 'LolXd692',
       },
     }
   );
@@ -42,18 +42,19 @@ export default function SignUp() {
         <h1 className='page-title'>Création de compte</h1>
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            // On vérifie que les mots de passe correspondent :
             console.log(data);
+            // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
                 type: 'custom',
                 message: 'Les mots de passe ne correspondent pas.',
               });
             }
+            console.log(data);
           })}
             >
-            <label className='signup-input-username-label' htmlFor="">Nom d'utilisateur :</label>
-            <input autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur"
+            <label className='signup-input-username-label' htmlFor="username">Nom d'utilisateur :</label>
+            <input id="username" autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur"
               // Méthode de react-hook form:
               {...register(
                 "username", 
@@ -73,8 +74,8 @@ export default function SignUp() {
                 <p className='error-message'>{errors.username?.message}</p>
               )
             }
-            <label className="signup-input-email-label" htmlFor="">Adresse mail :</label>
-            <input autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
+            <label className="signup-input-email-label" htmlFor="email">Adresse mail :</label>
+            <input id="email" autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
               {...register(
                 "mail", 
                 {required: 'Ce champ est obligatoire.', 
@@ -91,12 +92,12 @@ export default function SignUp() {
                   )
                 }
                 {
-                  errors.mail && errors.mail.type === 'pattern' && (
+                  errors.mail?.type === 'pattern' && (
                     <p className='error-message'>Le format de l'adresse mail est incorrect.</p>
                   )
                 }
-            <label className='signup-input-password-label' htmlFor="">Mot de passe :</label>
-            <input autoComplete='off' className="signup-input-password" type="password" placeholder="Mot de passe"
+            <label className='signup-input-password-label' htmlFor="password">Mot de passe :</label>
+            <input id="password" autoComplete='off' className="signup-input-password" type="password" placeholder="Mot de passe"
             {...register(
               "password", 
               {required: 'Ce champ est obligatoire.', 
@@ -111,11 +112,16 @@ export default function SignUp() {
               pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-z]{8,}$/i
               })} 
             />
-            {errors.password && errors.password.type === 'required' && (
-              <p className='error-message'>Le mot de passe est obligatoire.</p>)
+            {errors.password?.message && (
+              <p className='error-message'>{errors.password?.message}</p>)
             }
-            <label className='signup-input-password-confirm-label' htmlFor="">Confirmez votre mot de passe :</label>
-            <input autoComplete='off' className="signup-input-password-confirm" type="password" placeholder="Confirmez votre mot de passe" 
+            {
+              errors.password?.type === 'pattern' && (
+                <p className='error-message'>Le format du mot de passe est invalide.</p>
+              )
+            }
+            <label className='signup-input-password-confirm-label' htmlFor="password-confirm">Confirmez votre mot de passe :</label>
+            <input id="password-confirm" autoComplete='off' className="signup-input-password-confirm" type="password" placeholder="Confirmez votre mot de passe" 
               {...register(
                 "passwordConfirmation", {
                   required: 'Veuillez confirmer votre mot de passe.',
