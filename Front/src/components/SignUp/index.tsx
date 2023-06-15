@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 // import CryptoJS from 'crypto-js';
 
 import './styles.scss';
 
 interface Data {
   username: string;
-  mail: string; 
+  email: string; 
   password: string;
   passwordConfirmation: string;
 }
@@ -21,14 +22,14 @@ export default function SignUp() {
     // clearErrors, 
     formState: { errors } 
   } = useForm<Data>(
-    {defaultValues : 
-      {
-        username: 'kevin',
-        mail: 'kk@k.com',
-        password: 'LolXd69240',
-        passwordConfirmation: 'LolXd69240',
-      },
-    }
+    // {defaultValues : 
+    //   {
+    //     username: 'kevin',
+    //     mail: 'kk@k.com',
+    //     password: 'LolXd69240',
+    //     passwordConfirmation: 'LolXd69240',
+    //   },
+    // }
   );
 
   // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
@@ -42,6 +43,7 @@ export default function SignUp() {
         <h1 className='page-title'>Création de compte</h1>
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
+            console.log(data);
             // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
@@ -52,7 +54,18 @@ export default function SignUp() {
             if (data.password === data.passwordConfirmation) {
               // On peut crypter le mot de passe ici
               // On envoie les données au back
-              console.log(data);
+              axios.post(
+                'https://daoust-jason-server.eddi.cloud/user/signup', {
+                email: data.email,
+                username: data.username,
+                password: data.password,
+              })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
             };
           })}
             >
@@ -80,7 +93,7 @@ export default function SignUp() {
             <label className="signup-input-email-label" htmlFor="">Adresse mail :</label>
             <input autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
               {...register(
-                "mail", 
+                "email", 
                 {required: 'Ce champ est obligatoire.', 
                   maxLength: 64, 
                   pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
@@ -90,12 +103,12 @@ export default function SignUp() {
                 <p className='error-message'>Le format de l'adresse mail est incorrect.</p>)
                 } */}
                 {
-                  errors.mail?.message && (
-                    <p className='error-message'>{errors.mail?.message}</p>
+                  errors.email?.message && (
+                    <p className='error-message'>{errors.email?.message}</p>
                   )
                 }
                 {
-                  errors.mail && errors.mail.type === 'pattern' && (
+                  errors.email && errors.email.type === 'pattern' && (
                     <p className='error-message'>Le format de l'adresse mail est incorrect.</p>
                   )
                 }
