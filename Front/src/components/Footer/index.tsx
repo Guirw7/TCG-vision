@@ -3,7 +3,9 @@ import "./styles.scss";
 export default function Footer() {
   return(
     <footer className="footer">
-      <p>O'Clock 2023</p>
+      <a className="footer-link-contact" href="/contact">Contact</a>
+      <a className="footer-link-team" href="/team">Qui sommes-nous?</a>
+      <p className="footer-info">O'Clock 2023</p>
     </footer>
   )
 }
