@@ -7,6 +7,7 @@ import { openModal, closeModal } from '../Card/modalSlice';
 // import state from '../Card/modalSlice';
 
 import Card from '../Card';
+import CardDisplayer from '../CardDisplayer';
 import './styles.scss';
 
 export interface Card {
@@ -66,7 +67,7 @@ const handleClick = async () => {
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
-        <button onClick={handleClick}>Clique moi</button>
+        {/* <button onClick={handleClick}>Clique moi</button>
         {
           (modal)  && (
             <Card selectedCard={selectedCard}/>
@@ -76,7 +77,8 @@ const handleClick = async () => {
           (!modal) && (
             <h1>hello world</h1>
           )
-        }
+        } */}
+        <CardDisplayer />
       </div>
     </div>
   )

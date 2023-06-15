@@ -1,9 +1,9 @@
-import SignIn from "../SignIn";
+import Login from "../Login";
 
 export default function SignInPage(){
 return(
   <>
-    <SignIn />
+    <Login />
   </>
 );
 }
