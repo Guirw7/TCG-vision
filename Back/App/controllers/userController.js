@@ -106,6 +106,11 @@ const userController = {
       return res.status(401).json({ message: 'Mot de passe incorrect.' });
     }
 
+    // On connecte l'utilisateur avec la mecanique de session
+    req.session.user = user;
+    // mais on supprime son mdp !
+    delete req.session.user.password;
+
     // Renvoyez une réponse réussie
     return res.json({ message: 'Connexion réussie.' });
   },
