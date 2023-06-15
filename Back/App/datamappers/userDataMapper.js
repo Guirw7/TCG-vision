@@ -75,10 +75,10 @@ const userDataMapper = {
     return deleteResult.rows[0];
   },
 
-  async getUserByEmail(email) {
+  async getByUsername(username) {
     const preparedQuery = {
-      text: 'SELECT email, password FROM "user" WHERE email = $1',
-      values: [email],
+      text: 'SELECT username, password FROM "user" WHERE username = $1',
+      values: [username],
     };
     // Exécuter la requête de recherche d'un user par son email
     const result = await client.query(preparedQuery);
