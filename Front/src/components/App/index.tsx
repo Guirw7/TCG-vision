@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <PasswordResetPage />
   },
   {
-    path: "/signin",
+    path: "/login",
     element: <SignInPage />
   },
   {
