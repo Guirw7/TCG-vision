@@ -9,6 +9,7 @@ import SignInPage from '../../components/SignInPage';
 import Yugioh from '../../components/Yugioh';
 import ContactPage from "../ContactPage";
 import PasswordResetPage from "../PasswordResetPage";
+import TeamPage from "../TeamPage";
 
 /*-- Routers --*/
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <ContactPage />,
+  },
+  {
+    path: "/team",
+    element: <TeamPage />,
   },
   {
     //page temporaire:
