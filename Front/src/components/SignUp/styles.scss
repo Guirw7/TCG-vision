@@ -16,6 +16,7 @@
   margin: 0 auto;
   width: 98%;
   min-height: 95vh;
+  padding-bottom: 5rem;
 };
 
 .page-title {
@@ -34,7 +35,7 @@
   display: flex;
   flex-direction: column;
   max-width: 30rem;
-  height: 30rem;
+  min-height: 30rem;
   border-radius: 5px;
   padding: 1rem;
   justify-content: center;
@@ -51,6 +52,22 @@
 
 .signup-input-password-confirm-label {
   margin-top: 1rem;
+}
+
+.signup-input-username {
+  margin-bottom: 1rem;
+}
+
+.signup-input-email {
+  margin-bottom: 1rem;
+};
+
+.signup-input-password {
+  margin-bottom: 1rem;
+};
+
+.signup-input-password-confirm {
+  margin-bottom: 1rem;
 }
 
 .signup-input-button {

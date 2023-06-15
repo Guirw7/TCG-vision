@@ -15,3 +15,25 @@
   align-items: center;
   // border-radius: 0% 0% 5px 5px / 0% 0% 5px 5px;
 }
+
+.footer-link-contact {
+  position: absolute;
+  left: 4%;
+  color: v.$font-color;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-link-team {
+  position: absolute;
+  left: 12%;
+  // margin-left: 5%;
+  color: v.$font-color;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-info {
+  margin: 0 auto;
+  font-weight: 900;
+}

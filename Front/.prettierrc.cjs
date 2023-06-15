@@ -1,9 +1,9 @@
 module.exports = {
-  endOfLine: 'auto',
-  trailingComma: 'es5',
-  semi: true,
-  useTabs: false,
-  singleQuote: true,
-  tabWidth: 2,
-  indentStyle: 'space',
+	endOfLine: 'lf',
+	trailingComma: 'es5',
+	semi: true,
+	useTabs: false,
+	singleQuote: true,
+	tabWidth: 2,
+	indentStyle: 'space',
 };
