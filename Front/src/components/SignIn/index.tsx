@@ -33,12 +33,12 @@ export default function SignIn() {
     // clearErrors, 
     formState: { errors } 
   } = useForm(
-    {defaultValues : 
-      {
-        username: 'kevin',
-        password: 'LolXd69240',
-      },
-    }
+    // {defaultValues : 
+    //   {
+    //     username: 'kevin',
+    //     password: 'LolXd69240',
+    //   },
+    // }
   );
 
   return (
