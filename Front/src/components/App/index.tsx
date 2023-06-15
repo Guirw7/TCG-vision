@@ -5,7 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import HomePage from '../../components/HomePage';
 import SignUpPage from '../../components/SignUpPage';
-import SignInPage from '../../components/SignInPage';
+import LoginPage from '../LoginPage';
 import Yugioh from '../../components/Yugioh';
 import ContactPage from "../ContactPage";
 import PasswordResetPage from "../PasswordResetPage";
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <SignInPage />
+    element: <LoginPage />
   },
   {
     path: "/contact",
