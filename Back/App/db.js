@@ -5,11 +5,11 @@ const { Client } = require('pg');
 // il n'y a pas besoin de lui spécifier les infos du .env car il va les chercher directement
 
 const client = new Client({
-	user:process.env.PGUSER,
-	password:process.env.PGPASSWORD,
-	port:process.env.PGPORT,
-	host:process.env.PGHOST,
-	database:process.env.PGDATABASE
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
 });
 
 // On connecte le client
