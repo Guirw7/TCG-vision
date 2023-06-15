@@ -86,14 +86,14 @@ const userController = {
   },
 
   async login(req, res) {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     // Vérifiez si l'e-mail et le mot de passe sont présents dans la demande
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Veuillez fournir un e-mail et un mot de passe.' });
+    if (!username || !password) {
+      return res.status(400).json({ message: 'Veuillez fournir un pseudo et un mot de passe.' });
     }
-    // Recherchez l'utilisateur dans la base de données en utilisant l'e-mail
-    const user = await userDataMapper.getUserByEmail(email);
+    // Recherchez l'utilisateur dans la base de données en utilisant le username
+    const user = await userDataMapper.getByUsername(username);
 
     // Vérifiez si l'utilisateur existe
     if (!user) {
