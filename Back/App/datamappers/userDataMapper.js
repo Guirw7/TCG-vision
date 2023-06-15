@@ -74,6 +74,16 @@ const userDataMapper = {
     const deleteResult = await client.query(deleteQuery);
     return deleteResult.rows[0];
   },
+
+  async getUserByEmail(email) {
+    const preparedQuery = {
+      text: 'SELECT email, password FROM "user" WHERE email = $1',
+      values: [email],
+    };
+    // Exécuter la requête de recherche d'un user par son email
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
 };
 
 // On exporte le userDataMapper
