@@ -1,13 +1,12 @@
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
+// import CryptoJS from 'crypto-js';
 import { useSelector, useDispatch } from 'react-redux';
+import FormModal from '../Form';
 import { openModal, closeModal } from '../Form/modalSlice';
 import { useState } from 'react';
-import FormModal from '../Form';
-// import CryptoJS from 'crypto-js';
 
 import './styles.scss';
-import { Form } from 'react-router-dom';
 
 interface Data {
   username: string;
@@ -37,18 +36,16 @@ export default function SignUp() {
     // }
   );
 
-
-// handleClick avec Redux
-const dispatch = useDispatch();
-const handleClick = () => {
-  setIsFormSubmitted(true);
-  dispatch(openModal());
-  // setIsFormSubmitted(false);
-};
-
-const [isSuccessfull, setIsSuccessfull] = useState<boolean | null>(null);
-const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
+  const [queryResult, setQueryResult] = useState<boolean | null >(null);
+  const modal = useSelector((state: RootState) => state.formModal.value);
+  const dispatch = useDispatch();
+  const querySuccess = {
+    message: 'Votre compte a bien été créé.',
+  }
+  const queryFailure = {
+    message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
+  }
+  
   // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
   // console.log(errors);
   // Permet de voir les inputs en temps réel
@@ -60,7 +57,7 @@ const [isFormSubmitted, setIsFormSubmitted] = useState(false);
         <h1 className='page-title'>Création de compte</h1>
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            // console.log(data);
+            console.log(data);
             // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
@@ -77,28 +74,17 @@ const [isFormSubmitted, setIsFormSubmitted] = useState(false);
                 username: data.username,
                 password: data.password,
               })
-              .then((response) => {
-                if (response.status === 200) {
-                  console.log(response);
-                  console.log('marche bien');
-                  setIsSuccessfull(true);
-                  handleClick();
-                }
-                // console.log(response);
-                // setIsSuccessfull(true);
+              .then(function (response) {
+                setQueryResult(true);
+                console.log(response);
+                dispatch(openModal());
+
               })
-              .catch((error) => {
-                if (error.response.status === 409) {
-                  setError('username', {
-                    type: 'custom',
-                    message: 'Ce nom d\'utilisateur est déjà pris.',
-                    
-                  });
-                }
-                console.log(error.response.status);
-                console.log('marche pas');
-                setIsSuccessfull(false);
-                handleClick();
+              .catch(function (error) {
+                setQueryResult(false);
+                console.log(error);
+                dispatch(openModal());
+
               });
             };
           })}
@@ -180,7 +166,11 @@ const [isFormSubmitted, setIsFormSubmitted] = useState(false);
               }
             <input className="signup-input-button" type="submit"/>
           </form>
-          {isFormSubmitted && <FormModal isSuccessfull={isSuccessfull} setIsFormSubmitted={setIsFormSubmitted} />}
+          {
+            (modal)  && (
+              <FormModal queryResult={queryResult}/>
+            )
+          }
         </div>
       </div>
   );

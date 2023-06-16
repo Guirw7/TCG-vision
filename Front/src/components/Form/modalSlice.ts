@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface ModalState {
   value: boolean;
+  message: string | null;
 }
 
 export const initialState: ModalState = {
   value: false,
+  message: null,
 }
 
 const formModalSlice = createSlice({
@@ -17,6 +19,9 @@ const formModalSlice = createSlice({
     },
     closeModal: (state) => {
       state.value = false;
+    },
+    setModalMessage: (state) => {
+      state.message = '';
     },
   },
 });

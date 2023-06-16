@@ -11,32 +11,28 @@ interface FormModalProps {
   setIsFormSubmitted: any;
 }
 
-export default function FormModal({isSuccessfull, setIsFormSubmitted }: FormModalProps) {
+export default function FormModal(queryResult: any) {
   
   const dispatch = useDispatch();
   const closeModalFunction = () => {
     dispatch(closeModal());
-    setIsFormSubmitted(false);
   }
+
+
   return (
     <>
-    <div className='behind-form-modal'>
+    <div onClick={closeModalFunction} className='behind-form-modal'>
       <article onClick={(e) => e.stopPropagation()} className = "from-modal">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
-        
-        {/* Conditionnel de message par ici */}
-        
-        {/* {
-          isSuccessfull === false && (
+        {
+          !queryResult && (
             <p>échec de la requête</p>
           )
         }
         {
-          isSuccessfull === true && (
+          queryResult && (
             <p>c'est good</p>
-        )} */}
-
-        
+        )}
       </article>
     </div>
     </>
