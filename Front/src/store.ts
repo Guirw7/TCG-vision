@@ -5,7 +5,7 @@ import modalReducer from './components/Card/modalSlice';
 
 export const store = configureStore({
   reducer: {
-    modal: modalReducer,
+    cardModal: modalReducer,
   },
 })
 

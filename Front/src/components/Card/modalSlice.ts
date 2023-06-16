@@ -9,7 +9,7 @@ export const initialState: ModalState = {
 }
 
 const modalSlice = createSlice({
-  name: 'modal',
+  name: 'cardModal',
   initialState,
   reducers: {
     openModal: (state) => {
