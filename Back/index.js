@@ -17,6 +17,7 @@ const logger = require('./App/log');
 
 // creation de l'application
 const app = express();
+app.use(express.static('images'));
 
 // Body
 app.use(express.json());
