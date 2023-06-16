@@ -1,8 +1,13 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal } from '../Form/modalSlice';
+import { useState } from 'react';
+import FormModal from '../Form';
 // import CryptoJS from 'crypto-js';
 
 import './styles.scss';
+import { Form } from 'react-router-dom';
 
 interface Data {
   username: string;
@@ -32,6 +37,18 @@ export default function SignUp() {
     // }
   );
 
+
+// handleClick avec Redux
+const dispatch = useDispatch();
+const handleClick = () => {
+  setIsFormSubmitted(true);
+  dispatch(openModal());
+  // setIsFormSubmitted(false);
+};
+
+const [isSuccessfull, setIsSuccessfull] = useState<boolean | null>(null);
+const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
   // console.log(errors);
   // Permet de voir les inputs en temps réel
@@ -43,7 +60,7 @@ export default function SignUp() {
         <h1 className='page-title'>Création de compte</h1>
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            console.log(data);
+            // console.log(data);
             // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
@@ -60,11 +77,28 @@ export default function SignUp() {
                 username: data.username,
                 password: data.password,
               })
-              .then(function (response) {
-                console.log(response);
+              .then((response) => {
+                if (response.status === 200) {
+                  console.log(response);
+                  console.log('marche bien');
+                  setIsSuccessfull(true);
+                  handleClick();
+                }
+                // console.log(response);
+                // setIsSuccessfull(true);
               })
-              .catch(function (error) {
-                console.log(error);
+              .catch((error) => {
+                if (error.response.status === 409) {
+                  setError('username', {
+                    type: 'custom',
+                    message: 'Ce nom d\'utilisateur est déjà pris.',
+                    
+                  });
+                }
+                console.log(error.response.status);
+                console.log('marche pas');
+                setIsSuccessfull(false);
+                handleClick();
               });
             };
           })}
@@ -146,6 +180,7 @@ export default function SignUp() {
               }
             <input className="signup-input-button" type="submit"/>
           </form>
+          {isFormSubmitted && <FormModal isSuccessfull={isSuccessfull} setIsFormSubmitted={setIsFormSubmitted} />}
         </div>
       </div>
   );

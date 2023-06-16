@@ -21,5 +21,5 @@ const formModalSlice = createSlice({
   },
 });
 
-export default formModalSlice.reducer;
 export const { openModal, closeModal } = formModalSlice.actions;
+export default formModalSlice.reducer;
