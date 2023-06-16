@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+// On importe le slice qui est dans ce dossier ⚠️
 import { openModal, closeModal } from './modalSlice';
 
 import dragon from '../../assets/img/91998119.jpg';

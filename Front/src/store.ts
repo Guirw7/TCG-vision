@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import modalReducer from './components/Card/modalSlice';
+import cardModalReducer from './components/Card/modalSlice';
+import formModalReducer from './components/Form/modalSlice';
 
 
 export const store = configureStore({
   reducer: {
-    cardModal: modalReducer,
+    cardModal: cardModalReducer,
+    formModal: formModalReducer,
   },
 })
 

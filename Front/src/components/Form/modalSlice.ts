@@ -8,8 +8,8 @@ export const initialState: ModalState = {
   value: false,
 }
 
-const cardModalSlice = createSlice({
-  name: 'cardModal',
+const formModalSlice = createSlice({
+  name: 'formModal',
   initialState,
   reducers: {
     openModal: (state) => {
@@ -21,5 +21,5 @@ const cardModalSlice = createSlice({
   },
 });
 
-export default cardModalSlice.reducer;
-export const { openModal, closeModal } = cardModalSlice.actions;
+export default formModalSlice.reducer;
+export const { openModal, closeModal } = formModalSlice.actions;
