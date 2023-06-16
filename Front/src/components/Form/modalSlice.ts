@@ -26,7 +26,10 @@ const formModalSlice = createSlice({
     setModalFailureMessage: (state) => {
       state.message = 'Une erreur est survenue, veuillez réessayer plus tard';
     },
+    setModalEmptyMessage: (state) => {
+      state.message = '';
+    },
 }});
 
-export const { openModal, closeModal, setModalSuccessMessage, setModalFailureMessage } = formModalSlice.actions;
+export const { openModal, closeModal, setModalSuccessMessage, setModalFailureMessage, setModalEmptyMessage } = formModalSlice.actions;
 export default formModalSlice.reducer;
