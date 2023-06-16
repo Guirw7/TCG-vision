@@ -4,7 +4,7 @@ import { openModal, closeModal } from './modalSlice';
 
 import './styles.scss';
 
-export default function FormModal(queryResult: boolean) {
+export default function FormModal(queryResult: any) {
   const dispatch = useDispatch();
   const closeModalFunction = () => {
     dispatch(closeModal());
@@ -15,14 +15,12 @@ export default function FormModal(queryResult: boolean) {
       <article onClick={(e) => e.stopPropagation()} className = "from-modal">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
         {
-          !queryResult && (
-            <p>échec de la requête</p>
+          queryResult && (
+            // gérer le message avec un slice Redux
+            <p>hello world</p>
           )
         }
-        {
-          queryResult && (
-            <p>c'est good</p>
-        )}
+
       </article>
     </div>
     </>

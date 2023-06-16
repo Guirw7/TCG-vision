@@ -62,6 +62,7 @@ export default function Login() {
         setIsSuccessful(true);
         dispatch(openModal());
 
+        // Copier le code de Raf ici
       }
       // Si c'est good, on affiche la modale de succès
 
