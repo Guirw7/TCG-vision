@@ -3,8 +3,8 @@ import axios from 'axios';
 // import CryptoJS from 'crypto-js';
 import { useSelector, useDispatch } from 'react-redux';
 import FormModal from '../Form';
-import { openModal, closeModal } from '../Form/modalSlice';
-import { useState } from 'react';
+import { openModal, setModalSuccessMessage, setModalFailureMessage } from '../Form/modalSlice';
+// import { useState } from 'react';
 
 import './styles.scss';
 
@@ -36,15 +36,15 @@ export default function SignUp() {
     // }
   );
 
-  const [queryResult, setQueryResult] = useState<boolean | null >(null);
+  // const [queryResult, setQueryResult] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
   const dispatch = useDispatch();
-  const querySuccess = {
-    message: 'Votre compte a bien été créé.',
-  }
-  const queryFailure = {
-    message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
-  }
+  // const querySuccess = {
+  //   message: 'Votre compte a bien été créé.',
+  // }
+  // const queryFailure = {
+  //   message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
+  // }
   
   // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
   // console.log(errors);
@@ -57,7 +57,7 @@ export default function SignUp() {
         <h1 className='page-title'>Création de compte</h1>
           {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            console.log(data);
+            // console.log(data);
             // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
@@ -75,14 +75,15 @@ export default function SignUp() {
                 password: data.password,
               })
               .then(function (response) {
-                setQueryResult(true);
-                console.log(response);
+                // setQueryResult(true);
+                dispatch(setModalSuccessMessage());
+                // console.log(response);
                 dispatch(openModal());
-
               })
               .catch(function (error) {
-                setQueryResult(false);
-                console.log(error);
+                // setQueryResult(false);
+                dispatch(setModalFailureMessage());
+                // console.log(error);
                 dispatch(openModal());
 
               });
@@ -167,8 +168,8 @@ export default function SignUp() {
             <input className="signup-input-button" type="submit"/>
           </form>
           {
-            (modal)  && (
-              <FormModal queryResult={queryResult}/>
+            (modal) && (
+              <FormModal />
             )
           }
         </div>

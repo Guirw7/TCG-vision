@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface ModalState {
   value: boolean;
-  message: string | null;
+  message: string;
 }
 
 export const initialState: ModalState = {
   value: false,
-  message: null,
+  message: '',
 }
 
 const formModalSlice = createSlice({
@@ -20,11 +20,13 @@ const formModalSlice = createSlice({
     closeModal: (state) => {
       state.value = false;
     },
-    setModalMessage: (state) => {
-      state.message = '';
+    setModalSuccessMessage: (state) => {
+      state.message = 'Votre compte a bien été créé';
     },
-  },
-});
+    setModalFailureMessage: (state) => {
+      state.message = 'Une erreur est survenue, veuillez réessayer plus tard';
+    },
+}});
 
-export const { openModal, closeModal } = formModalSlice.actions;
+export const { openModal, closeModal, setModalSuccessMessage, setModalFailureMessage } = formModalSlice.actions;
 export default formModalSlice.reducer;
