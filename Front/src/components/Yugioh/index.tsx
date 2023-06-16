@@ -29,7 +29,7 @@ export interface Card {
 
 export default function Yugioh() {
   const [selectedCard, setSelectedCard] = useState<number>(0);
-  const modal = useSelector((state: RootState) => state.modal.value);
+  const modal = useSelector((state: RootState) => state.cardModal.value);
   const dispatch = useDispatch();
   /*
   useEffect(() => {
@@ -67,7 +67,7 @@ const handleClick = async () => {
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
-        {/* <button onClick={handleClick}>Clique moi</button>
+        <button onClick={handleClick}>Clique moi</button>
         {
           (modal)  && (
             <Card selectedCard={selectedCard}/>
@@ -77,7 +77,7 @@ const handleClick = async () => {
           (!modal) && (
             <h1>hello world</h1>
           )
-        } */}
+        }
         <CardDisplayer />
       </div>
     </div>

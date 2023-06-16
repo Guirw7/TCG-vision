@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal } from '../modal/modalSlice';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -23,6 +26,7 @@ import './styles.scss';
 // );
 
 export default function Login() {
+  const [isOpen, setIsOpen] = useState(false);
 
   /* Logique ici : */
   const { 
@@ -48,13 +52,16 @@ export default function Login() {
     try {
       const response = axios.post(
         'https://daoust-jason-server.eddi.cloud/user/login', {
-          email: form.username,
+          username: form.username,
           password: form.password,
         }
       );
+      // Si c'est good, on affiche la modale de succès
       console.log(response);
+      
+      // On redirige vers la page d'accueil
     } catch (error) {
-      console.error(error);
+      // Si c'est pas good, on affiche la modale d'erreur
     }
   };
 
