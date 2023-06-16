@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../modal/modalSlice';
+import { openModal, closeModal } from '../Form/modalSlice';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -26,7 +26,9 @@ import './styles.scss';
 // );
 
 export default function Login() {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [isSuccessful, setIsSuccessful] = useState<boolean | null >(null);
+  const modal = useSelector((state: RootState) => state.formModal.value);
 
   /* Logique ici : */
   const { 
@@ -49,20 +51,24 @@ export default function Login() {
   /*-- Actualiser les noms de classe pour match avec 'Login' --*/
 
   const getUser = async (form: any) => {
-    try {
-      const response = axios.post(
+      const response = await axios.post(
         'https://daoust-jason-server.eddi.cloud/user/login', {
           username: form.username,
           password: form.password,
         }
       );
+      console.log(response.status);
+      if (response.status === 200) {
+        setIsSuccessful(true);
+        dispatch(openModal());
+
+      }
       // Si c'est good, on affiche la modale de succès
-      console.log(response);
+
       
       // On redirige vers la page d'accueil
-    } catch (error) {
       // Si c'est pas good, on affiche la modale d'erreur
-    }
+
   };
 
   return (
@@ -88,7 +94,16 @@ export default function Login() {
           <p className='signup-message'>Pas encore inscrit ?</p>
           <a className='signup-message-link'href="/signup">Inscrivez vous!</a>
         </form>
-
+        {
+          (modal) && (
+            <h1>hello world</h1>
+          )
+        }
+        {
+          (!modal) && (
+            <h1>pas de hello world</h1>
+          )
+        }
       </div>
     </div>
   )
