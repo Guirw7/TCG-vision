@@ -7,8 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import './styles.scss';
 
 
-
-
 export default function FormModal() {
   
   const dispatch = useDispatch();
@@ -25,8 +23,9 @@ export default function FormModal() {
       <article onClick={(e) => e.stopPropagation()} className = "from-modal">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
         {
-          requestStatus && (
-            <p>{requestStatus}</p>
+          queryResult && (
+            // gérer le message avec un slice Redux
+            <p>hello world</p>
           )
         }
       </article>
