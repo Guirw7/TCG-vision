@@ -22,11 +22,11 @@ export default function FormModal() {
   return (
     <>
     <div onClick={closeModalFunction} className='behind-form-modal'>
-      <article onClick={(e) => e.stopPropagation()} className = "from-modal">
+      <article onClick={(e) => e.stopPropagation()} className = "form-modal">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
         {
           requestStatus && (
-            <p>{requestStatus}</p>
+            <p className='form-modal-message'>{requestStatus}</p>
           )
         }
       </article>
