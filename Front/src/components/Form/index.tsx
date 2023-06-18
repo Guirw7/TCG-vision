@@ -1,6 +1,6 @@
 
 
-import { openModal, closeModal, setModalEmptyMessage } from './modalSlice';
+import { openModal, closeModal, setModalMessage} from './modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -14,7 +14,7 @@ export default function FormModal() {
   const dispatch = useDispatch();
   const closeModalFunction = () => {
     dispatch(closeModal());
-    dispatch(setModalEmptyMessage());
+    dispatch(setModalMessage(""));
   }
   
   const requestStatus = useSelector((state: any) => state.formModal.message);
