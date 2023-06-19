@@ -7,6 +7,8 @@ import { openModal, setModalMessage } from '../FormModal/modalSlice';
 // import { useState } from 'react';
 
 import './styles.scss';
+import { RootState } from '../../store';
+
 
 interface Data {
   username: string;
