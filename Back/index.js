@@ -9,6 +9,8 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
+const distPath = path.resolve(__dirname, 'dist');
+
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
 const routerPrivate = require('./App/routers/routerPrivate');
@@ -18,7 +20,10 @@ const logger = require('./App/log');
 // creation de l'application
 const app = express();
 app.use(express.static('card_images'));
-app.use(express.static('dist'));
+app.use(express.static(distPath));
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(distPath, 'index.html'));
+});
 
 // Body
 app.use(express.json());
