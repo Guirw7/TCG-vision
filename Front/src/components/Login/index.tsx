@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import './styles.scss';
+import { RootState } from '../../store';
+
 
 // const { 
 //   register, 

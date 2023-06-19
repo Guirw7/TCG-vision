@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal } from '../Card/modalSlice';
+import { RootState } from '../../store';
 
 // import state from '../Card/modalSlice';
 
