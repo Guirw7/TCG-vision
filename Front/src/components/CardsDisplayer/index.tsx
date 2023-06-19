@@ -38,14 +38,17 @@ export default function CardDisplayer() {
     dispatch(openModal());
   };
 
-
   return (
-    cards && (
-      cards.map((card: any) => (
-        <>
-          <button onClick={clickHandler(card.id)} key={card.id}>{card.id}</button>
-        </>
-      ))
-    )
+    <ul>
+      {
+        cards && (
+          cards.map((card: any) => (
+            <li key={card.id}>
+              <button onClick={clickHandler(card.id)} >{card.name}</button>
+            </li>
+          ))
+        )
+      }
+    </ul>
   )
 };
