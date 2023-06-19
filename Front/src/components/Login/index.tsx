@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../Form/modalSlice';
+import { openModal, closeModal } from '../FormModal/modalSlice';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
