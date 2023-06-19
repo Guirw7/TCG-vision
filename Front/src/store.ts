@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import cardModalReducer from './components/Card/modalSlice';
+import cardModalReducer from './components/CardModal/modalSlice';
 import formModalReducer from './components/FormModal/modalSlice';
 import sessionReducer from './components/App/sessionSlice';
 

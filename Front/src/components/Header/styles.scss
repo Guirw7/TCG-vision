@@ -16,7 +16,7 @@
   z-index: 100;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
-}
+};
 
 .header-logo {
   max-width: 25%;
@@ -24,11 +24,11 @@
   transition: v.$transition-speed;
   position: relative;
   left: 0;
-}
+};
 
 .header-logo:hover {
   cursor: pointer;
-}
+};
 
 @media screen and (min-width: 950px){
   .header {
@@ -57,5 +57,4 @@
     transition: v.$transition-speed;
     font-size: v.$font-size * 3;
   };
-
 };

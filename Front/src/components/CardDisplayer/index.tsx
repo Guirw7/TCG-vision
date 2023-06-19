@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import './styles.scss';
+
+import { openModal, setCardID } from '../CardModal/modalSlice';
+import CardModal from '../CardModal';
 
 /**-- IMPORT IMAGES EN LOCAL --**/
 
 import dragon1 from '../../assets/img/2129638.jpg';
 
 export default function CardDisplayer() {
-  //https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=yeux%20bleus
+  const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
   /**-- Axios --**/
   useEffect(() => {
@@ -28,12 +32,18 @@ export default function CardDisplayer() {
     fetchCards();
   }, []);
 
+  // Closure 🧐
+  const clickHandler = (id: number) => () => { 
+    dispatch(setCardID(id));
+    dispatch(openModal());
+  };
+
+
   return (
     cards && (
       cards.map((card: any) => (
         <>
-          <p>{card.id}</p>
-          <img src={dragon1} alt="" />
+          <button onClick={clickHandler(card.id)} key={card.id}>{card.id}</button>
         </>
       ))
     )
