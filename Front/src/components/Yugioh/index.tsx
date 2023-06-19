@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux';
-import { openModal } from '../CardModal/modalSlice';
 import { RootState } from '../../store';
 
 // import state from '../Card/modalSlice';
 
 import CardModal from '../CardModal';
-import CardDisplayer from '../CardDisplayer';
+import CardsDisplayer from '../CardsDisplayer';
 import './styles.scss';
 
 export interface Card {
@@ -53,7 +52,7 @@ const handleClick = async () => {
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
-        <CardDisplayer />
+        <CardsDisplayer />
         {
           (modal && <CardModal/>)
         }

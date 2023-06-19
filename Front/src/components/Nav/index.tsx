@@ -1,6 +1,16 @@
+import { useDispatch } from 'react-redux';
+import { setSearch, clearSearch } from '../SearchResult/searchSlice';
+
 import './styles.scss';
 
 export default function Nav() {
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    const search = event.target[0].value;
+    console.log(search);
+  }
+
   return(
     <>
     <nav className="header__nav">
@@ -13,7 +23,7 @@ export default function Nav() {
   </nav>
     <form className="header-searchbar" action="">
       <input className ="header-searchbar__input" placeholder= "Votre recherche ici..." ></input>
-      <button className="header-searchbar__button">Rechercher</button>
+      <button onClick={handleSubmit} className="header-searchbar__button">Rechercher</button>
     </form>
     </>
   )
