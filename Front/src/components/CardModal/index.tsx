@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // On importe le slice qui est dans ce dossier ⚠️
-import { openModal, closeModal } from './modalSlice';
+import { closeModal, clearCardID } from './modalSlice';
 
-import dragon from '../../assets/img/91998119.jpg';
 import './styles.scss';
+import dragon from '../../assets/img/91998119.jpg';
 
-export default function Card({selectedCard}: any) {
+export default function CardModal() {
   const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any>(null);
-  const [cardID, _setCardID] = useState<any>(selectedCard);
   const [counter, setCounter] = useState<number>(1);
+  const cardID = useSelector((state: any) => state.cardModal.element);
+  console.log(cardID);
 
+  
   useEffect(() => {
     const fetchCard = async () => {
       const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
@@ -21,12 +23,15 @@ export default function Card({selectedCard}: any) {
         setCardData(data.data[0]);
       }
     };
-    fetchCard();
+    if (cardID) {
+      fetchCard();
+    };
   }, [cardID]);
+  
 
-  if (!cardData) {
-    return null;
-  };
+  // if (!selectedCard) {
+  //   return null;
+  // };
 
   const increment = (event: any) => {
     event?.preventDefault();
@@ -42,7 +47,8 @@ export default function Card({selectedCard}: any) {
 
   const closeModalFunction = () => {
     dispatch(closeModal());
-  }
+    dispatch(clearCardID());
+  };
 
   return (
     cardData && (
@@ -78,6 +84,8 @@ export default function Card({selectedCard}: any) {
             <div>
               <section className='card-modal-quantity'>
                 <button onClick={decrement} className='card-modal-quantity-decrement'>-</button>
+                
+
                 <p className='card-modal-quantity-counter'>{counter}</p>
                 <button onClick={increment} className='card-modal-quantity-increment'>+</button>
               </section>
