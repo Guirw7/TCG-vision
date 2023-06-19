@@ -18,6 +18,7 @@ const logger = require('./App/log');
 // creation de l'application
 const app = express();
 app.use(express.static('card_images'));
+app.use(express.static('dist'));
 
 // Body
 app.use(express.json());
