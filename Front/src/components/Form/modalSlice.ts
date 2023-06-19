@@ -20,16 +20,10 @@ const formModalSlice = createSlice({
     closeModal: (state) => {
       state.value = false;
     },
-    setModalSuccessMessage: (state) => {
-      state.message = 'Votre compte a bien été créé';
-    },
-    setModalFailureMessage: (state) => {
-      state.message = 'Une erreur est survenue, veuillez réessayer plus tard';
-    },
-    setModalEmptyMessage: (state) => {
-      state.message = '';
+    setModalMessage: (state, action) => {
+      state.message = action.payload;
     },
 }});
 
-export const { openModal, closeModal, setModalSuccessMessage, setModalFailureMessage, setModalEmptyMessage } = formModalSlice.actions;
+export const { openModal, closeModal, setModalMessage } = formModalSlice.actions;
 export default formModalSlice.reducer;

@@ -3,7 +3,7 @@ import axios from 'axios';
 // import CryptoJS from 'crypto-js';
 import { useSelector, useDispatch } from 'react-redux';
 import FormModal from '../Form';
-import { openModal, setModalSuccessMessage, setModalFailureMessage } from '../Form/modalSlice';
+import { openModal, setModalMessage } from '../Form/modalSlice';
 // import { useState } from 'react';
 
 import './styles.scss';
@@ -76,13 +76,13 @@ export default function SignUp() {
               })
               .then(function (response) {
                 // setQueryResult(true);
-                dispatch(setModalSuccessMessage());
+                dispatch(setModalMessage('Votre compte a bien été créé.'));
                 // console.log(response);
                 dispatch(openModal());
               })
               .catch(function (error) {
                 // setQueryResult(false);
-                dispatch(setModalFailureMessage());
+                dispatch(setModalMessage('Une erreur est survenue, veuillez réessayer ultérieurement.'));
                 // console.log(error);
                 dispatch(openModal());
 
