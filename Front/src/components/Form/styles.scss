@@ -16,8 +16,8 @@
 }
 
 .form-modal {
-  max-height: 90vh;
-  width: 60vw;
+  height: 25vh;
+  width: 25vw;
   margin: 0 auto;
   box-shadow: v.$box-shadow;
   border-radius: 5px;
@@ -45,4 +45,12 @@
   border-radius: 5px;
   background-color: v.$raw-color-purple-bright-1;
   box-shadow: v.$box-shadow;
+}
+
+.form-modal-message {
+  margin-top: 5rem;
+  font-size: v.$font-size * 2;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
 }

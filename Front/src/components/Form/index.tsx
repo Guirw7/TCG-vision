@@ -1,6 +1,6 @@
 
 
-import { openModal, closeModal, setModalEmptyMessage } from './modalSlice';
+import { openModal, closeModal, setModalMessage} from './modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -12,7 +12,7 @@ export default function FormModal() {
   const dispatch = useDispatch();
   const closeModalFunction = () => {
     dispatch(closeModal());
-    dispatch(setModalEmptyMessage());
+    dispatch(setModalMessage(""));
   }
   
   const requestStatus = useSelector((state: any) => state.formModal.message);
@@ -20,12 +20,13 @@ export default function FormModal() {
   return (
     <>
     <div onClick={closeModalFunction} className='behind-form-modal'>
-      <article onClick={(e) => e.stopPropagation()} className = "from-modal">
+      <article onClick={(e) => e.stopPropagation()} className = "form-modal">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
         {
-          queryResult && (
-            // gérer le message avec un slice Redux
-            <p>hello world</p>
+
+          requestStatus && (
+            <p className='form-modal-message'>{requestStatus}</p>
+
           )
         }
       </article>
