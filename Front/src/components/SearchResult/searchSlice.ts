@@ -9,11 +9,12 @@ export const initialState: SearchProps = {
 };
 
 const searchSlice = createSlice({
-  name: 'searchModal',
+  name: 'search',
   initialState,
   reducers: {
     setSearch : (state, action) => {
       state.value = action.payload;
+      console.log(state.value); 
     },
     clearSearch : (state) => {
       state.value = null;
