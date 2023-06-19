@@ -73,9 +73,9 @@ export default function CardModal() {
           <section className="card-modal-extension">
             <label className="card-modal-extension-label" htmlFor="">Nom de l'extension :</label>
             <select className='card-modal-extension-select'>
-              {cardData.card_sets.map((extension: any) => {
+              {cardData.card_sets.map((extension: any, index: number) => {
                 return (
-                  <option key= {extension.set_name} value={extension.set_code}>{extension.set_name}</option>
+                  <option key= {index} value={extension.set_code}>{extension.set_name}</option>
                 )
               })}
             </select>
