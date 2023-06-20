@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 
 
 import Header from '../Header';
@@ -14,6 +16,9 @@ import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
 
 /*-- Routers --*/
+
+/* Méthode 6.4 mais qui ne fonctionne pour pour la redirection
+______________________________________________________________
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +53,7 @@ const router = createBrowserRouter([
     element: <ErrorPage />
   },
 ]);
+ 
 
 export default function App() {
   return (
@@ -58,3 +64,24 @@ export default function App() {
     </>
   )
 };
+
+*/
+
+export default function App() {
+  return (
+    <>
+    <Header />
+    <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/reset-password" element={<PasswordResetPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        <Route path="/search-result" element={<SearchResultPage />} />
+      </Routes>
+    <Footer />
+    </>
+  )
+};
+
