@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
 
 const deckController = {
@@ -9,12 +10,7 @@ const deckController = {
     const decks = await deckDataMapper.getAllDecks();
     res.status(200).json(decks);
   },
-};
 
-/* eslint-disable camelcase */
-const deckDataMapper = require('../datamappers/deckDataMapper');
-
-const deckController = {
   /**
    * Fonction pour ajouter un utilisateur en base de données
    */
