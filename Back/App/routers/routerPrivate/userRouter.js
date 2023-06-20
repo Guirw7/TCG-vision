@@ -1,6 +1,7 @@
 const express = require('express');
 
 const controllerHandler = require('../../helpers/controllerHandler');
+const requireAuth = require('../../middlewares/auth');
 
 /* --------------- Controllers ---------------*/
 const userController = require('../../controllers/userController');
@@ -12,7 +13,7 @@ const validate = require('../../validations/validate');
 const router = express.Router();
 
 /* --------------- Routes ---------------*/
-router.get('/', controllerHandler(userController.detailUsers));
+router.get('/', requireAuth, controllerHandler(userController.detailUsers));
 // (\\d+) expression régulière qui definit une contrainte sur l'id.
 router.get('/:id(\\d+)', controllerHandler(userController.getOneUser));
 
