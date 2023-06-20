@@ -46,11 +46,12 @@ app.use(session({
   resave: true,
   cookie: {
     httpOnly: true,
+    secure: false,
     maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
   },
 }));
 
-app.use((req, res,next) => {
+app.use((req, res, next) => {
   console.log(req.session);
   next();
 });
