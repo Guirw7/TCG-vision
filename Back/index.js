@@ -47,6 +47,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: false,
+    sameSite: 'Lax',
     maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
   },
 }));
