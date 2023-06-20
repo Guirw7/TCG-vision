@@ -30,13 +30,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Cors
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+app.use(cors({
+  origin: '*',
+  methods: 'GET, POST',
+  allowedHeaders: 'Authorization, Content-Type',
+}));
 
-  next();
-});
 
 // On configure les sessions
 app.use(session({
