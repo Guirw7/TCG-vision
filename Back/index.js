@@ -9,12 +9,9 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
-<<<<<<< HEAD
-const distPath = path.resolve(__dirname, 'dist');
+/* const distPath = path.resolve(__dirname, 'dist'); */
 const imagePath = path.resolve(__dirname, 'card_images');
-=======
-const distPath = path.resolve('../Front/dist');
->>>>>>> ce1c0645c0776ed370dd0674bb9b620c33e3953f
+/* const distPath = path.resolve('../Front/dist'); */
 
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
@@ -25,10 +22,10 @@ const logger = require('./App/log');
 // creation de l'application
 const app = express();
 app.use('/card_images', express.static(imagePath));
-app.use(express.static(distPath));
+/* app.use(express.static(distPath));
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(distPath, 'index.html'));
-});
+  res.sendFile(path.resolve(distPath, 'index.html')); */
+/* }); */
 
 // Body
 app.use(express.json());
