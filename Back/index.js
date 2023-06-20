@@ -19,7 +19,7 @@ const logger = require('./App/log');
 
 // creation de l'application
 const app = express();
-app.use(express.static('card_images'));
+app.use('/card_images', express.static('card_images'));
 app.use(express.static(distPath));
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(distPath, 'index.html'));
