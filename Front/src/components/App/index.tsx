@@ -11,6 +11,7 @@ import ContactPage from "../ContactPage";
 import PasswordResetPage from "../PasswordResetPage";
 import TeamPage from "../TeamPage";
 import SearchResultPage from "../SearchResultPage";
+import ErrorPage from "../ErrorPage";
 
 /*-- Routers --*/
 const router = createBrowserRouter([
@@ -41,15 +42,19 @@ const router = createBrowserRouter([
   {
     path: "/search-result",
     element: <SearchResultPage/>,
-  }
+  },
+  {
+    path: "*",
+    element: <ErrorPage />
+  },
 ]);
 
 export default function App() {
   return (
     <>
-    <Header />
-    <RouterProvider router={router} />
-    <Footer />
+      <Header />
+      <RouterProvider router={router} />
+      <Footer />
     </>
   )
 };
