@@ -15,6 +15,15 @@ const collectionDataMapper = {
     const results = await client.query(preparedQuery);
     return results.rows;
   },
+  async getOneCollection(collection) {
+    const preparedQuery = {
+      text: 'SELECT * FROM collection WHERE collection_name = $1', //* allows you to view a specific collection
+      values: [collection.collection_name, collection.card_name, collection.card_set, collection.card_quantity, collection.user_id, collection.card_id],
+    };
+    // Execute a search request
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
 };
 // export of dataMapper
 module.exports = collectionDataMapper;
