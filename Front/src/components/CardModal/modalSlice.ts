@@ -25,7 +25,7 @@ const cardModalSlice = createSlice({
     },
     clearCardID: (state) => {
       state.element = null;
-    }
+    },
   },
 });
 
