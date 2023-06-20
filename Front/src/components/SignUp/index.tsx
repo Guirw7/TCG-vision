@@ -2,11 +2,13 @@ import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
 // import CryptoJS from 'crypto-js';
 import { useSelector, useDispatch } from 'react-redux';
-import FormModal from '../Form';
-import { openModal, setModalMessage } from '../Form/modalSlice';
+import FormModal from '../FormModal';
+import { openModal, setModalMessage } from '../FormModal/modalSlice';
 // import { useState } from 'react';
 
 import './styles.scss';
+import { RootState } from '../../store';
+
 
 interface Data {
   username: string;
