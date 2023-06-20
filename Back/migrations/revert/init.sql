@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "user", "card", "deck", "collection", "user_like_deck", "deck_has_card";
+DROP TABLE "user", "deck", "collection", "user_like_deck";
 
 COMMIT;
