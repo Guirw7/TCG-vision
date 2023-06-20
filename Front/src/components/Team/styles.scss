@@ -17,6 +17,7 @@
   margin: 0 auto;
   width: 98%;
   min-height: 95vh;
+  padding-bottom: 2rem;
 };
   
 .page-title {
@@ -26,13 +27,13 @@
   padding-top: 2rem;
   font-weight: 700;
   padding-top: 15vh;
-  padding-bottom: 1rem
+  margin-bottom: 4rem;
 };
 
 .team-card {
   box-sizing: border-box;
   margin: 0 auto;
-  margin-top: 1rem;
+  margin-bottom: 4rem;
   // margin-bottom: 1rem;
   font-size: v.$font-size * 2.4;
   display: flex;
@@ -43,7 +44,7 @@
   padding: 1rem;
   justify-content: space-around;
   box-shadow: v.$box-shadow;
-  border : 1px solid black;
+  border: none;
 };
 
 .team-card-infos-container {
@@ -94,5 +95,5 @@
 };
 
 .team-description-text {
-
+margin-top: 2rem;
 };
