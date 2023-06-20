@@ -9,7 +9,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
-const distPath = path.resolve(__dirname, 'dist');
+const distPath = path.resolve('../Front/dist');
 
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
@@ -19,7 +19,7 @@ const logger = require('./App/log');
 
 // creation de l'application
 const app = express();
-app.use(express.static('card_images'));
+app.use('/card_images', express.static('card_images'));
 app.use(express.static(distPath));
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(distPath, 'index.html'));

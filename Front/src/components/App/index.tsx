@@ -10,6 +10,7 @@ import Yugioh from '../../components/Yugioh';
 import ContactPage from "../ContactPage";
 import PasswordResetPage from "../PasswordResetPage";
 import TeamPage from "../TeamPage";
+import SearchResultPage from "../SearchResultPage";
 
 /*-- Routers --*/
 const router = createBrowserRouter([
@@ -38,9 +39,8 @@ const router = createBrowserRouter([
     element: <TeamPage />,
   },
   {
-    //page temporaire:
-    path: "/cards",
-    element: <Yugioh />,
+    path: "/search-result",
+    element: <SearchResultPage/>,
   }
 ]);
 

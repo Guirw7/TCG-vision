@@ -1,14 +1,10 @@
-import { useState } from 'react';
-
-
-import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../Card/modalSlice';
-import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 // import state from '../Card/modalSlice';
 
-import Card from '../Card';
-import CardDisplayer from '../CardDisplayer';
+import CardModal from '../CardModal';
+import CardsDisplayer from '../CardsDisplayer';
 import './styles.scss';
 
 export interface Card {
@@ -29,9 +25,7 @@ export interface Card {
 }
 
 export default function Yugioh() {
-  const [selectedCard, setSelectedCard] = useState<number>(0);
   const modal = useSelector((state: RootState) => state.cardModal.value);
-  const dispatch = useDispatch();
   /*
   useEffect(() => {
   const fetchCards = async () => {
@@ -54,35 +48,15 @@ const handleClick = async () => {
   }
 ---------------------------------*/
 
-// handleClick avec Redux
-  const handleClick = () => {
-    const dragonCanonXYZ = 91998119;
-    setSelectedCard(dragonCanonXYZ);
-    // Passer l'état de la modale à true dans le slice Redux
-    dispatch(openModal());
-  };
-
-
-
   return (
     <div className='game-container'>
       <div className="game-container-background">
         <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
-        <button onClick={handleClick}>Clique moi</button>
+        <CardsDisplayer />
         {
-          (modal)  && (
-            <Card selectedCard={selectedCard}/>
-          )
+          (modal && <CardModal/>)
         }
-        {
-          (!modal) && (
-            <h1>hello world</h1>
-          )
-        }
-        <CardDisplayer />
       </div>
     </div>
   )
 };
-
-

@@ -4,14 +4,25 @@ const client = require('../db');
 // On construit notre object userDataMapper
 const deckDataMapper = {
 
-  /**
+// On construit notre object deckDataMapper
+const deckDataMapper = {
+/**
    * Requête SQL pour inserer un deck dans la base de données
    * en utilisant une requête préparer
    */
   async addDeckInDB(deck) {
     const preparedQuery = {
+
       text: 'INSERT INTO "deck"(card_name, deck_description, creator_username, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
       values: [deck.card_name, deck.deck_description, deck.creator_username, deck.user_id],
+
+      text: 'INSERT INTO "deck"(card_name, deck_description, creator_username, card_quantity, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      values: [
+        deck.card_name,
+        deck.deck_description,
+        deck.creator_username,
+        deck.card_quantity,
+        deck.user_id],
     };
 
     //* On récupère le résultat de la requête préparer
