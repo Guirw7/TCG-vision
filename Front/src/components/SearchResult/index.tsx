@@ -5,9 +5,11 @@ import { setSearch, clearSearch } from './searchSlice';
 import axios from 'axios';
 
 import './styles.scss';
-import { set } from 'react-hook-form';
+import CardModal from '../CardModal';
 
 export default function SearchResult () {
+  const modal = useSelector((state: any) => state.cardModal.value);
+  const dispatch = useDispatch();
   const [result, setResult] = useState<any>(null);
   const search = useSelector((state: any) => state.search.value);
   const fetchSearch = async () => {
@@ -21,6 +23,11 @@ export default function SearchResult () {
     }
   }, [search])
 
+  const clickHandler = (id: number) => () => { 
+    dispatch(setCardID(id));
+    dispatch(openModal());
+  };
+
   return (
     <div className='search-result-container'>
       <div className='search-result-container-background'>
@@ -30,11 +37,16 @@ export default function SearchResult () {
               {
                 result && (
                   result.map((card: any) => {
-                    return <li key={card.id}>{card.name}</li>
+                    return <li key={card.id}>
+                      <button onClick={clickHandler(card.id)} >{card.name}</button>
+                    </li>
                   })
                 )
               }
             </ul>
+            {
+              (modal && <CardModal/>)
+            }
           </div>
       </div>
     </div>
