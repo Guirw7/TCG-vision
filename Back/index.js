@@ -9,7 +9,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
-const distPath = path.resolve(__dirname, 'dist');
+const distPath = path.resolve('../Front/dist');
 
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
