@@ -9,7 +9,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
-const distPath = path.resolve(__dirname, 'dist');
+const distPath = path.resolve('../Front/dist');
 
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
@@ -29,7 +29,14 @@ app.get('/', (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors('*'));
+// Cors
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+
+  next();
+});
 
 // On configure les sessions
 app.use(session({
