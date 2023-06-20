@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT * FROM "user", "card", "deck", "collection", "user_like_deck", "deck_has_card" WHERE false;
+SELECT * FROM "user", "deck", "collection", "user_like_deck" WHERE false;
 
 ROLLBACK;
