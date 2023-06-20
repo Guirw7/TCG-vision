@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-}
+};
 
 .card-modal-exit {
   width: 3rem;
@@ -31,7 +31,7 @@
   border-radius: 5px;
   background-color: v.$raw-color-purple-bright-1;
   box-shadow: v.$box-shadow;
-}
+};
 
 .card-modal {
   backdrop-filter: blur(5px);
@@ -46,7 +46,7 @@
   overflow-y: auto; /* add this */
   transition: v.$transition-speed;
   position: relative;
-}
+};
 
 .card-modal-name {
   margin-top: 1rem;
@@ -54,7 +54,7 @@
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
-}
+};
 
 .card-modal-informations {
   display: flex;
@@ -64,13 +64,13 @@
   margin-bottom: 1rem;
   align-items: stretch;
 
-}
+};
 
 .card-modal-image {
   // width: 50%;
   max-width: 50%;
   max-height: 25rem;
-}
+};
 
 .card-modal-data {
   // max-width: 50%;
@@ -85,30 +85,30 @@
   align-content: flex-end;
   align-items: center;
   justify-content: center;
-}
+};
 
 .card-modal-level {
   margin-top: 1rem;
-}
+};
 
 .card-modal-archetype {
   margin-top: 1rem;
-}
+};
 
 .card-modal-attribute {
   margin-top: 1rem;
-}
+};
 
 .card-modal-stats {
   margin-top: 1rem;
-}
+};
 
 .card-modal-description {
   margin-top: 2rem;
   font-size: v.$font-size * 2.4;
   text-align: center;
   padding: 1rem;
-}
+};
 
 .card-modal-extension {
   font-size: v.$font-size * 2.4;
@@ -120,23 +120,23 @@
   display: flex;
   flex-direction: rox;
   justify-content: center;
-}
+};
 
 .card-modal-extension-label {
   font-weight: 700;
   font-size: v.$font-size * 2;
-}
+};
 
 .card-modal-extension-select {
   margin-left: 2rem;
   min-width: 10rem;
-}
+};
 
 .card-modal-quantity {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
+};
 
 .card-modal-quantity-increment {
   padding: 0.5rem 2rem;
@@ -146,7 +146,7 @@
   color: v.$font-color;
   font-weight: 700;
   cursor: pointer;
-}
+};
 
 .card-modal-quantity-decrement {
   padding: 0.5rem 2rem;
@@ -156,11 +156,11 @@
   color: v.$font-color;
   font-weight: 700;
   cursor: pointer;
-}
+};
 
 .card-modal-quantity-counter {
   margin: 0rem 2rem;
-}
+};
 
 .card-modal-buttons {
   margin-top: 2rem;
@@ -168,7 +168,7 @@
   flex-direction: row;
   justify-content: space-between;
   font-size: v.$font-size * 2.4;
-}
+};
 
 .card-modal-submit-button {
   background-color: v.$raw-color-purple;
@@ -177,4 +177,4 @@
   border: none;
   padding: 0.5rem 2rem;
   cursor: pointer;
-}
+};

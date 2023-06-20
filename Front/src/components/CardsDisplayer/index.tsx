@@ -12,7 +12,7 @@ export default function CardDisplayer() {
   useEffect(() => {
     const fetchCards = async () => {
       // Ici on se sert du thème des 'yeux bleus'
-      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=magicien');
+      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz');
       const data = await response.data;
       if (data) {
         await setCards(data.data);

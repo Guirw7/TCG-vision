@@ -79,6 +79,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/search-result" element={<SearchResultPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     <Footer />
     </>
