@@ -34,10 +34,10 @@ app.use(express.urlencoded({ extended: true }));
 // Cors
 app.use(cors({
   origin: '*',
+  credentials: true,
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Authorization, Content-Type',
 }));
-
 
 // On configure les sessions
 app.use(session({
@@ -49,6 +49,11 @@ app.use(session({
     maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
   },
 }));
+
+app.use((req, res,next) => {
+  console.log(req.session);
+  next();
+});
 
 // Application routers
 app.use(routerPublic);
