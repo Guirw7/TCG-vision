@@ -2,21 +2,16 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import { openModal, setCardID } from '../CardModal/modalSlice';
 import './styles.scss';
 
-import { openModal, setCardID } from '../CardModal/modalSlice';
-import CardModal from '../CardModal';
-
-/**-- IMPORT IMAGES EN LOCAL --**/
-
-import dragon1 from '../../assets/img/2129638.jpg';
 
 export default function CardDisplayer() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
-  /**-- Axios --**/
   useEffect(() => {
     const fetchCards = async () => {
+      // Ici on se sert du thème des 'yeux bleus'
       const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=yeux%20bleus');
       const data = await response.data;
       if (data) {
@@ -37,7 +32,7 @@ export default function CardDisplayer() {
     dispatch(setCardID(id));
     dispatch(openModal());
   };
-
+/*
   return (
     <ul>
       {
@@ -51,4 +46,20 @@ export default function CardDisplayer() {
       }
     </ul>
   )
+  */
+  return (
+    <div>
+      {
+        cards && (
+          cards.map((card: any) => (
+            <article key={card.id}>
+              <p>{card.name}</p>
+            </article>
+          ))
+        )
+      }
+    </div>
+
+  )
+ 
 };
