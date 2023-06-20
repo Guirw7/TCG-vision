@@ -73,6 +73,14 @@ export default function Login() {
       // Si c'est pas good, on affiche la modale d'erreur
 
   };
+  /* -- Pas encore déployé
+  const testConnection = async () => {
+    const response = await axios.get(
+      'https://daoust-jason-server.eddi.cloud/profil'
+    );
+    console.log(response.status);
+  }
+  */
 
   return (
     <div className='signin-container'>
@@ -107,6 +115,7 @@ export default function Login() {
             <h1>pas de hello world</h1>
           )
         }
+        {/* <button onClick={testConnection}>SALUT</button> */}
       </div>
     </div>
   )

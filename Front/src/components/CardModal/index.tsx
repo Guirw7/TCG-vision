@@ -10,24 +10,25 @@ import dragon from '../../assets/img/91998119.jpg';
 export default function CardModal() {
   const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any>(null);``
-  // const [image, setCardImage] = useState<any>(null);
+  const [cardImage, setCardImage] = useState<any>(null);
   const [counter, setCounter] = useState<number>(1);
   const cardID = useSelector((state: any) => state.cardModal.element);
-  console.log(cardID);
+  console.log(cardImage);
 
   
   useEffect(() => {
     const fetchCard = async () => {
       const responseAPI = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
-      // const responseBackEnd = await fetch(`http://daoust-jason-server.eddi.cloud/card_images{cardID}.jpg`)
+      const responseBackEnd = await fetch(`https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`)
       const data = await responseAPI.json();
-      // const image = await responseBackEnd;
+      const image = await responseBackEnd;
       if (data) {
         setCardData(data.data[0]);
       }
-      // if (image) {
-      //   setCardImage(image);
-      // }
+      // ???
+      if (cardImage) {
+        setCardImage(image);
+      }
     };
 
     if (cardID) {
@@ -64,8 +65,7 @@ export default function CardModal() {
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='card-modal-exit'>X</button>
           <h2 className='card-modal-name'>{cardData.name}</h2>
           <section className='card-modal-informations'>
-
-            <img className="card-modal-image" src={dragon}></img>
+            <img className="card-modal-image" src={cardImage}></img>
             <div className='card-modal-data'>
               <p className='card-modal-type'>Type: {cardData.type}</p>
               <p className='card-modal-level'>Niveau: {cardData.level}</p>
