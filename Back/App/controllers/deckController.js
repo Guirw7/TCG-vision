@@ -1,3 +1,16 @@
+const deckDataMapper = require('../datamappers/deckDataMapper');
+
+const deckController = {
+
+  /**
+   * Fonction pour récuperer tous les decks utilisateurs.
+   */
+  async getAllDecks(req, res) {
+    const decks = await deckDataMapper.getAllDecks();
+    res.status(200).json(decks);
+  },
+};
+
 /* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
 
@@ -27,4 +40,5 @@ const deckController = {
     res.status(200).json(newDeck);
   },
 };
+
 module.exports = deckController;
