@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, clearCardID } from './modalSlice';
 
 import './styles.scss';
-import dragon from '../../assets/img/91998119.jpg';
 
 export default function CardModal() {
   const dispatch = useDispatch();
@@ -13,33 +12,21 @@ export default function CardModal() {
   const [cardImage, setCardImage] = useState<any>(null);
   const [counter, setCounter] = useState<number>(1);
   const cardID = useSelector((state: any) => state.cardModal.element);
-  console.log(cardImage);
 
-  
   useEffect(() => {
-    const fetchCard = async () => {
+    const fetchData = async () => {
       const responseAPI = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
-      const responseBackEnd = await fetch(`https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`)
       const data = await responseAPI.json();
-      const image = await responseBackEnd;
       if (data) {
         setCardData(data.data[0]);
-      }
-      // ???
-      if (cardImage) {
-        setCardImage(image);
+        const imageUrl = `https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`
+        setCardImage(imageUrl);
       }
     };
-
     if (cardID) {
-      fetchCard();
+      fetchData();
     };
   }, [cardID]);
-  
-
-  // if (!selectedCard) {
-  //   return null;
-  // };
 
   const increment = (event: any) => {
     event?.preventDefault();
@@ -105,4 +92,4 @@ export default function CardModal() {
       </div>
     )
   )
-}
+};
