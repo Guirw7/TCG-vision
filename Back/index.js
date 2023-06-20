@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 // Cors
 app.use(cors({
   origin: '*',
-  methods: 'GET, POST',
+  methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Authorization, Content-Type',
 }));
 
