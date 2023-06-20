@@ -12,7 +12,7 @@ export default function CardDisplayer() {
   useEffect(() => {
     const fetchCards = async () => {
       // Ici on se sert du thème des 'yeux bleus'
-      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=yeux%20bleus');
+      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=magicien');
       const data = await response.data;
       if (data) {
         await setCards(data.data);
@@ -32,6 +32,8 @@ export default function CardDisplayer() {
     dispatch(setCardID(id));
     dispatch(openModal());
   };
+
+
 /*
   return (
     <ul>
@@ -48,12 +50,13 @@ export default function CardDisplayer() {
   )
   */
   return (
-    <div>
+    <div className='articles-container'>
       {
         cards && (
           cards.map((card: any) => (
-            <article key={card.id}>
-              <p>{card.name}</p>
+            <article className='card-article' onClick={clickHandler(card.id)} key={card.id}>
+              <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`}/>
+              <p className='card-article-name'>{card.name}</p>
             </article>
           ))
         )
