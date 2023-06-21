@@ -47,12 +47,10 @@ const deckDataMapper = {
     const preparedQuery = {
       text: `SELECT "deck"."deck_description", "deck"."card_quantity", "deck"."created_at", "deck"."updated_at",
       "user"."username", 
-      "card"."id", "card"."set_code", 
-      "deck_has_card"."counter_like"
+      "user_like_deck"."counter_like"
       FROM "deck"
       JOIN "user" ON "user"."id" = "deck"."user_id"
-      JOIN "deck_has_card" ON "deck"."id" = "deck_has_card"."deck_id"
-      JOIN "card" ON "card"."id" = "deck_has_card"."card_id"
+      JOIN "user_like_deck" ON "deck"."id" = "user_like_deck"."deck_id"
       `,
     };
 
