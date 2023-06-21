@@ -74,6 +74,22 @@ export default function Login() {
 
   };
 
+  const testConnection = async () => {
+    const response = await axios.get(
+      'http://daoust-jason-server.eddi.cloud/profil', 
+      /* Exemple de gestion avec JWT :P
+      {
+        headers: {
+          // Gestion du token dans le header de la requête
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      },
+      */
+    );
+    console.log(response);
+  };
+  
+
   return (
     <div className='signin-container'>
       <div className='signin-container-background'>
@@ -107,6 +123,7 @@ export default function Login() {
             <h1>pas de hello world</h1>
           )
         }
+        <button onClick={testConnection}>SALUT</button>
       </div>
     </div>
   )

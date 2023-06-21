@@ -2,7 +2,7 @@
 @use '../../styles/reset.scss';
 
 
-.search-result-container {
+.error-container {
   margin: 0 auto;
   min-height: 95vh;
   width: 95vw;
@@ -11,7 +11,7 @@
   transition: v.$transition-speed;
 };
 
-.search-result-container-background{
+.error-container-background{
   background-color: white;
   margin: 0 auto;
   width: 98%;
@@ -28,19 +28,26 @@
   padding-top: 15vh;
 };
 
-.article-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-};
-
-.no-result {
+.page-subtitle {
   font-size: v.$font-size * 2.8;
   color: v.$font-color-dark;
   text-align: center;
   padding-top: 2rem;
   font-weight: 700;
-  padding-top: 15vh;
+  margin-bottom: 5rem;
 };
+
+.redirection {
+  display: block;
+  font-size: v.$font-size * 2.4;
+  color: v.$raw-color-blue-bright-1;
+  padding-top: 2rem;
+  font-weight: 700;
+  padding: 1rem 1rem;
+  width: 20rem;
+  text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: v.$box-shadow-2;
+  border-radius: 5px;
+}

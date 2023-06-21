@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 // On recupère le client de connexion
 const client = require('../db');
 
-// On construit notre object userDataMapper
+// On construit notre object deckDataMapper
 const deckDataMapper = {
 /**
    * Requête SQL pour inserer un deck dans la base de données
@@ -10,21 +11,32 @@ const deckDataMapper = {
   async addDeckInDB(deck) {
     const preparedQuery = {
 
-      text: 'INSERT INTO "deck"(card_name, deck_description, creator_username, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
-      values: [deck.card_name, deck.deck_description, deck.creator_username, deck.user_id],
-
-      text: 'INSERT INTO "deck"(card_name, deck_description, creator_username, card_quantity, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      text: 'INSERT INTO "deck"(deck_name, deck_description, card_quantity, set_code, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       values: [
-        deck.card_name,
+        deck.deck_name,
         deck.deck_description,
-        deck.creator_username,
         deck.card_quantity,
+        deck.set_code,
         deck.user_id],
     };
 
     //* On récupère le résultat de la requête préparer
     const results = await client.query(preparedQuery);
     return results.rows[0];
+  },
+
+  /**
+   * Requête SQL pour récuperer tous les decks utilisateurs.
+   */
+  async getAllDecksByUser(user_id) {
+    const preparedQuery = {
+      text: 'SELECT * FROM deck WHERE user_id = $1',
+      values: [user_id],
+    };
+
+    // On récupère le résultat de la requête préparer
+    const results = await client.query(preparedQuery);
+    return results.rows;
   },
 
   /**
