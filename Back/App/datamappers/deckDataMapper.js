@@ -3,9 +3,6 @@ const client = require('../db');
 
 // On construit notre object userDataMapper
 const deckDataMapper = {
-
-// On construit notre object deckDataMapper
-const deckDataMapper = {
 /**
    * Requête SQL pour inserer un deck dans la base de données
    * en utilisant une requête préparer

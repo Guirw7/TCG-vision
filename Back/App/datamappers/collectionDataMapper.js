@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable max-len */
 // Recover the connection client
 const client = require('../db');
@@ -15,10 +17,10 @@ const collectionDataMapper = {
     const results = await client.query(preparedQuery);
     return results.rows;
   },
-  async getOneCollection(collection) {
+  async getOneCollection(id) {
     const preparedQuery = {
-      text: 'SELECT * FROM collection WHERE collection_name = $1', //* allows you to view a specific collection
-      values: [collection.collection_name, collection.card_name, collection.card_set, collection.card_quantity, collection.user_id, collection.card_id],
+      text: 'SELECT * FROM collection WHERE "id" = $1', // allows you to view a specific collection
+      values: [id],
     };
     // Execute a search request
     const result = await client.query(preparedQuery);
