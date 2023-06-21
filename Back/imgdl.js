@@ -9,7 +9,7 @@ const { SingleBar } = require('cli-progress');
 const apiUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
 
 // Folder path to save downloaded images
-const folder = path.join(__dirname, 'images');
+const folder = path.join(__dirname, 'card_images');
 
 // Function to download images
 async function downloadImages() {

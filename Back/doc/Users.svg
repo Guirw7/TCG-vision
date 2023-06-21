@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="442" height="263" viewBox="0 0 442 263" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="442" height="263" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association LIKE -->
+<g>
+	<line x1="269" y1="203" x2="269" y2="68" stroke="#4393c3" stroke-width="2"/>
+	<text x="274" y="144" fill="#b2182b" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="378" y1="68" x2="269" y2="68" stroke="#4393c3" stroke-width="2"/>
+	<text x="296" y="85" fill="#b2182b" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M277 43 a14 14 90 0 1 14 14 V68 h-44 V57 a14 14 90 0 1 14 -14" fill="#92c5de" stroke="#92c5de" stroke-width="0"/>
+		<path d="M291 68 v11 a14 14 90 0 1 -14 14 H261 a14 14 90 0 1 -14 -14 V68 H44" fill="#d1e5f0" stroke="#d1e5f0" stroke-width="0"/>
+		<rect x="247" y="43" width="44" height="50" fill="none" rx="14" stroke="#4393c3" stroke-width="2"/>
+		<line x1="247" y1="68" x2="291" y2="68" stroke="#4393c3" stroke-width="1"/>
+		<text x="255" y="60.75" fill="#000" font-family="Verdana" font-size="12">LIKE</text>
+	</g>
+</g>
+
+<!-- Association AVOIR -->
+<g>
+	<line x1="62" y1="203" x2="174" y2="203" stroke="#4393c3" stroke-width="2"/>
+	<text x="120" y="220" fill="#b2182b" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="269" y1="203" x2="174" y2="203" stroke="#4393c3" stroke-width="2"/>
+	<text x="206" y="220" fill="#b2182b" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M187 178 a14 14 90 0 1 14 14 V203 h-54 V192 a14 14 90 0 1 14 -14" fill="#92c5de" stroke="#92c5de" stroke-width="0"/>
+		<path d="M201 203 v11 a14 14 90 0 1 -14 14 H161 a14 14 90 0 1 -14 -14 V203 H54" fill="#d1e5f0" stroke="#d1e5f0" stroke-width="0"/>
+		<rect x="147" y="178" width="54" height="50" fill="none" rx="14" stroke="#4393c3" stroke-width="2"/>
+		<line x1="147" y1="203" x2="201" y2="203" stroke="#4393c3" stroke-width="1"/>
+		<text x="154" y="195.75" fill="#000" font-family="Verdana" font-size="12">AVOIR</text>
+	</g>
+</g>
+
+<!-- Association CREATE -->
+<g>
+	<line x1="269" y1="203" x2="378" y2="203" stroke="#4393c3" stroke-width="2"/>
+	<text x="310" y="220" fill="#b2182b" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="378" y1="68" x2="378" y2="203" stroke="#4393c3" stroke-width="2"/>
+	<text x="383" y="144" fill="#b2182b" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M396 178 a14 14 90 0 1 14 14 V203 h-64 V192 a14 14 90 0 1 14 -14" fill="#92c5de" stroke="#92c5de" stroke-width="0"/>
+		<path d="M410 203 v11 a14 14 90 0 1 -14 14 H360 a14 14 90 0 1 -14 -14 V203 H64" fill="#d1e5f0" stroke="#d1e5f0" stroke-width="0"/>
+		<rect x="346" y="178" width="64" height="50" fill="none" rx="14" stroke="#4393c3" stroke-width="2"/>
+		<line x1="346" y1="203" x2="410" y2="203" stroke="#4393c3" stroke-width="1"/>
+		<text x="354" y="195.75" fill="#000" font-family="Verdana" font-size="12">CREATE</text>
+	</g>
+</g>
+
+<!-- Entity Deck -->
+<g>
+	<g>
+		<rect x="323" y="9" width="110" height="25" fill="#f4a582" stroke="#f4a582" stroke-width="0" opacity="1"/>
+		<rect x="323" y="34" width="110" height="93" fill="#fddbc7" stroke="#fddbc7" stroke-width="0" opacity="1"/>
+		<rect x="323" y="9" width="110" height="118" fill="none" stroke="#d6604d" stroke-width="2" opacity="1"/>
+		<line x1="323" y1="34" x2="433" y2="34" stroke="#d6604d" stroke-width="1"/>
+	</g>
+	<text x="363" y="26.75" fill="#000" font-family="Verdana" font-size="12">Deck</text>
+	<text x="328" y="51.8" fill="#000" font-family="Verdana" font-size="12">code deck</text>
+	<line x1="328" y1="54" x2="389" y2="54" stroke="#000" stroke-width="1"/>
+	<text x="328" y="68.8" fill="#000" font-family="Verdana" font-size="12">deck name</text>
+	<text x="328" y="85.8" fill="#000" font-family="Verdana" font-size="12">deck description</text>
+	<text x="328" y="102.8" fill="#000" font-family="Verdana" font-size="12">set code</text>
+	<text x="328" y="119.8" fill="#000" font-family="Verdana" font-size="12">card quantity</text>
+</g>
+
+<!-- Entity Collection -->
+<g>
+	<g>
+		<rect x="9" y="152" width="106" height="25" fill="#f4a582" stroke="#f4a582" stroke-width="0" opacity="1"/>
+		<rect x="9" y="177" width="106" height="77" fill="#fddbc7" stroke="#fddbc7" stroke-width="0" opacity="1"/>
+		<rect x="9" y="152" width="106" height="102" fill="none" stroke="#d6604d" stroke-width="2" opacity="1"/>
+		<line x1="9" y1="177" x2="115" y2="177" stroke="#d6604d" stroke-width="1"/>
+	</g>
+	<text x="33" y="169.75" fill="#000" font-family="Verdana" font-size="12">Collection</text>
+	<text x="14" y="194.8" fill="#000" font-family="Verdana" font-size="12">code collection</text>
+	<line x1="14" y1="197" x2="104" y2="197" stroke="#000" stroke-width="1"/>
+	<text x="14" y="211.8" fill="#000" font-family="Verdana" font-size="12">collection name</text>
+	<text x="14" y="228.8" fill="#000" font-family="Verdana" font-size="12">set code</text>
+	<text x="14" y="245.8" fill="#000" font-family="Verdana" font-size="12">card quantity</text>
+</g>
+
+<!-- Entity User -->
+<g>
+	<g>
+		<rect x="233" y="152" width="72" height="25" fill="#f4a582" stroke="#f4a582" stroke-width="0" opacity="1"/>
+		<rect x="233" y="177" width="72" height="77" fill="#fddbc7" stroke="#fddbc7" stroke-width="0" opacity="1"/>
+		<rect x="233" y="152" width="72" height="102" fill="none" stroke="#d6604d" stroke-width="2" opacity="1"/>
+		<line x1="233" y1="177" x2="305" y2="177" stroke="#d6604d" stroke-width="1"/>
+	</g>
+	<text x="255" y="169.75" fill="#000" font-family="Verdana" font-size="12">User</text>
+	<text x="238" y="194.8" fill="#000" font-family="Verdana" font-size="12">code user</text>
+	<line x1="238" y1="197" x2="297" y2="197" stroke="#000" stroke-width="1"/>
+	<text x="238" y="211.8" fill="#000" font-family="Verdana" font-size="12">email</text>
+	<text x="238" y="228.8" fill="#000" font-family="Verdana" font-size="12">username</text>
+	<text x="238" y="245.8" fill="#000" font-family="Verdana" font-size="12">password</text>
+</g>
+</svg>

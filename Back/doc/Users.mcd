@@ -1,0 +1,9 @@
+:
+:
+LIKE, 0N User, 0N Deck
+Deck: code deck, deck name, deck description, set code, card quantity
+
+Collection: code collection, collection name, set code, card quantity
+AVOIR, 11 Collection, 0N User
+User: code user, email, username, password
+CREATE, 0N User, 11 Deck

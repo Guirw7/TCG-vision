@@ -1,24 +1,24 @@
 import { useDispatch } from 'react-redux';
 import { setSearch, clearSearch } from '../SearchResult/searchSlice';
 import { useState } from 'react';
-// import { useNavigate, useLocation } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 import './styles.scss';
 
 export default function Nav() {
   const [input, setInput] = useState('');
+  const [result, setResult] = useState<any>(null);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const handleSubmit = (event: any) => {
-  //   event.preventDefault();
-  //   const search = event.target.value;
-  //   console.log(search);
-  // }
+  const navigate = useNavigate();
 
+ 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     dispatch(setSearch(input));
-    // navigate('/search-results');
+    navigate('/search-result');
+
   };
 
   return(
