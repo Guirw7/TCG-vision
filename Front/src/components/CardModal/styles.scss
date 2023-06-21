@@ -91,7 +91,7 @@
   margin-top: 1rem;
 };
 
-.card-modal-archetype {
+.card-modal-race {
   margin-top: 1rem;
 };
 
@@ -100,9 +100,23 @@
 };
 
 .card-modal-stats {
+  display: flex;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-modal-stats-atk {
+  margin-right: 1rem;
 };
+
+.card-modal-stats-linkval {
+};
+
 
 .card-modal-description {
   margin-top: 2rem;

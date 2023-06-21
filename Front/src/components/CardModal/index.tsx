@@ -55,7 +55,6 @@ export default function CardModal() {
       return extension.set_code === selectedExtension;
     });
     setExtensionList(filteredExtensions);
-    console.log(filteredExtensions);
   };
 
   useEffect(() => {
@@ -70,13 +69,8 @@ export default function CardModal() {
     };
     if (cardID) {
       fetchData();
-      // setOptionInitialState(cardData.card_sets);
     };
-
   }, [cardID]);
-
-  // console.log(cardData)
-
 
   return (
     cardData && (
@@ -88,10 +82,32 @@ export default function CardModal() {
             <img className="card-modal-image" src={cardImage}></img>
             <div className='card-modal-data'>
               <p className='card-modal-type'>Type: {cardData.type}</p>
-              <p className='card-modal-level'>Niveau: {cardData.level}</p>
-              <p className='card-modal-archetype'>Archetype: {cardData.archetype}</p>
-              <p className='card-modal-attribute'>Attribut: {cardData.attribute}</p>
-              <p className='card-modal-stats'>Attaque: {cardData.atk} Défense: {cardData.def}</p>
+              {
+                cardData.level &&
+                <p className='card-modal-level'>Niveau: {cardData.level}</p>
+              }
+              {
+                cardData.race && 
+                <p className='card-modal-race'>Archetype: {cardData.race}</p>
+              }
+              {
+                cardData.attribute &&
+                <p className='card-modal-attribute'>Attribut: {cardData.attribute}</p>
+              }
+              <div className='card-modal-stats'>
+              {
+                !!cardData.atk &&
+                <p className='card-modal-stats-atk'>Attaque: {cardData.atk}</p>
+              }
+              {
+                !!cardData.def &&
+                <p className='card-modal-stats-def'>Défense: {cardData.def}</p>
+              }
+              {
+                cardData.linkval &&
+                <p className='card-modal-linkval'>LINK: {cardData.linkval}</p>
+              }
+              </div>
               <div className='card-modal-extension-rarity'>
                 {
                   extensionList && (
