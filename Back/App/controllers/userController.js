@@ -1,5 +1,11 @@
 // On require le module bcrypt pour le hash du mot de passe
 const bcrypt = require('bcrypt');
+
+const jwt = require('jsonwebtoken');
+
+const { JWT_SECRET } = process.env;
+const { ACCESS_TOKEN_EXPIRATION } = process.env;
+
 // On require notre userDataMapper qui contient nos requête SQL
 const userDataMapper = require('../datamappers/userDataMapper');
 
@@ -105,14 +111,11 @@ const userController = {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Mot de passe incorrect.' });
     }
-
-    // On connecte l'utilisateur avec la mecanique de session
-    req.session.user = user;
-    // mais on supprime son mdp !
-    delete req.session.user.password;
+    const data = await userDataMapper.getDetailsForToken(username);
+    const token = jwt.sign({ data }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION });
 
     // Renvoyez une réponse réussie
-    return res.json({ message: 'Connexion réussie.' });
+    return res.json(token);
   },
 };
 
