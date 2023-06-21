@@ -59,7 +59,7 @@ export default function Login() {
           password: form.password,
         }
       );
-      console.log(response.status);
+      console.log(response);
       if (response.status === 200) {
         setIsSuccessful(true);
         dispatch(openModal());
