@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
+const { log } = require('../log');
 
 const deckController = {
 
@@ -42,7 +43,35 @@ const deckController = {
   async getAllDecksByUser(req, res) {
     const userId = parseInt(req.params.id, 10);
     const decks = await deckDataMapper.getAllDecksByUser(userId);
+    console.log(decks);
     res.status(200).json(decks);
+  },
+
+  /**
+   * Fonction pour modifier un deck dans la base de données.
+   */
+  async updateDeckInDb(req, res) {
+    const deckId = req.params.id;
+
+    // On récupère les informations envoyées par l'utilisateur pour la modification du deck
+    const {
+      deck_name, deck_description, card_quantity, set_code,
+    } = req.body;
+
+    // On crée un objet avec les informations que l'utilisateur a envoyées
+    const deck = {
+      id: deckId,
+      deck_name,
+      deck_description,
+      card_quantity,
+      set_code,
+    };
+
+    // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
+    const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
+
+    // On renvoie la réponse au format JSON avec le deck modifié
+    res.status(200).json(updatedDeck);
   },
 };
 
