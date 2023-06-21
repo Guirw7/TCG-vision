@@ -71,7 +71,7 @@ export default function SignUp() {
               // On peut crypter le mot de passe ici
               // On envoie les données au back
               axios.post(
-                'https://daoust-jason-server.eddi.cloud/user/signup', {
+                'http://daoust-jason-server.eddi.cloud/user/signup', {
                 email: data.email,
                 username: data.username,
                 password: data.password,

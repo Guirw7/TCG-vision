@@ -2,22 +2,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import { openModal, setCardID } from '../CardModal/modalSlice';
 import './styles.scss';
 
-import { openModal, setCardID } from '../CardModal/modalSlice';
-import CardModal from '../CardModal';
-
-/**-- IMPORT IMAGES EN LOCAL --**/
-
-import dragon1 from '../../assets/img/2129638.jpg';
 
 export default function CardDisplayer() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
-  /**-- Axios --**/
   useEffect(() => {
     const fetchCards = async () => {
-      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=yeux%20bleus');
+      // Ici on se sert du thème des 'yeux bleus'
+      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz');
       const data = await response.data;
       if (data) {
         await setCards(data.data);
@@ -38,6 +33,8 @@ export default function CardDisplayer() {
     dispatch(openModal());
   };
 
+
+/*
   return (
     <ul>
       {
@@ -50,5 +47,21 @@ export default function CardDisplayer() {
         )
       }
     </ul>
+  )
+  */
+  return (
+    <div className='articles-container'>
+      {
+        cards && (
+          cards.map((card: any) => (
+            <article className='card-article' onClick={clickHandler(card.id)} key={card.id}>
+              <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`}/>
+              <p className='card-article-name'>{card.name}</p>
+            </article>
+          ))
+        )
+      }
+    </div>
+
   )
 };

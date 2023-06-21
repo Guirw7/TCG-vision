@@ -32,21 +32,25 @@ export default function SearchResult () {
     <div className='search-result-container'>
       <div className='search-result-container-background'>
         <h1 className='page-title'>Résultats de la recherche :</h1>
-          <div>
-            <ul>
-              {
-                result && (
-                  result.map((card: any) => {
-                    return <li key={card.id}>
-                      <button onClick={clickHandler(card.id)} >{card.name}</button>
-                    </li>
-                  })
-                )
-              }
-            </ul>
-            {
-              (modal && <CardModal/>)
-            }
+          <div className='article-container'>
+          {
+            result && (
+              result.map((card: any) => (
+                <article className='card-article' onClick={clickHandler(card.id)} key={card.id}>
+                  <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`}/>
+                  <p className='card-article-name'>{card.name}</p>
+                </article>
+              ))
+            )
+          }
+          {
+            !result && (
+              <p className='no-result'>Aucun résultat</p>
+            )
+          }
+          {
+            (modal && <CardModal/>)
+          }
           </div>
       </div>
     </div>

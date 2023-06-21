@@ -75,11 +75,18 @@ export default function Login() {
   };
 
   const testConnection = async () => {
-    // const response = await axios.get(
-    //   'https://daoust-jason-server.eddi.cloud/profil'
-    // );
-    let cookies = document.cookie
-    console.log(cookies);
+    const response = await axios.get(
+      'http://daoust-jason-server.eddi.cloud/profil', 
+      /* Exemple de gestion avec JWT :P
+      {
+        headers: {
+          // Gestion du token dans le header de la requête
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      },
+      */
+    );
+    console.log(response);
   };
   
 
