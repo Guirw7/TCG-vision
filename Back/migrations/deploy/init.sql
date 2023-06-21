@@ -16,17 +16,18 @@ CREATE TABLE "deck" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "deck_name" TEXT NOT NULL,
   "deck_description" TEXT,
-  "card_quantity" INT,
-  "set_code" INT,
+  "card_quantity" INT CHECK (card_quantity <= 60),
+  "set_code" TEXT [],
   "user_id" INT REFERENCES "user"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
 );
 
+
 CREATE TABLE "collection" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "collection_name" TEXT NOT NULL,
-  "set_code" INT,
+  "set_code" TEXT [],
   "card_quantity" INT,
   "user_id" INT REFERENCES "user"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
