@@ -91,7 +91,7 @@
   margin-top: 1rem;
 };
 
-.card-modal-archetype {
+.card-modal-race {
   margin-top: 1rem;
 };
 
@@ -100,8 +100,23 @@
 };
 
 .card-modal-stats {
+  display: flex;
   margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-modal-stats-atk {
+  margin-right: 1rem;
 };
+
+.card-modal-stats-linkval {
+};
+
 
 .card-modal-description {
   margin-top: 2rem;
@@ -130,6 +145,29 @@
 .card-modal-extension-select {
   margin-left: 2rem;
   min-width: 10rem;
+};
+
+.card-modal-extension-rarity {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+};
+
+.card-modal-extension-rarity-item {
+  margin: 1rem 0.5rem;
+  background-color: v.$background-color-footer;
+  color: v.$font-color-dark;
+  border-radius: 5px;
+  height: 2rem;
+  font-size: v.$font-size * 1.6;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 };
 
 .card-modal-quantity {

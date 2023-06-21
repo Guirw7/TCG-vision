@@ -84,6 +84,17 @@ const userDataMapper = {
     const result = await client.query(preparedQuery);
     return result.rows[0];
   },
+
+  async getDetailsForToken(username) {
+    const preparedQuery = {
+      text: 'SELECT id, username FROM "user" WHERE username = $1',
+      values: [username],
+    };
+
+    const results = await client.query(preparedQuery);
+    // On ne récupère que le premier résultat du tableau de rows.
+    return results.rows[0];
+  },
 };
 
 // On exporte le userDataMapper
