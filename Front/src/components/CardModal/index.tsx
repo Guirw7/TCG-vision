@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, clearCardID } from './modalSlice';
 
 import './styles.scss';
+import { set } from 'react-hook-form';
 
 export default function CardModal() {
   const dispatch = useDispatch();
@@ -12,22 +13,8 @@ export default function CardModal() {
   const [cardImage, setCardImage] = useState<any>(null);
   const [counter, setCounter] = useState<number>(1);
   const cardID = useSelector((state: any) => state.cardModal.element);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const responseAPI = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
-      const data = await responseAPI.json();
-      if (data) {
-        setCardData(data.data[0]);
-        const imageUrl = `https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`
-        setCardImage(imageUrl);
-      }
-    };
-    if (cardID) {
-      fetchData();
-    };
-  }, [cardID]);
-
+  const [selectedExtension, setSelectedExtension] = useState<string>("none");
+ 
   const increment = (event: any) => {
     event?.preventDefault();
     setCounter(counter + 1);
@@ -44,6 +31,31 @@ export default function CardModal() {
     dispatch(closeModal());
     dispatch(clearCardID());
   };
+
+  const optionHandler = (event: any) => {
+    setSelectedExtension(event.target.value)
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseAPI = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
+      const data = await responseAPI.json();
+      if (data) {
+        setCardData(data.data[0]);
+        const imageUrl = `https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`
+        setCardImage(imageUrl);
+      }
+    };
+    if (cardID) {
+      fetchData();
+      console.log(cardData);
+      // setOptionInitialState(cardData.card_sets);
+    };
+
+  }, [cardID]);
+
+  // console.log(cardData)
+
 
   return (
     cardData && (
@@ -67,7 +79,8 @@ export default function CardModal() {
         <form action="">
           <section className="card-modal-extension">
             <label className="card-modal-extension-label" htmlFor="">Nom de l'extension :</label>
-            <select className='card-modal-extension-select'>
+            <select onChange={optionHandler} className='card-modal-extension-select'>
+              <option value="none">Sélectionnez une extension</option>
               {cardData.card_sets.map((extension: any, index: number) => {
                 return (
                   <option key= {index} value={extension.set_code}>{extension.set_name}</option>
