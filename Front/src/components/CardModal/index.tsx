@@ -7,13 +7,23 @@ import { closeModal, clearCardID } from './modalSlice';
 import './styles.scss';
 import { set } from 'react-hook-form';
 
+export interface ExtensionProps {
+  set_code: string,
+  set_name: string,
+  set_price: string | number,
+  set_rarity: string,
+  set_rarity_code: string,
+};
+
+
 export default function CardModal() {
   const dispatch = useDispatch();
-  const [cardData, setCardData] = useState<any>(null);``
+  const [cardData, setCardData] = useState<any>(null);
   const [cardImage, setCardImage] = useState<any>(null);
   const [counter, setCounter] = useState<number>(1);
   const cardID = useSelector((state: any) => state.cardModal.element);
-  const [selectedExtension, setSelectedExtension] = useState<string>("none");
+  const [selectedExtension, setSelectedExtension] = useState<string>("");
+  const [extensionList, setExtensionList] = useState<ExtensionProps[]>([]);
  
   const increment = (event: any) => {
     event?.preventDefault();
@@ -33,7 +43,19 @@ export default function CardModal() {
   };
 
   const optionHandler = (event: any) => {
+    event.preventDefault();
     setSelectedExtension(event.target.value)
+    setExtensionList([]);
+    getCardDatabyExtension(event.target.value);
+  };
+
+  const getCardDatabyExtension = async (selectedExtension: string) => {
+    const cardExtensions = cardData.card_sets;
+    const filteredExtensions = cardExtensions.filter((extension: ExtensionProps) => {
+      return extension.set_code === selectedExtension;
+    });
+    setExtensionList(filteredExtensions);
+    console.log(filteredExtensions);
   };
 
   useEffect(() => {
@@ -48,7 +70,6 @@ export default function CardModal() {
     };
     if (cardID) {
       fetchData();
-      console.log(cardData);
       // setOptionInitialState(cardData.card_sets);
     };
 
@@ -71,6 +92,17 @@ export default function CardModal() {
               <p className='card-modal-archetype'>Archetype: {cardData.archetype}</p>
               <p className='card-modal-attribute'>Attribut: {cardData.attribute}</p>
               <p className='card-modal-stats'>Attaque: {cardData.atk} Défense: {cardData.def}</p>
+              <div className='card-modal-extension-rarity'>
+                {
+                  extensionList && (
+                    extensionList.map((card, index) => {
+                      return(
+                        <span className='card-modal-extension-rarity-item' key={index}>{card.set_rarity}</span>
+                      )
+                    })
+                  )
+                }
+              </div>
           </div>
         </section>
         <section className='card-modal-description'>
@@ -80,7 +112,7 @@ export default function CardModal() {
           <section className="card-modal-extension">
             <label className="card-modal-extension-label" htmlFor="">Nom de l'extension :</label>
             <select onChange={optionHandler} className='card-modal-extension-select'>
-              <option value="none">Sélectionnez une extension</option>
+              <option value="">Sélectionnez une extension</option>
               {cardData.card_sets.map((extension: any, index: number) => {
                 return (
                   <option key= {index} value={extension.set_code}>{extension.set_name}</option>
@@ -88,6 +120,7 @@ export default function CardModal() {
               })}
             </select>
           </section>
+
           <div className='card-modal-buttons'>
             <div>
               <section className='card-modal-quantity'>
