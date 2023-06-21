@@ -8,8 +8,8 @@ const deckController = require('../../controllers/deckController');
 
 const router = express.Router();
 
-router.post('/', /* requireAuth, */ controllerHandler(deckController.addDeckInDb));
-router.get('/:id', /* requireAuth, */ controllerHandler(deckController.getAllDecksByUser));
-router.put('/:id', /* requireAuth, */ controllerHandler(deckController.updateDeckInDb));
+router.post('/', requireAuth, controllerHandler(deckController.addDeckInDb));
+router.get('/:id', requireAuth, controllerHandler(deckController.getAllDecksByUser));
+router.put('/:id', requireAuth, controllerHandler(deckController.updateDeckInDb));
 
 module.exports = router;

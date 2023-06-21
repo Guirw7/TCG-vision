@@ -62,6 +62,20 @@ const deckDataMapper = {
   },
 
   /**
+   * Requête SQL pour afficher un deck par son id.
+   */
+
+  async getOneDeck(deck_id) {
+    const preparedQuery = {
+      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.id = $1',
+      values: [deck_id],
+    };
+
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
+
+  /**
    * Requête SQL pour modifier un deck dans la base de données en utilisant une requête préparée.
    */
   async updateDeckInDB(deck) {

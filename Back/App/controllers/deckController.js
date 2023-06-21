@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
-const { log } = require('../log');
 
 const deckController = {
 
@@ -43,8 +42,14 @@ const deckController = {
   async getAllDecksByUser(req, res) {
     const userId = parseInt(req.params.id, 10);
     const decks = await deckDataMapper.getAllDecksByUser(userId);
-    console.log(decks);
+
     res.status(200).json(decks);
+  },
+
+  async getOneDeck(req, res) {
+    const deckId = parseInt(req.params.id, 10);
+    const deck = await deckDataMapper.getOneDeck(deckId);
+    return res.status(200).json(deck);
   },
 
   /**
