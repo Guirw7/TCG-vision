@@ -28,10 +28,10 @@ const deckDataMapper = {
   /**
    * Requête SQL pour récuperer tous les decks utilisateurs.
    */
-  async getAllDecksByUser(user_id) {
+  async getAllDecksByUser(userId) {
     const preparedQuery = {
-      text: 'SELECT * FROM deck WHERE user_id = $1',
-      values: [user_id],
+      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.user_id = $1',
+      values: [userId],
     };
 
     // On récupère le résultat de la requête préparer
@@ -57,6 +57,33 @@ const deckDataMapper = {
     // On récupère le résultat de la requête préparer
     const results = await client.query(preparedQuery);
     return results.rows;
+  },
+
+  /**
+   * Requête SQL pour afficher un deck par son id.
+   */
+
+  async getOneDeck(deck_id) {
+    const preparedQuery = {
+      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.id = $1',
+      values: [deck_id],
+    };
+
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
+
+  /**
+   * Requête SQL pour modifier un deck dans la base de données en utilisant une requête préparée.
+   */
+  async updateDeckInDB(deck) {
+    const preparedQuery = {
+      text: 'UPDATE "deck" SET deck_name = $1, deck_description = $2, card_quantity = $3, set_code = $4 WHERE id = $5 RETURNING *',
+      values: [deck.deck_name, deck.deck_description, deck.card_quantity, deck.set_code, deck.id],
+    };
+
+    const results = await client.query(preparedQuery);
+    return results.rows[0];
   },
 };
 
