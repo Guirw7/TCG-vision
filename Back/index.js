@@ -7,7 +7,6 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 // Require des modules
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
 
 /* const distPath = path.resolve(__dirname, 'dist'); */
 const imagePath = path.resolve(__dirname, 'card_images');
@@ -38,24 +37,6 @@ app.use(cors({
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Authorization, Content-Type',
 }));
-
-// On configure les sessions
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: true,
-  resave: true,
-  cookie: {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'Lax',
-    maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
-  },
-}));
-
-app.use((req, res, next) => {
-  console.log(req.session);
-  next();
-});
 
 // Application routers
 app.use(routerPublic);
