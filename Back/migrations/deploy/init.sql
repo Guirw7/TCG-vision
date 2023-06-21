@@ -16,7 +16,7 @@ CREATE TABLE "deck" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "deck_name" TEXT NOT NULL,
   "deck_description" TEXT,
-  "card_quantity" INT CHECK (card_quantity >= 40 AND card_quantity <= 60),
+  "card_quantity" INT CHECK (card_quantity <= 60),
   "set_code" TEXT [],
   "user_id" INT REFERENCES "user"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -27,7 +27,7 @@ CREATE TABLE "deck" (
 CREATE TABLE "collection" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "collection_name" TEXT NOT NULL,
-  "set_code" TEXT ARRAY,
+  "set_code" TEXT [],
   "card_quantity" INT,
   "user_id" INT REFERENCES "user"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),

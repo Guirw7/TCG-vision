@@ -56,7 +56,7 @@ const deckController = {
    * Fonction pour modifier un deck dans la base de données.
    */
   async updateDeckInDb(req, res) {
-    const deckId = req.params.id;
+    const deckId = parseInt(req.params.id, 10);
 
     // On récupère les informations envoyées par l'utilisateur pour la modification du deck
     const {
