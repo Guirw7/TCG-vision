@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
+const userDataMapper = require('../datamappers/userDataMapper');
 
 const deckController = {
 
@@ -8,6 +9,8 @@ const deckController = {
    */
   async getAllDecks(req, res) {
     const decks = await deckDataMapper.getAllDecks();
+    const { id } = req.user;
+    console.log(id);
     res.status(200).json(decks);
   },
 
@@ -77,6 +80,20 @@ const deckController = {
 
     // On renvoie la réponse au format JSON avec le deck modifié
     res.status(200).json(updatedDeck);
+  },
+
+  /**
+   * Fonction pour supprimé le deck d'un utilisateur
+   */
+  async deleteDeck(req, res) {
+    const userId = parseInt(req.params.userId, 10);
+    const deckId = parseInt(req.params.deckId, 10);
+
+    const user = await userDataMapper.getOneProfil(userId);
+    if (user) {
+      await deckDataMapper.deleteOneDeck(deckId);
+      res.status(200).json({ message: 'delete' });
+    }
   },
 };
 

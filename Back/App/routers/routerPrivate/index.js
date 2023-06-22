@@ -11,6 +11,7 @@ const router = express.Router();
 router.use('/profil', userRouter);
 router.use('/collection', collectionRouter);
 router.use('/deck', deckRouter);
+router.use('/user', deckRouter);
 
 router.use(error404);
 router.use(errorHandler);
