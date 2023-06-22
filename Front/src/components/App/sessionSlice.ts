@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-//interfaces
-export interface UserProps {
-  status : boolean,
-};
-
-const initialState: UserProps = {
+const initialState = {
   status: false,
 };
 
@@ -13,7 +8,7 @@ const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    setStatus : (state, action: PayloadAction<UserProps['status']>) => {
+    setStatus : (state, action: PayloadAction<boolean>) => {
       state.status = action.payload;
     },
   },

@@ -5,6 +5,8 @@ import { setStatus } from '../components/App/sessionSlice';
 export const sessionChecker = async () => {
   const dispatch = useDispatch();
   const token: string | null = sessionStorage.getItem('jwt');
+  // Utile pour tester le cas où le token est invalide
+  const troll: string | null = token + 'troll';
   
   if (token) {
     try {

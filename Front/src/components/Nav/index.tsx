@@ -1,7 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, clearSearch } from '../SearchResult/searchSlice';
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,15 +9,14 @@ import './styles.scss';
 export default function Nav() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<any>(null);
+  const isConnected = useSelector((state: any) => state.session.status);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
  
   const handleSubmit = (event: any) => {
     event.preventDefault();
     dispatch(setSearch(input));
     navigate('/search-result');
-
   };
 
   return(
@@ -28,12 +26,21 @@ export default function Nav() {
       <a className="nav-links__link" href="/">Accueil</a>
       <a className="nav-links__link" href="">Decks</a>
       <a className="nav-links__link" href="">Collection</a>
-      {/* Vérification du token */}
       {/* Si l'utilisateur n'est pas connecté */}
-      <a className="nav-links__link" href="/login">Connexion</a>
+      {
+        !isConnected && (
+          <a className="nav-links__link" href="/login">Connexion</a>
+        )
+      }
       {/* Si l'utilisateur est connecté */}
-      <a className="nav-links__link" href="/login">Déconnexion</a>
-      <a className="nav-links__link" href="/login">Profil</a>
+      {
+        isConnected && (
+          <>
+          <a className="nav-links__link" href="/login">Profil</a>
+          <a className="nav-links__link" href="/login">Déconnexion</a>
+          </>
+        )
+      }
     </div>
   </nav>
     <form onSubmit={handleSubmit} className="header-searchbar" action="">
