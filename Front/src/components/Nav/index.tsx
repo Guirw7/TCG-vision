@@ -12,7 +12,6 @@ export default function Nav() {
   const isConnected = useSelector((state: any) => state.session.status);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [egg, setEgg] = useState<boolean>(false);
 
 
   const handleSubmit = (event: any) => {
@@ -26,8 +25,8 @@ export default function Nav() {
     <nav className="header__nav">
     <div className="nav-links">
       <a className="nav-links__link" href="/">Accueil</a>
-      <a className="nav-links__link" href="">Decks</a>
-      <a className="nav-links__link" href="">Collection</a>
+      <a className="nav-links__link" href="/decks">Decks</a>
+      <a className="nav-links__link" href="/collection">Collection</a>
       {/* Si l'utilisateur n'est pas connecté */}
       {
         !isConnected && (

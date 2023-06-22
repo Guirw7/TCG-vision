@@ -48,7 +48,6 @@ export default function Login() {
         dispatch(setModalMessage("Connexion réussie !"));
         dispatch(openModal());
         sessionStorage.setItem('jwt', token);
-        // On redirige vers la page d'accueil
       } 
     } catch (error) {
       console.error(error);

@@ -2,7 +2,6 @@ import { closeModal, setModalMessage} from '../FormModal/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
-import './styles.scss';
 
 export default function LoginModal() {
     const navigate = useNavigate();
