@@ -25,7 +25,7 @@ const deckController = {
       deck_name,
       deck_description,
       card_quantity,
-      set_code,
+      set_code: [set_code],
       user_id,
     };
 
