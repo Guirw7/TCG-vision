@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../FormModal/modalSlice';
-import { useForm } from 'react-hook-form';
+import { openModal, closeModal, setModalMessage } from '../FormModal/modalSlice';
+import LoginModal from '../LoginModal';
+import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import { RootState } from '../../store';
 import './styles.scss';
@@ -10,6 +12,8 @@ import './styles.scss';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isConnected = useSelector((state: any) => state.session.status);
   const [isSuccessful, setIsSuccessful] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
   const { 
@@ -41,10 +45,10 @@ export default function Login() {
         let payload = JSON.parse(atob(parts[1]));
         console.log(response);
         // setIsSuccessful(true);
+        dispatch(setModalMessage("Connexion réussie !"));
         dispatch(openModal());
         sessionStorage.setItem('jwt', token);
-      // On redirige vers la page d'accueil
-      };
+      } 
     } catch (error) {
       console.error(error);
       dispatch(openModal());
@@ -75,11 +79,11 @@ export default function Login() {
           <p className='signup-message'>Pas encore inscrit ?</p>
           <a className='signup-message-link'href="/signup">Inscrivez vous!</a>
         </form>
-        {
-          (modal) && (
-            <h1>hello world</h1>
-          )
-        }
+          {
+            (modal) && (
+              <LoginModal />
+            )
+          }
       </div>
     </div>
   )

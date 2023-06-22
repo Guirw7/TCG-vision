@@ -51,7 +51,7 @@ const handleClick = async () => {
   return (
     <div className='game-container'>
       <div className="game-container-background">
-        <h1 className="game-title">Yu-Gi-Oh Trading Card Game</h1>
+        <h1 className="game-title">Yu-Gi-Oh! Trading Card Game</h1>
         <CardsDisplayer />
         {
           (modal && <CardModal/>)
