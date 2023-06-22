@@ -1,9 +1,14 @@
 import Nav from '../Nav';
 import Icon from '../Icon';
 import logo from "../../assets/img/prototypelogo2.png";
+
+import { sessionChecker }  from '../../utils/sessionChecker';
+
 import './styles.scss';
 
 export default function Header() {
+  console.log(sessionChecker());
+
   return(
     <header className="header">
       <Icon />

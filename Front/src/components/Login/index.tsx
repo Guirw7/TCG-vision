@@ -1,45 +1,21 @@
-import { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal } from '../FormModal/modalSlice';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import './styles.scss';
 import { RootState } from '../../store';
+import './styles.scss';
 
-
-// const { 
-//   register, 
-//   handleSubmit,
-//   // permet de générer des erreurs personnalisées
-//   // setError,
-//   // watch, 
-//   // clearErrors, 
-//   formState: { errors } 
-// } = useForm<any>(
-//   {defaultValues : 
-//     {
-//       // username: 'kevin',
-//       // mail: 'kk@k.com',
-//       // password: 'LolXd69240',
-//       // passwordConfirmation: 'LolXd69240',
-//     },
-//   }
-// );
 
 export default function Login() {
   const dispatch = useDispatch();
   const [isSuccessful, setIsSuccessful] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
-
-  /* Logique ici : */
   const { 
     register, 
     handleSubmit,
-    // permet de générer des erreurs personnalisées
-    setError,
-    // watch, 
-    // clearErrors, 
+    setError, // permet de générer des erreur personnalisées
     formState: { errors } 
   } = useForm(
     // {defaultValues : 
@@ -50,45 +26,31 @@ export default function Login() {
     // }
   );
 
-  /*-- Actualiser les noms de classe pour match avec 'Login' --*/
-
   const getUser = async (form: any) => {
+    try {
       const response = await axios.post(
         'https://daoust-jason-server.eddi.cloud/user/login', {
           username: form.username,
           password: form.password,
         }
       );
-      console.log(response);
       if (response.status === 200) {
-        setIsSuccessful(true);
+        const token = response.data;
+        // On split le token pour récupérer le payload qui contient les données d'utilisateur
+        const parts = token.split('.');
+        let payload = JSON.parse(atob(parts[1]));
+        console.log(response);
+        // setIsSuccessful(true);
         dispatch(openModal());
-
-        // Copier le code de Raf ici
-      }
-      // Si c'est good, on affiche la modale de succès
-
-      
+        sessionStorage.setItem('jwt', token);
       // On redirige vers la page d'accueil
-      // Si c'est pas good, on affiche la modale d'erreur
-
+      };
+    } catch (error) {
+      console.error(error);
+      dispatch(openModal());
+      // Logique d'erreur
+    };
   };
-
-  const testConnection = async () => {
-    const response = await axios.get(
-      'http://daoust-jason-server.eddi.cloud/profil', 
-      /* Exemple de gestion avec JWT :P
-      {
-        headers: {
-          // Gestion du token dans le header de la requête
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      },
-      */
-    );
-    console.log(response);
-  };
-  
 
   return (
     <div className='signin-container'>
@@ -118,12 +80,6 @@ export default function Login() {
             <h1>hello world</h1>
           )
         }
-        {
-          (!modal) && (
-            <h1>pas de hello world</h1>
-          )
-        }
-        <button onClick={testConnection}>SALUT</button>
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ const deckController = {
     const decks = await deckDataMapper.getAllDecks();
     res.status(200).json(decks);
   },
-
+  
   /**
    * Fonction pour ajouter un deck en base de données
    */
@@ -56,7 +56,7 @@ const deckController = {
    * Fonction pour modifier un deck dans la base de données.
    */
   async updateDeckInDb(req, res) {
-    const deckId = req.params.id;
+    const deckId = parseInt(req.params.id, 10);
 
     // On récupère les informations envoyées par l'utilisateur pour la modification du deck
     const {
