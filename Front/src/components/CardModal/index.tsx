@@ -147,7 +147,10 @@ export default function CardModal() {
                 <button onClick={increment} className='card-modal-quantity-increment'>+</button>
               </section>
             </div>
-            <button className='card-modal-submit-button'>Ajouter à la Collection</button>
+            <div className='card-modal-submit-buttons'>
+              <button className='card-modal-submit-button-deck'>Ajouter au Deck</button>
+              <button className='card-modal-submit-button-collection'>Ajouter à la Collection</button>
+            </div>
           </div>
         </form>
         </article>

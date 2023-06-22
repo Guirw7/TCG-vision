@@ -208,7 +208,21 @@
   font-size: v.$font-size * 2.4;
 };
 
-.card-modal-submit-button {
+.card-modal-submit-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-modal-submit-button-deck {
+  background-color: v.$raw-color-blue;
+  border-radius: 5px;
+  color: v.$font-color;
+  border: none;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+} 
+
+.card-modal-submit-button-collection {
   background-color: v.$raw-color-purple;
   border-radius: 5px;
   color: v.$font-color;
