@@ -6,16 +6,19 @@ import axios from 'axios';
  *
  * @param {string} method - La méthode HTTP à utiliser pour la requête (par exemple 'get', 'post', etc.).
  * @param {string} url - L'URL à laquelle la requête doit être envoyée.
- * @param {Object} [headers={}] - Les headers HTTP optionnels à envoyer avec la requête.
+ * @param {Object} [options={}] - Un objet optionnel qui peut contenir `data` et/ou `headers` à envoyer avec la requête.
+ * @param {Object} [options.data] - Les données optionnelles à envoyer avec la requête.
+ * @param {Object} [options.headers] - Les headers HTTP optionnels à envoyer avec la requête.
  * @returns {Promise<any>} Une promesse qui se résout avec les données de la réponse en cas de succès, ou qui rejette avec une erreur en cas d'échec.
  * @throws {Error} Si une erreur se produit lors de la requête.
  */
 
-export const axiosRequest = (method: string, url: string, headers = {}) => {
+export const axiosRequest = (method: string, url: string, options: { data?: object, headers?: object } = {}): Promise<any> => {
   return axios({
-    method: `${method}`,
-    url: `${url}`,
-    headers: headers,
+    method: method,
+    url: url,
+    data: options.data,
+    headers: options.headers,
   })
   .then ((response) => {
     return response.data;

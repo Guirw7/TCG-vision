@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, setCardID } from '../CardModal/modalSlice';
-import { setSearch, clearSearch } from './searchSlice';
-import axios from 'axios';
 
-import './styles.scss';
+import { openModal, setCardID } from '../CardModal/modalSlice';
+import Loading from '../Loading';
 import CardModal from '../CardModal';
+import { axiosRequest } from '../../utils/axiosRequest';
+import './styles.scss';
 
 export default function SearchResult () {
   const modal = useSelector((state: any) => state.cardModal.value);
   const dispatch = useDispatch();
   const [result, setResult] = useState<any>(null);
   const search = useSelector((state: any) => state.search.value);
-  const fetchSearch = async () => {
-    const response = await axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${search}&language=fr`);
-    const data = await response.data.data;
-    setResult(data);
-  };
+  // setResult pour mettre à jour le state
+
   useEffect(() => {
-    if (search) {
-      fetchSearch();
-    }
-  }, [search])
+    axiosRequest('get', `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${search}&language=fr`)
+    .then(data => {
+      setResult(data.data);
+    })
+    .catch(error => {
+      console.log('Erreur lors de la requête', error);
+    });
+  }, [search]);
 
   const clickHandler = (id: number) => () => { 
     dispatch(setCardID(id));
@@ -41,11 +42,6 @@ export default function SearchResult () {
                   <p className='card-article-name'>{card.name}</p>
                 </article>
               ))
-            )
-          }
-          {
-            !result && (
-              <p className='no-result'>Aucun résultat</p>
             )
           }
           {

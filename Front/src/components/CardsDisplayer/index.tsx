@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { openModal, setCardID } from '../CardModal/modalSlice';
-import { loadingChecker }  from '../../utils/loadingScreen';
+// import { loadingChecker }  from '../../utils/loadingScreen';
 import { axiosRequest } from '../../utils/axiosRequest';
+import Loading from '../Loading';
 import './styles.scss';
 
 
@@ -17,7 +18,7 @@ export default function CardDisplayer() {
   /**--FIN DE LA NOTE IMPORTANTE--*/
   const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz';
   useEffect(() => {
-    // méthode maison pour les requêtes
+    // méthode maison pour les requêtes 😎
     axiosRequest('get', url)
     .then(data => {
       setCards(data.data);
@@ -27,11 +28,11 @@ export default function CardDisplayer() {
     });
   }, [url]);
 
-    // Closure 🧐
-    const clickHandler = (id: number) => () => { 
-      dispatch(setCardID(id));
-      dispatch(openModal());
-    };
+  // Closure 🧐
+  const clickHandler = (id: number) => () => { 
+    dispatch(setCardID(id));
+    dispatch(openModal());
+  };
 
   return (
     <div className='articles-container'>
@@ -44,6 +45,9 @@ export default function CardDisplayer() {
             </article>
           ))
         )
+      }
+      {
+        !cards && <Loading />
       }
     </div>
   )

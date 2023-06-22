@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface SearchProps {
-  value: null | string;
+  value: string;
 }
 
 export const initialState: SearchProps = {
-  value: null,
+  value: 'kaiba',
 };
 
 const searchSlice = createSlice({
@@ -17,7 +17,7 @@ const searchSlice = createSlice({
       console.log(state.value); 
     },
     clearSearch : (state) => {
-      state.value = null;
+      state.value = 'kaiba';
     },
   },
 });
