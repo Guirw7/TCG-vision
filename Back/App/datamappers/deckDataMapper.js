@@ -28,10 +28,10 @@ const deckDataMapper = {
   /**
    * Requête SQL pour récuperer tous les decks utilisateurs.
    */
-  async getAllDecksByUser(userId) {
+  async getAllDecksByUser(user_id) {
     const preparedQuery = {
-      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.user_id = $1',
-      values: [userId],
+      text: 'SELECT * FROM deck WHERE user_id = $1',
+      values: [user_id],
     };
 
     // On récupère le résultat de la requête préparer
@@ -60,30 +60,22 @@ const deckDataMapper = {
   },
 
   /**
-   * Requête SQL pour afficher un deck par son id.
+   * Requête SQL pour supprimer le deck d'un utilisateur.
+   * On supprime avant la clé étrangère de la table user_like_deck.
    */
-
-  async getOneDeck(deck_id) {
-    const preparedQuery = {
-      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.id = $1',
-      values: [deck_id],
+  async deleteOneDeck(id) {
+    const deleteLikesQuery = {
+      text: 'DELETE FROM "user_like_deck" WHERE "deck_id" = $1',
+      values: [id],
     };
+    await client.query(deleteLikesQuery);
 
-    const result = await client.query(preparedQuery);
-    return result.rows[0];
-  },
-
-  /**
-   * Requête SQL pour modifier un deck dans la base de données en utilisant une requête préparée.
-   */
-  async updateDeckInDB(deck) {
-    const preparedQuery = {
-      text: 'UPDATE "deck" SET deck_name = $1, deck_description = $2, card_quantity = $3, set_code = $4 WHERE id = $5 RETURNING *',
-      values: [deck.deck_name, deck.deck_description, deck.card_quantity, deck.set_code, deck.id],
+    const deleteDeckQuery = {
+      text: 'DELETE FROM "deck" WHERE id = $1',
+      values: [id],
     };
-
-    const results = await client.query(preparedQuery);
-    return results.rows[0];
+    const result = await client.query(deleteDeckQuery);
+    return result.rows;
   },
 };
 

@@ -11,5 +11,6 @@ const router = express.Router();
 router.post('/', requireAuth, controllerHandler(deckController.addDeckInDb));
 router.get('/:id', requireAuth, controllerHandler(deckController.getAllDecksByUser));
 router.put('/:id', requireAuth, controllerHandler(deckController.updateDeckInDb));
+router.delete('/:userId/deck/:deckId', requireAuth, controllerHandler(deckController.deleteDeck));
 
 module.exports = router;
