@@ -1,29 +1,10 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/reset.scss';
 
-
-.loading-container {
-  margin: 0 auto;
-  min-height: 95vh;
-  width: 95vw;
-  background: v.$background-color-app;
-  box-shadow: v.$box-shadow;
-  transition: v.$transition-speed;
-  box-sizing: border-box
-};
-  
-.loading-container-background {
-  background-color: white;
-  margin: 0 auto;
-  width: 98%;
-  min-height: 95vh;
-  padding-bottom: 2rem;
-};
-
 .loading {
   width: 10rem;
   height: 10rem;
   position: absolute;
-  left: 45vw;
-  top: 40vh;
+  left: center;
+  top: 40%;
 };
