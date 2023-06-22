@@ -1,6 +1,5 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-
 
 
 import Header from '../Header';
@@ -14,6 +13,7 @@ import PasswordResetPage from "../PasswordResetPage";
 import TeamPage from "../TeamPage";
 import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
+import CollectionPage from "../CollectionPage";
 
 /*-- Routers --*/
 
@@ -72,7 +72,9 @@ export default function App() {
     <>
     <Header />
     <Routes>
+        {/* Routes publiques */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/collection" element={<CollectionPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/reset-password" element={<PasswordResetPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -80,6 +82,8 @@ export default function App() {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/search-result" element={<SearchResultPage />} />
         <Route path="*" element={<ErrorPage />} />
+        {/* Routes privées */}
+        {/* Ici se fait la vérification du token */}
       </Routes>
     <Footer />
     </>

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const deckDataMapper = require('../datamappers/deckDataMapper');
+const userDataMapper = require('../datamappers/userDataMapper');
 
 const deckController = {
 
@@ -10,7 +11,7 @@ const deckController = {
     const decks = await deckDataMapper.getAllDecks();
     res.status(200).json(decks);
   },
-  
+
   /**
    * Fonction pour ajouter un deck en base de données
    */
@@ -25,7 +26,7 @@ const deckController = {
       deck_name,
       deck_description,
       card_quantity,
-      set_code,
+      set_code: [set_code],
       user_id,
     };
 
@@ -42,7 +43,55 @@ const deckController = {
   async getAllDecksByUser(req, res) {
     const userId = parseInt(req.params.id, 10);
     const decks = await deckDataMapper.getAllDecksByUser(userId);
+
     res.status(200).json(decks);
+  },
+
+  async getOneDeck(req, res) {
+    const deckId = parseInt(req.params.id, 10);
+    const deck = await deckDataMapper.getOneDeck(deckId);
+    return res.status(200).json(deck);
+  },
+
+  /**
+   * Fonction pour modifier un deck dans la base de données.
+   */
+  async updateDeckInDb(req, res) {
+    const deckId = parseInt(req.params.id, 10);
+
+    // On récupère les informations envoyées par l'utilisateur pour la modification du deck
+    const {
+      deck_name, deck_description, card_quantity, set_code,
+    } = req.body;
+
+    // On crée un objet avec les informations que l'utilisateur a envoyées
+    const deck = {
+      id: deckId,
+      deck_name,
+      deck_description,
+      card_quantity,
+      set_code: [set_code],
+    };
+
+    // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
+    const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
+
+    // On renvoie la réponse au format JSON avec le deck modifié
+    res.status(200).json(updatedDeck);
+  },
+
+  /**
+   * Fonction pour supprimé le deck d'un utilisateur
+   */
+  async deleteDeck(req, res) {
+    const userId = parseInt(req.params.userId, 10);
+    const deckId = parseInt(req.params.deckId, 10);
+
+    const user = await userDataMapper.getOneProfil(userId);
+    if (user) {
+      await deckDataMapper.deleteOneDeck(deckId);
+      res.status(200).json({ message: 'delete' });
+    }
   },
 };
 

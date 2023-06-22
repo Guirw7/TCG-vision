@@ -47,18 +47,61 @@ const deckDataMapper = {
     const preparedQuery = {
       text: `SELECT "deck"."deck_description", "deck"."card_quantity", "deck"."created_at", "deck"."updated_at",
       "user"."username", 
-      "card"."id", "card"."set_code", 
-      "deck_has_card"."counter_like"
+      "user_like_deck"."counter_like"
       FROM "deck"
       JOIN "user" ON "user"."id" = "deck"."user_id"
-      JOIN "deck_has_card" ON "deck"."id" = "deck_has_card"."deck_id"
-      JOIN "card" ON "card"."id" = "deck_has_card"."card_id"
+      JOIN "user_like_deck" ON "deck"."id" = "user_like_deck"."deck_id"
       `,
     };
 
     // On récupère le résultat de la requête préparer
     const results = await client.query(preparedQuery);
     return results.rows;
+  },
+
+  /**
+   * Requête SQL pour afficher un deck par son id.
+   */
+
+  async getOneDeck(deck_id) {
+    const preparedQuery = {
+      text: 'SELECT deck.*, "user".username FROM deck JOIN "user" ON deck.user_id = "user".id WHERE deck.id = $1',
+      values: [deck_id],
+    };
+
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
+
+  /**
+   * Requête SQL pour modifier un deck dans la base de données en utilisant une requête préparée.
+   */
+  async updateDeckInDB(deck) {
+    const preparedQuery = {
+      text: 'UPDATE "deck" SET deck_name = $1, deck_description = $2, card_quantity = $3, set_code = $4 WHERE id = $5 RETURNING *',
+      values: [deck.deck_name, deck.deck_description, deck.card_quantity, deck.set_code, deck.id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows[0];
+  },
+
+  /**
+   * Requête SQL pour supprimer le deck d'un utilisateur.
+   * On supprime avant la clé étrangère de la table user_like_deck.
+   */
+  async deleteOneDeck(id) {
+    const deleteLikesQuery = {
+      text: 'DELETE FROM "user_like_deck" WHERE "deck_id" = $1',
+      values: [id],
+    };
+    await client.query(deleteLikesQuery);
+
+    const deleteDeckQuery = {
+      text: 'DELETE FROM "deck" WHERE id = $1',
+      values: [id],
+    };
+    const result = await client.query(deleteDeckQuery);
+    return result.rows;
   },
 };
 
