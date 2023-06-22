@@ -4,6 +4,7 @@
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
 const collectionDataMapper = require('../datamappers/collectionDataMapper');
+const userDataMapper = require('../datamappers/userDataMapper');
 
 const collectionController = {
   /**
@@ -74,6 +75,21 @@ const collectionController = {
     } else {
       // Si la(les) collection(s) n'est pas trouvée(s), renvoie une réponse avec le statut 404 (Not Found)
       res.status(404).json({ message: 'Collection not found' });
+    }
+  },
+
+  /**
+   * Fonction pour delete une collection.
+   * On récupère d'abord le user via son id.
+   */
+  async deleteCollection(req, res) {
+    const userId = req.user.data.id;
+    const collectionId = parseInt(req.params.collectionId, 10);
+
+    const user = await userDataMapper.getOneProfil(userId);
+    if (user) {
+      await collectionDataMapper.deleteCollection(collectionId);
+      res.status(200).json({ message: 'delete' });
     }
   },
 };
