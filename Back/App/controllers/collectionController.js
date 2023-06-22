@@ -9,12 +9,12 @@ const collectionController = {
    */
   async addCollectionInDb(req, res) {
     const {
-      collection_name, card_set, card_quantity, user_id,
+      collection_name, set_code, card_quantity, user_id,
     } = req.body;
     const createCollection = {
       // on recupere toute la table collection.
       collection_name,
-      card_set,
+      set_code,
       card_quantity,
       user_id,
     };

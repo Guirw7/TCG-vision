@@ -11,8 +11,8 @@ const collectionDataMapper = {
   async addCollectionInDb(collection) {
     const preparedQuery = {
       // introduction to the tables required for a collection
-      text: 'INSERT INTO "collection"(collection_name,card_set,card_quantity,user_id,) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      values: [collection.collection_name, collection.card_set, collection.card_quantity, collection.user_id],
+      text: 'INSERT INTO "collection"(collection_name,card_set,card_quantity,user_id,) VALUES ($1, $2, $3, $4) RETURNING *',
+      values: [collection.collection_name, collection.set_code, collection.card_quantity, collection.user_id],
     };
     // Execute a search request
     const results = await client.query(preparedQuery);
