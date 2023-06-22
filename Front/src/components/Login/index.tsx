@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal } from '../FormModal/modalSlice';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
+import { openModal } from '../FormModal/modalSlice';
 import { RootState } from '../../store';
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
 
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [isSuccessful, setIsSuccessful] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
   const { 
     register, 
@@ -26,30 +25,20 @@ export default function Login() {
     // }
   );
 
-  const getUser = async (form: any) => {
-    try {
-      const response = await axios.post(
-        'https://daoust-jason-server.eddi.cloud/user/login', {
-          username: form.username,
-          password: form.password,
-        }
-      );
-      if (response.status === 200) {
-        const token = response.data;
-        // On split le token pour récupérer le payload qui contient les données d'utilisateur
-        const parts = token.split('.');
-        let payload = JSON.parse(atob(parts[1]));
-        console.log(response);
-        // setIsSuccessful(true);
-        dispatch(openModal());
-        sessionStorage.setItem('jwt', token);
-      // On redirige vers la page d'accueil
-      };
-    } catch (error) {
-      console.error(error);
+  const getUser = (form: any) => {
+    axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/user/login', {
+      data: {
+        username: form.username,
+        password: form.password,
+      },
+    })
+    .then(data => {
+      sessionStorage.setItem('jwt', data);
       dispatch(openModal());
-      // Logique d'erreur
-    };
+    })
+    .catch(error => {
+      console.log('Erreur lors de la requête', error);
+    });
   };
 
   return (
@@ -82,5 +71,5 @@ export default function Login() {
         }
       </div>
     </div>
-  )
+  );
 };
