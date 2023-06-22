@@ -47,6 +47,7 @@ const collectionDataMapper = {
     const result = await client.query(preparedQuery);
     return result.rows[0];
   },
+
   /**
    * We join All collection with SELECT for one Id
    */
@@ -60,5 +61,6 @@ const collectionDataMapper = {
     return result.rows;
   },
 };
+
 // export of dataMapper
 module.exports = collectionDataMapper;

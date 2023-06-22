@@ -50,7 +50,7 @@ const deckDataMapper = {
       "user_like_deck"."counter_like"
       FROM "deck"
       JOIN "user" ON "user"."id" = "deck"."user_id"
-      JOIN "user_like_deck" ON "deck"."id" = "user_like_deck"."deck_id"
+      LEFT JOIN "user_like_deck" ON "user_like_deck"."deck_id" = "deck"."id"
       `,
     };
 
