@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, clearCardID } from './modalSlice';
 
 import './styles.scss';
-import { set } from 'react-hook-form';
 
 export interface ExtensionProps {
   set_code: string,

@@ -1,6 +1,7 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -13,6 +14,7 @@ import PasswordResetPage from "../PasswordResetPage";
 import TeamPage from "../TeamPage";
 import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
+import Loading from "../Loading";
 
 /*-- Routers --*/
 
@@ -67,6 +69,15 @@ export default function App() {
 */
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isConnected = useSelector((state: any) => state.session.status);
+  useEffect(() => {
+    setIsLoading(false);
+  }, [isConnected]);
+
+  if (isLoading) {
+    return <Loading />; // Remplacer par votre composant de chargement
+  }
   return (
     <>
     <Header />
@@ -82,6 +93,11 @@ export default function App() {
         <Route path="*" element={<ErrorPage />} />
         {/* Routes privées */}
         {/* Ici se fait la vérification du token */}
+        {
+          isConnected && (
+            <Route path="/profil" element={<Loading />} />
+          )
+        }
       </Routes>
     <Footer />
     </>
