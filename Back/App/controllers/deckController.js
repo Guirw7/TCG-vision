@@ -10,7 +10,7 @@ const deckController = {
     const decks = await deckDataMapper.getAllDecks();
     res.status(200).json(decks);
   },
-
+  
   /**
    * Fonction pour ajouter un deck en base de données
    */
