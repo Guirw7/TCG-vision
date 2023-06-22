@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
@@ -45,6 +46,18 @@ const collectionDataMapper = {
 
     const result = await client.query(preparedQuery);
     return result.rows[0];
+  },
+  /**
+   * We join All collection with SELECT for one Id
+   */
+  async getAllCollectionByUser(user_id) {
+    const preparedQuery = {
+      text: 'SELECT * FROM collection WHERE user_id = $1',
+      values: [user_id],
+    };
+    // Execute a search request
+    const result = await client.query(preparedQuery);
+    return result.rows;
   },
 };
 // export of dataMapper
