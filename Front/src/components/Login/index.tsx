@@ -1,31 +1,13 @@
-import { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal } from '../FormModal/modalSlice';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import './styles.scss';
 import { RootState } from '../../store';
+import { storeToken, storeID, storeUsername } from '../App/sessionSlice';
+import './styles.scss';
 
-
-// const { 
-//   register, 
-//   handleSubmit,
-//   // permet de générer des erreurs personnalisées
-//   // setError,
-//   // watch, 
-//   // clearErrors, 
-//   formState: { errors } 
-// } = useForm<any>(
-//   {defaultValues : 
-//     {
-//       // username: 'kevin',
-//       // mail: 'kk@k.com',
-//       // password: 'LolXd69240',
-//       // passwordConfirmation: 'LolXd69240',
-//     },
-//   }
-// );
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -52,6 +34,13 @@ export default function Login() {
 
   /*-- Actualiser les noms de classe pour match avec 'Login' --*/
 
+  // const checkToken = async (token: string) => {
+  //   const response = fetch('https://daoust-jason-server.eddi.cloud/1', { //404 ? :'(
+  //     method: 'POST',
+  //   });
+  //   await response;
+  // };
+
   const getUser = async (form: any) => {
       const response = await axios.post(
         'https://daoust-jason-server.eddi.cloud/user/login', {
@@ -59,13 +48,21 @@ export default function Login() {
           password: form.password,
         }
       );
-      console.log(response);
       if (response.status === 200) {
-        setIsSuccessful(true);
-        dispatch(openModal());
+        const token: string = response.data;
+        // On split le token pour récupérer le payload qui contient les données d'utilisateur
+        const parts = token.split('.');
+        let payload = JSON.parse(atob(parts[1]));
+        console.log(payload, token);
+        // Dispatch de l'action pour stocker le token dans le store
+        dispatch(storeToken(token));
+
+
+        // setIsSuccessful(true);
+        // dispatch(openModal());
 
         // Copier le code de Raf ici
-      }
+      };
       // Si c'est good, on affiche la modale de succès
 
       
