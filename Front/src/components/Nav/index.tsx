@@ -36,8 +36,8 @@ export default function Nav() {
       {
         isConnected && (
           <>
-          <a className="nav-links__link" href="/login">Profil</a>
-          <a className="nav-links__link" href="/login">Déconnexion</a>
+            <a className="nav-links__link" href="/login">Profil</a>
+            <a className="nav-links__link" href="/login">Déconnexion</a>
           </>
         )
       }
