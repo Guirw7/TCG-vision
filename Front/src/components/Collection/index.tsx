@@ -15,7 +15,7 @@ export default function Collection() {
 
   useEffect(() => {
     const fetchCards = async () => {
-      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=kuriboh');
+      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?format=Speed Duel&language=fr');
       const data = await response.data;
       if (data) {
         await setCards(data.data);
