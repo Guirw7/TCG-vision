@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import { RootState } from '../../store';
-import { storeToken, storeID, storeUsername } from '../App/sessionSlice';
 import './styles.scss';
 
 
@@ -49,21 +48,18 @@ export default function Login() {
         }
       );
       if (response.status === 200) {
-        const token: string = response.data;
+        const token = response.data;
         // On split le token pour récupérer le payload qui contient les données d'utilisateur
         const parts = token.split('.');
         let payload = JSON.parse(atob(parts[1]));
-        console.log(payload, token);
-        // Dispatch de l'action pour stocker le token dans le store
-        dispatch(storeToken(token));
-
-
+        console.log(response);
         // setIsSuccessful(true);
-        // dispatch(openModal());
+        dispatch(openModal());
 
-        // Copier le code de Raf ici
+        sessionStorage.setItem('jwt', token);
       };
-      // Si c'est good, on affiche la modale de succès
+
+
 
       
       // On redirige vers la page d'accueil

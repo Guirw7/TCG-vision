@@ -26,9 +26,14 @@ export default function Nav() {
     <nav className="header__nav">
     <div className="nav-links">
       <a className="nav-links__link" href="/">Accueil</a>
-      <a className="nav-links__link" href="">Collection</a>
       <a className="nav-links__link" href="">Decks</a>
+      <a className="nav-links__link" href="">Collection</a>
+      {/* Vérification du token */}
+      {/* Si l'utilisateur n'est pas connecté */}
       <a className="nav-links__link" href="/login">Connexion</a>
+      {/* Si l'utilisateur est connecté */}
+      <a className="nav-links__link" href="/login">Déconnexion</a>
+      <a className="nav-links__link" href="/login">Profil</a>
     </div>
   </nav>
     <form onSubmit={handleSubmit} className="header-searchbar" action="">
