@@ -11,7 +11,7 @@ const deckController = {
     const decks = await deckDataMapper.getAllDecks();
     res.status(200).json(decks);
   },
-  
+
   /**
    * Fonction pour ajouter un deck en base de données
    */
@@ -70,7 +70,7 @@ const deckController = {
       deck_name,
       deck_description,
       card_quantity,
-      set_code,
+      set_code: [set_code],
     };
 
     // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck

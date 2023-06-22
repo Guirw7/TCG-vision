@@ -6,7 +6,7 @@ const client = require('../db');
 
 const collectionDataMapper = {
   /**
-   * We create one collection in collection table 
+   * We create one collection in collection table
    */
   async addCollectionInDb(collection) {
     const preparedQuery = {
