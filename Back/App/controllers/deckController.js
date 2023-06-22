@@ -9,8 +9,6 @@ const deckController = {
    */
   async getAllDecks(req, res) {
     const decks = await deckDataMapper.getAllDecks();
-    const { id } = req.user;
-    console.log(id);
     res.status(200).json(decks);
   },
 
