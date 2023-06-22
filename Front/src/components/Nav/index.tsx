@@ -12,7 +12,9 @@ export default function Nav() {
   const isConnected = useSelector((state: any) => state.session.status);
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
+  const [egg, setEgg] = useState<boolean>(false);
+
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     dispatch(setSearch(input));
