@@ -16,6 +16,7 @@ export default function SearchResult () {
   const search = useSelector((state: any) => state.search.value);
 
     useEffect(() => {
+      setResult(null);
       setIsError(false);
       dispatch(setLoadingOn());
       axiosRequest('get', `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${search}&language=fr`)
