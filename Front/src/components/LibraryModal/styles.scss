@@ -51,22 +51,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
+  // justify-content:;
+  top: 20%;
+  position: relative;
 };
 
 .library-modal-form-name {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-size: v.$font-size * 2.8;
   width: 66%;
-  font-weight: 700;
+  border-radius: 5px;
+  border: none;
+  box-shadow: v.$box-shadow;
+  padding: 0.5rem 0.5rem;
 };
 
 .library-modal-form-description {
-  margin-bottom: 1rem;
-  font-size: v.$font-size * 2;
+  margin-bottom: 2rem;
+  font-size: v.$font-size * 2.4;
   width: 66%;
-  font-weight: 700;
+  height: auto;
+  min-height: 10rem;
+  resize: none;
+  vertical-align: top;
+  border-radius: 5px;
+  border: none;
+  box-shadow: v.$box-shadow;
+  padding: 0.5rem 0.5rem;
+};
+
+.library-modal-form-button {
+  width: 50%;
+  max-height: 2.8rem;
+  font-size: v.$font-size * 2.8;
+  border-radius: 5px;
+  border: none;
+  background-color: #f0f;
+  box-shadow: v.$box-shadow;
+  padding: 0.5rem 0.5rem;
+};
+
+.library-modal-form-button:hover {
+  cursor: pointer;
 };
 
 .library-modal-message {

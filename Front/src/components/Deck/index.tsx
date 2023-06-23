@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal, setModalMessage } from '../FormModal/modalSlice';
+import { openModal, closeModal, setModalMessage } from '../LibraryModal/librarySlice';
 
 import { axiosRequest } from '../../utils/axiosRequest';
 import LibraryModal from '../LibraryModal';
@@ -13,49 +13,40 @@ import './styles.scss';
   // /deck/:id -> récupérer un deck (GET)
 
 export default function Deck () {
-  const modal = useSelector((state: any) => state.formModal.value);
+  const modal = useSelector((state: any) => state.libraryModal.value);
   const dispatch = useDispatch();
   const [decks, setDecks] = useState([]);
 
-  useEffect(() => {
-    axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/decks')
-    .then(data => {
-      console.log(data);
-      setDecks(data);
-    })
-    .catch(error => {
-      console.log('Erreur lors de la requête', error);
-    });
-  }, [decks]);
+  // useEffect(() => {
+  //   axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/decks')
+  //   .then(data => {
+  //     console.log(data);
+  //     setDecks(data);
+  //   })
+  //   .catch(error => {
+  //     console.log('Erreur lors de la requête', error);
+  //   });
+  // }, [decks]);
 
-  const createDeck = async () => {
+  const createDeck = () => {
     dispatch(openModal());
-    // const route = 'deck';
-    // const url = `http://daoust-jason-server.eddi.cloud/${route}`;
-    // axiosRequest('post', url, {
-    //   data: {
-    //     deck_name: 'deck_name', // Obligatoire
-    //     deck_description: 'deck_description', //Facultatif
-    //   },
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-    //   },
-    // })
-    // .then(data => {
-    //   console.log(data);
-    // })
-    // .catch(error => {
-    //   console.log('Erreur lors de la requête', error);
-    //   // message d'erreur
-    // });
-  }
+  };
+
+  const testDeCo = async () => {
+    axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/profil', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
+      },
+    });
+  };
 
   return (
     <div className='deck-container'>
       <div className='deck-container-background'>
         <h1 className='page-title'>hello world</h1>
         <button onClick={createDeck}>+</button>
+        <button onClick={testDeCo}>Test</button>
       </div>
       {
         (modal) && (
