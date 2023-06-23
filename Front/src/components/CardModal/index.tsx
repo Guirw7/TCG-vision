@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// On importe le slice qui est dans ce dossier ⚠️
 import { closeModal, clearCardID } from './modalSlice';
-
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
-import { set } from 'react-hook-form';
+
 
 export interface ExtensionProps {
   set_code: string,
@@ -15,7 +14,6 @@ export interface ExtensionProps {
   set_rarity_code: string,
 };
 
-
 export default function CardModal() {
   const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any>(null);
@@ -24,11 +22,12 @@ export default function CardModal() {
   const cardID = useSelector((state: any) => state.cardModal.element);
   const [selectedExtension, setSelectedExtension] = useState<string>("");
   const [extensionList, setExtensionList] = useState<ExtensionProps[]>([]);
- 
+  
   const increment = (event: any) => {
     event?.preventDefault();
     setCounter(counter + 1);
   };
+
   const decrement = (event: any) => {
     event?.preventDefault();
     if (counter === 0) {
@@ -58,18 +57,15 @@ export default function CardModal() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const responseAPI = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`);
-      const data = await responseAPI.json();
-      if (data) {
-        setCardData(data.data[0]);
-        const imageUrl = `https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`
-        setCardImage(imageUrl);
-      }
-    };
-    if (cardID) {
-      fetchData();
-    };
+    axiosRequest('get', `https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardID}&language=fr`)
+    .then(data => {
+      setCardData(data.data[0]);
+      const imageUrl = `https://daoust-jason-server.eddi.cloud/card_images/${cardID}.jpg`
+      setCardImage(imageUrl);
+    })
+    .catch(error => {
+      console.log('Erreur lors de la requête', error);
+    });
   }, [cardID]);
 
   return (

@@ -1,0 +1,10 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/reset.scss';
+
+.loading {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  left: center;
+  top: 40%;
+};

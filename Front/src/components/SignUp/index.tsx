@@ -1,13 +1,12 @@
-import { set, useForm } from 'react-hook-form';
-import axios from 'axios';
-// import CryptoJS from 'crypto-js';
+import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+
+import { RootState } from '../../store';
 import FormModal from '../FormModal';
 import { openModal, setModalMessage } from '../FormModal/modalSlice';
-// import { useState } from 'react';
-
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
-import { RootState } from '../../store';
 
 
 interface Data {
@@ -18,7 +17,6 @@ interface Data {
 }
 
 export default function SignUp() {
-  // On importe ici toutes les dépendances de react-hook-form:
   const { 
     register, 
     handleSubmit,
@@ -37,29 +35,14 @@ export default function SignUp() {
     //   },
     // }
   );
-
-  // const [queryResult, setQueryResult] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
   const dispatch = useDispatch();
-  // const querySuccess = {
-  //   message: 'Votre compte a bien été créé.',
-  // }
-  // const queryFailure = {
-  //   message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
-  // }
-  
-  // Créé un objet contenant les erreurs, est vide s'il n'y a pas d'erreurs
-  // console.log(errors);
-  // Permet de voir les inputs en temps réel
-  // console.log(watch("password"));
 
   return (
     <div className='signup-container'>
       <div className='signup-container-background'>
         <h1 className='page-title'>Création de compte</h1>
-          {/* onSubmit gère la soumission du formulaire */}
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            // console.log(data);
             // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
@@ -68,26 +51,12 @@ export default function SignUp() {
               });
             };
             if (data.password === data.passwordConfirmation) {
-              // On peut crypter le mot de passe ici
-              // On envoie les données au back
-              axios.post(
-                'http://daoust-jason-server.eddi.cloud/user/signup', {
-                email: data.email,
-                username: data.username,
-                password: data.password,
-              })
-              .then(function (response) {
-                // setQueryResult(true);
-                dispatch(setModalMessage('Votre compte a bien été créé.'));
-                // console.log(response);
-                dispatch(openModal());
-              })
-              .catch(function (error) {
-                // setQueryResult(false);
-                dispatch(setModalMessage('Une erreur est survenue, veuillez réessayer ultérieurement.'));
-                // console.log(error);
-                dispatch(openModal());
-
+              axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/user/signup', {
+                data : {
+                  email: data.email,
+                  username: data.username,
+                  password: data.password,
+                },
               });
             };
           })}
@@ -177,4 +146,4 @@ export default function SignUp() {
         </div>
       </div>
   );
-} 
+};

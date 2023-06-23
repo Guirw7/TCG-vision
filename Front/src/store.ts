@@ -4,6 +4,7 @@ import cardModalReducer from './components/CardModal/modalSlice';
 import formModalReducer from './components/FormModal/modalSlice';
 import sessionReducer from './components/App/sessionSlice';
 import searchReducer from './components/SearchResult/searchSlice';
+import loadingReducer from './components/Loading/loadingSlice';
 
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     formModal: formModalReducer,
     session: sessionReducer,
     search: searchReducer,
+    loading: loadingReducer,
   },
 })
 
