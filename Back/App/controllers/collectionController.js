@@ -84,10 +84,10 @@ const collectionController = {
     };
 
     // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
-    const updatedDeck = await deckDataMapper.updateCollectionInDB(collection);
+    const updatedCollection = await collectionDataMapper.updateCollectionInDB(collection);
 
     // On renvoie la réponse au format JSON avec le deck modifié
-    res.status(200).json(updatedDeck);
+    res.status(200).json(updatedCollection);
   },
 
   /**
