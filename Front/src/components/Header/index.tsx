@@ -7,7 +7,7 @@ import { sessionChecker }  from '../../utils/sessionChecker';
 import './styles.scss';
 
 export default function Header() {
-  console.log(sessionChecker());
+  sessionChecker();
 
   return(
     <header className="header">

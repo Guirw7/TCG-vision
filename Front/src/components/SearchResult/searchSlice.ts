@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface SearchProps {
-  value: null | string;
+  value: string | null;
 }
 
 export const initialState: SearchProps = {

@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal, setModalMessage } from '../FormModal/modalSlice';
 import LoginModal from '../LoginModal';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+import { openModal } from '../FormModal/modalSlice';
 import { RootState } from '../../store';
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
 
 
@@ -30,30 +32,20 @@ export default function Login() {
     // }
   );
 
-  const getUser = async (form: any) => {
-    try {
-      const response = await axios.post(
-        'https://daoust-jason-server.eddi.cloud/user/login', {
-          username: form.username,
-          password: form.password,
-        }
-      );
-      if (response.status === 200) {
-        const token = response.data;
-        // On split le token pour récupérer le payload qui contient les données d'utilisateur
-        const parts = token.split('.');
-        let payload = JSON.parse(atob(parts[1]));
-        console.log(response);
-        // setIsSuccessful(true);
-        dispatch(setModalMessage("Connexion réussie !"));
-        dispatch(openModal());
-        sessionStorage.setItem('jwt', token);
-      } 
-    } catch (error) {
-      console.error(error);
+  const getUser = (form: any) => {
+    axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/user/login', {
+      data: {
+        username: form.username,
+        password: form.password,
+      },
+    })
+    .then(data => {
+      sessionStorage.setItem('jwt', data);
       dispatch(openModal());
-      // Logique d'erreur
-    };
+    })
+    .catch(error => {
+      console.log('Erreur lors de la requête', error);
+    });
   };
 
   return (
@@ -86,5 +78,5 @@ export default function Login() {
           }
       </div>
     </div>
-  )
+  );
 };

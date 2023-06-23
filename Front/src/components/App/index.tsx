@@ -1,6 +1,7 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
-
+import { Route, Routes, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -13,16 +14,19 @@ import PasswordResetPage from "../PasswordResetPage";
 import TeamPage from "../TeamPage";
 import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
+import Loading from "../Loading";
 import CollectionPage from "../CollectionPage";
+
 
 /*-- Routers --*/
 
 /* Méthode 6.4 mais qui ne fonctionne pour pour la redirection
 ______________________________________________________________
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
+    element: <HomePage />,
   },
   {
     path: "/signup",
@@ -53,7 +57,7 @@ const router = createBrowserRouter([
     element: <ErrorPage />
   },
 ]);
- 
+
 
 export default function App() {
   return (
@@ -64,29 +68,32 @@ export default function App() {
     </>
   )
 };
-
 */
 
 export default function App() {
+  const isConnected = useSelector((state: any) => state.session.status);
   return (
     <>
-    <Header />
-    <Routes>
-        {/* Routes publiques */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/reset-password" element={<PasswordResetPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/team" element={<TeamPage />} />
-        <Route path="/search-result" element={<SearchResultPage />} />
-        <Route path="*" element={<ErrorPage />} />
-        {/* Routes privées */}
-        {/* Ici se fait la vérification du token */}
-      </Routes>
-    <Footer />
+      <Header />
+      <Routes>
+          {/* Routes publiques */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/reset-password" element={<PasswordResetPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/search-result" element={<SearchResultPage />} />
+          <Route path="*" element={<ErrorPage />} />
+          {/* Routes privées */}
+          {/* Ici se fait la vérification du token */}
+          {
+            isConnected && (
+              <Route path="/profil" element={<Loading />} />
+            )
+          }
+        </Routes>
+      <Footer />
     </>
   )
 };
-

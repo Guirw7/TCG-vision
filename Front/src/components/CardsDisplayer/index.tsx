@@ -1,31 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 
 import { openModal, setCardID } from '../CardModal/modalSlice';
+// import { loadingChecker }  from '../../utils/loadingScreen';
+import { axiosRequest } from '../../utils/axiosRequest';
+import Loading from '../Loading';
 import './styles.scss';
 
 
 export default function CardDisplayer() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
+  /**--NOTE IMPORTANTE--*/
+  // Le setter ne met pas à jour le state immédiatement, mais déclenche une nouvelle renderisation du composant
+  // Il faut donc attendre que le state soit mis à jour pour pouvoir l'utiliser
+  // Ou alors boucler sur la data directement
+  /**--FIN DE LA NOTE IMPORTANTE--*/
+  const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz';
   useEffect(() => {
-    const fetchCards = async () => {
-      // Ici on se sert du thème des 'yeux bleus'
-      const response = await axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz');
-      const data = await response.data;
-      if (data) {
-        await setCards(data.data);
-        /**--NOTE IMPORTANTE--*/
-        // Le setter ne met pas à jour le state immédiatement, mais déclenche une nouvelle renderisation du composant
-        // Il faut donc attendre que le state soit mis à jour pour pouvoir l'utiliser
-        // Ou alors boucler sur la data directement
-        /**--FIN DE LA NOTE IMPORTANTE--*/
-      }
-      // Faire une gestion d'erreur :P
-    };
-    fetchCards();
-  }, []);
+    // méthode maison pour les requêtes 😎
+    axiosRequest('get', url)
+    .then(data => {
+      setCards(data.data);
+    })
+    .catch(error => {
+      console.log('Erreur lors de la requête', error);
+    });
+  }, [url]);
 
   // Closure 🧐
   const clickHandler = (id: number) => () => { 
@@ -33,22 +34,6 @@ export default function CardDisplayer() {
     dispatch(openModal());
   };
 
-
-/*
-  return (
-    <ul>
-      {
-        cards && (
-          cards.map((card: any) => (
-            <li key={card.id}>
-              <button onClick={clickHandler(card.id)} >{card.name}</button>
-            </li>
-          ))
-        )
-      }
-    </ul>
-  )
-  */
   return (
     <div className='articles-container'>
       {
@@ -61,7 +46,9 @@ export default function CardDisplayer() {
           ))
         )
       }
+      {
+        !cards && <Loading />
+      }
     </div>
-
   )
 };
