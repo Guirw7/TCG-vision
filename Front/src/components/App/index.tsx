@@ -15,6 +15,8 @@ import TeamPage from "../TeamPage";
 import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
 import Loading from "../Loading";
+import CollectionPage from "../CollectionPage";
+
 
 /*-- Routers --*/
 

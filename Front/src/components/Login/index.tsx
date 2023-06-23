@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { openModal, closeModal, setModalMessage } from '../FormModal/modalSlice';
+import LoginModal from '../LoginModal';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import { openModal } from '../FormModal/modalSlice';
 import { RootState } from '../../store';
@@ -10,6 +14,9 @@ import './styles.scss';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isConnected = useSelector((state: any) => state.session.status);
+  const [isSuccessful, setIsSuccessful] = useState<boolean | null >(null);
   const modal = useSelector((state: RootState) => state.formModal.value);
   const { 
     register, 
@@ -64,11 +71,11 @@ export default function Login() {
           <p className='signup-message'>Pas encore inscrit ?</p>
           <a className='signup-message-link'href="/signup">Inscrivez vous!</a>
         </form>
-        {
-          (modal) && (
-            <h1>hello world</h1>
-          )
-        }
+          {
+            (modal) && (
+              <LoginModal />
+            )
+          }
       </div>
     </div>
   );
