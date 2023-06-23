@@ -12,6 +12,7 @@ router.post('/', authenticateToken, controllerHandler(collectionController.addCo
 router.get('/:id(\\d+)', authenticateToken, controllerHandler(collectionController.getOneCollection));
 router.delete('/:collectionId(\\d+)', authenticateToken, controllerHandler(collectionController.deleteCollection));
 router.get('/collection/:userId(\\d+)', controllerHandler(collectionController.getAllCollectionByUser));
+router.put('/:id(\\d+)', authenticateToken, controllerHandler(collectionController.updateCollectionInDB));
 
 /* --------------- export of router ---------------*/
 

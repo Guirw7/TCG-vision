@@ -65,6 +65,32 @@ const collectionController = {
   },
 
   /**
+   * Fonction pour modifier une collection dans la base de données.
+   */
+  async updateCollectionInDB(req, res) {
+    const collectionId = parseInt(req.params.id, 10);
+
+    // On récupère les informations envoyées par l'utilisateur pour la modification de la collection
+    const {
+      collection_name, set_code, card_quantity,
+    } = req.body;
+
+    // On crée un objet avec les informations que l'utilisateur a envoyées
+    const collection = {
+      id: collectionId,
+      collection_name,
+      set_code: [set_code],
+      card_quantity,
+    };
+
+    // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
+    const updatedDeck = await deckDataMapper.updateCollectionInDB(collection);
+
+    // On renvoie la réponse au format JSON avec le deck modifié
+    res.status(200).json(updatedDeck);
+  },
+
+  /**
    * Fonction pour delete une collection.
    * On récupère d'abord le user via son id.
    */
