@@ -13,6 +13,7 @@ router.use('/collection', collectionRouter);
 router.use('/deck', deckRouter);
 router.use('/decks', deckRouter);
 router.use('/user', deckRouter);
+router.use('/user', userRouter);
 
 router.use(error404);
 router.use(errorHandler);

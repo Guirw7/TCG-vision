@@ -9,6 +9,9 @@ const { ACCESS_TOKEN_EXPIRATION } = process.env;
 // On require notre userDataMapper qui contient nos requête SQL
 const userDataMapper = require('../datamappers/userDataMapper');
 
+const revokedTokens = require('../middlewares/revokedToken');
+const { removeRevokedTokens } = require('../middlewares/auth');
+
 const userController = {
 
   /**
@@ -116,6 +119,23 @@ const userController = {
 
     // Renvoyez une réponse réussie
     return res.json(token);
+  },
+
+  /**
+   * Fonction pour effectuer la déconnexion de l'utilisateur.
+   * Récupère le token d'authentification à partir de l'en-tête Authorization.
+   * Ajoute le token à la liste des tokens révoqués.
+   * Exécution de la fonction removeRevokedTokens toutes les 1 heure (3600000 ms)
+   * Renvoie une réponse JSON avec un statut 200 (OK) indiquant que la déconnexion a réussi.
+   */
+  logout(req, res) {
+    const token = req.headers.authorization.split(' ')[1];
+
+    revokedTokens.push(token);
+
+    setTimeout(removeRevokedTokens, 3600000);
+
+    res.status(200).json({ message: 'Déconnexion réussie.' });
   },
 };
 
