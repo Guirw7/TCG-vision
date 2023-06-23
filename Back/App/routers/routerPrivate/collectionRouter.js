@@ -3,7 +3,7 @@ const express = require('express');
 /* --------------- Controllers ---------------*/
 const collectionController = require('../../controllers/collectionController');
 const controllerHandler = require('../../helpers/controllerHandler');
-const authenticateToken = require('../../middlewares/auth');
+const { authenticateToken } = require('../../middlewares/auth');
 
 const router = express.Router();
 
