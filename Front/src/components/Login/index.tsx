@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal, setModalMessage } from '../FormModal/modalSlice';
 import LoginModal from '../LoginModal';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-import { openModal } from '../FormModal/modalSlice';
 import { RootState } from '../../store';
 import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
