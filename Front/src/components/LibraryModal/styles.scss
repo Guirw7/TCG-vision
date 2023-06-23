@@ -1,7 +1,7 @@
 @use '../../styles/reset.scss';
 @use '../../styles/variables.scss' as v;
 
-.behind-form-modal {
+.behind-library-modal {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -15,9 +15,9 @@
   overflow-y: auto;
 };
 
-.form-modal {
-  height: 25vh;
-  width: 25vw;
+.library-modal {
+  height: 66vh;
+  width: 33vw;
   margin: 0 auto;
   box-shadow: v.$box-shadow;
   border-radius: 5px;
@@ -29,7 +29,7 @@
   position: relative;
 };
 
-.form-modal-exit {
+.library-modal-exit {
   width: 3rem;
   height: 3rem;
   color: v.$font-color;
@@ -47,10 +47,33 @@
   box-shadow: v.$box-shadow;
 };
 
-.form-modal-message {
+.library-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+};
+
+.library-modal-form-name {
+  margin-bottom: 1rem;
+  font-size: v.$font-size * 2.8;
+  width: 66%;
+  font-weight: 700;
+};
+
+.library-modal-form-description {
+  margin-bottom: 1rem;
+  font-size: v.$font-size * 2;
+  width: 66%;
+  font-weight: 700;
+};
+
+.library-modal-message {
   margin-top: 5rem;
   font-size: v.$font-size * 2;
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
 };
+
