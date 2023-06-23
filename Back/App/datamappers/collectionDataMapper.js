@@ -36,6 +36,18 @@ const collectionDataMapper = {
   },
 
   /**
+   * Requête SQL pour modifier une collection dans la base de données en utilisant une requête préparée.
+   */
+  async updateCollectionInDB(deck) {
+    const preparedQuery = {
+      text: 'UPDATE "collection" SET collection_name = $1, set_code = $2, card_quantity = $3 WHERE id = $4 RETURNING *',
+      values: [collection.collection_name, collection.set_code, collection.card_quantity, collection.id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows[0];
+  },
+
+  /**
    * Requête SQL pour delete une collection dans la base de données.
    */
   async deleteCollection(id) {
