@@ -5,6 +5,7 @@ import formModalReducer from './components/FormModal/modalSlice';
 import sessionReducer from './components/App/sessionSlice';
 import searchReducer from './components/SearchResult/searchSlice';
 import loadingReducer from './components/Loading/loadingSlice';
+import libraryReducer from './components/LibraryModal/librarySlice';
 
 
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
     session: sessionReducer,
     search: searchReducer,
     loading: loadingReducer,
+    libraryModal: libraryReducer,
   },
 })
 

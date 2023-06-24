@@ -45,7 +45,7 @@ const deckDataMapper = {
    */
   async getAllDecks() {
     const preparedQuery = {
-      text: `SELECT "deck"."deck_description", "deck"."card_quantity", "deck"."created_at", "deck"."updated_at",
+      text: `SELECT "deck".*,
       "user"."username", 
       "user_like_deck"."counter_like"
       FROM "deck"

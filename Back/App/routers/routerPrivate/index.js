@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.use('/profil', userRouter);
 router.use('/collection', collectionRouter);
+router.use('/user', collectionRouter);
 router.use('/deck', deckRouter);
 router.use('/decks', deckRouter);
 router.use('/user', deckRouter);

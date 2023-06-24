@@ -49,6 +49,7 @@ export default function SignUp() {
                 type: 'custom',
                 message: 'Les mots de passe ne correspondent pas.',
               });
+              console.log(data);
             };
             if (data.password === data.passwordConfirmation) {
               axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/user/signup', {

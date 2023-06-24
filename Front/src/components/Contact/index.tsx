@@ -70,7 +70,7 @@ export default function ContactForm() {
         <input
           type="reason"
           className="contact-input contact-input-reason"
-          placeholder="Raison du contact"
+          placeholder="Objet de la demande"
           {...register("reason", {
             required: 'Ce champ est obligatoire.'
           })}
@@ -89,7 +89,7 @@ export default function ContactForm() {
           placeholder="Message"
           {...register("message", {
             required: 'Ce champ est obligatoire.', 
-            maxLength: 5000 })}
+            maxLength: 1000 })}
         />
         {errors.message && (
           <ErrorMessage>
