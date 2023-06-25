@@ -2,7 +2,7 @@
 @use '../../styles/reset.scss';
 @use '../../styles/index';
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 1024px) {
   .header__nav {
     display: flex;
     flex-direction: row;
@@ -74,7 +74,7 @@
 };
 
 
-@media screen and (max-width: 949px) {
+@media screen and (max-width: 1023px) {
   .header__nav {
     display: none;
   };
