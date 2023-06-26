@@ -35,27 +35,25 @@ export default function Deck () {
   const testDeCo = async () => {
     axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/profil', {
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
       },
     });
   };
 
   const getDecks = async () => {
-    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/decks/16', {
+    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/decks/1', {
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
       },
     });
   };
 
   const getAllDecks = async () => {
-    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/');
+    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/decks/1');
   };
 
   const getDeckByID = async () => {
-    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/9');
+    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/1');
   };
 
   return (
@@ -66,7 +64,7 @@ export default function Deck () {
         <button onClick={getDecks}>Choper les decks</button>
         <button onClick={testDeCo}>Test de connexion (liste des profils)</button>
         <button onClick={getAllDecks}>Choper tous les decks (public)</button>
-        <button onClick={getDeckByID}>Choper le deck à l'ID 9</button>
+        <button onClick={getDeckByID}>Choper le deck à l'ID 1</button>
       </div>
       {
         (modal) && (
