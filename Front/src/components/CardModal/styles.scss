@@ -2,12 +2,15 @@
 @use '../../styles/reset.scss';
 
 
+
+
 @media screen and (max-width: 414px) {
   .card-modal {
     width: 100vh;
   };
 
   .card-modal-extension {
+    max-width: fit-content
   };
 
   .card-modal-extension-select {
@@ -187,7 +190,7 @@
   };
   
   .card-modal-extension-select {
-    margin-left: 2rem;
+    // margin-left: 2rem;
     min-width: 10rem;
   };
   
@@ -431,7 +434,7 @@
   };
   
   .card-modal-extension-select {
-    margin-left: 2rem;
+    // margin-left: 2rem;
     min-width: 10rem;
   };
   
