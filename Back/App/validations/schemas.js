@@ -14,21 +14,20 @@ const userBody = Joi.object({
    * Un ou plusieurs caractères en minuscules,
    *  chiffres, points ou tirets [a-z0-9.-]+
    * Deux à quatre caractères en minuscules,
-   *  la partie du domaine de premier niveau (TLD) de l'adresse e-mail [a-z]{2,4}
-   * Mode insensible à la casse /i
    */
     // eslint-disable-next-line prefer-regex-literals, no-useless-escape
     .pattern(new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'))
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'fr'] } })
     .messages({
       'string.pattern.base': 'Veuillez rentrez un email valide',
+      'string.email': 'L\'email doit se finir par un .com ou .fr',
     }),
   username: Joi.string()
     .alphanum()
     .min(4)
     .max(16)
     .messages({
-      'string.min': 'Username doit avoir 4 caractère minimum',
-      'string.max': 'Username doit avoir 16 caractère maximum',
+      'string.min': 'Username doit avoir 4 caractère minimum et 16 maximum',
     }),
   password: Joi.string()
   /**
@@ -43,7 +42,7 @@ const userBody = Joi.object({
     // eslint-disable-next-line prefer-regex-literals
     .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,32}$'))
     .messages({
-      'string.pattern.base': 'Password doit contenir au moins 1 lettres minuscule et majuscule, 1 chiffre et doit faire au minimum 8 caractères.',
+      'string.pattern.base': 'Password doit contenir au moins 1 lettres minuscule et majuscule, 1 chiffre et doit faire au minimum 8 caractères et au maximum 32.',
     }),
 }).required();
 
