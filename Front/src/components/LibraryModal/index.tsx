@@ -90,7 +90,7 @@ export default function LibraryModal() {
   */
 
   const onSubmit = (data: any) => {
-    // La méthode ne retourne si le formulaire n'est pas valide
+    // La méthode ne retourne rien si le formulaire n'est pas valide
     createDeck(data);
   };
     // La méthode renvoie dans tous les cas un objet d'erreurs qui est vide s'il n'y en pas

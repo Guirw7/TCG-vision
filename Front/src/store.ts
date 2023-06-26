@@ -6,12 +6,14 @@ import sessionReducer from './components/App/sessionSlice';
 import searchReducer from './components/SearchResult/searchSlice';
 import loadingReducer from './components/Loading/loadingSlice';
 import libraryReducer from './components/LibraryModal/librarySlice';
+import cardAdditionReducer from './components/CardAdditionModal/cardAdditionSlice';
 
 
 export const store = configureStore({
   reducer: {
     cardModal: cardModalReducer,
     formModal: formModalReducer,
+    cardAdditionModal: cardAdditionReducer,
     session: sessionReducer,
     search: searchReducer,
     loading: loadingReducer,

@@ -1,6 +1,7 @@
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setStatus } from '../components/App/sessionSlice';
+import { axiosRequest } from './axiosRequest';
+
 
 export const sessionChecker = async () => {
   const dispatch = useDispatch();
@@ -9,17 +10,9 @@ export const sessionChecker = async () => {
   // const troll: string | null = token + 'troll';
   
   if (token) {
-    try {
-      const response = await axios.get('http://daoust-jason-server.eddi.cloud/profil', {
-        headers: {'Authorization': `Bearer ${token}`},
-      });
-      if (response.status === 200) {
-        dispatch(setStatus(true))
-      }
-    } catch (error) {
-      console.error(error);
-      dispatch(setStatus(false));
-    }
+    await axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/private/profil', {
+      headers: {'Authorization': `Bearer ${token}`},
+    });
   };
   if (!token) {
     dispatch(setStatus(false));
