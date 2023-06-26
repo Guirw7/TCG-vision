@@ -5,6 +5,6 @@ const deckRouter = require('./deckRouter');
 const router = express.Router();
 
 router.use('/user', userRouter);
-router.use('/deck', deckRouter);
+router.use('/decks', deckRouter);
 
 module.exports = router;
