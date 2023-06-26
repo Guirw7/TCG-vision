@@ -2,70 +2,70 @@
 @use "../../styles/variables" as v;
 
 .contact-container {
-    margin: 0 auto;
-    min-height: 95vh;
-    width: 95vw;
-    background: v.$background-color-app;
-    box-shadow: v.$box-shadow;
-    transition: v.$transition-speed;
+  margin: 0 auto;
+  min-height: 95vh;
+  width: 95vw;
+  background: v.$background-color-app;
+  box-shadow: v.$box-shadow;
+  transition: v.$transition-speed;
   };
 
 .contact-container-background {
-    background-color: white;
-    margin: 0 auto;
-    width: 98%;
-    min-height: 95vh;
-    };
+  background-color: white;
+  margin: 0 auto;
+  width: 98%;
+  min-height: 95vh;
+};
 
 .page-title {
-    font-size: v.$font-size * 3.2;
-    color: v.$font-color-dark;
-    text-align: center;
-    padding-top: 2rem;
-    font-weight: 700;
-    padding-top: 15vh;
-    };
+  font-size: v.$font-size * 3.2;
+  color: v.$font-color-dark;
+  text-align: center;
+  padding-top: 2rem;
+  font-weight: 700;
+  padding-top: 15vh;
+  };
 
 .contact-form {
-    margin: 0 auto;
-    margin-top: 2rem;
-    font-size: v.$font-size * 2.4;
-    display: flex;
-    flex-direction: column;
-    max-width: 30rem;
-    height: 30rem;
-    border-radius: 5px;
-    padding: 1rem;
-    justify-content: center;
-    box-shadow: v.$box-shadow;
-    };
+  margin: 0 auto;
+  margin-top: 2rem;
+  font-size: v.$font-size * 2.4;
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+  height: 30rem;
+  border-radius: 5px;
+  padding: 1rem;
+  justify-content: center;
+  box-shadow: v.$box-shadow;
+};
 
 .contact-input-button {
-    // margin-top: 1rem;
-    height: 2rem;
-    background-color: v.$raw-color-blue-bright-3;
-    border: none;
-    border-radius: 5px;
-    box-shadow: v.$box-shadow;
-    };
+  // margin-top: 1rem;
+  height: 2rem;
+  background-color: v.$raw-color-blue-bright-3;
+  border: none;
+  border-radius: 5px;
+  box-shadow: v.$box-shadow;
+};
     
 .contact-input-button:hover {
-    cursor: pointer;
-    };
+  cursor: pointer;
+};
 
 .contact-input {
-    width: 100%;
-    margin-bottom: 1rem;
-}
+  width: 100%;
+  margin-bottom: 1rem;
+};
 
 .contact-input-message {
-    height: auto;
-    min-height: 100px;
-    resize: none;
-    vertical-align: top;
-  }
+  height: auto;
+  min-height: 100px;
+  resize: none;
+  vertical-align: top;
+};
 
 .error-message {
-    margin-top: -1rem;
-    margin-bottom: 1rem;
-}
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+};

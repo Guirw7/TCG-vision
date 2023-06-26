@@ -1,6 +1,6 @@
 const express = require('express');
-const userRouter = require('./userRouter');
-const deckRouter = require('./deckRouter');
+const userRouter = require('./userPublicRouter');
+const deckRouter = require('./deckPublicRouter');
 
 const router = express.Router();
 

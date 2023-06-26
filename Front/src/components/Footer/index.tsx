@@ -8,4 +8,4 @@ export default function Footer() {
       <p className="footer-info">O'Clock 2023</p>
     </footer>
   )
-}
+};

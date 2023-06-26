@@ -1,5 +1,3 @@
-
-
 import { openModal, closeModal, setModalMessage} from './modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -26,7 +24,6 @@ export default function FormModal() {
 
           requestStatus && (
             <p className='form-modal-message'>{requestStatus}</p>
-
           )
         }
       </article>
