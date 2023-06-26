@@ -1,39 +1,66 @@
 @use "../../styles/reset";
 @use "../../styles/variables" as v;
 
-.footer {
-  min-height: 5vh;
-  width: 95vw;
-  margin: 0 auto;
-  text-align: center;
-  color: v.$font-color;
-  background-color: v.$background-color-app;
-  font-size: v.$font-size * 2;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  // border-radius: 0% 0% 5px 5px / 0% 0% 5px 5px;
-}
+@media screen and (max-width: 600px) {
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem 0.5rem;
+    background-color: v.$background-color-app;
+    font-size: v.$font-size * 2;
+  };
 
-.footer-link-contact {
-  position: absolute;
-  left: 4%;
-  color: v.$font-color;
-  text-decoration: none;
-  font-weight: 500;
-}
+  .footer-info {
+    display: none;
+  };
 
-.footer-link-team {
-  position: absolute;
-  left: 12%;
-  // margin-left: 5%;
-  color: v.$font-color;
-  text-decoration: none;
-  font-weight: 500;
-}
+  .footer-link-contact {
+    color : v.$font-color;
+    text-decoration: none;
+  };
 
-.footer-info {
-  margin: 0 auto;
-  font-weight: 900;
-}
+  .footer-link-team {
+    color : v.$font-color;
+    text-decoration: none;
+  };
+};
+
+@media screen and (min-width: 601px) {
+  .footer {
+    min-height: 5vh;
+    width: 95vw;
+    margin: 0 auto;
+    text-align: center;
+    color: v.$font-color;
+    background-color: v.$background-color-app;
+    font-size: v.$font-size * 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // border-radius: 0% 0% 5px 5px / 0% 0% 5px 5px;
+  };
+  
+  .footer-link-contact {
+    position: absolute;
+    left: 4%;
+    color: v.$font-color;
+    text-decoration: none;
+    font-weight: 500;
+  };
+  
+  .footer-link-team {
+    position: absolute;
+    left: 12%;
+    // margin-left: 5%;
+    color: v.$font-color;
+    text-decoration: none;
+    font-weight: 500;
+  };
+  
+  .footer-info {
+    margin: 0 auto;
+    font-weight: 900;
+  };
+};

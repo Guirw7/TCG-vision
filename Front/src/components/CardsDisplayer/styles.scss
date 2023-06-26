@@ -1,40 +1,80 @@
 @use '../../styles/reset';
 @use '../../styles/variables' as v;
 
-.articles-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 414px) {
+  .card-article {
+    width: 7rem;
+    max-height: 15rem;
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+  };
+
+  .articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+  };
+
+  .card-article-image {
+    box-sizing: border-box;
+    max-height: 15rem;
+    width: auto;
+  };
+
+  .card-article-name {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: v.$font-size * 2;
+  };
 };
 
-.card-article {
-  max-width: 10rem;
-  height: 18rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  margin: 1rem 1rem;
-  border-radius: 5px;
-  box-shadow: v.$box-shadow-2;
-};
+@media screen and (min-width: 415px) {
+  .card-article {
+    width: 10rem;
+    max-height: 18rem;
+    padding: 1rem;
+  };
 
-.card-article:hover {
-  cursor: pointer;
-};
+  .articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  };
 
-.card-article-image {
-  box-sizing: border-box;
-  max-height: 15rem;
-  width: auto;
-};
+  .card-article {
+    max-width: 10rem;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin: 1rem 1rem;
+    border-radius: 5px;
+    box-shadow: v.$box-shadow-2;
+  };
 
-.card-article-name {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: v.$font-size * 2;
+  .card-article:hover {
+    cursor: pointer;
+  };
+
+  .card-article-image {
+    box-sizing: border-box;
+    max-height: 15rem;
+    width: auto;
+  };
+
+  .card-article-name {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: v.$font-size * 2;
+  };
 };
