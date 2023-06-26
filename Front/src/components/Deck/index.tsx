@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openModal, closeModal, setModalMessage } from '../LibraryModal/librarySlice';
 
 import { axiosRequest } from '../../utils/axiosRequest';
+import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
 import './styles.scss';
 import { set } from 'react-hook-form';
@@ -15,7 +16,6 @@ import { set } from 'react-hook-form';
 
 export default function Deck () {
   const modal = useSelector((state: any) => state.libraryModal.value);
-  const session = useSelector((state: any) => state.session.value)
   const dispatch = useDispatch();
   const [decks, setDecks] = useState([]);
   const [request, setRequest] = useState<string>('');
@@ -32,23 +32,8 @@ export default function Deck () {
   };
 
   const getUserDecks = () => {
-    const token = sessionStorage.getItem('jwt');
-    if (!token) {
-      console.log('Vous devez être connecté');
-      return
-    };
-    if (token) {
-      const decodeToken = (token: string) => {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        const jsonObject = JSON.parse(jsonPayload);
-        const id = jsonObject.data.id;
-        return id;
-      };
-      const id = decodeToken(token);
+      const id = getIDFromToken();
+      console.log(id);
       const url = `https://daoust-jason-server.eddi.cloud/private/deck/${id}`;
       axiosRequest('get', url, {
         'headers': {
@@ -62,7 +47,6 @@ export default function Deck () {
       .catch(error => {
         console.log('Erreur lors de la requête', error);
       });
-    };
   };
 
   const userRequest = (event: any) => {
