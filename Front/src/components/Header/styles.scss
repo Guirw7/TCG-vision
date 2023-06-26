@@ -30,7 +30,7 @@
   cursor: pointer;
 };
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 1024px){
   .header {
     width: 95vw;
     margin: 0 auto;
@@ -43,7 +43,7 @@
   };
 };
 
-@media screen and (max-width: 949px){
+@media screen and (max-width: 1023px){
   .header-logo {
     margin: 0 auto;
   }
