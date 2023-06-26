@@ -90,18 +90,12 @@ const deckDataMapper = {
    * On supprime avant la clé étrangère de la table user_like_deck.
    */
   async deleteOneDeck(id) {
-    const deleteLikesQuery = {
-      text: 'DELETE FROM "user_like_deck" WHERE "deck_id" = $1',
-      values: [id],
-    };
-    await client.query(deleteLikesQuery);
-
     const deleteDeckQuery = {
       text: 'DELETE FROM "deck" WHERE id = $1',
       values: [id],
     };
     const result = await client.query(deleteDeckQuery);
-    return result.rows;
+    return result.rows[0];
   },
 };
 
