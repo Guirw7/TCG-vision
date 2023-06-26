@@ -33,7 +33,7 @@ export default function Deck () {
   };
 
   const testDeCo = async () => {
-    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/profil', {
+    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/private/profil', {
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
       },
@@ -55,22 +55,35 @@ export default function Deck () {
   const getDeckByID = async () => {
     axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/1');
   };
+  
+  const debuggingTest = async () => {
+    axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/1', {
+      headers : {
+        'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`,
+      },
+    });
+  };
+
+  const createCollection = async () => {
+    dispatch(openModal());
+  }
 
   return (
     <div className='deck-container'>
       <div className='deck-container-background'>
         <h1 className='page-title'>hello world</h1>
-        <button onClick={createDeck}>Ajouter un deck</button>
+        <button onClick={createCollection}>Ajouter une collection</button>
         <button onClick={getDecks}>Choper les decks</button>
         <button onClick={testDeCo}>Test de connexion (liste des profils)</button>
         <button onClick={getAllDecks}>Choper tous les decks (public)</button>
         <button onClick={getDeckByID}>Choper le deck à l'ID 1</button>
-      </div>
+        <button onClick={debuggingTest}>C'EST ICI POUR DEBUG</button>
       {
         (modal) && (
             <LibraryModal />
         )
       }
+      </div>
     </div>
   )
 };
