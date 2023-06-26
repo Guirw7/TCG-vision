@@ -21,6 +21,7 @@ export default function Deck () {
   const [request, setRequest] = useState<string>('');
 
   const getAllDecks = async () => {
+    setRequest('');
     axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/public/decks')
     .then(data => {
       console.log(data);
@@ -32,6 +33,7 @@ export default function Deck () {
   };
 
   const getUserDecks = () => {
+    setRequest('');
       const id = getIDFromToken();
       console.log(id);
       const url = `https://daoust-jason-server.eddi.cloud/private/deck/${id}`;
@@ -62,6 +64,9 @@ export default function Deck () {
     if (request === 'getUserDecks') {
       getUserDecks();
     };
+    if (!request) {
+      return;
+    }
   }, [request]);
 
   const createDeck = () => {
@@ -102,20 +107,18 @@ export default function Deck () {
     <div className='deck-container'>
       <div className='deck-container-background'>
         <h1 className='page-title'>Decks</h1>
-      {/* {
+      {
         (modal) && (
             <LibraryModal />
         )
-      } */}
-      {/* {
-        (session) && ( */}
-          <div className='decks-display'>
-            <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
-            <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
-            <button>Deck d'un utilisateur</button>
-          </div>
-        {/* )
-      } */}
+      }
+        <div className='decks-display'>
+          <button onClick={createDeck}>Créer un deck</button>
+          <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
+          <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
+          {/* <button>Deck d'un utilisateur</button> */}
+          <button onClick={testDeCo}>Liste des utilisateurs</button>
+        </div>
       </div>
     </div>
   )
