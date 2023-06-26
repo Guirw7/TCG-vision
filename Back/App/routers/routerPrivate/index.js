@@ -1,10 +1,10 @@
 const express = require('express');
-const userRouter = require('./userRouter');
 const { error404 } = require('../../controllers/error');
 const errorHandler = require('../../helpers/errorHandler');
 
-const collectionRouter = require('./collectionRouter');
-const deckRouter = require('./deckRouter');
+const userRouter = require('./userPrivateRouter');
+const deckRouter = require('./deckPrivateRouter');
+const collectionRouter = require('./collectionPrivateRouter');
 
 const router = express.Router();
 
