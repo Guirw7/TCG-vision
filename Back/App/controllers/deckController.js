@@ -84,13 +84,27 @@ const deckController = {
    * Fonction pour supprimé le deck d'un utilisateur
    */
   async deleteDeck(req, res) {
-    const userId = parseInt(req.params.userId, 10);
-    const deckId = parseInt(req.params.deckId, 10);
+    // On récupère l'id qui est dans le token du user.
+    const userId = req.user.data.id;
 
+    const deckId = parseInt(req.params.deckId, 10);
+    // On récupère le user via son id.
     const user = await userDataMapper.getOneProfil(userId);
-    if (user) {
+    // On récupère un deck via l'id.
+    const deck = await deckDataMapper.getOneDeck(deckId);
+
+    if (!deck) {
+      // Si il n'y a pas de deck on renvoit une réponse avec un status (404).
+      res.status(404).json({ message: 'Deck non trouvée !' });
+    } else if (user && deck.user_id === userId) {
+      // Sinon si on récupère bien l'utilisateur et que l'id dans la table deck
+      // est identique à l'id qu'on récupère du token
       await deckDataMapper.deleteOneDeck(deckId);
-      res.status(200).json({ message: 'delete' });
+      // alors on delete le deck avec un status (200).
+      res.status(200).json({ message: 'Votre deck a bien été supprimé !' });
+    } else {
+      // Sinon on lui dit qu'il n'est pas autoriser à supprimer ce deck avec un status (403).
+      res.status(403).json({ message: 'Vous n\'êtes pas autorisé à supprimer ce deck !' });
     }
   },
 };
