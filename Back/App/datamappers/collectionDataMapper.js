@@ -65,7 +65,7 @@ const collectionDataMapper = {
    */
   async getAllCollectionByUser(user_id) {
     const preparedQuery = {
-      text: 'SELECT * FROM "collection" WHERE "user_id" = $1',
+      text: 'SELECT * FROM collection WHERE "user_id" = $1',
       values: [user_id],
     };
     // Execute a search request

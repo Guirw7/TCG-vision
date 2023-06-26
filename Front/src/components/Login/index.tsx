@@ -31,7 +31,7 @@ export default function Login() {
   );
 
   const getUser = (form: any) => {
-    axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/user/login', {
+    axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/public/user/login', {
       data: {
         username: form.username,
         password: form.password,
