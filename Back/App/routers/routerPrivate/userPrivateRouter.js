@@ -1,7 +1,7 @@
 const express = require('express');
 
 const controllerHandler = require('../../helpers/controllerHandler');
-const authenticateToken = require('../../middlewares/auth');
+const { authenticateToken } = require('../../middlewares/auth');
 
 /* --------------- Controllers ---------------*/
 const userController = require('../../controllers/userController');
@@ -19,5 +19,6 @@ router.get('/:id(\\d+)', authenticateToken, controllerHandler(userController.get
 
 router.put('/:id(\\d+)', authenticateToken, validate(userBody), controllerHandler(userController.modifyUser));
 router.delete('/:id(\\d+)', authenticateToken, controllerHandler(userController.deleteUser));
+router.post('/logout', authenticateToken, userController.logout);
 
 module.exports = router;

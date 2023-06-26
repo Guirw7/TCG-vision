@@ -1,7 +1,7 @@
 const express = require('express');
 
 const controllerHandler = require('../../helpers/controllerHandler');
-const authenticateToken = require('../../middlewares/auth');
+const { authenticateToken } = require('../../middlewares/auth');
 
 /* --------------- Controllers ---------------*/
 const deckController = require('../../controllers/deckController');
