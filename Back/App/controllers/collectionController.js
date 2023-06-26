@@ -92,16 +92,29 @@ const collectionController = {
 
   /**
    * Fonction pour delete une collection.
-   * On récupère d'abord le user via son id.
    */
   async deleteCollection(req, res) {
+    // On récupère l'id qui est dans le token du user.
     const userId = req.user.data.id;
-    const collectionId = parseInt(req.params.collectionId, 10);
 
+    const collectionId = parseInt(req.params.collectionId, 10);
+    // On récupère le user via son id.
     const user = await userDataMapper.getOneProfil(userId);
-    if (user) {
+    // On récupère une collection via l'id.
+    const collection = await collectionDataMapper.getOneCollection(collectionId);
+
+    if (!collection) {
+      // Si il n'y a pas de collection on renvoit une réponse avec un status (404).
+      res.status(404).json({ message: 'Collection non trouvée !' });
+    } else if (user && collection.user_id === userId) {
+      // Sinon si on récupère bien l'utilisateur et que l'id dans la table collection
+      // est identique à l'id qu'on récupère du token
       await collectionDataMapper.deleteCollection(collectionId);
-      res.status(200).json({ message: 'delete' });
+      // alors on delete la collection avec un status (200).
+      res.status(200).json({ message: 'Votre collection a bien été supprimée !' });
+    } else {
+      // Sinon on lui dit qu'il n'est pas autoriser à supprimer cette collection avec un status (403).
+      res.status(403).json({ message: 'Vous n\'êtes pas autorisé à supprimer cette collection !' });
     }
   },
 };
