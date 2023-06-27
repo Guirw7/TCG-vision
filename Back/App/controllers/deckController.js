@@ -21,14 +21,13 @@ const deckController = {
   async addDeckInDb(req, res) {
     // On récupère les infos envoyer par l'utilisateur pour la création d'un deck
     const {
-      deck_name, deck_description, card_quantity, set_code, user_id,
+      deck_name, deck_description, set_code, user_id,
     } = req.body;
 
     // On créer un objet avec les infos que l'utilisateur à envoyer
     const deck = {
       deck_name,
       deck_description,
-      card_quantity,
       set_code,
       user_id,
     };
@@ -76,7 +75,7 @@ const deckController = {
   
     // Récupérer les informations envoyées par l'utilisateur pour la modification du deck
     const {
-      deck_name, deck_description, card_quantity, set_code,
+      deck_name, deck_description, set_code,
     } = req.body;
   
     // Recherche et modification d'un deck
@@ -84,7 +83,6 @@ const deckController = {
     if (deck) {
       deck.deck_name = deck_name || deck.deck_name;
       deck.deck_description = deck_description || deck.deck_description;
-      deck.card_quantity = card_quantity || deck.card_quantity;
       if (set_code) {
         // Ajouter les nouveaux éléments de set_code à l'ancien tableau
         const combinedSetCode = [...deck.set_code, ...set_code];
