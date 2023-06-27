@@ -9,12 +9,14 @@ export const sessionChecker = async () => {
   // Utile pour tester le cas où le token est invalide
   // const troll: string | null = token + 'troll';
   
-  if (token) {
     await axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/private/profil', {
       headers: {'Authorization': `Bearer ${token}`},
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response);
+        dispatch(setStatus(true));
+      };
     });
-  };
-  if (!token) {
-    dispatch(setStatus(false));
-  };
 };
+
