@@ -52,7 +52,7 @@ export default function SignUp() {
               console.log(data);
             };
             if (data.password === data.passwordConfirmation) {
-              axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/user/signup', {
+              axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/public/user/signup', {
                 data : {
                   email: data.email,
                   username: data.username,
