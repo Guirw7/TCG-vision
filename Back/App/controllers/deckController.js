@@ -9,6 +9,9 @@ const deckController = {
    */
   async getAllDecks(req, res) {
     const decks = await deckDataMapper.getAllDecks();
+    if (!decks) {
+      res.status(404).json({ message: 'Il n\'y a aucun decks !' });
+    }
     res.status(200).json(decks);
   },
 
@@ -18,23 +21,26 @@ const deckController = {
   async addDeckInDb(req, res) {
     // On récupère les infos envoyer par l'utilisateur pour la création d'un deck
     const {
-      deck_name, deck_description, card_quantity, set_code, user_id,
+      deck_name, deck_description, set_code, user_id,
     } = req.body;
 
     // On créer un objet avec les infos que l'utilisateur à envoyer
     const deck = {
       deck_name,
       deck_description,
-      card_quantity,
-      set_code: [set_code],
+      set_code,
       user_id,
     };
 
     // On créer une variable en utilisant la méthode addDeckInDB en lui passant notre objet user
     const newDeck = await deckDataMapper.addDeckInDB(deck);
 
+    if (!newDeck) {
+      res.status(400).json({ message: 'La création du deck à échoué !' });
+    }
+
     // On renvoie la réponse au format JSON avec un status 200 (OK)
-    res.status(200).json(newDeck);
+    res.status(201).json(newDeck);
   },
 
   /**
@@ -44,12 +50,20 @@ const deckController = {
     const userId = parseInt(req.params.id, 10);
     const decks = await deckDataMapper.getAllDecksByUser(userId);
 
+    if (!decks) {
+      res.status(404).json({ message: 'Cet utilisateur n\'a pas créer de deck !' });
+    }
+
     res.status(200).json(decks);
   },
 
   async getOneDeck(req, res) {
     const deckId = parseInt(req.params.id, 10);
     const deck = await deckDataMapper.getOneDeck(deckId);
+
+    if (!deck) {
+      res.status(404).json({ message: 'Deck non trouvé !' });
+    }
     return res.status(200).json(deck);
   },
 
@@ -58,36 +72,48 @@ const deckController = {
    */
   async updateDeckInDb(req, res) {
     const deckId = parseInt(req.params.id, 10);
-
-    // On récupère les informations envoyées par l'utilisateur pour la modification du deck
+  
+    // Récupérer les informations envoyées par l'utilisateur pour la modification du deck
     const {
-      deck_name, deck_description, card_quantity, set_code,
+      deck_name, deck_description, set_code,
     } = req.body;
-
-     // recherche et modification d'un deck
-     const deck = await deckDataMapper.getOneDeck(deckId);
-     if (deck) {
-       deck.deck_name = deck_name || deck.deck_name;
-       deck.deck_description = deck_description || deck.deck_description;
-       deck.card_quantity = card_quantity || deck.card_quantity;
-       if (set_code) {
+  
+    // Recherche et modification d'un deck
+    const deck = await deckDataMapper.getOneDeck(deckId);
+    if (deck) {
+      deck.deck_name = deck_name || deck.deck_name;
+      deck.deck_description = deck_description || deck.deck_description;
+      if (set_code) {
         // Ajouter les nouveaux éléments de set_code à l'ancien tableau
         const combinedSetCode = [...deck.set_code, ...set_code];
-    
-        // Limiter le nombre maximum de valeurs identiques à 3
-        const countedSetCode = combinedSetCode.reduce((acc, value) => {
-          acc[value] = (acc[value] || 0) + 1;
-          return acc;
-        }, {});
-    
-        deck.set_code = combinedSetCode.filter((value) => countedSetCode[value] <= 3);
+  
+        // Compter les occurrences des cartes
+        const cardCounts = {};
+        const filteredSetCode = [];
+  
+        combinedSetCode.forEach((card) => {
+          if (!cardCounts[card] || cardCounts[card] < 3) {
+            filteredSetCode.push(card);
+            cardCounts[card] = cardCounts[card] ? cardCounts[card] + 1 : 1;
+          }
+        });
+  
+        if (filteredSetCode.length > deck.set_code.length) {
+          deck.set_code = filteredSetCode;
+        } else {
+          return res.status(409).json({ message: 'Vous ne pouvez pas avoir plus de 3 examplaires de la meme carte dans votre deck !' });
+        }
       }
-     }
-
-    // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
+    }
+  
+    // Appeler la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
     const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
 
-    // On renvoie la réponse au format JSON avec le deck modifié
+    if (!updatedDeck) {
+      res.status(409).json({ message: 'La modification du deck à échoué !' });
+    }
+    
+    // Renvoyer la réponse au format JSON avec le deck modifié
     res.status(200).json(updatedDeck);
   },
 
