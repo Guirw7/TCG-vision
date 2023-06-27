@@ -2,6 +2,7 @@ import { closeModal } from './librarySlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
@@ -21,10 +22,12 @@ export interface CollectionProps {
 }
 
 export default function LibraryModal() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const closeModalFunction = () => {
     dispatch(closeModal());
+    // navigate(0);
   };
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -66,7 +69,7 @@ export default function LibraryModal() {
       data: {
         deck_name: data.deckName, // Obligatoire
         deck_description: data.description, //Facultatif
-        set_code: ['hzgebygvbzi', 'hzbeifegzinfugbzkbfhkzhebfz'],
+        set_code: [],
         user_id: id,// Obligatoire
       },
       headers: {
@@ -92,6 +95,7 @@ export default function LibraryModal() {
   const onSubmit = (data: any) => {
     // La méthode ne retourne rien si le formulaire n'est pas valide
     createDeck(data);
+    closeModalFunction();
   };
     // La méthode renvoie dans tous les cas un objet d'erreurs qui est vide s'il n'y en pas
     console.log('error :', errors);

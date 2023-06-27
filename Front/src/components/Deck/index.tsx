@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal, closeModal, setModalMessage } from '../LibraryModal/librarySlice';
+import { openModal } from '../LibraryModal/librarySlice';
 
 import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
+import DeckDisplayer from '../DeckDisplayer';
 import './styles.scss';
-import { set } from 'react-hook-form';
 
   // private :
   // /decks -> récupérer ses decks (GET)
@@ -118,6 +118,7 @@ export default function Deck () {
           <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
           {/* <button>Deck d'un utilisateur</button> */}
           <button onClick={testDeCo}>Liste des utilisateurs</button>
+          <DeckDisplayer data = {decks}/>
         </div>
       </div>
     </div>

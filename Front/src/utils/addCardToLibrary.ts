@@ -58,7 +58,7 @@ export const addCardToDeck = (deckID: any, cardID: any) => {
       'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`,
     },
     data: {
-      set_code: cardID,
+      set_code: [cardID],
     },
   });
 };
