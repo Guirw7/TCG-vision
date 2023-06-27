@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { closeModal, clearCardID } from './modalSlice';
+import { openCardAdditionModal } from '../CardAdditionModal/cardAdditionSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
+import { addCardToDeck } from '../../utils/addCardToLibrary';
+import CardAdditionModal from '../CardAdditionModal';
 import './styles.scss';
 
 
@@ -22,6 +25,7 @@ export default function CardModal() {
   const cardID = useSelector((state: any) => state.cardModal.element);
   const [selectedExtension, setSelectedExtension] = useState<string>("");
   const [extensionList, setExtensionList] = useState<ExtensionProps[]>([]);
+  const cardAdditionModal = useSelector((state: any) => state.cardAdditionModal.value);
   
   const increment = (event: any) => {
     event?.preventDefault();
@@ -54,6 +58,11 @@ export default function CardModal() {
       return extension.set_code === selectedExtension;
     });
     setExtensionList(filteredExtensions);
+  };
+
+  const openDeckModal = (event: any) => {
+    event.preventDefault();
+    dispatch(openCardAdditionModal());
   };
 
   useEffect(() => {
@@ -144,12 +153,17 @@ export default function CardModal() {
               </section>
             </div>
             <div className='card-modal-submit-buttons'>
-              <button className='card-modal-submit-button-deck'>Ajouter au Deck</button>
-              <button className='card-modal-submit-button-collection'>Ajouter à la Collection</button>
+              <button type='submit' onClick={openDeckModal} className='card-modal-submit-button-deck'>Ajouter au Deck</button>
+              {/* <button type='submit' onClick={createDeck} className='card-modal-submit-button-collection'>Ajouter à la Collection</button> */}
             </div>
           </div>
         </form>
         </article>
+        {
+          (cardAdditionModal) && (
+              <CardAdditionModal cardID={cardID}/>
+          )
+        }
       </div>
     )
   )

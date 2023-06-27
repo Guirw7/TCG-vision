@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 
 import { RootState } from '../../store';
-import { axiosRequest } from '../../utils/axiosRequest';
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
 
 
@@ -39,6 +39,7 @@ export default function Login() {
     })
     .then(data => {
       sessionStorage.setItem('jwt', data);
+      dispatch(setModalMessage('Connexion réussie !'));
       dispatch(openModal());
     })
     .catch(error => {
