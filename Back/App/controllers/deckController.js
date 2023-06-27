@@ -64,14 +64,14 @@ const deckController = {
       deck_name, deck_description, card_quantity, set_code,
     } = req.body;
 
-    // On crée un objet avec les informations que l'utilisateur a envoyées
-    const deck = {
-      id: deckId,
-      deck_name,
-      deck_description,
-      card_quantity,
-      set_code: [set_code],
-    };
+     // recherche et modification d'un deck
+     const deck = await deckDataMapper.getOneDeck(deckId);
+     if (deck) {
+       deck.deck_name = deck_name || deck.deck_name;
+       deck.deck_description = deck_description || deck.deck_description;
+       deck.card_quantity = card_quantity || deck.card_quantity;
+       deck.set_code = set_code || deck.set_code;
+     }
 
     // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
     const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
