@@ -70,7 +70,18 @@ const deckController = {
        deck.deck_name = deck_name || deck.deck_name;
        deck.deck_description = deck_description || deck.deck_description;
        deck.card_quantity = card_quantity || deck.card_quantity;
-       deck.set_code = set_code || deck.set_code;
+       if (set_code) {
+        // Ajouter les nouveaux éléments de set_code à l'ancien tableau
+        const combinedSetCode = [...deck.set_code, ...set_code];
+    
+        // Limiter le nombre maximum de valeurs identiques à 3
+        const countedSetCode = combinedSetCode.reduce((acc, value) => {
+          acc[value] = (acc[value] || 0) + 1;
+          return acc;
+        }, {});
+    
+        deck.set_code = combinedSetCode.filter((value) => countedSetCode[value] <= 3);
+      }
      }
 
     // On appelle la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
