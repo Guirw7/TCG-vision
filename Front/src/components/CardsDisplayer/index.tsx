@@ -16,7 +16,7 @@ export default function CardDisplayer() {
   // Il faut donc attendre que le state soit mis à jour pour pouvoir l'utiliser
   // Ou alors boucler sur la data directement
   /**--FIN DE LA NOTE IMPORTANTE--*/
-  const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=xyz';
+  const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=magicien';
   useEffect(() => {
     // méthode maison pour les requêtes 😎
     axiosRequest('get', url)

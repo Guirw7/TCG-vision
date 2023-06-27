@@ -35,7 +35,10 @@ export default function App() {
           {/* Ici se fait la vérification du token */}
           {
             isConnected && (
-              <Route path="/profil" element={<Loading />} />
+              <>
+                <Route path="/profil" element={<Loading />} />
+                <Route path="/logout"></Route>
+              </>
             )
           }
         </Routes>

@@ -1,0 +1,13 @@
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1rem;
+}
+
+.button {
+  list-style-type: none;
+}

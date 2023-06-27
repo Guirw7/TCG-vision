@@ -1,0 +1,13 @@
+.card-addition-modal {
+  position: absolute;
+  z-index: 102;
+  background-color: white;
+  height: 30rem;
+  width: 30rem;
+}
+
+.card-addition-modal-form {
+  padding: 5rem 5rem;
+  display: flex;
+  flex-direction: column;
+}

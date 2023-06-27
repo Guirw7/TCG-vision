@@ -2,7 +2,9 @@ import { closeModal } from './librarySlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
 
@@ -20,38 +22,27 @@ export interface CollectionProps {
 }
 
 export default function LibraryModal() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const closeModalFunction = () => {
     dispatch(closeModal());
+    // navigate(0);
   };
-
-  const decodeToken = (token: any) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    const jsonObject = JSON.parse(jsonPayload);
-    const id = jsonObject.data.id;
-    return id;
-  };
-
   const { register, handleSubmit, formState: { errors } } = useForm();
 
 
+  /*
   const createCollection = (data: any) => {
-        // On récupère l'ID de l'utilisateur connecté depuis le sessionStorage
-    // On envoie la requête à l'API
-    let token = sessionStorage.getItem('jwt');
-    // decodeToken(token);
+
     const route = 'collection';
-    const testID = decodeToken(token);
+    const id = getIDFromToken();
+    console.log(id);
     const url = `http://daoust-jason-server.eddi.cloud/private/${route}`;
     axiosRequest('post', url, {
       data: {
         collection_name: data.collection_name, // Obligatoire
-        user_id: testID,
+        user_id: id,
         set_code: '', //Facultatif
         quantity: 0, //Facultatif
       },
@@ -68,18 +59,18 @@ export default function LibraryModal() {
       console.log('Erreur lors de la requête', error);
     });
   };
+  */
 
   const createDeck = async (data: DeckProps) => {
-    // On récupère l'ID de l'utilisateur connecté depuis le sessionStorage
-    // On envoie la requête à l'API
-    let token = sessionStorage.getItem('jwt');
+    const id = getIDFromToken();
     const route = 'deck';
-    const url = `http://daoust-jason-server.eddi.cloud/private/${route}`;
+    const url = `https://daoust-jason-server.eddi.cloud/private/${route}`;
     axiosRequest('post', url, {
       data: {
         deck_name: data.deckName, // Obligatoire
         deck_description: data.description, //Facultatif
-        // user_id:,// Obligatoire
+        set_code: [],
+        user_id: id,// Obligatoire
       },
       headers: {
         'Content-Type': 'application/json',
@@ -90,6 +81,7 @@ export default function LibraryModal() {
       console.log(data);
     })
     .catch(error => {
+      console.log(data);
       console.log('Erreur lors de la requête', error);
     });
   };
@@ -101,8 +93,9 @@ export default function LibraryModal() {
   */
 
   const onSubmit = (data: any) => {
-    // La méthode ne retourne si le forumlaire n'est pas valide
-    createCollection(data);
+    // La méthode ne retourne rien si le formulaire n'est pas valide
+    createDeck(data);
+    closeModalFunction();
   };
     // La méthode renvoie dans tous les cas un objet d'erreurs qui est vide s'il n'y en pas
     console.log('error :', errors);
@@ -115,9 +108,9 @@ export default function LibraryModal() {
           <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='library-modal-exit'>X</button>
           <form className='library-modal-form' onSubmit={handleSubmit(onSubmit)}>
             <label>Nom du deck :</label>
-            <input className='library-modal-form-name' type="text" placeholder="Nom du Deck" {...register("collection_name", {required: true, minLength: 4, maxLength: 32})} />
-            {/* <label>Description :</label>
-            <textarea className='library-modal-form-description' placeholder="Description" {...register("description", { maxLength: 280})} /> */}
+            <input className='library-modal-form-name' type="text" placeholder="Nom du Deck" {...register("deckName", {required: true, minLength: 4, maxLength: 32})} />
+            <label>Description :</label>
+            <textarea className='library-modal-form-description' placeholder="Description" {...register("description", { maxLength: 280})} />
             <input className='library-modal-form-button' type="submit" />
           </form>
         </article>

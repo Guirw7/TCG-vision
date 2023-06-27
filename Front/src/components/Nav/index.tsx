@@ -1,17 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, clearSearch } from '../SearchResult/searchSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-
+import { sessionChecker } from '../../utils/sessionChecker';
 import './styles.scss';
 
 export default function Nav() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<any>(null);
-  const isConnected = useSelector((state: any) => state.session.status);
+  const [isConnected, setIsConnected] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('jwt');
+    if (token) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
+    };
+  }), [];
 
 
   const handleSubmit = (event: any) => {
@@ -19,6 +29,13 @@ export default function Nav() {
     dispatch(setSearch(input));
     navigate('/search-result');
   };
+
+  const logoutHandler = () => {
+    sessionStorage.removeItem('jwt');
+    navigate('/');
+  }
+
+  
 
   return(
     <>
@@ -38,7 +55,7 @@ export default function Nav() {
         isConnected && (
           <>
           <a className="nav-links__link" href="/profil">Profil</a>
-          <a className="nav-links__link" href="/logout">Déconnexion</a>
+          <a className="nav-links__link" onClick={logoutHandler} href="/">Déconnexion</a>
           </>
         )
       }
