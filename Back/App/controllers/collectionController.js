@@ -3,26 +3,28 @@
 /* eslint-disable radix */
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
-const collectionDataMapper = require('../datamappers/collectionDataMapper');
-const userDataMapper = require('../datamappers/userDataMapper');
+const collectionDataMapper = require("../datamappers/collectionDataMapper");
+const userDataMapper = require("../datamappers/userDataMapper");
 
 const collectionController = {
-
   /**
    * On créer une variable en utilisant la méthode addCollectionInD
    */
   async addCollectionInDb(req, res) {
-    const {
-      collection_name, set_code, card_quantity, user_id,
-    } = req.body;
+    const { collection_name, set_code, user_id } = req.body;
     const createCollection = {
       // on recupere toute la table collection.
       collection_name,
-      set_code: [set_code],
-      card_quantity,
+      set_code,
       user_id,
     };
-    const newCollection = await collectionDataMapper.addCollectionInDb(createCollection);
+    const newCollection = await collectionDataMapper.addCollectionInDb(
+      createCollection
+    );
+
+    if (!newCollection) {
+      res.status(400).json({ message: 'La création de la collection à échoué !' });
+    }
     // on renvoie la reponse en format JSON avec un status 200.(OK)
     res.status(200).json(newCollection);
   },
@@ -36,12 +38,12 @@ const collectionController = {
     // Appelle la méthode dans le data mapper
     const recoverCollection = await collectionDataMapper.getOneCollection(id);
 
-    if (recoverCollection) {
+    if (!recoverCollection) {
+      // Si la collection n'est pas trouvée, renvoie une réponse avec le statut 404 (Not Found)
+      res.status(404).json({ message: "La collection n'existe pas !" });
+    } else {
       // Renvoie la collection récupérée en tant que réponse JSON avec le statut 200 (OK)
       res.status(200).json(recoverCollection);
-    } else {
-      // Si la collection n'est pas trouvée, renvoie une réponse avec le statut 404 (Not Found)
-      res.status(404).json({ message: 'Collection not found' });
     }
   },
 
@@ -53,14 +55,15 @@ const collectionController = {
     const id = parseInt(req.params.userId, 10);
 
     // Appelle la méthode dans le data mapper
-    const recoverAllCollectionByUser = await collectionDataMapper.getAllCollectionByUser(id);
+    const recoverAllCollectionByUser =
+      await collectionDataMapper.getAllCollectionByUser(id);
 
-    if (recoverAllCollectionByUser) {
+    if (!recoverAllCollectionByUser) {
+      // Si la(les) collection(s) n'est pas trouvée(s), renvoie une réponse avec le statut 404 (Not Found)
+      res.status(404).json({ message: "Vous n'avez aucune collection !" });
+    } else {
       // Renvoie la(les) collection(s) récupérée(s) en tant que réponse JSON avec le statut 200 (OK)
       res.status(200).json(recoverAllCollectionByUser);
-    } else {
-      // Si la(les) collection(s) n'est pas trouvée(s), renvoie une réponse avec le statut 404 (Not Found)
-      res.status(404).json({ message: 'Collection not found' });
     }
   },
 
@@ -71,23 +74,30 @@ const collectionController = {
     const collectionId = parseInt(req.params.id, 10);
 
     // On récupère les informations envoyées par l'utilisateur pour la modification de la collection
-    const {
-      collection_name, set_code, card_quantity,
-    } = req.body;
+    const { collection_name, set_code } = req.body;
 
-    // On crée un objet avec les informations que l'utilisateur a envoyées
-    const collection = {
-      id: collectionId,
-      collection_name,
-      set_code: [set_code],
-      card_quantity,
-    };
+    // On appelle la méthode getOneCollection du data mapper pour récupérer la collection existante
+    const collection = await collectionDataMapper.getOneCollection(collectionId);
 
-    // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
-    const updatedCollection = await collectionDataMapper.updateCollectionInDB(collection);
+    if (collection) {
+      // On met à jour les propriétés de la collection
+      collection.collection_name =
+        collection_name || collection.collection_name;
 
-    // On renvoie la réponse au format JSON avec le deck modifié
-    res.status(200).json(updatedCollection);
+        if (set_code) {
+          // Ajouter les nouveaux éléments de set_code à l'ancien tableau
+          collection.set_code = [...collection.set_code, ...set_code];
+        }
+
+      // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
+      const updatedCollection = await collectionDataMapper.updateCollectionInDB(collection);
+
+      // On renvoie la réponse au format JSON avec la collection modifiée
+      res.status(200).json(updatedCollection);
+    } else {
+      // Si la collection n'existe pas, renvoyer une réponse d'erreur appropriée
+      res.status(404).json({ message: "La collection spécifiée n'existe pas." });
+    }
   },
 
   /**
@@ -101,20 +111,22 @@ const collectionController = {
     // On récupère le user via son id.
     const user = await userDataMapper.getOneProfil(userId);
     // On récupère une collection via l'id.
-    const collection = await collectionDataMapper.getOneCollection(collectionId);
+    const collection = await collectionDataMapper.getOneCollection(
+      collectionId
+    );
 
     if (!collection) {
       // Si il n'y a pas de collection on renvoit une réponse avec un status (404).
-      res.status(404).json({ message: 'Collection non trouvée !' });
+      res.status(404).json({ message: "Collection non trouvée !" });
     } else if (user && collection.user_id === userId) {
       // Sinon si on récupère bien l'utilisateur et que l'id dans la table collection
       // est identique à l'id qu'on récupère du token
       await collectionDataMapper.deleteCollection(collectionId);
       // alors on delete la collection avec un status (200).
-      res.status(200).json({ message: 'Votre collection a bien été supprimée !' });
+      res.status(200).json({ message: "Votre collection a bien été supprimée !" });
     } else {
       // Sinon on lui dit qu'il n'est pas autoriser à supprimer cette collection avec un status (403).
-      res.status(403).json({ message: 'Vous n\'êtes pas autorisé à supprimer cette collection !' });
+      res.status(403).json({ message: "Vous n'êtes pas autorisé à supprimer cette collection !" });
     }
   },
 };
