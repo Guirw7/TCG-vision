@@ -131,7 +131,7 @@ export default function CardModal() {
         </section>
         <form action="">
           <section className="card-modal-extension">
-            <label className="card-modal-extension-label" htmlFor="">Nom de l'extension :</label>
+            <label className="card-modal-extension-label" htmlFor="">Nom de l'extension : </label>
             <select onChange={optionHandler} className='card-modal-extension-select'>
               <option value="">Sélectionnez une extension</option>
               {cardData.card_sets.map((extension: any, index: number) => {
