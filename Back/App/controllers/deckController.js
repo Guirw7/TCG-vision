@@ -72,12 +72,12 @@ const deckController = {
    */
   async updateDeckInDb(req, res) {
     const deckId = parseInt(req.params.id, 10);
-  
+
     // Récupérer les informations envoyées par l'utilisateur pour la modification du deck
     const {
       deck_name, deck_description, set_code,
     } = req.body;
-  
+
     // Recherche et modification d'un deck
     const deck = await deckDataMapper.getOneDeck(deckId);
     if (deck) {
@@ -86,18 +86,18 @@ const deckController = {
       if (set_code) {
         // Ajouter les nouveaux éléments de set_code à l'ancien tableau
         const combinedSetCode = [...deck.set_code, ...set_code];
-  
+
         // Compter les occurrences des cartes
         const cardCounts = {};
         const filteredSetCode = [];
-  
+
         combinedSetCode.forEach((card) => {
           if (!cardCounts[card] || cardCounts[card] < 3) {
             filteredSetCode.push(card);
             cardCounts[card] = cardCounts[card] ? cardCounts[card] + 1 : 1;
           }
         });
-  
+
         if (filteredSetCode.length > deck.set_code.length) {
           deck.set_code = filteredSetCode;
         } else {
@@ -105,16 +105,16 @@ const deckController = {
         }
       }
     }
-  
+
     // Appeler la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
     const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
 
     if (!updatedDeck) {
       res.status(409).json({ message: 'La modification du deck à échoué !' });
     }
-    
+
     // Renvoyer la réponse au format JSON avec le deck modifié
-    res.status(200).json(updatedDeck);
+    return res.status(200).json(updatedDeck);
   },
 
   /**
