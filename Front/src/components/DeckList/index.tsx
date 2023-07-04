@@ -74,11 +74,6 @@ const DeckList = ({ deck }: { deck: any[] }) => {
     setFilteredExtraDeck(filteredExtraDeck);
   }, [cardData]);
 
-  console.log(filteredMonsters);
-  console.log(filteredSpells);
-  console.log(filteredTraps);
-  console.log(filteredExtraDeck);
-
   return (
     <div>
       <h2>Monstres</h2>
