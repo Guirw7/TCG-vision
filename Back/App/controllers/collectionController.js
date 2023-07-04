@@ -3,8 +3,8 @@
 /* eslint-disable radix */
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
-const collectionDataMapper = require("../datamappers/collectionDataMapper");
-const userDataMapper = require("../datamappers/userDataMapper");
+const collectionDataMapper = require('../datamappers/collectionDataMapper');
+const userDataMapper = require('../datamappers/userDataMapper');
 
 const collectionController = {
   /**
@@ -19,7 +19,7 @@ const collectionController = {
       user_id,
     };
     const newCollection = await collectionDataMapper.addCollectionInDb(
-      createCollection
+      createCollection,
     );
 
     if (!newCollection) {
@@ -55,8 +55,7 @@ const collectionController = {
     const id = parseInt(req.params.userId, 10);
 
     // Appelle la méthode dans le data mapper
-    const recoverAllCollectionByUser =
-      await collectionDataMapper.getAllCollectionByUser(id);
+    const recoverAllCollectionByUser = await collectionDataMapper.getAllCollectionByUser(id);
 
     if (!recoverAllCollectionByUser) {
       // Si la(les) collection(s) n'est pas trouvée(s), renvoie une réponse avec le statut 404 (Not Found)
@@ -81,13 +80,12 @@ const collectionController = {
 
     if (collection) {
       // On met à jour les propriétés de la collection
-      collection.collection_name =
-        collection_name || collection.collection_name;
+      collection.collection_name = collection_name || collection.collection_name;
 
-        if (set_code) {
-          // Ajouter les nouveaux éléments de set_code à l'ancien tableau
-          collection.set_code = [...collection.set_code, ...set_code];
-        }
+      if (set_code) {
+        // Ajouter les nouveaux éléments de set_code à l'ancien tableau
+        collection.set_code = [...collection.set_code, ...set_code];
+      }
 
       // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
       const updatedCollection = await collectionDataMapper.updateCollectionInDB(collection);
@@ -112,18 +110,18 @@ const collectionController = {
     const user = await userDataMapper.getOneProfil(userId);
     // On récupère une collection via l'id.
     const collection = await collectionDataMapper.getOneCollection(
-      collectionId
+      collectionId,
     );
 
     if (!collection) {
       // Si il n'y a pas de collection on renvoit une réponse avec un status (404).
-      res.status(404).json({ message: "Collection non trouvée !" });
+      res.status(404).json({ message: 'Collection non trouvée !' });
     } else if (user && collection.user_id === userId) {
       // Sinon si on récupère bien l'utilisateur et que l'id dans la table collection
       // est identique à l'id qu'on récupère du token
       await collectionDataMapper.deleteCollection(collectionId);
       // alors on delete la collection avec un status (200).
-      res.status(200).json({ message: "Votre collection a bien été supprimée !" });
+      res.status(200).json({ message: 'Votre collection a bien été supprimée !' });
     } else {
       // Sinon on lui dit qu'il n'est pas autoriser à supprimer cette collection avec un status (403).
       res.status(403).json({ message: "Vous n'êtes pas autorisé à supprimer cette collection !" });

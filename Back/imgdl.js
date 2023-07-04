@@ -1,9 +1,13 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-use-before-define */
 // Import required modules
 const fs = require('fs');
 const download = require('image-downloader');
 const axios = require('axios');
 const path = require('path');
 const { SingleBar } = require('cli-progress');
+const logger = require('./App/log');
 
 // API URL for card information
 const apiUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
@@ -66,9 +70,9 @@ async function downloadImages() {
     }
 
     progressBar.stop();
-    console.log('Yu-Gi-Oh! images database is up to date!');
+    logger.log('Yu-Gi-Oh! images database is up to date!');
   } catch (error) {
-    console.error('Error occurred while downloading images:', error);
+    logger.error('Error occurred while downloading images:', error);
   }
 }
 
@@ -80,7 +84,7 @@ async function downloadImage(url, filePath) {
       dest: filePath,
     });
   } catch (error) {
-    console.error(`Error downloading ${url}:`, error);
+    logger.error(`Error downloading ${url}:`, error);
   }
 }
 
@@ -92,6 +96,7 @@ function createFolderIfNotExists(folderPath) {
 }
 
 // Function to wait for a specified number of milliseconds
+// eslint-disable-next-line no-promise-executor-return
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Function to get the total number of images
