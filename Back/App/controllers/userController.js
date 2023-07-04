@@ -1,7 +1,8 @@
 // On require le module bcrypt pour le hash du mot de passe
 const bcrypt = require('bcrypt');
-
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const sendEmail = require('../middlewares/nodemailer');
 
 const { JWT_SECRET } = process.env;
 const { ACCESS_TOKEN_EXPIRATION } = process.env;
@@ -31,6 +32,9 @@ const userController = {
       password: passwordHash,
     };
 
+    const content = fs.readFileSync('/home/student/Bureau/Projet/TCG-Vision/Back/nodemailer.html', 'utf8');
+
+    sendEmail(user.email, content);
     // On créer une variable en utilisant la méthode addUserInDB en lui passant notre objet user
     const newUser = await userDataMapper.addUserInDB(user);
 
