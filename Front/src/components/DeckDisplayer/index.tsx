@@ -18,7 +18,7 @@ export default function DeckDisplayer(data: any) {
 
   const getDeck = (deck: any) => (event: any) => {
     event.preventDefault();
-    console.log(deck);
+    // console.log(deck);
     setSelectedDeck(deck);
     setCardList(deck.set_code);
   }

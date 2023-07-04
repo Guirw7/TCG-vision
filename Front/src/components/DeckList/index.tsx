@@ -77,23 +77,23 @@ const DeckList = ({ deck }: { deck: any[] }) => {
   return (
     <div>
       <h2>Monstres</h2>
-      {filteredMonsters.map((card) => (
-        <div key={card.id}>{card.name}</div>
+      {filteredMonsters.map((card, index) => (
+        <div key={index}>{card.name}</div>
       ))}
 
       <h2>Magies</h2>
-      {filteredSpells.map((card) => (
-        <div key={card.id}>{card.name}</div>
+      {filteredSpells.map((card, index) => (
+        <div key={index}>{card.name}</div>
       ))}
 
       <h2>Pièges</h2>
-      {filteredTraps.map((card) => (
-        <div key={card.id}>{card.name}</div>
+      {filteredTraps.map((card, index) => (
+        <div key={index}>{card.name}</div>
       ))}
 
       <h2>Extra Deck</h2>
-      {filteredExtraDeck.map((card) => (
-        <div key={card.id}>{card.name}</div>
+      {filteredExtraDeck.map((card, index) => (
+        <div key={index}>{card.name}</div>
       ))}
     </div>
   );
