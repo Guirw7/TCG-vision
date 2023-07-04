@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import DeckList from '../DeckList';
 
 import './styles.scss';
 
@@ -11,13 +12,13 @@ export default function DeckDisplayer(data: any) {
   useEffect(() => {
     setDecks(data.data);
     if (selectedDeck) {
-      console.log(selectedDeck.set_code);
+      // console.log(selectedDeck.set_code);
     }
   }, [data, selectedDeck]);
 
   const getDeck = (deck: any) => (event: any) => {
     event.preventDefault();
-    console.log(deck);
+    // console.log(deck);
     setSelectedDeck(deck);
     setCardList(deck.set_code);
   }
@@ -39,14 +40,8 @@ export default function DeckDisplayer(data: any) {
             <h2 className='deck-name'>{selectedDeck.deck_name}</h2>
             <p className='deck-description'> {selectedDeck.deck_description}</p>
             {selectedDeck.set_code && (
-              <ul className='list'>
-                {selectedDeck.set_code.map((card: number, index: number) => (
-                  <li className='list-element'key={index}>
-                    <img className='card-images'src={`https://daoust-jason-server.eddi.cloud/card_images/${card}.jpg`} alt={`Card ${index}`} />
-                  </li>
-                ))}
-              </ul>
-            )}
+              <DeckList deck={selectedDeck.set_code} />
+          )}
           </>
         )
       }
