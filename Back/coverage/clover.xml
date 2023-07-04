@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1687851484449" clover="3.2.0">
-  <project timestamp="1687851484449" name="All files">
+<coverage generated="1688463112762" clover="3.2.0">
+  <project timestamp="1688463112763" name="All files">
     <metrics statements="323" coveredstatements="192" conditionals="6" coveredconditionals="3" methods="16" coveredmethods="3" elements="345" coveredelements="198" complexity="0" loc="323" ncloc="323" packages="4" files="5" classes="5"/>
     <package name="App">
       <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="db.js" path="/var/www/html/APO/projet-04-TCG-Vision/Back/App/db.js">
+      <file name="db.js" path="/var/www/html/TCG-vision/Back/App/db.js">
         <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -29,7 +29,7 @@
     </package>
     <package name="App.controllers">
       <metrics statements="142" coveredstatements="102" conditionals="6" coveredconditionals="3" methods="7" coveredmethods="3"/>
-      <file name="userController.js" path="/var/www/html/APO/projet-04-TCG-Vision/Back/App/controllers/userController.js">
+      <file name="userController.js" path="/var/www/html/TCG-vision/Back/App/controllers/userController.js">
         <metrics statements="142" coveredstatements="102" conditionals="6" coveredconditionals="3" methods="7" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -177,7 +177,7 @@
     </package>
     <package name="App.datamappers">
       <metrics statements="101" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="userDataMapper.js" path="/var/www/html/APO/projet-04-TCG-Vision/Back/App/datamappers/userDataMapper.js">
+      <file name="userDataMapper.js" path="/var/www/html/TCG-vision/Back/App/datamappers/userDataMapper.js">
         <metrics statements="101" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -284,7 +284,7 @@
     </package>
     <package name="App.middlewares">
       <metrics statements="61" coveredstatements="31" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="auth.js" path="/var/www/html/APO/projet-04-TCG-Vision/Back/App/middlewares/auth.js">
+      <file name="auth.js" path="/var/www/html/TCG-vision/Back/App/middlewares/auth.js">
         <metrics statements="57" coveredstatements="27" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -344,7 +344,7 @@
         <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
       </file>
-      <file name="revokedToken.js" path="/var/www/html/APO/projet-04-TCG-Vision/Back/App/middlewares/revokedToken.js">
+      <file name="revokedToken.js" path="/var/www/html/TCG-vision/Back/App/middlewares/revokedToken.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
