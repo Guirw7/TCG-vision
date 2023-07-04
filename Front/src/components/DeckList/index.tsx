@@ -1,5 +1,25 @@
-const DeckList = ({ decks }: { decks: any[] }) => {
-  const filteredMonsters = decks.filter((card) =>
+import { useEffect, useState } from "react";
+
+const DeckList = ({ deck }: { deck: any[] }) => {
+
+  const [cardData, setCardData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchCardData = async () => {
+      const cardPromises = deck.map((id) =>
+        fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}&language=fr`)
+          .then((response) => response.json())
+          .catch((error) => console.error(error))
+      );
+
+      const cardsData = await Promise.all(cardPromises);
+      setCardData(cardsData);
+    };
+
+    fetchCardData();
+  }, [deck]);
+
+  const filteredMonsters = cardData.filter((card) =>
     ["Effect Monster", 
     "Flip Effect Monster", 
     "Flip Tuner Effect Monster", 
@@ -20,11 +40,11 @@ const DeckList = ({ decks }: { decks: any[] }) => {
   ].includes(card.type)
   );
 
-  const filteredSpells = decks.filter((card) => card.type === "Spell Card");
+  const filteredSpells = cardData.filter((card) => card.type === "Spell Card");
 
-  const filteredTraps = decks.filter((card) => card.type === "Trap Card");
+  const filteredTraps = cardData.filter((card) => card.type === "Trap Card");
 
-  const filteredExtraDeck = decks.filter((card) =>
+  const filteredExtraDeck = cardData.filter((card) =>
     ["Fusion Monster", 
     "Link Monster", 
     "Pendulum Effect Fusion Monster", 
