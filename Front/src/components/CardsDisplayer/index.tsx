@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { openModal, setCardID } from '../CardModal/modalSlice';
-// import { loadingChecker }  from '../../utils/loadingScreen';
 import { axiosRequest } from '../../utils/axiosRequest';
 import Loading from '../Loading';
 import './styles.scss';
@@ -11,14 +10,9 @@ import './styles.scss';
 export default function CardDisplayer() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
-  /**--NOTE IMPORTANTE--*/
-  // Le setter ne met pas à jour le state immédiatement, mais déclenche une nouvelle renderisation du composant
-  // Il faut donc attendre que le state soit mis à jour pour pouvoir l'utiliser
-  // Ou alors boucler sur la data directement
-  /**--FIN DE LA NOTE IMPORTANTE--*/
+ 
   const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=magicien';
   useEffect(() => {
-    // méthode maison pour les requêtes 😎
     axiosRequest('get', url)
     .then(data => {
       setCards(data.data);
@@ -28,7 +22,6 @@ export default function CardDisplayer() {
     });
   }, [url]);
 
-  // Closure 🧐
   const clickHandler = (id: number) => () => { 
     dispatch(setCardID(id));
     dispatch(openModal());

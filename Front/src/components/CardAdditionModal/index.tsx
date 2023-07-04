@@ -1,10 +1,10 @@
 import { openCardAdditionModal, closeCardAdditionModal} from './cardAdditionSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { axiosRequest } from '../../utils/axiosRequest';
-import { getIDFromToken } from '../../utils/getIDFromToken'; 
-import { addCardToDeck } from '../../utils/addCardToLibrary';
+import { axiosRequest } from '../../utils/axiosRequest';
+import { getIDFromToken } from '../../utils/getIDFromToken'; 
+import { addCardToDeck } from '../../utils/addCardToLibrary';
 import './styles.scss';
 
 
@@ -49,8 +49,6 @@ export default function CardAdditionModal({ cardID} : any) {
   useEffect(() => {
     displayDeckList();
   }, []);
-  // addCardToLibrary(cardID.cardID);
-
   
   return (
   <>

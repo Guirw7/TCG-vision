@@ -154,7 +154,6 @@ export default function CardModal() {
             </div>
             <div className='card-modal-submit-buttons'>
               <button type='submit' onClick={openDeckModal} className='card-modal-submit-button-deck'>Ajouter au Deck</button>
-              {/* <button type='submit' onClick={createDeck} className='card-modal-submit-button-collection'>Ajouter à la Collection</button> */}
             </div>
           </div>
         </form>

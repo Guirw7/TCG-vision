@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import "./styles.scss";
+import config from '../../../config.json';
 
-// Interface pour représenter les données du formulaire de contact
 interface ContactData {
   userName: string;
   email: string;
@@ -10,14 +10,15 @@ interface ContactData {
 }
 
 export default function ContactForm() {
-  // Initialisation du formulaire avec la fonction useForm de 'react-hook-form'
   const {
-    register, // Fonction pour enregistrer les champs du formulaire
-    handleSubmit, // Fonction pour gérer la soumission du formulaire
-    formState: { errors } // Objet contenant les erreurs de validation
-  } = useForm<ContactData>(); // Utilisation de l'interface ContactData pour le formulaire
+    register, 
+    handleSubmit, 
+    formState: { errors } 
+  } = useForm<ContactData>(); 
 
-  // Fonction appelée lors de la soumission du formulaire
+  const { REACT_APP_SERVER_URL } = config;
+  console.log(REACT_APP_SERVER_URL)
+
   const onSubmit: SubmitHandler<ContactData> = data => console.log(data);
 
   return (
@@ -83,7 +84,6 @@ export default function ContactForm() {
       </div>
 
       <div>
-        {/* <label htmlFor="">Message :</label> */}
         <textarea
           className="contact-input contact-input-message"
           placeholder="Message"
@@ -105,7 +105,6 @@ export default function ContactForm() {
   );
 }
 
-// Composant fonctionnel pour afficher les messages d'erreur
 function ErrorMessage({ children }: { children: React.ReactNode }) {
   return <p className='error-message'>{children}</p>;
 }

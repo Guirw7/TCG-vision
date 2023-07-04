@@ -8,12 +8,6 @@ import LibraryModal from '../LibraryModal';
 import DeckDisplayer from '../DeckDisplayer';
 import './styles.scss';
 
-  // private :
-  // /decks -> récupérer ses decks (GET)
-  // deck -> créer un deck (POST, PUT, DELETE)
-  // public : 
-  // /deck/:id -> récupérer un deck (GET)
-
 export default function Deck () {
   const modal = useSelector((state: any) => state.libraryModal.value);
   const dispatch = useDispatch();
@@ -73,7 +67,6 @@ export default function Deck () {
     dispatch(openModal());
   };
 
-  /* Choper les profils */
   const testDeCo = async () => {
     axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/private/profil', {
       headers: {
@@ -90,19 +83,6 @@ export default function Deck () {
     });
   };
 
-  // const getDeckByID = async () => {
-  //   axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/deck/1');
-  // };
-  
-
-  // const debuggingTest = async () => {
-  //   axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/private/deck/1', {
-  //     headers : {
-  //       'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`,
-  //     },
-  //   });
-  // };
-
   return (
     <div className='deck-container'>
       <div className='deck-container-background'>
@@ -116,7 +96,6 @@ export default function Deck () {
           <button onClick={createDeck}>Créer un deck</button>
           <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
           <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
-          {/* <button>Deck d'un utilisateur</button> */}
           <button onClick={testDeCo}>Liste des utilisateurs</button>
           <DeckDisplayer data = {decks}/>
         </div>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
 import Header from '../Header';
 import Footer from '../Footer';
 import HomePage from '../../components/HomePage';
@@ -16,6 +17,7 @@ import DeckPage from "../DeckPage";
 
 
 export default function App() {
+
   const isConnected = useSelector((state: any) => state.session.status);
   return (
     <>
