@@ -6,6 +6,7 @@ import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
 import DeckList from '../DeckList';
+import DeckDisplayer from '../DeckDisplayer';
 import './styles.scss';
 
 export default function Deck () {
@@ -97,7 +98,7 @@ export default function Deck () {
           <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
           <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
           <button onClick={testDeCo}>Liste des utilisateurs</button>
-          {/* <DeckDisplayer data = {decks}/> */}
+          <DeckDisplayer data = {decks}/>
           <DeckList decks={decks}/>
         </div>
       </div>

@@ -1,6 +1,23 @@
 const DeckList = ({ decks }: { decks: any[] }) => {
   const filteredMonsters = decks.filter((card) =>
-    ["Effect Monster", "Flip Effect Monster", "Flip Tuner Effect Monster", "Gemini Monster", "Normal Monster", "Normal Tuner Monster", "Pendulum Effect Monster", "Pendulum Effect Ritual Monster", "Pendulum Flip Effect Monster", "Pendulum Normal Monster", "Pendulum Tuner Effect Monster", "Ritual Effect Monster", "Ritual Monster", "Spirit Monster", "Toon Monster", "Tuner Monster", "Union Effect Monster"].includes(card.type)
+    ["Effect Monster", 
+    "Flip Effect Monster", 
+    "Flip Tuner Effect Monster", 
+    "Gemini Monster", 
+    "Normal Monster", 
+    "Normal Tuner Monster", 
+    "Pendulum Effect Monster", 
+    "Pendulum Effect Ritual Monster", 
+    "Pendulum Flip Effect Monster", 
+    "Pendulum Normal Monster", 
+    "Pendulum Tuner Effect Monster", 
+    "Ritual Effect Monster", 
+    "Ritual Monster", 
+    "Spirit Monster", 
+    "Toon Monster", 
+    "Tuner Monster", 
+    "Union Effect Monster"
+  ].includes(card.type)
   );
 
   const filteredSpells = decks.filter((card) => card.type === "Spell Card");
@@ -8,7 +25,15 @@ const DeckList = ({ decks }: { decks: any[] }) => {
   const filteredTraps = decks.filter((card) => card.type === "Trap Card");
 
   const filteredExtraDeck = decks.filter((card) =>
-    ["Fusion Monster", "Link Monster", "Pendulum Effect Fusion Monster", "Synchro Monster", "Synchro Pendulum Effect Monster", "Synchro Tuner Monster", "XYZ Monster", "XYZ Pendulum Effect Monster"].includes(card.type)
+    ["Fusion Monster", 
+    "Link Monster", 
+    "Pendulum Effect Fusion Monster", 
+    "Synchro Monster", 
+    "Synchro Pendulum Effect Monster", 
+    "Synchro Tuner Monster", 
+    "XYZ Monster", 
+    "XYZ Pendulum Effect Monster"
+  ].includes(card.type)
   );
 
   return (
@@ -18,7 +43,7 @@ const DeckList = ({ decks }: { decks: any[] }) => {
         <div key={card.id}>{card.name}</div>
       ))}
 
-      <h2>Sorts</h2>
+      <h2>Magies</h2>
       {filteredSpells.map((card) => (
         <div key={card.id}>{card.name}</div>
       ))}
