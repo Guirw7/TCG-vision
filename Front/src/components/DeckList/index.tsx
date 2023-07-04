@@ -22,6 +22,10 @@ const DeckList = ({ deck }: { deck: any[] }) => {
   
     fetchCardData();
   }, [deck]);
+
+  useEffect(() => {
+    setCardData([]);
+  }, [deck]);
   
 
   useEffect(() => {
