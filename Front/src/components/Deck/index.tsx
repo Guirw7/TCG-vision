@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from '../LibraryModal/librarySlice';
 
-import { axiosRequest } from '../../utils/axiosRequest';
-import { getIDFromToken } from '../../utils/getIDFromToken';
+import { axiosRequest } from '../../utils/axiosRequest';
+import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
+import DeckList from '../DeckList';
 import DeckDisplayer from '../DeckDisplayer';
 import './styles.scss';
 
@@ -98,6 +99,7 @@ export default function Deck () {
           <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
           <button onClick={testDeCo}>Liste des utilisateurs</button>
           <DeckDisplayer data = {decks}/>
+          {/* <DeckList decks={decks}/> */}
         </div>
       </div>
     </div>
