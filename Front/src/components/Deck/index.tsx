@@ -99,7 +99,7 @@ export default function Deck () {
           <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
           <button onClick={testDeCo}>Liste des utilisateurs</button>
           <DeckDisplayer data = {decks}/>
-          <DeckList decks={decks}/>
+          {/* <DeckList decks={decks}/> */}
         </div>
       </div>
     </div>

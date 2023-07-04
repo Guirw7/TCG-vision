@@ -12,7 +12,7 @@ export default function DeckDisplayer(data: any) {
   useEffect(() => {
     setDecks(data.data);
     if (selectedDeck) {
-      console.log(selectedDeck.set_code);
+      // console.log(selectedDeck.set_code);
     }
   }, [data, selectedDeck]);
 

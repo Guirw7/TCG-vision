@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
 const DeckList = ({ deck }: { deck: any[] }) => {
-
   const [cardData, setCardData] = useState<any[]>([]);
+  const [filteredMonsters, setFilteredMonsters] = useState<any[]>([]);
+  const [filteredSpells, setFilteredSpells] = useState<any[]>([]);
+  const [filteredTraps, setFilteredTraps] = useState<any[]>([]);
+  const [filteredExtraDeck, setFilteredExtraDeck] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchCardData = async () => {
@@ -11,50 +14,66 @@ const DeckList = ({ deck }: { deck: any[] }) => {
           .then((response) => response.json())
           .catch((error) => console.error(error))
       );
-
+  
       const cardsData = await Promise.all(cardPromises);
-      setCardData(cardsData);
+      const extractedCardData = cardsData.map((cardData) => cardData.data[0]); // Extraction des données réelles des cartes
+      setCardData(extractedCardData);
     };
-
+  
     fetchCardData();
   }, [deck]);
+  
 
-  const filteredMonsters = cardData.filter((card) =>
-    ["Effect Monster", 
-    "Flip Effect Monster", 
-    "Flip Tuner Effect Monster", 
-    "Gemini Monster", 
-    "Normal Monster", 
-    "Normal Tuner Monster", 
-    "Pendulum Effect Monster", 
-    "Pendulum Effect Ritual Monster", 
-    "Pendulum Flip Effect Monster", 
-    "Pendulum Normal Monster", 
-    "Pendulum Tuner Effect Monster", 
-    "Ritual Effect Monster", 
-    "Ritual Monster", 
-    "Spirit Monster", 
-    "Toon Monster", 
-    "Tuner Monster", 
-    "Union Effect Monster"
-  ].includes(card.type)
-  );
+  useEffect(() => {
+    const filteredMonsters = cardData.filter((card) =>
+      [
+        "Effect Monster",
+        "Flip Effect Monster",
+        "Flip Tuner Effect Monster",
+        "Gemini Monster",
+        "Normal Monster",
+        "Normal Tuner Monster",
+        "Pendulum Effect Monster",
+        "Pendulum Effect Ritual Monster",
+        "Pendulum Flip Effect Monster",
+        "Pendulum Normal Monster",
+        "Pendulum Tuner Effect Monster",
+        "Ritual Effect Monster",
+        "Ritual Monster",
+        "Spirit Monster",
+        "Toon Monster",
+        "Tuner Monster",
+        "Union Effect Monster",
+      ].includes(card.type)
+    );
 
-  const filteredSpells = cardData.filter((card) => card.type === "Spell Card");
+    const filteredSpells = cardData.filter((card) => card.type === "Spell Card");
 
-  const filteredTraps = cardData.filter((card) => card.type === "Trap Card");
+    const filteredTraps = cardData.filter((card) => card.type === "Trap Card");
 
-  const filteredExtraDeck = cardData.filter((card) =>
-    ["Fusion Monster", 
-    "Link Monster", 
-    "Pendulum Effect Fusion Monster", 
-    "Synchro Monster", 
-    "Synchro Pendulum Effect Monster", 
-    "Synchro Tuner Monster", 
-    "XYZ Monster", 
-    "XYZ Pendulum Effect Monster"
-  ].includes(card.type)
-  );
+    const filteredExtraDeck = cardData.filter((card) =>
+      [
+        "Fusion Monster",
+        "Link Monster",
+        "Pendulum Effect Fusion Monster",
+        "Synchro Monster",
+        "Synchro Pendulum Effect Monster",
+        "Synchro Tuner Monster",
+        "XYZ Monster",
+        "XYZ Pendulum Effect Monster",
+      ].includes(card.type)
+    );
+
+    setFilteredMonsters(filteredMonsters);
+    setFilteredSpells(filteredSpells);
+    setFilteredTraps(filteredTraps);
+    setFilteredExtraDeck(filteredExtraDeck);
+  }, [cardData]);
+
+  console.log(filteredMonsters);
+  console.log(filteredSpells);
+  console.log(filteredTraps);
+  console.log(filteredExtraDeck);
 
   return (
     <div>
