@@ -35,8 +35,16 @@ export default function SearchResult () {
 
 
     const clickHandler = (id: number) => () => {
-        dispatch(setUserDeck([...userDeck, id]));
-      };
+      const idCount: number = userDeck.filter((deckId: number) => deckId === id)
+        .length;
+  
+      if (idCount >= 3) {
+        console.log(`Le deck contient déjà trois instances de l'ID ${id}`);
+        return;
+      }
+  
+      dispatch(setUserDeck([...userDeck, id]));
+    };
 
   return (
         <>
