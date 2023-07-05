@@ -27,7 +27,6 @@ const DeckList = ({ deck }: { deck: any[] }) => {
     setCardData([]);
   }, [deck]);
   
-
   useEffect(() => {
     const filteredMonsters = cardData.filter((card) =>
       [

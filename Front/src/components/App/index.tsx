@@ -14,6 +14,7 @@ import SearchResultPage from "../SearchResultPage";
 import ErrorPage from "../ErrorPage";
 import Loading from "../Loading";
 import DeckPage from "../DeckPage";
+import ProfilePage from "../ProfilePage";
 
 
 export default function App() {
@@ -35,14 +36,10 @@ export default function App() {
           <Route path="*" element={<ErrorPage />} />
           {/* Routes privées */}
           {/* Ici se fait la vérification du token */}
-          {
-            isConnected && (
-              <>
-                <Route path="/profil" element={<Loading />} />
+          
+                <Route path="/profil" element={<ProfilePage />} />
                 <Route path="/logout"></Route>
-              </>
-            )
-          }
+
         </Routes>
       <Footer />
     </>
