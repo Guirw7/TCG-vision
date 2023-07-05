@@ -5,7 +5,6 @@ import { setUserDeck, clearUserDeck } from '../DeckEditorPage/userDeckSlice';
 import Loading from '../Loading';
 import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
-import { DeckProps } from '../LibraryModal';
 
 export default function SearchResult () {
   const [isError, setIsError] = useState<boolean>(false);
