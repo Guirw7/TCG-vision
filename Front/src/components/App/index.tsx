@@ -15,6 +15,7 @@ import ErrorPage from "../ErrorPage";
 import Loading from "../Loading";
 import DeckPage from "../DeckPage";
 import ProfilePage from "../ProfilePage";
+import DeckEditorPage from "../DeckEditorPage";
 
 
 export default function App() {
@@ -24,7 +25,6 @@ export default function App() {
     <>
       <Header />
       <Routes>
-          {/* Routes publiques */}
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/reset-password" element={<PasswordResetPage />} />
@@ -34,12 +34,9 @@ export default function App() {
           <Route path="/search-result" element={<SearchResultPage />} />
           <Route path="/decks" element={<DeckPage />}/>
           <Route path="*" element={<ErrorPage />} />
-          {/* Routes privées */}
-          {/* Ici se fait la vérification du token */}
-          
-                <Route path="/profil" element={<ProfilePage />} />
-                <Route path="/logout"></Route>
-
+          <Route path="/profil" element={<ProfilePage />} />
+          <Route path="/logout"></Route>
+          <Route path="/deckeditor" element={<DeckEditorPage />}/>
         </Routes>
       <Footer />
     </>
