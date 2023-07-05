@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
+import "./styles.scss";
 
 const DeckList = ({ deck }: { deck: any[] }) => {
   const dispatch = useDispatch();
@@ -86,33 +87,33 @@ const DeckList = ({ deck }: { deck: any[] }) => {
       dispatch(setUserDeck(updatedDeck));
     }
   };
-  
+
   return (
     <div>
       <h2>Monstres</h2>
       {filteredMonsters.map((card, index) => (
-        <div key={index} onClick={() => handleCardClick(card.id)}>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
           {card.name}
         </div>
       ))}
 
       <h2>Magies</h2>
       {filteredSpells.map((card, index) => (
-        <div key={index} onClick={() => handleCardClick(card.id)}>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
           {card.name}
         </div>
       ))}
 
       <h2>Pièges</h2>
       {filteredTraps.map((card, index) => (
-        <div key={index} onClick={() => handleCardClick(card.id)}>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
           {card.name}
         </div>
       ))}
 
       <h2>Extra Deck</h2>
       {filteredExtraDeck.map((card, index) => (
-        <div key={index} onClick={() => handleCardClick(card.id)}>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
           {card.name}
         </div>
       ))}
