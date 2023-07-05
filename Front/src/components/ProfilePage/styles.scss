@@ -1,0 +1,86 @@
+@use '../../styles/reset';
+@use '../../styles/variables' as v;
+
+.profil-container {
+    margin: 0 auto;
+    min-height: 95vh;
+    width: 95vw;
+    background: v.$background-color-app;
+    box-shadow: v.$box-shadow;
+    transition: v.$transition-speed;
+    box-sizing: border-box;
+}
+
+.profil-container-background {
+    background-color: white;
+    margin: 0 auto;
+    width: 98%;
+    min-height: 95vh;
+  }
+
+.profil-title {
+    font-size: v.$font-size * 3.2;
+    color: v.$font-color-dark;
+    text-align: center;
+    padding-top: 2rem;
+    font-weight: 700;
+    padding-top: 15vh;
+    margin-bottom: 2rem;
+    position: relative;
+    
+}
+
+.user-banner-container {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.profil-username {
+    font-size: v.$font-size * 4;
+    color: v.$font-color-dark;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.profil-nav-button {
+    width: 5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+
+.profil-picture {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profil-nav {
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    height: 5rem;
+}
+
+.profil-body-container {
+    display: flex;
+}
+
+.user-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}

@@ -8,6 +8,7 @@ import LibraryModal from '../LibraryModal';
 import DeckList from '../DeckList';
 import DeckDisplayer from '../DeckDisplayer';
 import './styles.scss';
+import SingleDeck from '../SingleDeck';
 
 export default function Deck () {
   const modal = useSelector((state: any) => state.libraryModal.value);
