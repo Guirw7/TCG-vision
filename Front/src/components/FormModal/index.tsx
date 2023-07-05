@@ -1,16 +1,18 @@
 import { openModal, closeModal, setModalMessage} from './modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 
 import './styles.scss';
 
 
 export default function FormModal() {
-  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const closeModalFunction = () => {
     dispatch(closeModal());
-    dispatch(setModalMessage(""));
+    navigate('/login');
   }
   
   const requestStatus = useSelector((state: any) => state.formModal.message);

@@ -9,7 +9,7 @@ export default function LoginModal() {
     const closeModalFunction = () => {
       dispatch(setModalMessage(""));
       dispatch(closeModal());
-      navigate('/')
+      navigate('/profil')
       window.location.reload();
     }
     

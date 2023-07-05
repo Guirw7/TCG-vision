@@ -43,23 +43,29 @@ export default function SignUp() {
       <div className='signup-container-background'>
         <h1 className='page-title'>Création de compte</h1>
           <form className="signup-form" onSubmit={handleSubmit((data) => {
-            // On vérifie que les mots de passe correspondent :
             if (data.password !== data.passwordConfirmation) {
               setError('passwordConfirmation', {
                 type: 'custom',
                 message: 'Les mots de passe ne correspondent pas.',
               });
               console.log(data);
-            };
-            if (data.password === data.passwordConfirmation) {
+            } else {
               axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/public/user/signup', {
-                data : {
+                data: {
                   email: data.email,
                   username: data.username,
                   password: data.password,
                 },
+              })
+              .then((response) => {
+                dispatch(setModalMessage("Votre compte a bien été créé !"));
+                dispatch(openModal()); 
+              })
+              .catch((error) => {
+                dispatch(setModalMessage("Une erreur est survenue, veuillez réessayer plus tard.")); 
+                dispatch(openModal());
               });
-            };
+            }
           })}
             >
             <label className='signup-input-username-label' htmlFor="">Nom d'utilisateur :</label>
