@@ -3,10 +3,11 @@ import { setSearch, clearSearch } from '../SearchResult/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import DeckSearchResult from '../DeckSearchResult';
+import DeckList from '../DeckList';
 
 
 export default function DeckEditorPage() {
-
+    const userDeck = useSelector((state: any) => state.userDeck.value);
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
 
@@ -38,7 +39,7 @@ export default function DeckEditorPage() {
                     </div>
                     <div className='deck_editor-details-container'>
                         <div className='deck_editor-list-container'>
-
+                            <DeckList deck={userDeck}/>
                         </div>
                         <div className='deck_editor-desc-container'>
 
