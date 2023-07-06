@@ -11,6 +11,13 @@ const logger = require('../log');
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (error, req, res, next) => {
   logger.error(error);
+  if (error.code === '23502' && error.table === 'collection') {
+    return res.status(400).json({ status: 'error', message: 'Le champ "collection_name" est obligatoire' });
+  }
+  if (error.code === '23502' && error.table === 'deck') {
+    return res.status(400).json({ status: 'error', message: 'Le champ "deck_name" est obligatoire' });
+  }
+
   return res.status(500).json({ status: 'error', message: 'Une erreur interne s\'est produite' });
 };
 

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 const sendEmail = require('../middlewares/nodemailer');
+const logger = require('../log');
 
 const { JWT_SECRET } = process.env;
 const { ACCESS_TOKEN_EXPIRATION } = process.env;
@@ -13,6 +14,7 @@ const userDataMapper = require('../datamappers/userDataMapper');
 
 const revokedTokens = require('../middlewares/revokedToken');
 const { removeRevokedTokens } = require('../middlewares/auth');
+
 
 const userController = {
 
@@ -32,6 +34,7 @@ const userController = {
       username,
       password: passwordHash,
     };
+    logger.log(user.email);
 
     const filePath = path.resolve(__dirname, '..', '..', 'nodemailer.html');
     const content = fs.readFileSync(filePath, 'utf8');
