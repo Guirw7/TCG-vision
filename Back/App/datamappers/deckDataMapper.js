@@ -87,7 +87,6 @@ const deckDataMapper = {
 
   /**
    * Requête SQL pour supprimer le deck d'un utilisateur.
-   * On supprime avant la clé étrangère de la table user_like_deck.
    */
   async deleteOneDeck(id) {
     const deleteDeckQuery = {
@@ -96,6 +95,19 @@ const deckDataMapper = {
     };
     const result = await client.query(deleteDeckQuery);
     return result.rows[0];
+  },
+
+  /**
+   * Requête SQL pour compter le nombre de set_code dans un deck.
+   * En lui passant l'id du deck en paramètre.
+   */
+  async countSetCodeInDeck(id) {
+    const preparedQuery = {
+      text: 'SELECT array_length(set_code, 1) AS set_code_length FROM deck WHERE "id" = $1',
+      values: [id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows;
   },
 };
 

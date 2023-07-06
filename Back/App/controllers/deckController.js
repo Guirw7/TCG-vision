@@ -19,28 +19,52 @@ const deckController = {
    * Fonction pour ajouter un deck en base de données
    */
   async addDeckInDb(req, res) {
-    // On récupère les infos envoyer par l'utilisateur pour la création d'un deck
+    // On récupère les infos envoyées par l'utilisateur pour la création d'un deck
     const {
       deck_name, deck_description, set_code, user_id,
     } = req.body;
 
-    // On créer un objet avec les infos que l'utilisateur à envoyer
+    // On crée un objet avec les infos que l'utilisateur a envoyées
     const deck = {
       deck_name,
       deck_description,
-      set_code,
+      set_code: [],
       user_id,
     };
 
-    // On créer une variable en utilisant la méthode addDeckInDB en lui passant notre objet user
+    // Ajouter les nouvelles cartes du set_code à l'objet deck
+    if (set_code && Array.isArray(set_code)) {
+      // Compter les occurrences des cartes
+      const cardCounts = {};
+      const filteredSetCode = [];
+
+      set_code.forEach((card) => {
+        if (!cardCounts[card] || cardCounts[card] < 3) {
+          filteredSetCode.push(card);
+          cardCounts[card] = cardCounts[card] ? cardCounts[card] + 1 : 1;
+        }
+      });
+
+      if (filteredSetCode.length <= 75) {
+        deck.set_code = filteredSetCode;
+      } else {
+        return res.status(400).json({ message: 'Vous ne pouvez pas ajouter plus de 75 cartes à votre deck !' });
+      }
+
+      if (set_code.length !== filteredSetCode.length) {
+        return res.status(409).json({ message: 'Vous ne pouvez pas avoir plus de 3 exemplaires de la même carte dans votre deck !' });
+      }
+    }
+
+    // On utilise la méthode addDeckInDB du data mapper pour effectuer la création du deck
     const newDeck = await deckDataMapper.addDeckInDB(deck);
 
     if (!newDeck) {
-      res.status(400).json({ message: 'La création du deck à échoué !' });
+      return res.status(400).json({ message: 'La création du deck a échoué !' });
     }
 
-    // On renvoie la réponse au format JSON avec un status 200 (OK)
-    res.status(201).json(newDeck);
+    // On renvoie la réponse au format JSON avec un statut 201 (Created)
+    return res.status(201).json(newDeck);
   },
 
   /**
@@ -104,17 +128,22 @@ const deckController = {
           return res.status(409).json({ message: 'Vous ne pouvez pas avoir plus de 3 examplaires de la meme carte dans votre deck !' });
         }
       }
+    } else {
+      return res.status(404).json({ message: 'Deck non trouvé !' });
     }
 
-    // Appeler la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
-    const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
+    const total = await deckDataMapper.countSetCodeInDeck(deckId);
+    const setCodeLength = total[0].set_code_length;
 
-    if (!updatedDeck) {
-      res.status(409).json({ message: 'La modification du deck à échoué !' });
+    if (setCodeLength < 75) {
+      // Appeler la méthode updateDeckInDB du data mapper pour effectuer la modification du deck
+      const updatedDeck = await deckDataMapper.updateDeckInDB(deck);
+      if (!updatedDeck) {
+        return res.status(409).json({ message: 'La modification du deck à échoué !' });
+      }
+      res.status(200).json(updatedDeck);
     }
-
-    // Renvoyer la réponse au format JSON avec le deck modifié
-    return res.status(200).json(updatedDeck);
+    return res.status(400).json({ message: 'Vous ne pouvez pas rajouter de cartes, la limite de 75 cartes est atteinte.' });
   },
 
   /**
