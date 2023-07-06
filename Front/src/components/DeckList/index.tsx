@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
+import "./styles.scss";
 
 const DeckList = ({ deck }: { deck: any[] }) => {
+  const dispatch = useDispatch();
   const [cardData, setCardData] = useState<any[]>([]);
   const [filteredMonsters, setFilteredMonsters] = useState<any[]>([]);
   const [filteredSpells, setFilteredSpells] = useState<any[]>([]);
@@ -10,23 +14,25 @@ const DeckList = ({ deck }: { deck: any[] }) => {
   useEffect(() => {
     const fetchCardData = async () => {
       const cardPromises = deck.map((id) =>
-        fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}&language=fr`)
+        fetch(
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}&language=fr`
+        )
           .then((response) => response.json())
           .catch((error) => console.error(error))
       );
-  
+
       const cardsData = await Promise.all(cardPromises);
       const extractedCardData = cardsData.map((cardData) => cardData.data[0]); // Extraction des données réelles des cartes
       setCardData(extractedCardData);
     };
-  
+
     fetchCardData();
   }, [deck]);
 
   useEffect(() => {
     setCardData([]);
   }, [deck]);
-  
+
   useEffect(() => {
     const filteredMonsters = cardData.filter((card) =>
       [
@@ -73,26 +79,43 @@ const DeckList = ({ deck }: { deck: any[] }) => {
     setFilteredExtraDeck(filteredExtraDeck);
   }, [cardData]);
 
+  const handleCardClick = (cardId: number) => {
+    const cardIndex = deck.findIndex((id) => id === cardId);
+    if (cardIndex !== -1) {
+      const updatedDeck = [...deck];
+      updatedDeck.splice(cardIndex, 1);
+      dispatch(setUserDeck(updatedDeck));
+    }
+  };
+
   return (
     <div>
       <h2>Monstres</h2>
       {filteredMonsters.map((card, index) => (
-        <div key={index}>{card.name}</div>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
+          {card.name}
+        </div>
       ))}
 
       <h2>Magies</h2>
       {filteredSpells.map((card, index) => (
-        <div key={index}>{card.name}</div>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
+          {card.name}
+        </div>
       ))}
 
       <h2>Pièges</h2>
       {filteredTraps.map((card, index) => (
-        <div key={index}>{card.name}</div>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
+          {card.name}
+        </div>
       ))}
 
       <h2>Extra Deck</h2>
       {filteredExtraDeck.map((card, index) => (
-        <div key={index}>{card.name}</div>
+        <div className="decklist-item" key={index} onClick={() => handleCardClick(card.id)}>
+          {card.name}
+        </div>
       ))}
     </div>
   );

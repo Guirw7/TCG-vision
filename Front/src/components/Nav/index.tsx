@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearch, clearSearch } from '../SearchResult/searchSlice';
+import { setSearch, clearSearch } from '../SearchResult/searchSlice';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import { sessionChecker } from '../../utils/sessionChecker';
+import { sessionChecker } from '../../utils/sessionChecker';
 import './styles.scss';
 
 export default function Nav() {

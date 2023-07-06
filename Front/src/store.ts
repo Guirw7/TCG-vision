@@ -7,6 +7,7 @@ import searchReducer from './components/SearchResult/searchSlice';
 import loadingReducer from './components/Loading/loadingSlice';
 import libraryReducer from './components/LibraryModal/librarySlice';
 import cardAdditionReducer from './components/CardAdditionModal/cardAdditionSlice';
+import deckReducer from './components/DeckEditorPage/userDeckSlice';
 
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     search: searchReducer,
     loading: loadingReducer,
     libraryModal: libraryReducer,
+    userDeck: deckReducer,
   },
 })
 
