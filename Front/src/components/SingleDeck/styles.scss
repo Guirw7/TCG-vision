@@ -13,6 +13,7 @@
     margin: 1rem 1rem;
     border-radius: 5px;
     box-shadow: v.$box-shadow-2;
+    justify-content: space-between;
 }
 
 .single-deck-title {
@@ -24,4 +25,11 @@
 
 .single-deck-image-container {
     margin-bottom: 1rem;
+}
+
+.single-deck-actions-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
