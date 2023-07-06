@@ -141,7 +141,7 @@ const deckController = {
       if (!updatedDeck) {
         return res.status(409).json({ message: 'La modification du deck à échoué !' });
       }
-      res.status(200).json(updatedDeck);
+      return res.status(200).json(updatedDeck);
     }
     return res.status(400).json({ message: 'Vous ne pouvez pas rajouter de cartes, la limite de 75 cartes est atteinte.' });
   },
