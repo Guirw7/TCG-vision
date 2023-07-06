@@ -36,7 +36,7 @@ export default function App() {
           <Route path="*" element={<ErrorPage />} />
           <Route path="/profil" element={<ProfilePage />} />
           <Route path="/logout"></Route>
-          <Route path="/deckeditor" element={<DeckEditorPage />}/>
+          <Route path="/deck-creator" element={<DeckEditorPage />}/>
         </Routes>
       <Footer />
     </>

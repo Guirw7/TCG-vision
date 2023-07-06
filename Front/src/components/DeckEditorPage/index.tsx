@@ -13,6 +13,8 @@ export default function DeckEditorPage() {
     const userDeck = useSelector((state: any) => state.userDeck.value);
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
+    const [deckName, setDeckName] = useState('');
+    const [deckDescription, setDeckDescription] = useState('');
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -26,8 +28,8 @@ export default function DeckEditorPage() {
     const url = `https://daoust-jason-server.eddi.cloud/private/${route}`;
     axiosRequest('post', url, {
         data: {
-        deck_name: data.deckName,
-        deck_description: data.description,
+        deck_name: deckName,
+        deck_description: deckDescription,
         set_code: userDeck,
         user_id: id
         },
@@ -51,10 +53,16 @@ export default function DeckEditorPage() {
     return (
         <div className='deck_editor-container'>
             <div className='deck_editor-container-background'>
-                <h1 className='deck_editor-title'>Editeur de Deck</h1>
+                <h1 className='deck_editor-title'>Créateur de Deck</h1>
                 <div className='deck_editor-editor'>
                     <div className='deck_editor-name-container'>
-                        <h2 className='deck_editor-name'>Nom du Deck</h2>
+                        {/* <h2 className='deck_editor-name'>{deckName}</h2> */}
+                        <input
+                            value={deckName}
+                            required
+                            onChange={(event) => setDeckName(event.target.value)}
+                            className="deck_editor-name-input"
+                            placeholder="Nom du Deck"/>
                         <div className='deck_editor-actions'>
                             <button onClick={onSubmit} className='deck_editor-actions-button'>Sauvegarder</button>
                         </div>
@@ -76,7 +84,15 @@ export default function DeckEditorPage() {
                             <DeckList deck={userDeck}/>
                         </div>
                         <div className='deck_editor-desc-container'>
-
+                            {/* <p className='deck_editor-desc'>{deckDescription}</p> */}
+                            <textarea
+                                rows={12}
+                                cols={46}
+                                value={deckDescription}
+                                maxLength={200}
+                                onChange={(event) => setDeckDescription(event.target.value)}
+                                className="deck_editor-desc-input"
+                                placeholder="Description du Deck"/>
                         </div>
                     </div>
                     </section>

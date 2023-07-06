@@ -3,10 +3,12 @@ import SingleDeck from '../SingleDeck';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePage() {
   const [decks, setDecks] = useState([]);
   const [user, setUser] = useState<any>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const id = getIDFromToken();
@@ -29,6 +31,7 @@ export default function ProfilePage() {
   }, []); 
 
   const getUserDecks = () => {
+      setDecks([]);
       const id = getIDFromToken();
       const url = `https://daoust-jason-server.eddi.cloud/private/deck/${id}`;
       axiosRequest('get', url, {
@@ -61,9 +64,10 @@ export default function ProfilePage() {
         <div className='profil-body-container'>
 
         <div className='profil-nav'>
-          <button onClick={getUserDecks} className="profil-nav-button" >Decks</button>
-          <button className="profil-nav-button" >Favoris</button>
-          <button className="profil-nav-button" >Paramétre</button>
+          <button onClick={() => navigate('/deck-creator')} className="profil-nav-button" >Créer un Deck</button>
+          <button onClick={getUserDecks} className="profil-nav-button" >Mes Decks</button>
+          <button className="profil-nav-button" >Mes Favoris</button>
+          <button className="profil-nav-button" >Paramétres</button>
         </div>
         <div className='user-content'>
           {decks.map((deck: any) => {

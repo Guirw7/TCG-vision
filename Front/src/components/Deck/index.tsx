@@ -94,14 +94,24 @@ export default function Deck () {
             <LibraryModal />
         )
       }
-        <div className='decks-display'>
-          <button onClick={createDeck}>Créer un deck</button>
-          <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
-          <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
-          <button onClick={testDeCo}>Liste des utilisateurs</button>
-          <DeckDisplayer data = {decks}/>
-          {/* <DeckList decks={decks}/> */}
-        </div>
+        <div className='decks-body'>
+
+          <div className='decks-actions'>
+
+            <button onClick={createDeck}>Créer un deck</button>
+            <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
+            <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
+            <button onClick={testDeCo}>Liste des utilisateurs</button>
+          </div >
+          <div className='decks-display'>
+
+            {decks.map((deck: any) => {
+              return (
+                <SingleDeck key={deck.id} deck={deck}/>
+                )
+              })}
+          </div>
+          </div>
       </div>
     </div>
   )
