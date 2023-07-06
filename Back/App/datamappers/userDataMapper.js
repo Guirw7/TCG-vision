@@ -80,7 +80,17 @@ const userDataMapper = {
       text: 'SELECT username, password FROM "user" WHERE username = $1',
       values: [username],
     };
-    // Exécuter la requête de recherche d'un user par son email
+    // Exécuter la requête de recherche d'un user par son username
+    const result = await client.query(preparedQuery);
+    return result.rows[0];
+  },
+
+  async getByEmail(email) {
+    const preparedQuery = {
+      text: 'SELECT email FROM "user" WHERE email = $1',
+      values: [email],
+    };
+    // Exécuter la requête de recherche d'un user par son username
     const result = await client.query(preparedQuery);
     return result.rows[0];
   },

@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 const sendEmail = require('../middlewares/nodemailer');
-const logger = require('../log');
 
 const { JWT_SECRET } = process.env;
 const { ACCESS_TOKEN_EXPIRATION } = process.env;
@@ -14,7 +13,6 @@ const userDataMapper = require('../datamappers/userDataMapper');
 
 const revokedTokens = require('../middlewares/revokedToken');
 const { removeRevokedTokens } = require('../middlewares/auth');
-
 
 const userController = {
 
@@ -27,6 +25,8 @@ const userController = {
     const saltRounds = 10;
     // On hash le mot de passe avant de le passer à notre objet user
     const passwordHash = await bcrypt.hash(password, saltRounds);
+    const existEmail = await userDataMapper.getByEmail(email);
+    const existUsername = await userDataMapper.getByUsername(username);
 
     // On créer un objet avec les infos que l'utilisateur à envoyer dans le formulaire
     const user = {
@@ -34,7 +34,16 @@ const userController = {
       username,
       password: passwordHash,
     };
-    logger.log(user.email);
+
+    if (existEmail) {
+      res.status(409).json('Email already exist');
+      return;
+    }
+
+    if (existUsername) {
+      res.status(409).json('Username already exist');
+      return;
+    }
 
     const filePath = path.resolve(__dirname, '..', '..', 'nodemailer.html');
     const content = fs.readFileSync(filePath, 'utf8');
