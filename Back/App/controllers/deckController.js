@@ -107,27 +107,7 @@ const deckController = {
     if (deck) {
       deck.deck_name = deck_name || deck.deck_name;
       deck.deck_description = deck_description || deck.deck_description;
-      if (set_code) {
-        // Ajouter les nouveaux éléments de set_code à l'ancien tableau
-        const combinedSetCode = [...deck.set_code, ...set_code];
-
-        // Compter les occurrences des cartes
-        const cardCounts = {};
-        const filteredSetCode = [];
-
-        combinedSetCode.forEach((card) => {
-          if (!cardCounts[card] || cardCounts[card] < 3) {
-            filteredSetCode.push(card);
-            cardCounts[card] = cardCounts[card] ? cardCounts[card] + 1 : 1;
-          }
-        });
-
-        if (filteredSetCode.length > deck.set_code.length) {
-          deck.set_code = filteredSetCode;
-        } else {
-          return res.status(409).json({ message: 'Vous ne pouvez pas avoir plus de 3 examplaires de la meme carte dans votre deck !' });
-        }
-      }
+      deck.set_code = set_code || deck.set_code;
     } else {
       return res.status(404).json({ message: 'Deck non trouvé !' });
     }
