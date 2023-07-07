@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from "../../store";
+// import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
+import { setSingleDeck } from '../SingleDeck/singleDeckSlice';
 
 import './styles.scss';
 
@@ -19,9 +23,8 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
   const [decks, setDecks] = useState([]);
   const [isOpen, setIsOpen] =useState<boolean>(false)
   const navigate = useNavigate()
-
-
-
+  const singleDeck = useSelector((state: RootState) => state.userDeck);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const id = getIDFromToken();
@@ -72,6 +75,13 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
   // si non, nouveau deck
   // lors du submit, si il y avait un id = put, sinon = post
 
+
+  const deckEditor = () => {
+    dispatch(setSingleDeck(deck.id));
+    navigate('/deck-creator');
+    // console.log('deck.id', deck.id);
+  }
+
   return (
     <>
     {
@@ -104,7 +114,7 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
             <button className='single-deck-actions-item'>Voir</button>
         {user.id === deck.user_id && (
             <>
-            <button onClick={() => navigate('/deck-creator')} className='single-deck-actions-item'>Éditer</button>
+            <button onClick={deckEditor} className='single-deck-actions-item'>Éditer</button>
             <button onClick={openConfirmModal} className='single-deck-actions-item'>Supprimer</button>
             </>
         )}

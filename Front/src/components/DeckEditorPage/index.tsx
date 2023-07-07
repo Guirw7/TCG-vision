@@ -6,6 +6,8 @@ import DeckSearchResult from '../DeckSearchResult';
 import DeckList from '../DeckList';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
+import { setUserDeck } from './userDeckSlice';
+import { set } from 'react-hook-form';
 
 
 
@@ -15,12 +17,61 @@ export default function DeckEditorPage() {
     const [input, setInput] = useState('');
     const [deckName, setDeckName] = useState('');
     const [deckDescription, setDeckDescription] = useState('');
+    const singleDeck = useSelector((state: any) => state.singleDeck.value);
+    const [savedDeckId, setSavedDeckId] = useState(null);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         dispatch(setSearch(input));
       };
 
+      useEffect(() => {
+        if (singleDeck) {
+            const route = `decks/${singleDeck}`;
+            const url = `https://daoust-jason-server.eddi.cloud/public/${route}`;
+            
+            axiosRequest('get', url, {
+
+            })
+            .then(response => {
+                console.log(response);
+                setDeckName(response.deck_name);
+                setDeckDescription(response.deck_description);
+                const setCodes = response.set_code.map(code => parseInt(code));
+                console.log(setCodes);
+                dispatch(setUserDeck(setCodes))
+                setSavedDeckId(response.deck_id);
+            })
+            .catch(error => {
+                console.log('Erreur lors de la requête', error);
+            });
+        }
+    }, [singleDeck]);
+
+    const updateDeck = async (data: any) => {
+        const id = getIDFromToken();
+        const route = `deck/${singleDeck}`;
+        const url = `https://daoust-jason-server.eddi.cloud/private/${route}`;
+        axiosRequest('put', url, {
+            data: {
+            deck_name: deckName,
+            deck_description: deckDescription,
+            set_code: userDeck,
+            user_id: id
+            },
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
+            },
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log('Erreur lors de la requête', error);
+            console.log(data);
+        });
+        };
 
     const createDeck = async (data: any) => {
     const id = getIDFromToken();
@@ -47,7 +98,11 @@ export default function DeckEditorPage() {
     };
 
     const onSubmit = (data: any) => {
-        createDeck(data);
+        if (savedDeckId !== null) {
+            updateDeck(data)
+        } else {
+            createDeck(data)
+        };
       };
 
     return (

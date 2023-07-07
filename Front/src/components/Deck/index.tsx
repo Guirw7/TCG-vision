@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from '../LibraryModal/librarySlice';
+import { useNavigate } from 'react-router-dom';
 
 import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
@@ -15,6 +16,7 @@ export default function Deck () {
   const dispatch = useDispatch();
   const [decks, setDecks] = useState([]);
   const [request, setRequest] = useState<string>('');
+  const navigate = useNavigate();
 
   const getAllDecks = async () => {
     setRequest('');
@@ -98,10 +100,9 @@ export default function Deck () {
 
           <div className='decks-actions'>
 
-            <button onClick={createDeck}>Créer un deck</button>
+            <button onClick={() => navigate('/deck-creator')}>Créer un deck</button>
             <button onClick={userRequest} value='getAllDecks'>Tous les decks de la communauté</button>
             <button onClick={userRequest} value='getUserDecks'>Vos decks</button>
-            <button onClick={testDeCo}>Liste des utilisateurs</button>
           </div >
           <div className='decks-display'>
 

@@ -84,10 +84,10 @@ const DeckList: React.FC = () => {
   return (
     <div>
       <h2>Monstres</h2>
-      {filteredMonsters.map((card) => (
+      {filteredMonsters.map((card, index) => (
         <div
           className="decklist-item"
-          key={card.id}
+          key={index}
           onClick={() => handleCardClick(card.id)}
         >
           {card.name}
@@ -95,10 +95,10 @@ const DeckList: React.FC = () => {
       ))}
 
       <h2>Magies</h2>
-      {filteredSpells.map((card) => (
+      {filteredSpells.map((card, index) => (
         <div
           className="decklist-item"
-          key={card.id}
+          key={index}
           onClick={() => handleCardClick(card.id)}
         >
           {card.name}
@@ -106,10 +106,10 @@ const DeckList: React.FC = () => {
       ))}
 
       <h2>Pièges</h2>
-      {filteredTraps.map((card) => (
+      {filteredTraps.map((card, index) => (
         <div
           className="decklist-item"
-          key={card.id}
+          key={index}
           onClick={() => handleCardClick(card.id)}
         >
           {card.name}
@@ -117,10 +117,10 @@ const DeckList: React.FC = () => {
       ))}
 
       <h2>Extra Deck</h2>
-      {filteredExtraDeck.map((card) => (
+      {filteredExtraDeck.map((card, index) => (
         <div
           className="decklist-item"
-          key={card.id}
+          key={index}
           onClick={() => handleCardClick(card.id)}
         >
           {card.name}
