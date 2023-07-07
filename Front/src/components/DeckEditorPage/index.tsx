@@ -19,6 +19,7 @@ export default function DeckEditorPage() {
     const [deckDescription, setDeckDescription] = useState('');
     const singleDeck = useSelector((state: any) => state.singleDeck.value);
     const [savedDeckId, setSavedDeckId] = useState(null);
+    const [pageTitle, setPageTitle] = useState('Créateur de Deck');
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -45,6 +46,11 @@ export default function DeckEditorPage() {
             .catch(error => {
                 console.log('Erreur lors de la requête', error);
             });
+            if (singleDeck) {
+                setPageTitle('Editeur de Deck');
+            } else {
+                setPageTitle('Créateur de Deck');
+            }
         }
     }, [singleDeck]);
 
@@ -108,7 +114,7 @@ export default function DeckEditorPage() {
     return (
         <div className='deck_editor-container'>
             <div className='deck_editor-container-background'>
-                <h1 className='deck_editor-title'>Créateur de Deck</h1>
+                <h1 className='deck_editor-title'>{pageTitle}</h1>
                 <div className='deck_editor-editor'>
                     <div className='deck_editor-name-container'>
                         {/* <h2 className='deck_editor-name'>{deckName}</h2> */}
