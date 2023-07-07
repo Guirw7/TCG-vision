@@ -8,6 +8,7 @@ import loadingReducer from './components/Loading/loadingSlice';
 import libraryReducer from './components/LibraryModal/librarySlice';
 import cardAdditionReducer from './components/CardAdditionModal/cardAdditionSlice';
 import deckReducer from './components/DeckEditorPage/userDeckSlice';
+import singleDeckReducer from './components/SingleDeck/singleDeckSlice';
 
 
 export const store = configureStore({
@@ -20,6 +21,7 @@ export const store = configureStore({
     loading: loadingReducer,
     libraryModal: libraryReducer,
     userDeck: deckReducer,
+    singleDeck: singleDeckReducer,
   },
 })
 
