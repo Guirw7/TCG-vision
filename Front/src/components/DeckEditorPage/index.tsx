@@ -7,6 +7,7 @@ import DeckList from '../DeckList';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { setUserDeck } from './userDeckSlice';
+import { set } from 'react-hook-form';
 
 
 
@@ -17,7 +18,7 @@ export default function DeckEditorPage() {
     const [deckName, setDeckName] = useState('');
     const [deckDescription, setDeckDescription] = useState('');
     const singleDeck = useSelector((state: any) => state.singleDeck.value);
-
+    const [savedDeckId, setSavedDeckId] = useState(null);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -36,7 +37,10 @@ export default function DeckEditorPage() {
                 console.log(response);
                 setDeckName(response.deck_name);
                 setDeckDescription(response.deck_description);
-                dispatch(setUserDeck(response.set_code))
+                const setCodes = response.set_code.map(code => parseInt(code));
+                console.log(setCodes);
+                dispatch(setUserDeck(setCodes))
+                setSavedDeckId(response.deck_id);
             })
             .catch(error => {
                 console.log('Erreur lors de la requête', error);
@@ -65,6 +69,7 @@ export default function DeckEditorPage() {
         })
         .catch(error => {
             console.log('Erreur lors de la requête', error);
+            console.log(data);
         });
         };
 
@@ -93,7 +98,7 @@ export default function DeckEditorPage() {
     };
 
     const onSubmit = (data: any) => {
-        if (singleDeck !== null) {
+        if (savedDeckId !== null) {
             updateDeck(data)
         } else {
             createDeck(data)
