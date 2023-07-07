@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 export default function ProfilePage() {
   const [decks, setDecks] = useState([]);
   const [user, setUser] = useState<any>({});
+  // const [refresh, setRefresh] = useState<boolean>(false)
   const navigate = useNavigate();
 
   useEffect(() => {
+    // setRefresh(false)
     const id = getIDFromToken();
     const url = `https://daoust-jason-server.eddi.cloud/private/profil/${id}`;
     axiosRequest('get', url, {
@@ -47,7 +49,11 @@ export default function ProfilePage() {
       });
   };
 
-
+  const handleDeckDelete = (deletedDeckId : any ) => {
+    // setRefresh(true);
+    console.log(deletedDeckId)
+    getUserDecks()
+  };
 
 
 
@@ -72,7 +78,7 @@ export default function ProfilePage() {
         <div className='user-content'>
           {decks.map((deck: any) => {
             return (
-              <SingleDeck key={deck.id} deck={deck}/>
+              <SingleDeck key={deck.id} deck={deck} onDeckDelete={handleDeckDelete}/>
             )
           })}
         </div>
