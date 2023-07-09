@@ -82,6 +82,12 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
     // console.log('deck.id', deck.id);
   }
 
+  const deckDetail = () => {
+    dispatch(setSingleDeck(deck.id));
+    navigate('/deck-detail');
+    // console.log('deck.id', deck.id);
+  }
+
   return (
     <>
     {
@@ -111,7 +117,7 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
           <p className='single-deck-description'>{deck.deck_description}</p>
         </div>
         <div className='single-deck-actions-container'>
-            <button className='single-deck-actions-item'>Voir</button>
+            <button onClick={deckDetail} className='single-deck-actions-item'>Voir</button>
         {user.id === deck.user_id && (
             <>
             <button onClick={deckEditor} className='single-deck-actions-item'>Éditer</button>
