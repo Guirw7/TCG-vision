@@ -16,6 +16,7 @@ import Loading from "../Loading";
 import DeckPage from "../DeckPage";
 import ProfilePage from "../ProfilePage";
 import DeckEditorPage from "../DeckEditorPage";
+import DeckDetail from "../DeckDetail";
 
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/profil" element={<ProfilePage />} />
           <Route path="/logout"></Route>
           <Route path="/deck-creator" element={<DeckEditorPage />}/>
+          <Route path="/deck-detail" element={<DeckDetail />}/>
         </Routes>
       <Footer />
     </>
