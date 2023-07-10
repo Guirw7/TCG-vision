@@ -18,6 +18,14 @@ const errorHandler = (error, req, res, next) => {
     return res.status(400).json({ status: 'error', message: 'Le champ "deck_name" est obligatoire' });
   }
 
+  if (error.code === '23505' && error.table === 'user' && error.constraint === 'user_username_key') {
+    return res.status(400).json({ status: 'error', message: 'Ce pseudo est déjà utilisé' });
+  }
+
+  if (error.code === '23505' && error.table === 'user' && error.constraint === 'user_email_key') {
+    return res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
+  }
+
   return res.status(500).json({ status: 'error', message: 'Une erreur interne s\'est produite' });
 };
 
