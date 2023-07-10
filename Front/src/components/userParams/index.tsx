@@ -8,7 +8,22 @@ export default function UserParams(user: any) {
     const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
     const [isPasswordOpen, setIsPasswordOpen] = useState<boolean>(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
-    console.log(user)
+
+    const [newUsername, setNewUsername] = useState<string>(user.user.username);
+    const [newEmail, setNewEmail] = useState<string>(user.user.email);
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        console.log(newUsername, newEmail)  
+    }
+
+    const handleChangeUsername = (e: any) => {
+        setNewUsername(e.target.value);
+    }
+      
+    const handleChangeEmail = (e: any) => {
+        setNewEmail(e.target.value);
+    }
 
 
 
@@ -43,11 +58,12 @@ return (
         {isInfoOpen && 
         <>
             <h1>Infos de L'Utilisateur</h1>
-            <form action="">
+            <form onSubmit={handleSubmit}>
             <h2>Changer mon Username</h2>
-            <input type="text" placeholder={user.user.username} defaultValue={user.user.username}/>
+            <input type="text" placeholder={user.user.username} defaultValue={user.user.username} onChange={handleChangeUsername}/>
             <h2>Changer Mon Adresse E-mail</h2>
-            <input type="text" placeholder={user.user.email} defaultValue={user.user.email}/>
+            <input type="text" placeholder={user.user.email} defaultValue={user.user.email} onChange={handleChangeEmail}/>
+            <h2>Sauvegarder les Changements?</h2>
             <button >Confirmer</button>
             </form>
 

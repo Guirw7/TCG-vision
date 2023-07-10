@@ -75,7 +75,7 @@ export default function ProfilePage() {
       <div className='profil-container-background'>
         <h1 className='profil-title'>Votre Profil</h1>
         <div className='user-banner-container'>
-          <img className='profil-picture' src="https://www.shareicon.net/data/2016/07/05/791224_man_512x512.png" alt="" />
+          <img className='profil-picture' src="https://avatarfiles.alphacoders.com/310/thumb-310698.png" alt="" />
           <h2 className='profil-username'>{user.username}</h2>
         </div>
         <div className='profil-body-container'>
