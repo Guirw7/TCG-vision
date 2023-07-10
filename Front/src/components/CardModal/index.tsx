@@ -142,7 +142,7 @@ export default function CardModal() {
             </select>
           </section>
 
-          <div className='card-modal-buttons'>
+          {/* <div className='card-modal-buttons'>
             <div>
               <section className='card-modal-quantity'>
                 <button onClick={decrement} className='card-modal-quantity-decrement'>-</button>
@@ -155,7 +155,7 @@ export default function CardModal() {
             <div className='card-modal-submit-buttons'>
               <button type='submit' onClick={openDeckModal} className='card-modal-submit-button-deck'>Ajouter au Deck</button>
             </div>
-          </div>
+          </div> */}
         </form>
         </article>
         {

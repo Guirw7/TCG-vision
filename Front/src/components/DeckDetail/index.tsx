@@ -8,12 +8,13 @@ import { axiosRequest } from '../../utils/axiosRequest';
 import { set } from 'react-hook-form';
 
 export default function DeckEditorPage() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [deckName, setDeckName] = useState('');
     const [deckDescription, setDeckDescription] = useState('');
     const singleDeck = useSelector((state: any) => state.singleDeck.value);
     const [setCodes, setSetCodes] = useState([]);
     const navigate = useNavigate();
+    const [userCards, setUserCards] = useState<any>([]);
 
       useEffect(() => {
             const route = `decks/${singleDeck}`;
@@ -37,6 +38,30 @@ export default function DeckEditorPage() {
             });
         }, []);
 
+
+        useEffect(() => {
+            const fetchCardData = async () => {
+              const cardPromises = setCodes.map((id) =>
+                fetch(
+                  `https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}&language=fr`
+                )
+                  .then((response) => response.json())
+                  .catch((error) => console.error(error))
+              );
+        
+              const cardsData = await Promise.all(cardPromises);
+              const extractedCardData = cardsData.map((cardData) => cardData.data[0]);
+              setUserCards(extractedCardData);
+            };
+        
+            fetchCardData();
+          }, [setCodes]);
+
+
+
+
+
+
     return (
       <div className='deck_editor-container'>
           <div className='deck_editor-container-background'>
@@ -51,10 +76,10 @@ export default function DeckEditorPage() {
                   <section className='deck_editor-deck-container'>
                   <div className='deck_editor-search-container'>
                       <div className='deck_editor-search-results'>
-                      {setCodes.map((setCode, index) => (
+                      {userCards.map((card, index) => (
                   <article className='card-article' key={index}>
-                    <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${setCode}.jpg`} />
-                    <p className='card-article-name'>{setCode}</p>
+                    <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`} />
+                    <p className='card-article-name'>{card.name}</p>
                   </article>
                 ))}
                       </div>
