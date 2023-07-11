@@ -32,35 +32,6 @@ export default function LibraryModal() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
 
-  /*
-  const createCollection = (data: any) => {
-
-    const route = 'collection';
-    const id = getIDFromToken();
-    console.log(id);
-    const url = `http://daoust-jason-server.eddi.cloud/private/${route}`;
-    axiosRequest('post', url, {
-      data: {
-        collection_name: data.collection_name, // Obligatoire
-        user_id: id,
-        set_code: '', //Facultatif
-        quantity: 0, //Facultatif
-      },
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
-      },
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log('data : ', data);
-      console.log('Erreur lors de la requête', error);
-    });
-  };
-  */
-
   const createDeck = async (data: DeckProps) => {
     const id = getIDFromToken();
     const route = 'deck';
