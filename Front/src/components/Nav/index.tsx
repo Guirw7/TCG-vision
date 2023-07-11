@@ -43,7 +43,7 @@ export default function Nav() {
     <div className="nav-links">
       <a className="nav-links__link" href="/">Accueil</a>
       <a className="nav-links__link" href="/decks">Decks</a>
-      <a className="nav-links__link" href="/collection">Collection</a>
+      <a className="nav-links__link" href="/collections">Collection</a>
       {/* Si l'utilisateur n'est pas connecté */}
       {
         !isConnected && (

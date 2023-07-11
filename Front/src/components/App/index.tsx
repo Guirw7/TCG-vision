@@ -17,6 +17,7 @@ import DeckPage from "../DeckPage";
 import ProfilePage from "../ProfilePage";
 import DeckEditorPage from "../DeckEditorPage";
 import DeckDetail from "../DeckDetail";
+import CollectionPage from "../CollectionPage";
 
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/logout"></Route>
           <Route path="/deck-creator" element={<DeckEditorPage />}/>
           <Route path="/deck-detail" element={<DeckDetail />}/>
+          <Route path="/collections" element={<CollectionPage />}/>
         </Routes>
       <Footer />
     </>
