@@ -9,7 +9,7 @@ import libraryReducer from './components/LibraryModal/librarySlice';
 import cardAdditionReducer from './components/CardAdditionModal/cardAdditionSlice';
 import deckReducer from './components/DeckEditorPage/userDeckSlice';
 import singleDeckReducer from './components/SingleDeck/singleDeckSlice';
-
+import singleCollectionReducer from './components/SingleCollection/singleCollectionSlice';
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +22,7 @@ export const store = configureStore({
     libraryModal: libraryReducer,
     userDeck: deckReducer,
     singleDeck: singleDeckReducer,
+    singleCollection: singleCollectionReducer,
   },
 })
 

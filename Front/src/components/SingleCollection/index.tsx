@@ -1,5 +1,19 @@
+import { setSingleCollection } from '../SingleCollection/singleCollectionSlice';
+import { RootState } from "../../store";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+
+
+
 export default function SingleCollection(collection: any) {
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const viewCollection = (event: any) => {
+      dispatch(setSingleCollection(collection.collection.id))
+      navigate('/collection');
+  };
     
     return(
         <div className='single-deck-container'>
@@ -8,16 +22,9 @@ export default function SingleCollection(collection: any) {
           <img src="https://images.ygoprodeck.com/images/cards_cropped/89631139.jpg" alt="" />
         </div>
         <div className='single-deck-description-container'>
-          {/* <p className='single-deck-description'>{collection.deck_description}</p> */}
         </div>
         <div className='single-deck-actions-container'>
-            <button className='single-deck-actions-item'>Voir</button>
-        {/* {user.id === collection.user_id && (
-            <>
-            <button onClick={deckEditor} className='single-deck-actions-item'>Éditer</button>
-            <button onClick={openConfirmModal} className='single-deck-actions-item'>Supprimer</button>
-            </>
-        )} */}
+            <button onClick={viewCollection} className='single-deck-actions-item'>Voir</button>
         </div>
       </div>
     )
