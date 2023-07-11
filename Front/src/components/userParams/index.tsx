@@ -66,7 +66,6 @@ return (
             <h2>Sauvegarder les Changements?</h2>
             <button >Confirmer</button>
             </form>
-
         </>
             }
         {isPasswordOpen && <h1>Infos de Mot de Passe</h1>}
