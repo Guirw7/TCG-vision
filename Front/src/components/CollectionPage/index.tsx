@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from '../../store';
 
-import Collection from "../Collection"
+import Collection from "../Collections"
 import CardModal from "../CardModal"
 
 export default function CollectionPage() {
