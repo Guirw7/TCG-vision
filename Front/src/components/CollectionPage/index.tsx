@@ -11,14 +11,12 @@ export default function CollectionPage() {
 
 
     return (
-        <div className='game-container'>
-          <div className="game-container-background">
-            <h1 className="game-title">Collection</h1>
+          <>
             <Collection />
             {
               (modal && <CardModal/>)
             }
-          </div>
-        </div>
+
+          </>
       )
     };

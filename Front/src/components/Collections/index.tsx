@@ -44,10 +44,11 @@ export default function Collection() {
           <div className='decks-display'>
             {collections.map((collection: any) => (
               <SingleCollection key={collection.id} collection={collection} />
-            ))}
+              ))}
           </div>
+              
           </div>
-      </div>
-    </div>
+       </div>
+     </div>
   )
 };
