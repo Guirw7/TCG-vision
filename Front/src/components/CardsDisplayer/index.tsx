@@ -11,7 +11,7 @@ export default function CardDisplayer() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<any>(null);
  
-  const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=magicien';
+  const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr&fname=despia';
   useEffect(() => {
     axiosRequest('get', url)
     .then(data => {

@@ -4,10 +4,14 @@ import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserParams from '../userParams';
+import { set } from 'react-hook-form';
 
 export default function ProfilePage() {
   const [decks, setDecks] = useState([]);
   const [user, setUser] = useState<any>({});
+  const [isParamsOpen, setIsParamsOpen] = useState<boolean>(false);
+  const [isDeckOpen, setIsDeckOpen] = useState<boolean>(false);
   // const [refresh, setRefresh] = useState<boolean>(false)
   const navigate = useNavigate();
 
@@ -30,10 +34,12 @@ export default function ProfilePage() {
 
 
 
-  }, []); 
+  }, [isParamsOpen]); 
 
   const getUserDecks = () => {
       setDecks([]);
+      setIsDeckOpen(true);
+      setIsParamsOpen(false);
       const id = getIDFromToken();
       const url = `https://daoust-jason-server.eddi.cloud/private/deck/${id}`;
       axiosRequest('get', url, {
@@ -55,6 +61,11 @@ export default function ProfilePage() {
     getUserDecks()
   };
 
+  const handleParamsOpen = () => {
+    setIsParamsOpen(true);
+    setIsDeckOpen(false);
+  }
+
 
 
 
@@ -64,7 +75,7 @@ export default function ProfilePage() {
       <div className='profil-container-background'>
         <h1 className='profil-title'>Votre Profil</h1>
         <div className='user-banner-container'>
-          <img className='profil-picture' src="https://www.shareicon.net/data/2016/07/05/791224_man_512x512.png" alt="" />
+          <img className='profil-picture' src="https://avatarfiles.alphacoders.com/310/thumb-310698.png" alt="" />
           <h2 className='profil-username'>{user.username}</h2>
         </div>
         <div className='profil-body-container'>
@@ -73,14 +84,13 @@ export default function ProfilePage() {
           <button onClick={() => navigate('/deck-creator')} className="profil-nav-button" >Créer un Deck</button>
           <button onClick={getUserDecks} className="profil-nav-button" >Mes Decks</button>
           <button className="profil-nav-button" >Mes Favoris</button>
-          <button className="profil-nav-button" >Paramétres</button>
+          <button onClick={handleParamsOpen} className="profil-nav-button" >Paramétres</button>
         </div>
         <div className='user-content'>
-          {decks.map((deck: any) => {
-            return (
-              <SingleDeck key={deck.id} deck={deck} onDeckDelete={handleDeckDelete}/>
-            )
-          })}
+            {isDeckOpen && decks.map((deck: any) => (
+              <SingleDeck key={deck.id} deck={deck} onDeckDelete={handleDeckDelete} />
+            ))}
+            {isParamsOpen && <UserParams user={user}/>}
         </div>
         </div>
       </div>
