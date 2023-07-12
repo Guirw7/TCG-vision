@@ -34,7 +34,6 @@ export default function Collection() {
   }
   const closeCollectionCreationModal = () => {
     setIsModalOpen(false);
-    console.log(newCollectionName);
   }
 
   const saveNewCollection = () => {
