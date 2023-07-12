@@ -6,6 +6,7 @@ import CardModal from '../CardModal';
 import { RootState } from '../../store';
 import CollectionRow from '../CollectionRow';
 import { axiosRequest } from '../../utils/axiosRequest';
+import { set } from 'react-hook-form';
 // import { getIDFromToken } from '../../utils/getIDFromToken';
 
 
@@ -19,10 +20,13 @@ export default function CollectionEditorPage() {
 
   const [userCollection, setUserCollection] = useState<any>(null)
   const modal = useSelector((state: RootState) => state.cardModal.value);
+  const [collectionID, setCollectionID] = useState<any>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
 
   useEffect(() => {
-    // const id = getIDFromToken();
+    setRefresh(false);
+
 
     if (singleCollection) {
         const route = `collection/${singleCollection}`;
@@ -34,14 +38,15 @@ export default function CollectionEditorPage() {
             },
           })
         .then(response => {
-            // console.log(response);
+            console.log(response);
             setUserCollection(response);
+            setCollectionID(response.id);
         })
         .catch(error => {
             console.log('Erreur lors de la requête', error);
         });
     }
-}, [modal]);
+}, [modal, refresh]);
 
 
 
@@ -49,8 +54,7 @@ export default function CollectionEditorPage() {
     event.preventDefault();
     dispatch(setSearch(input));
   };
-
-  
+ 
 
   return (
     <div className="deck_editor-container">
@@ -64,8 +68,8 @@ export default function CollectionEditorPage() {
               <div className="collection-list">
 
                 {userCollection && (
-                  userCollection.set_code.map((code: any, index: number) => (
-                    <CollectionRow key={index} set_code={code}/>
+                  userCollection.set_code.map((code: any, index: number, userCollection: any) => (
+                    <CollectionRow key={index} set_code={code} collectionID={collectionID} userCollection={userCollection} setRefresh={setRefresh}/>
                   )))}
 
               </div>
