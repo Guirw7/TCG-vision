@@ -207,7 +207,7 @@ export default function CardModal() {
               <option value="">Sélectionnez une extension</option>
               {cardData.card_sets.map((extension: any, index: number) => {
                 return (
-                  <option key= {index} value={extension.set_code}>{extension.set_name}---{extension.set_code}</option>
+                  <option key= {index} value={extension.set_code}>{extension.set_code} | {extension.set_name} | {extension.set_rarity}</option>
                 )
               })}
             </select>

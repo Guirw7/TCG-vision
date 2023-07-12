@@ -12,11 +12,11 @@ export default function ProfilePage() {
   const [user, setUser] = useState<any>({});
   const [isParamsOpen, setIsParamsOpen] = useState<boolean>(false);
   const [isDeckOpen, setIsDeckOpen] = useState<boolean>(false);
-  // const [refresh, setRefresh] = useState<boolean>(false)
+  const [refresh, setRefresh] = useState<boolean>(false)
   const navigate = useNavigate();
 
   useEffect(() => {
-    // setRefresh(false)
+    setRefresh(false)
     const id = getIDFromToken();
     const url = `https://daoust-jason-server.eddi.cloud/private/profil/${id}`;
     axiosRequest('get', url, {
@@ -25,7 +25,7 @@ export default function ProfilePage() {
       },
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
       setUser(data);
     })
     .catch(error => {
@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
 
 
-  }, [isParamsOpen]); 
+  }, [isParamsOpen, refresh]); 
 
   const getUserDecks = () => {
       setDecks([]);
@@ -90,7 +90,7 @@ export default function ProfilePage() {
             {isDeckOpen && decks.map((deck: any) => (
               <SingleDeck key={deck.id} deck={deck} onDeckDelete={handleDeckDelete} />
             ))}
-            {isParamsOpen && <UserParams user={user}/>}
+            {isParamsOpen && <UserParams user={user} setRefresh={setRefresh} />}
         </div>
         </div>
       </div>

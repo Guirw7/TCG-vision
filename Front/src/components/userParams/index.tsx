@@ -1,20 +1,41 @@
 import { useEffect, useState } from 'react';
-// import { axiosRequest } from '../../utils/axiosRequest';
-// import { getIDFromToken } from '../../utils/getIDFromToken';
+import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss'
 
-export default function UserParams(user: any) {
+export default function UserParams({user, setRefresh}: any) {
 
     const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
     const [isPasswordOpen, setIsPasswordOpen] = useState<boolean>(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
 
-    const [newUsername, setNewUsername] = useState<string>(user.user.username);
-    const [newEmail, setNewEmail] = useState<string>(user.user.email);
+    const [newUsername, setNewUsername] = useState<string>(user.username);
+    const [newEmail, setNewEmail] = useState<string>(user.email);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(newUsername, newEmail)  
+        if (newUsername !== user.username || newEmail !== user.email) {
+            const url = `https://daoust-jason-server.eddi.cloud/private/profil/${user.id}`;
+            axiosRequest('put', url, {
+                data: {
+                    username: newUsername,
+                    email: newEmail
+                    },
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
+                    },
+              })
+              .then(data => {
+                // console.log(data);
+            })
+            .catch(error => {
+                console.log('Erreur lors de la requête', error);
+            });
+        }
+        setRefresh(true);
+
+
+        // console.log(newUsername, newEmail, user);
     }
 
     const handleChangeUsername = (e: any) => {
@@ -60,9 +81,9 @@ return (
             <h1>Infos de L'Utilisateur</h1>
             <form onSubmit={handleSubmit}>
             <h2>Changer mon Username</h2>
-            <input type="text" placeholder={user.user.username} defaultValue={user.user.username} onChange={handleChangeUsername}/>
+            <input type="text" placeholder={user.username} defaultValue={user.username} onChange={handleChangeUsername}/>
             <h2>Changer Mon Adresse E-mail</h2>
-            <input type="text" placeholder={user.user.email} defaultValue={user.user.email} onChange={handleChangeEmail}/>
+            <input type="text" placeholder={user.email} defaultValue={user.email} onChange={handleChangeEmail}/>
             <h2>Sauvegarder les Changements?</h2>
             <button >Confirmer</button>
             </form>
