@@ -99,6 +99,33 @@ const collectionController = {
   },
 
   /**
+   * Fonction pour retirer une carte d'une collection dans la base de données.
+   */
+  async deleteSetCodeToCollection(req, res) {
+    const collectionId = parseInt(req.params.id, 10);
+
+    // On récupère les informations envoyées par l'utilisateur pour la modification de la collection
+    const { set_code } = req.body;
+
+    // On appelle la méthode getOneCollection du data mapper pour récupérer la collection existante
+    const collection = await collectionDataMapper.getOneCollection(collectionId);
+
+    if (collection) {
+      // On met à jour les propriétés de la collection
+      collection.set_code = set_code || collection.set_code;
+
+      // On appelle la méthode deleteSetCodeToCollection du data mapper pour effectuer la modification de la collection
+      const updatedCollection = await collectionDataMapper.deleteSetCodeToCollection(collection);
+
+      // On renvoie la réponse au format JSON avec la collection modifiée
+      res.status(200).json(updatedCollection);
+    } else {
+      // Si la collection n'existe pas, renvoyer une réponse d'erreur appropriée
+      res.status(404).json({ message: "La collection spécifiée n'existe pas." });
+    }
+  },
+
+  /**
    * Fonction pour delete une collection.
    */
   async deleteCollection(req, res) {

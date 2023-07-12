@@ -48,6 +48,18 @@ const collectionDataMapper = {
   },
 
   /**
+   * Requête SQL pour retirer un set_code d'une collection dans la base de données en utilisant une requête préparée.
+   */
+  async deleteSetCodeToCollection(collection) {
+    const preparedQuery = {
+      text: 'UPDATE "collection" SET set_code = $1 WHERE id = $2 RETURNING *',
+      values: [collection.set_code, collection.id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows[0];
+  },
+
+  /**
    * Requête SQL pour delete une collection dans la base de données.
    */
   async deleteCollection(id) {
