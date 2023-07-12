@@ -10,8 +10,10 @@ export default function Collection() {
   const [collections, setCollections] = useState<any>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [newCollectionName, setNewCollectionName] = useState<any>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
   
   useEffect(() => {
+    setRefresh(false);
     const id = getIDFromToken();
     const url = `https://daoust-jason-server.eddi.cloud/private/collection/collection/${id}`;
     axiosRequest('get', url, {
@@ -27,7 +29,7 @@ export default function Collection() {
     .catch(error => {
       console.log('Erreur lors de la requête', error);
     });
-}, [isModalOpen]);
+}, [isModalOpen, refresh]);
 
   const openCollectionCreationModal = () => {
     setIsModalOpen(true);
@@ -92,7 +94,7 @@ export default function Collection() {
           </div >
           <div className='decks-display'>
             {collections.map((collection: any) => (
-              <SingleCollection key={collection.id} collection={collection} />
+              <SingleCollection key={collection.id} collection={collection} setRefresh={setRefresh} />
               ))}
           </div>
               
