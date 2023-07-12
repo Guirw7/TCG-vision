@@ -40,7 +40,7 @@ export default function DeckDisplayer(data: any) {
             <h2 className='deck-name'>{selectedDeck.deck_name}</h2>
             <p className='deck-description'> {selectedDeck.deck_description}</p>
             {selectedDeck.set_code && (
-              <DeckList deck={selectedDeck.set_code} />
+              <DeckList/>
           )}
           </>
         )

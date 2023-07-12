@@ -76,7 +76,7 @@ export default function DeckEditorPage() {
                   <section className='deck_editor-deck-container'>
                   <div className='deck_editor-search-container'>
                       <div className='deck_editor-search-results'>
-                      {userCards.map((card, index) => (
+                      {userCards.map((card:any, index:number) => (
                   <article className='card-article' key={index}>
                     <img className='card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`} />
                     <p className='card-article-name'>{card.name}</p>
