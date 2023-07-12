@@ -79,9 +79,9 @@ export default function CollectionEditorPage() {
                     Rechercher
                   </button>
                 </form>
+                <CollectionSearchResults />
               </div>
               <div>
-                <CollectionSearchResults />
               </div>
             </div>
           </section>

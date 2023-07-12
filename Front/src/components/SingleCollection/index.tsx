@@ -17,7 +17,7 @@ export default function SingleCollection(collection: any) {
     
     return(
         <div className='single-deck-container'>
-        <h1 className='single-deck-title'>{collection.collection_name}</h1>
+        <h1 className='single-deck-title'>{collection.collection.collection_name}</h1>
         <div className='single-deck-image-container'>
           <img src="https://images.ygoprodeck.com/images/cards_cropped/89631139.jpg" alt="" />
         </div>
