@@ -38,7 +38,7 @@ export default function CollectionRow ({set_code, collectionID, userCollection, 
         const id = getIDFromToken();
         const route = `collection/${collectionID}`;
         const url = `https://daoust-jason-server.eddi.cloud/private/${route}`;
-        axiosRequest('put', url, {
+        axiosRequest('patch', url, {
             data: {
             set_code: data,
             },
