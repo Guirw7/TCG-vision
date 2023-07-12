@@ -17,7 +17,9 @@ export default function CollectionEditorPage() {
   const [input, setInput] = useState('');
   const singleCollection = useSelector((state: any) => state.singleCollection.value);
 
-  const [userCollection, setUserCollection] = useState([])
+  const [userCollection, setUserCollection] = useState<any>(null)
+  const modal = useSelector((state: RootState) => state.cardModal.value);
+
 
   useEffect(() => {
     // const id = getIDFromToken();
@@ -32,14 +34,15 @@ export default function CollectionEditorPage() {
             },
           })
         .then(response => {
-            console.log(response);
-            // setUserCollection(response);
+            // console.log(response);
+            setUserCollection(response);
         })
         .catch(error => {
             console.log('Erreur lors de la requête', error);
         });
     }
-}, [singleCollection]);
+}, [modal]);
+
 
 
   const handleSubmit = (event: any) => {
@@ -47,7 +50,7 @@ export default function CollectionEditorPage() {
     dispatch(setSearch(input));
   };
 
-  const modal = useSelector((state: RootState) => state.cardModal.value);
+  
 
   return (
     <div className="deck_editor-container">
@@ -58,9 +61,15 @@ export default function CollectionEditorPage() {
           <section className="deck_editor-deck-container">
             <div className="deck_editor-search-container">
               <div className="deck_editor-search-bar"></div>
-              <div className="deck_editor-search-results">
-                <CollectionRow />
+              <div className="collection-list">
+
+                {userCollection && (
+                  userCollection.set_code.map((code: any, index: number) => (
+                    <CollectionRow key={index} set_code={code}/>
+                  )))}
+
               </div>
+
             </div>
             <div className="deck_editor-details-container">
               <div className="deck_editor-list-container">

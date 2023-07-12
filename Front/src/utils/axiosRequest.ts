@@ -21,7 +21,7 @@ export const axiosRequest = (method: string, url: string, options: { data?: obje
     headers: options.headers,
   })
   .then ((response) => {
-    console.log('réponse : ', response);
+    // console.log('réponse : ', response);
     // console.log('data : ', response.data);
     return response.data;
    })

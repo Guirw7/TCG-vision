@@ -21,7 +21,7 @@ export default function Collection() {
     })
     .then(data => {
       setCollections(data);
-      console.log(collections);
+      // console.log(collections);
 
     })
     .catch(error => {
@@ -50,7 +50,7 @@ export default function Collection() {
       }
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
       setIsModalOpen(false);
     })
     .catch(error => {
