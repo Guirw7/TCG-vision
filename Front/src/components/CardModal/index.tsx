@@ -133,7 +133,8 @@ export default function CardModal() {
           },
       })
         .then(data => {
-            console.log(data);
+            // console.log(data);
+            closeModalFunction();
         })
         .catch(error => {
             console.log('Erreur lors de la requête', error);

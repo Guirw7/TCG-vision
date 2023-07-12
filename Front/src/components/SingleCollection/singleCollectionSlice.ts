@@ -11,7 +11,7 @@ const singleCollectionSlice = createSlice({
   reducers: {
     setSingleCollection : (state, action) => {
       state.value = action.payload;
-      console.log(state.value);
+      // console.log(state.value);
     },
     clearSingleCollection : (state) => {
       state.value = null;
