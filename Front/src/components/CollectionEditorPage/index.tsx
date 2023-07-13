@@ -6,7 +6,8 @@ import CardModal from '../CardModal';
 import { RootState } from '../../store';
 import CollectionRow from '../CollectionRow';
 import { axiosRequest } from '../../utils/axiosRequest';
-import { set } from 'react-hook-form';
+import { onRefreshRedux, offRefreshRedux } from '../CardModal/refreshSlice';
+
 // import { getIDFromToken } from '../../utils/getIDFromToken';
 
 
@@ -17,6 +18,7 @@ export default function CollectionEditorPage() {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
   const singleCollection = useSelector((state: any) => state.singleCollection.value);
+  const refreshRedux = useSelector((state: any) => state.refreshRedux.value);
 
   const [userCollection, setUserCollection] = useState<any>(null)
   const modal = useSelector((state: RootState) => state.cardModal.value);
@@ -26,6 +28,7 @@ export default function CollectionEditorPage() {
 
   useEffect(() => {
     setRefresh(false);
+    dispatch(offRefreshRedux());
 
 
     if (singleCollection) {
@@ -46,7 +49,7 @@ export default function CollectionEditorPage() {
             console.log('Erreur lors de la requête', error);
         });
     }
-}, [modal, refresh]);
+}, [modal, refresh, refreshRedux]);
 
 
 

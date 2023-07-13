@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { closeModal, clearCardID } from './modalSlice';
-import { openCardAdditionModal } from '../CardAdditionModal/cardAdditionSlice';
+import { onRefreshRedux, offRefreshRedux } from './refreshSlice';
+import refreshSlice from './refreshSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
-import { addCardToDeck } from '../../utils/addCardToLibrary';
 import CardAdditionModal from '../CardAdditionModal';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import './styles.scss';
@@ -30,6 +29,7 @@ export default function CardModal() {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [collections, setCollections] = useState<any>([]);
   const [selectedCollection, setSelectedCollection] = useState<any>(null);
+  const refreshRedux = useSelector((state: any) => state.refreshRedux.value);
   
 
   useEffect(() => {
@@ -118,8 +118,10 @@ export default function CardModal() {
   const addCardToCollection = (event: any) => {
     event.preventDefault();
     let array = [selectedExtension];
-    console.log(parseInt(selectedCollection), counter, array);
+    // console.log(parseInt(selectedCollection), counter, array);
     for (let i = 0; i < counter; i++) {
+      dispatch(offRefreshRedux());
+
       const id = getIDFromToken();
       const url = `https://daoust-jason-server.eddi.cloud/private/collection/${parseInt(selectedCollection)}`;
       axiosRequest('put', url, {
@@ -133,12 +135,14 @@ export default function CardModal() {
           },
       })
         .then(data => {
-            // console.log(data);
-            closeModalFunction();
+          console.log(refreshRedux)
+          closeModalFunction();
         })
         .catch(error => {
-            console.log('Erreur lors de la requête', error);
+          console.log('Erreur lors de la requête', error);
         });
+      dispatch(onRefreshRedux());
+
         };
   }
   

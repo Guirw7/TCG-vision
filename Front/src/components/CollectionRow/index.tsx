@@ -21,21 +21,23 @@ export default function CollectionRow ({set_code, collectionID, userCollection, 
       .catch(error => {
         console.log('Erreur lors de la requête', error);
       });
-    }, [newCollection]);
+    }, [userCollection]);
   
     const handleDelete = () => {
         const index = newCollection.indexOf(set_code);
+        // console.log(index);
             if (index !== -1) {
                 const updatedCollection = [...newCollection];
+                // console.log(updatedCollection);
                 updatedCollection.splice(index, 1);
                 setNewCollection(updatedCollection);
-                updateCollection(newCollection);
+                updateCollection(updatedCollection);
+                
                 setRefresh(true);
             }
     }
 
     const updateCollection = async (data: string[]) => {
-        const id = getIDFromToken();
         const route = `collection/${collectionID}`;
         const url = `https://daoust-jason-server.eddi.cloud/private/${route}`;
         axiosRequest('patch', url, {
@@ -49,6 +51,7 @@ export default function CollectionRow ({set_code, collectionID, userCollection, 
         })
         .then(data => {
             console.log(data);
+            
         })
         .catch(error => {
             console.log('Erreur lors de la requête', error);

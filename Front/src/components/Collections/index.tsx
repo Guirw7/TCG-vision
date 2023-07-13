@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import SingleCollection from '../SingleCollection';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
+import { onRefreshRedux, offRefreshRedux } from '../CardModal/refreshSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import './styles.scss';
 
@@ -11,9 +14,12 @@ export default function Collection() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [newCollectionName, setNewCollectionName] = useState<any>(null);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const refreshRedux = useSelector((state: any) => state.refreshRedux.value);
+  const dispatch = useDispatch();
   
   useEffect(() => {
     setRefresh(false);
+    dispatch(offRefreshRedux());
     const id = getIDFromToken();
     const url = `https://daoust-jason-server.eddi.cloud/private/collection/collection/${id}`;
     axiosRequest('get', url, {
@@ -29,7 +35,7 @@ export default function Collection() {
     .catch(error => {
       console.log('Erreur lors de la requête', error);
     });
-}, [isModalOpen, refresh]);
+}, [isModalOpen, refresh, refreshRedux]);
 
   const openCollectionCreationModal = () => {
     setIsModalOpen(true);
