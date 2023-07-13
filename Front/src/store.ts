@@ -10,6 +10,7 @@ import cardAdditionReducer from './components/CardAdditionModal/cardAdditionSlic
 import deckReducer from './components/DeckEditorPage/userDeckSlice';
 import singleDeckReducer from './components/SingleDeck/singleDeckSlice';
 import singleCollectionReducer from './components/SingleCollection/singleCollectionSlice';
+import refreshReducer from './components/CardModal/refreshSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     userDeck: deckReducer,
     singleDeck: singleDeckReducer,
     singleCollection: singleCollectionReducer,
+    refreshRedux: refreshReducer,
   },
 })
 
