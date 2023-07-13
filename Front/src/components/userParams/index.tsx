@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { axiosRequest } from '../../utils/axiosRequest';
 import './styles.scss';
-import { set } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserParams({ user, setRefresh }: any) {
   const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
@@ -14,6 +14,8 @@ export default function UserParams({ user, setRefresh }: any) {
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [confirmMessage, setConfirmMessage] = useState<boolean>(false);
+  const [passwordCheck, setPasswordCheck] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -101,6 +103,7 @@ export default function UserParams({ user, setRefresh }: any) {
     setIsPasswordOpen(false);
     setIsDeleteOpen(false);
     setConfirmMessage(false);
+    setPasswordCheck(false);
   };
 
   const handlePasswordOpen = () => {
@@ -108,6 +111,8 @@ export default function UserParams({ user, setRefresh }: any) {
     setIsPasswordOpen(true);
     setIsDeleteOpen(false);
     setConfirmMessage(false);
+    setPasswordCheck(false);
+
   };
 
   const handleDeleteOpen = () => {
@@ -115,7 +120,45 @@ export default function UserParams({ user, setRefresh }: any) {
     setIsPasswordOpen(false);
     setIsDeleteOpen(true);
     setConfirmMessage(false);
+    setPasswordCheck(false);
+
   };
+
+  const passwordChecker = (e: any) => {
+    e.preventDefault();
+    console.log(currentPassword, newPassword, confirmPassword);
+    axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/public/user/login', {
+      data: {
+        username: user.username,
+        password: currentPassword,
+      },
+    })
+      .then(data => {
+        setPasswordCheck(true);
+      })
+      .catch(error => {
+        console.log('Erreur lors de la requête', error);
+        setConfirmMessage(false);
+      });
+  };
+
+  const deleteUserAccount = () => {
+    const url = `https://daoust-jason-server.eddi.cloud/private/profil/${user.id}`;
+    axiosRequest('delete', url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('jwt')}`
+      }
+    })
+      .then(data => {
+        // console.log(data);
+        sessionStorage.removeItem('jwt');
+        navigate('/');
+      })
+      .catch(error => {
+        console.log('Erreur lors de la requête', error);
+      });
+  }
 
   return (
     <div className='userParams'>
@@ -178,7 +221,28 @@ export default function UserParams({ user, setRefresh }: any) {
             </form>
           </>
         )}
-        {isDeleteOpen && <h1>Partir</h1>}
+        {isDeleteOpen && (
+          <>
+          <h1>Supprimer mon compte</h1>
+          <h2>Pour continuer entrez votre mot de passe</h2>
+          <form onSubmit={passwordChecker}>
+            <input
+                  type='password'
+                  placeholder='Mot de passe actuel'
+                  value={currentPassword}
+                  onChange={handleChangeCurrentPassword}
+                  />
+            <button type="submit">Confirmer</button>
+          </form>
+          </>
+        )}
+        {passwordCheck && (
+          <>
+          <h2>Cliquez sur confirmer pour supprimmer votre compte</h2>
+          <p>Attention, ce changement est irreversible!</p>
+          <button onClick={deleteUserAccount}>Supprimmer</button>
+          </>
+        )}
       </div>
       {confirmMessage && newPassword === confirmPassword && (
         <p>Les changements ont été sauvegardés</p>
