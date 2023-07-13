@@ -7,7 +7,6 @@ import DeckList from '../DeckList';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { setUserDeck } from './userDeckSlice';
-import { set } from 'react-hook-form';
 
 
 
@@ -38,7 +37,7 @@ export default function DeckEditorPage() {
                 console.log(response);
                 setDeckName(response.deck_name);
                 setDeckDescription(response.deck_description);
-                const setCodes = response.set_code.map(code => parseInt(code));
+                const setCodes = response.set_code.map((code: any) => parseInt(code));
                 console.log(setCodes);
                 dispatch(setUserDeck(setCodes))
                 setSavedDeckId(response.deck_id);
@@ -142,7 +141,7 @@ export default function DeckEditorPage() {
                     </div>
                     <div className='deck_editor-details-container'>
                         <div className='deck_editor-list-container'>
-                            <DeckList deck={userDeck}/>
+                            <DeckList/>
                         </div>
                         <div className='deck_editor-desc-container'>
                             {/* <p className='deck_editor-desc'>{deckDescription}</p> */}
