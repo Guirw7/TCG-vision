@@ -107,8 +107,8 @@ const userController = {
     const id = Number(req.params.id);
     const user = await userDataMapper.getOneProfil(id);
     if (user) {
-      const result = await userDataMapper.deleteUser(user);
-      res.status(200).json(result);
+      await userDataMapper.deleteUser(user);
+      res.status(200).json({ message: 'Votre compte à bien été supprimer !' });
     }
   },
 

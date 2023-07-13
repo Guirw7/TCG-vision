@@ -55,13 +55,13 @@ const userDataMapper = {
   async deleteUser(user) {
     // Mettre à jour les clés étrangères sur NULL dans la table "collection"
     const updateQuery = {
-      text: 'UPDATE collection SET user_id = NULL WHERE user_id = $1',
+      text: 'DELETE FROM "collection" WHERE "user_id" = $1',
       values: [user.id],
     };
     await client.query(updateQuery);
     // Mettre à jour les clés étrangères sur NULL dans la table "deck"
     const updateQuery2 = {
-      text: 'UPDATE deck SET user_id = NULL WHERE user_id = $1',
+      text: 'DELETE FROM "deck" WHERE "user_id" = $1',
       values: [user.id],
     };
     await client.query(updateQuery2);
