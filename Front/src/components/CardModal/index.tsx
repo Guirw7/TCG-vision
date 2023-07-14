@@ -6,7 +6,7 @@ import refreshSlice from './refreshSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
 import CardAdditionModal from '../CardAdditionModal';
 import { getIDFromToken } from '../../utils/getIDFromToken';
-import './styles.scss';
+// import './styles.scss';
 
 
 export interface ExtensionProps {

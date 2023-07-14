@@ -6,7 +6,7 @@ import { setLoadingOff, setLoadingOn } from '../Loading/loadingSlice';
 import Loading from '../Loading';
 import CardModal from '../CardModal';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 export default function SearchResult () {
   const [isError, setIsError] = useState<boolean>(false);

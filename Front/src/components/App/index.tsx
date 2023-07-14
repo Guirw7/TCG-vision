@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
+import './style-main.scss';
 
 
 import Header from '../Header';

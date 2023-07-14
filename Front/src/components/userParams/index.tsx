@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 
 export default function UserParams({ user, setRefresh }: any) {

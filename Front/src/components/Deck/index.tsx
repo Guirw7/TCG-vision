@@ -7,7 +7,7 @@ import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
 import SingleDeck from '../SingleDeck';
-import './styles.scss';
+// import './styles.scss';
 
 export default function Deck() {
   const modal = useSelector((state: any) => state.libraryModal.value);

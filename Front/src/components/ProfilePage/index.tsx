@@ -1,4 +1,4 @@
-import './styles.scss';
+// import './styles.scss';
 import SingleDeck from '../SingleDeck';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';

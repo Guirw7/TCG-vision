@@ -4,7 +4,7 @@ import { setLoadingOff, setLoadingOn } from '../Loading/loadingSlice';
 import { setUserDeck, clearUserDeck } from '../DeckEditorPage/userDeckSlice';
 import Loading from '../Loading';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 export default function SearchResult () {
   const [isError, setIsError] = useState<boolean>(false);

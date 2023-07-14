@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import "./styles.scss";
+// import "./styles.scss";
 import config from '../../../config.json';
 
 interface ContactData {

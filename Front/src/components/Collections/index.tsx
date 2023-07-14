@@ -6,7 +6,7 @@ import { onRefreshRedux, offRefreshRedux } from '../CardModal/refreshSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import './styles.scss';
+// import './styles.scss';
 
 
 export default function Collection() {

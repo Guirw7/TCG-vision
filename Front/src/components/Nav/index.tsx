@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { sessionChecker } from '../../utils/sessionChecker';
-import './styles.scss';
+// import './styles.scss';
 
 export default function Nav() {
   const [input, setInput] = useState('');

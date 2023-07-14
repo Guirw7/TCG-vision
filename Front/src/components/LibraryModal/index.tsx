@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 
 export interface DeckProps {

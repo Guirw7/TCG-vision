@@ -1,56 +1,56 @@
-@use '../../styles/reset.scss';
-@use '../../styles/variables.scss' as v;
+// @use '../../styles/reset.scss';
+// @use '../../styles/variables.scss' as v;
 
-.behind-form-modal {
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 5%;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-};
+// .behind-form-modal {
+//   z-index: 1;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   position: fixed;
+//   width: 100vw;
+//   height: 100vh;
+//   top: 5%;
+//   left: 0;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   overflow-y: auto;
+// };
 
-.form-modal {
-  height: 25vh;
-  width: 25vw;
-  margin: 0 auto;
-  box-shadow: v.$box-shadow;
-  border-radius: 5px;
-  padding: 1rem;
-  z-index: 100;
-  background-color: v.$background-color-modal;
-  overflow-y: auto; /* add this */
-  transition: v.$transition-speed;
-  position: relative;
-};
+// .form-modal {
+//   height: 25vh;
+//   width: 25vw;
+//   margin: 0 auto;
+//   box-shadow: v.$box-shadow;
+//   border-radius: 5px;
+//   padding: 1rem;
+//   z-index: 100;
+//   background-color: v.$background-color-modal;
+//   overflow-y: auto; /* add this */
+//   transition: v.$transition-speed;
+//   position: relative;
+// };
 
-.form-modal-exit {
-  width: 3rem;
-  height: 3rem;
-  color: v.$font-color;
-  position: absolute;
-  z-index: 101;
-  top: 1rem;
-  right: 1rem;
-  color: v.$font-color;
-  font-size: v.$font-size * 5;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  background-color: v.$raw-color-purple-bright-1;
-  box-shadow: v.$box-shadow;
-};
+// .form-modal-exit {
+//   width: 3rem;
+//   height: 3rem;
+//   color: v.$font-color;
+//   position: absolute;
+//   z-index: 101;
+//   top: 1rem;
+//   right: 1rem;
+//   color: v.$font-color;
+//   font-size: v.$font-size * 5;
+//   cursor: pointer;
+//   background-color: transparent;
+//   border: none;
+//   border-radius: 5px;
+//   background-color: v.$raw-color-purple-bright-1;
+//   box-shadow: v.$box-shadow;
+// };
 
-.form-modal-message {
-  margin-top: 5rem;
-  font-size: v.$font-size * 2;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-align: center;
-};
+// .form-modal-message {
+//   margin-top: 5rem;
+//   font-size: v.$font-size * 2;
+//   font-weight: 700;
+//   margin-bottom: 1rem;
+//   text-align: center;
+// };

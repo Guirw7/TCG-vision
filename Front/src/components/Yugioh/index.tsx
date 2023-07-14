@@ -3,7 +3,7 @@ import { RootState } from '../../store';
 
 import CardModal from '../CardModal';
 import CardsDisplayer from '../CardsDisplayer';
-import './styles.scss';
+// import './styles.scss';
 
 
 export interface Card {

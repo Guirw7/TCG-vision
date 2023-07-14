@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import FormModal from '../FormModal';
 import { openModal, setModalMessage } from '../FormModal/modalSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 
 interface Data {

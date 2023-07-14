@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { RootState } from '../../store';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 
 export default function Login() {

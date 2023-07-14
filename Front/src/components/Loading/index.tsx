@@ -1,5 +1,5 @@
 import animation from '../../assets/loading.svg'
-import './styles.scss'
+// import './styles.scss'
 
 export default function loading() {
   return (

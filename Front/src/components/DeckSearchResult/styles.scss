@@ -1,27 +1,27 @@
-@use '../../styles/reset';
-@use '../../styles/variables' as v;
+// @use '../../styles/reset';
+// @use '../../styles/variables' as v;
 
 
-.deck_editor-card-article {
-    width: 7rem;
-    max-height: 15rem;
-    padding: 0.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: nowrap;
-  };
+// .deck_editor-card-article {
+//     width: 7rem;
+//     max-height: 15rem;
+//     padding: 0.2rem;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     flex-wrap: nowrap;
+//   };
 
 
 
-.deck_editor-card-article-image {
-    box-sizing: border-box;
-    max-height: 15rem;
-    width: auto;
-};
+// .deck_editor-card-article-image {
+//     box-sizing: border-box;
+//     max-height: 15rem;
+//     width: auto;
+// };
 
-.deck_editor-card-article-name {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: v.$font-size * 2;
-};
+// .deck_editor-card-article-name {
+//     text-align: center;
+//     margin-top: 1rem;
+//     font-size: v.$font-size * 2;
+// };

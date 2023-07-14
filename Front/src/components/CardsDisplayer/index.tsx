@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { openModal, setCardID } from '../CardModal/modalSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
 import Loading from '../Loading';
-import './styles.scss';
+// import './styles.scss';
 
 
 export default function CardDisplayer() {

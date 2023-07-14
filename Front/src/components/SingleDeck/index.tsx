@@ -7,7 +7,7 @@ import { RootState } from "../../store";
 // import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
 import { setSingleDeck } from '../SingleDeck/singleDeckSlice';
 
-import './styles.scss';
+// import './styles.scss';
 
 interface DeckProps {
   deck: {

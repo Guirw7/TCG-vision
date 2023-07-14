@@ -1,4 +1,4 @@
-import './styles.scss';
+// import './styles.scss';
 import kevinPhoto from '../../assets/img/teamPics/kevin.jpg';
 import talelPhoto from '../../assets/img/teamPics/talel.jpg';
 import jasonPhoto from '../../assets/img/teamPics/jason.jpg';
