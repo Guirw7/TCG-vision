@@ -70,7 +70,7 @@ export default function DeckEditorPage() {
                   <div className='deck_editor-name-container'>
                       {/* <h2 className='deck_editor-name'>{deckName}</h2> */}
                       <div className='deck_editor-actions'>
-                          <button onClick={() => navigate('/profil')} className='deck_editor-actions-button'>Retour</button>
+                          <button onClick={() => navigate('/profil')} className='button'>Retour</button>
                       </div>
                   </div>
                   <section className='deck_editor-deck-container'>

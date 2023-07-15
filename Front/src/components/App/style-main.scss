@@ -2,7 +2,7 @@
 @use '../../styles/reset.scss';
 
 
-// Main Page
+// Main Parameters
 
 body {
   background-image: v.$background-color-yugioh;
@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
 }
 
-// Modal
+// Modal -- Global Parameters
 
 .modal-background {
   z-index: 1;
@@ -32,30 +32,6 @@ body {
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-};
-
-.modal-button-exit {
-  width: 2rem;
-  height: 2rem;
-  color: v.$font-color;
-  position: absolute;
-  z-index: 101;
-  top: 4%;
-  right: 1rem;
-  color: v.$font-color;
-  font-size: v.$font-size * 3;
-  text-align: center;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  background-color: v.$raw-color-purple-bright-1;
-  box-shadow: v.$box-shadow;
-
-  &:hover {
-    background-color: v.$raw-color-purple-bright-3;
-    color: v.$font-color;
-  };
 };
 
 .modal-body {
@@ -72,21 +48,36 @@ body {
   background-color: v.$background-color-modal;
   overflow-y: auto; 
   transition: v.$transition-speed;
-  position: relative;
 
+};
+
+.modal-button-exit {
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  color: v.$font-color;
+  color: v.$font-color;
+  font-size: v.$font-size * 3;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  background-color: v.$raw-color-purple-bright-1;
+  box-shadow: v.$box-shadow;
+
+  &:hover {
+    background-color: v.$raw-color-red;
+    color: v.$font-color;
+  };
 };
 
 .modal-title-lg {
-  margin-top: 5rem;
-  font-size: v.$font-size * 5;
+  font-size: v.$font-size * 4;
   font-weight: 700;
   margin-bottom: 1rem;
-  text-align: center;
+  text-align: left;
 };
-
-.modal-actions-container {
-
-}
 
 .modal-actions-message {
   margin-top: 5rem;
@@ -103,6 +94,8 @@ body {
 }
 
 // General Usage
+
+// Buttons
 
 .button {
   min-width: 30%;
@@ -121,24 +114,54 @@ body {
     color: v.$font-color;
     cursor: pointer;
   };
+
+  &.cancel:hover {
+    background-color: v.$raw-color-red;
+    color: v.$font-color;
+    cursor: pointer;
+  }; 
+
+  &.confirm:hover {
+    background-color: v.$raw-color-green;
+    color: v.$font-color;
+    cursor: pointer;
+  };
 };
+
+// Inputs
+
+.text-input {
+  width: 100%;
+  height: 2.5rem;
+  font-size: v.$font-size * 2;
+  border-radius: 10px;
+  border: none;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0px 10px 90px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+};
+
+
+
+
 
 // STOP
 
 
-.card-addition-modal {
-  position: absolute;
-  z-index: 102;
-  background-color: white;
-  height: 30rem;
-  width: 30rem;
-}
+// .card-addition-modal {
+//   position: absolute;
+//   z-index: 102;
+//   background-color: white;
+//   height: 30rem;
+//   width: 30rem;
+// }
 
-.card-addition-modal-form {
-  padding: 5rem 5rem;
-  display: flex;
-  flex-direction: column;
-}
+// .card-addition-modal-form {
+//   padding: 5rem 5rem;
+//   display: flex;
+//   flex-direction: column;
+// }
 
 
   

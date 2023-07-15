@@ -54,7 +54,7 @@ export default function SingleCollection({collection, setRefresh}: any) {
               <div className='modal-actions-container'>
                 <h1 className='modal-actions-message'>Etes-vous sûr(e) de vouloir supprimer?</h1>
                 <div className='modal-buttons'>
-                  <button className='button' onClick={deleteUserCollection}>Confirmer</button>
+                  <button className='button cancel' onClick={deleteUserCollection}>Confirmer</button>
                   <button className='button' onClick={closeConfirmModal}>Annuler</button>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function SingleCollection({collection, setRefresh}: any) {
         </div>
         <div className='single-deck-actions-container'>
             <button  className='button' onClick={viewCollection} >Voir</button>
-            <button  className='button' onClick={openConfirmModal} >Supprimer</button>
+            <button  className='button cancel' onClick={openConfirmModal} >Supprimer</button>
         </div>
       </div>
       </>

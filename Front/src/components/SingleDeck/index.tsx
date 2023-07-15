@@ -121,7 +121,7 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
         {user.id === deck.user_id && (
             <>
             <button className='button' onClick={deckEditor}>Éditer</button>
-            <button className='button' onClick={openConfirmModal}>Supprimer</button>
+            <button className='button cancel' onClick={openConfirmModal}>Supprimer</button>
             </>
         )}
         </div>
