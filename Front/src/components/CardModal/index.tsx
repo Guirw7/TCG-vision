@@ -5,7 +5,6 @@ import { onRefreshRedux, offRefreshRedux } from './refreshSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
 import CardAdditionModal from '../CardAdditionModal';
 import { getIDFromToken } from '../../utils/getIDFromToken';
-// import './styles.scss';
 
 
 export interface ExtensionProps {
@@ -156,57 +155,60 @@ export default function CardModal() {
       <div onClick={closeModalFunction} className='modal-background'>
         <article onClick={(e) => e.stopPropagation()} className = "modal-body">
         <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='modal-button-exit'>X</button>
+        <div className='modal-title-container'>
           <h1 className='modal-title-lg'>{cardData.name}</h1>
+          
+                {
+                  extensionList && (
+                    extensionList.map((card, index) => {
+                      return(
+                        <span className='card-modal-rarity' key={index}>{card.set_rarity}</span>
+                      )
+                    })
+                  )
+                }
+          
+        </div>
           <section className='card-modal-informations'>
             <img className="card-modal-image" src={cardImage}></img>
-            <div className='card-modal-data'>
-              <p className='card-modal-type'>Type: {cardData.type}</p>
+            <div className='card-modal-data-container'>
+              <p className='card-modal-info'>{cardData.type}</p>
               {
                 cardData.level &&
-                <p className='card-modal-level'>Niveau: {cardData.level}</p>
+                <p className='card-modal-info'>Niveau: {cardData.level}</p>
               }
               {
                 cardData.race && 
-                <p className='card-modal-race'>Archetype: {cardData.race}</p>
+                <p className='card-modal-info'>Type: {cardData.race}</p>
               }
               {
                 cardData.attribute &&
-                <p className='card-modal-attribute'>Attribut: {cardData.attribute}</p>
+                <p className='card-modal-info'>Attribut: {cardData.attribute}</p>
               }
-              <div className='card-modal-stats'>
+
               {
-                !!cardData.atk &&
-                <p className='card-modal-stats-atk'>Attaque: {cardData.atk}</p>
+                cardData.atk >= 0 &&
+                <p className='card-modal-info'>Attaque: {cardData.atk}</p>
               }
               {
-                !!cardData.def &&
-                <p className='card-modal-stats-def'>Défense: {cardData.def}</p>
+                cardData.def >= 0 &&
+                <p className='card-modal-info'>Défense: {cardData.def}</p>
               }
               {
                 cardData.linkval &&
                 <p className='card-modal-linkval'>LINK: {cardData.linkval}</p>
               }
-              </div>
-              <div className='card-modal-extension-rarity'>
-                {
-                  extensionList && (
-                    extensionList.map((card, index) => {
-                      return(
-                        <span className='card-modal-extension-rarity-item' key={index}>{card.set_rarity}</span>
-                      )
-                    })
-                  )
-                }
-              </div>
+             
+
           </div>
         </section>
         <section className='card-modal-description'>
           <p className='card-modal-desc'>{cardData.desc}</p>
         </section>
-        <form action="">
+        
           <section className="card-modal-extension">
-            <label className="card-modal-extension-label" htmlFor="">Nom de l'extension : </label>
-            <select onChange={optionHandler} className='card-modal-extension-select'>
+            <label htmlFor="">Nom de l'extension : </label>
+            <select onChange={optionHandler} className='select'>
               <option value="">Sélectionnez une extension</option>
               {cardData.card_sets.map((extension: any, index: number) => {
                 return (
@@ -217,37 +219,24 @@ export default function CardModal() {
           </section>
 
               {isConnected && (
-          <div className='card-modal-buttons'>
-            <div>
+          <div className='card-modal-extension'>
               <section className='card-modal-quantity'>
                 <button onClick={decrement} className='button'>-</button>
-                
-
                 <p className='card-modal-quantity-counter'>{counter}</p>
                 <button onClick={increment} className='button'>+</button>
               </section>
-            </div>
-            <div className="card-modal-extension">
-              <select onChange={collectionOptionHandler} className='card-modal-extension-select'>
+              <select onChange={collectionOptionHandler} className='select small'>
                 {collections.map((collection: any, index: number) => {
                   return (
                     <option key={index} value={collection.id}>{collection.collection_name}</option>
                   )
                 })}
               </select>
-            </div>
-            <div className='card-modal-submit-buttons'>
               <button onClick={addCardToCollection} type='submit' className='button'>Ajouter a la collection</button>
-            </div>
           </div>
               )}
-        </form>
+        
         </article>
-        {
-          (cardAdditionModal) && (
-              <CardAdditionModal cardID={cardID}/>
-          )
-        }
       </div>
     )
   )

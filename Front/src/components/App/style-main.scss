@@ -20,6 +20,14 @@ body {
 
 // Modal -- Global Parameters
 
+.modal-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
 .modal-background {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
@@ -48,7 +56,6 @@ body {
   background-color: v.$background-color-modal;
   overflow-y: auto; 
   transition: v.$transition-speed;
-
 };
 
 .modal-button-exit {
@@ -75,15 +82,14 @@ body {
 .modal-title-lg {
   font-size: v.$font-size * 4;
   font-weight: 700;
-  margin-bottom: 1rem;
   text-align: left;
 };
 
 .modal-actions-message {
-  margin-top: 5rem;
+  margin-top: 30%;
   font-size: v.$font-size * 2;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 30%;
   text-align: center;
 };
 
@@ -140,211 +146,121 @@ body {
   box-sizing: border-box;
   box-shadow: 0px 10px 90px 10px rgba(0, 0, 0, 0.1);
   font-weight: 600;
+
+  &.small {
+    width: 30%;
+  };
+};
+
+// TODO
+
+.select {
+  max-width: 100%;
+  height: 2rem;
+  font-size: v.$font-size * 2;
+  border-radius: 10px;
+  border: none;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0px 10px 90px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+
+  &.small {
+    width: 30%;
+  };
+}
+
+
+// Card Modal Specifics
+
+.card-modal-rarity {
+  margin-left: 1rem;
+  background-color: v.$background-color-footer;
+  color: v.$font-color-dark;
+  border-radius: 5px;
+  font-size: v.$font-size * 2;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+}
+
+.card-modal-data-container {
+  width: 50%;
+  max-width: 50%;
+  max-height: 25rem;
+  box-sizing: border-box;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  font-size: 175%;
+  text-align: center;
+  font-weight: 600;
+  align-content: flex-end;
+  align-items: center;
+  justify-content: center;
+};
+
+.card-modal-image {
+  max-width: 50%;
+  max-height: 22rem;
+  margin: auto auto;
+};
+
+.card-modal-informations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+};
+
+.card-modal-info {
+  width: 90%;
+  font-size: v.$font-size * 1.3;
+  padding: 1rem;
+  background-color: v.$raw-color-blue-bright-3;
+  box-shadow: v.$box-shadow;
+  border-radius: 5px;
+  text-align: left
+};
+
+.card-modal-description {
+  max-width: 80%;
+  margin: 0 auto;
+  font-size: v.$font-size * 2;
+  text-align: center;
+  padding: 1rem;
+};
+
+.card-modal-extension {
+  font-size: v.$font-size * 2;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: v.$raw-color-blue-bright-3;
+  box-shadow: v.$box-shadow;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: rox;
+  justify-content: space-around;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+};
+
+.card-modal-quantity {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: v.$font-size * 2;
+
+  &-counter {
+    font-weight: 700;
+  };
 };
 
 
 
-
-
 // STOP
-
-
-// .card-addition-modal {
-//   position: absolute;
-//   z-index: 102;
-//   background-color: white;
-//   height: 30rem;
-//   width: 30rem;
-// }
-
-// .card-addition-modal-form {
-//   padding: 5rem 5rem;
-//   display: flex;
-//   flex-direction: column;
-// }
-
-
-  
-  
-  
-  
-  
-  
-  .card-modal-informations {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    align-items: stretch;
-  };
-  
-  .card-modal-image {
-    // width: 50%;
-    max-width: 50%;
-    max-height: 25rem;
-  };
-  
-  .card-modal-data {
-    // max-width: 50%;
-    width: 274.27px;
-    max-height: 25rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    font-size: 175%;
-    text-align: center;
-    font-weight: 600;
-    align-content: flex-end;
-    align-items: center;
-    justify-content: center;
-  };
-  
-  .card-modal-level {
-    margin-top: 1rem;
-  };
-  
-  .card-modal-race {
-    margin-top: 1rem;
-  };
-  
-  .card-modal-attribute {
-    margin-top: 1rem;
-  };
-  
-  .card-modal-stats {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-  };
-  
-  .card-modal-stats-atk {
-    margin-right: 1rem;
-  };
-  
-  .card-modal-stats-linkval {
-    //placeholder
-    border: none;
-  };
-  
-  
-  .card-modal-description {
-    margin-top: 2rem;
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-  };
-  
-  .card-modal-extension {
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-    background-color: v.$raw-color-blue-bright-3;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: rox;
-    justify-content: center;
-  };
-  
-  .card-modal-extension-label {
-    font-weight: 700;
-    font-size: v.$font-size * 2;
-  };
-  
-  .card-modal-extension-select {
-    // margin-left: 2rem;
-    min-width: 10rem;
-  };
-  
-  .card-modal-extension-rarity {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  };
-  
-  .card-modal-extension-rarity-item {
-    margin: 1rem 0.5rem;
-    background-color: v.$background-color-footer;
-    color: v.$font-color-dark;
-    border-radius: 5px;
-    height: 2rem;
-    font-size: v.$font-size * 1.6;
-    padding: 0.5rem 0.5rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  };
-  
-  .card-modal-quantity {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  };
-  
-  .card-modal-quantity-increment {
-    padding: 0.5rem 2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-  };
-  
-  .card-modal-quantity-decrement {
-    padding: 0.5rem 2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-  };
-  
-  .card-modal-quantity-counter {
-    margin: 0rem 2rem;
-  };
-  
-  .card-modal-buttons {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: v.$font-size * 2.4;
-  };
-  
-  .card-modal-submit-buttons {
-    display: flex;
-    gap: 1rem;
-  };
-  
-  .card-modal-submit-button-deck {
-    background-color: v.$raw-color-blue;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
-  
-  .card-modal-submit-button-collection {
-    background-color: v.$raw-color-purple;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
 
   .card-article {
     width: 10rem;

@@ -6,9 +6,6 @@ import { onRefreshRedux, offRefreshRedux } from '../CardModal/refreshSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-// import './styles.scss';
-
-
 export default function Collection() {
   const [collections, setCollections] = useState<any>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -96,7 +93,7 @@ export default function Collection() {
         <div className='decks-body'>
 
           <div className='decks-actions'>
-            <button onClick={openCollectionCreationModal} >Nouvelle collection</button>
+            <button className='button' onClick={openCollectionCreationModal}>Nouvelle collection</button>
           </div >
           <div className='decks-display'>
             {collections.map((collection: any) => (

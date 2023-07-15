@@ -21,10 +21,8 @@ export default function LoginModal() {
         <article onClick={(e) => e.stopPropagation()} className = "modal-body">
           <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='modal-button-exit'>X</button>
           {
-  
             requestStatus && (
-              <p className='form-modal-message'>{requestStatus}</p>
-  
+              <p className='modal-actions-message'>{requestStatus}</p>
             )
           }
 
