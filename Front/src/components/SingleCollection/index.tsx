@@ -48,14 +48,14 @@ export default function SingleCollection({collection, setRefresh}: any) {
       {
         isOpen && (
           <>
-          <div className='behind-form-modal'>
-            <article onClick={(e) => e.stopPropagation()} className = "form-modal">
-            <button onClick={(e) => {e.stopPropagation(); closeConfirmModal();}} className='form-modal-exit'>X</button>
-              <div className='confirm-modal-content'>
-                <h1 className='form-modal-message'>Etes-vous sûr(e) de vouloir supprimer?</h1>
-                <div className='confirm-modal-actions'>
-                  <button className='library-modal-form-button' onClick={deleteUserCollection}>Confirmer</button>
-                  <button className='library-modal-form-button' onClick={closeConfirmModal}>Annuler</button>
+          <div className='modal-background'>
+            <article onClick={(e) => e.stopPropagation()} className = "modal-body">
+            <button onClick={(e) => {e.stopPropagation(); closeConfirmModal();}} className='modal-button-exit'>X</button>
+              <div className='modal-actions-container'>
+                <h1 className='modal-actions-message'>Etes-vous sûr(e) de vouloir supprimer?</h1>
+                <div className='modal-buttons'>
+                  <button className='button' onClick={deleteUserCollection}>Confirmer</button>
+                  <button className='button' onClick={closeConfirmModal}>Annuler</button>
                 </div>
               </div>
             </article>
@@ -71,8 +71,8 @@ export default function SingleCollection({collection, setRefresh}: any) {
         <div className='single-deck-description-container'>
         </div>
         <div className='single-deck-actions-container'>
-            <button onClick={viewCollection} className='single-deck-actions-item'>Voir</button>
-            <button onClick={openConfirmModal} className='single-deck-actions-item'>Supprimer</button>
+            <button  className='button' onClick={viewCollection} >Voir</button>
+            <button  className='button' onClick={openConfirmModal} >Supprimer</button>
         </div>
       </div>
       </>

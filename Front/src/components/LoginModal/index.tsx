@@ -17,9 +17,9 @@ export default function LoginModal() {
     console.log(requestStatus);
     return (
       <>
-      <div onClick={closeModalFunction} className='behind-form-modal'>
-        <article onClick={(e) => e.stopPropagation()} className = "form-modal">
-          <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='form-modal-exit'>X</button>
+      <div onClick={closeModalFunction} className='modal-background'>
+        <article onClick={(e) => e.stopPropagation()} className = "modal-body">
+          <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='modal-button-exit'>X</button>
           {
   
             requestStatus && (

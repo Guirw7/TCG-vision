@@ -100,13 +100,13 @@ export default function Deck() {
           <div className="decks-actions">
             {isLoggedIn && (
               <>
-              <button onClick={() => navigate('/deck-creator')}>Créer un deck</button>
-            <button onClick={userRequest} value="getUserDecks">
+              <button className="button" onClick={() => navigate('/deck-creator')}>Créer un deck</button>
+            <button className="button" onClick={userRequest} value="getUserDecks">
               Vos decks
             </button>
               </>
             )}
-            <button onClick={userRequest} value="getAllDecks">
+            <button className="button" onClick={userRequest} value="getAllDecks">
               Tous les decks de la communauté
             </button>
           </div>

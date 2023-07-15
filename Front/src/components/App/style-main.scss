@@ -1,6 +1,131 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/reset.scss';
 
+
+// Main Page
+
+body {
+  background-image: v.$background-color-yugioh;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: v.$font-effect;
+  font-size: v.$font-size;
+}
+
+#root {
+  max-height: 100vh;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+// Modal
+
+.modal-background {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+};
+
+.modal-button-exit {
+  width: 2rem;
+  height: 2rem;
+  color: v.$font-color;
+  position: absolute;
+  z-index: 101;
+  top: 4%;
+  right: 1rem;
+  color: v.$font-color;
+  font-size: v.$font-size * 3;
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  background-color: v.$raw-color-purple-bright-1;
+  box-shadow: v.$box-shadow;
+
+  &:hover {
+    background-color: v.$raw-color-purple-bright-3;
+    color: v.$font-color;
+  };
+};
+
+.modal-body {
+  backdrop-filter: blur(5px);
+  max-height: 80%;
+  max-width: 50%;
+  min-height: 20%;
+  min-width: 20%;
+  margin: 0 auto;
+  box-shadow: v.$box-shadow;
+  border-radius: 5px;
+  padding: 1rem;
+  z-index: 100;
+  background-color: v.$background-color-modal;
+  overflow-y: auto; 
+  transition: v.$transition-speed;
+  position: relative;
+
+};
+
+.modal-title-lg {
+  margin-top: 5rem;
+  font-size: v.$font-size * 5;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+};
+
+.modal-actions-container {
+
+}
+
+.modal-actions-message {
+  margin-top: 5rem;
+  font-size: v.$font-size * 2;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+};
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+// General Usage
+
+.button {
+  min-width: 30%;
+  max-height: 2.8rem;
+  font-size: v.$font-size * 2;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0px 10px 90px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+
+  &:hover {
+    background-color: v.$raw-color-blue-bright-1;
+    color: v.$font-color;
+    cursor: pointer;
+  };
+};
+
+// STOP
+
+
 .card-addition-modal {
   position: absolute;
   z-index: 102;
@@ -15,60 +140,12 @@
   flex-direction: column;
 }
 
-  .behind-card-modal {
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 5%;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-  };
+
   
-  .card-modal-exit {
-    width: 3rem;
-    height: 3rem;
-    color: v.$font-color;
-    position: absolute;
-    z-index: 101;
-    top: 4%;
-    right: 1rem;
-    color: v.$font-color;
-    font-size: v.$font-size * 5;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-purple-bright-1;
-    box-shadow: v.$box-shadow;
-  };
   
-  .card-modal {
-    backdrop-filter: blur(5px);
-    height: 90vh;
-    width: 50vw;
-    margin: 0 auto;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    padding: 1rem;
-    z-index: 100;
-    background-color: v.$background-color-modal;
-    overflow-y: auto; /* add this */
-    transition: v.$transition-speed;
-    position: relative;
-  };
   
-  .card-modal-name {
-    margin-top: 5rem;
-    font-size: v.$font-size * 5;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-  };
+  
+  
   
   .card-modal-informations {
     display: flex;
@@ -823,13 +900,7 @@
     box-shadow: v.$box-shadow;
   };
   
-  .form-modal-message {
-    margin-top: 5rem;
-    font-size: v.$font-size * 2;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-  };
+
 
   .header {
     box-shadow: v.$box-shadow;
@@ -1001,21 +1072,7 @@
     padding: 0.5rem 0.5rem;
   };
   
-  .library-modal-form-button {
-    // margin: 0 auto;
-    width: 30%;
-    max-height: 2.8rem;
-    font-size: v.$font-size * 2.8;
-    border-radius: 5px;
-    border: none;
-    // background-color: ;
-    box-shadow: v.$box-shadow;
-    padding: 0.5rem 0.5rem;
-  };
-  
-  .library-modal-form-button:hover {
-    cursor: pointer;
-  };
+ 
   
   .library-modal-message {
     margin-top: 5rem;
@@ -1471,10 +1528,16 @@
 }
 
 .single-deck-title {
-    font-size: 0.8rem;
+    font-family: v.$font-title-2;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.5rem;
     align-self: flex-start;
+}
+
+.single-deck-description {
+  font-family: v.$font-lore;
+  font-weight: 500;
 }
 
 .single-deck-image-container {

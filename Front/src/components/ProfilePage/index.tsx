@@ -81,10 +81,10 @@ export default function ProfilePage() {
         <div className='profil-body-container'>
 
         <div className='profil-nav'>
-          <button onClick={() => navigate('/deck-creator')} className="profil-nav-button" >Créer un Deck</button>
-          <button onClick={getUserDecks} className="profil-nav-button" >Mes Decks</button>
-          <button className="profil-nav-button" >Mes Favoris</button>
-          <button onClick={handleParamsOpen} className="profil-nav-button" >Paramétres</button>
+          <button className='button' onClick={() => navigate('/deck-creator')} >Créer un Deck</button>
+          <button className='button' onClick={getUserDecks} >Mes Decks</button>
+          <button className='button' >Mes Favoris</button>
+          <button className='button' onClick={handleParamsOpen} >Paramétres</button>
         </div>
         <div className='user-content'>
             {isDeckOpen && decks.map((deck: any) => (

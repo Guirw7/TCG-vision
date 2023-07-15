@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, clearCardID } from './modalSlice';
 import { onRefreshRedux, offRefreshRedux } from './refreshSlice';
-import refreshSlice from './refreshSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
 import CardAdditionModal from '../CardAdditionModal';
 import { getIDFromToken } from '../../utils/getIDFromToken';
@@ -154,10 +153,10 @@ export default function CardModal() {
 
   return (
     cardData && (
-      <div onClick={closeModalFunction} className='behind-card-modal'>
-        <article onClick={(e) => e.stopPropagation()} className = "card-modal">
-        <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='card-modal-exit'>X</button>
-          <h2 className='card-modal-name'>{cardData.name}</h2>
+      <div onClick={closeModalFunction} className='modal-background'>
+        <article onClick={(e) => e.stopPropagation()} className = "modal-body">
+        <button onClick={(e) => {e.stopPropagation(); closeModalFunction();}} className='modal-button-exit'>X</button>
+          <h1 className='modal-title-lg'>{cardData.name}</h1>
           <section className='card-modal-informations'>
             <img className="card-modal-image" src={cardImage}></img>
             <div className='card-modal-data'>
@@ -221,24 +220,24 @@ export default function CardModal() {
           <div className='card-modal-buttons'>
             <div>
               <section className='card-modal-quantity'>
-                <button onClick={decrement} className='card-modal-quantity-decrement'>-</button>
+                <button onClick={decrement} className='button'>-</button>
                 
 
                 <p className='card-modal-quantity-counter'>{counter}</p>
-                <button onClick={increment} className='card-modal-quantity-increment'>+</button>
+                <button onClick={increment} className='button'>+</button>
               </section>
             </div>
-            <div>
+            <div className="card-modal-extension">
               <select onChange={collectionOptionHandler} className='card-modal-extension-select'>
                 {collections.map((collection: any, index: number) => {
                   return (
-                    <option key= {index} value={collection.id}>{collection.collection_name}</option>
+                    <option key={index} value={collection.id}>{collection.collection_name}</option>
                   )
                 })}
               </select>
             </div>
             <div className='card-modal-submit-buttons'>
-              <button onClick={addCardToCollection} type='submit' className='card-modal-submit-button-deck'>Ajouter a la collection</button>
+              <button onClick={addCardToCollection} type='submit' className='button'>Ajouter a la collection</button>
             </div>
           </div>
               )}
