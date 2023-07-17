@@ -8,9 +8,8 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 
-/* const distPath = path.resolve(__dirname, 'dist'); */
+const distPath = path.resolve(__dirname, 'dist');
 const imagePath = path.resolve(__dirname, 'card_images');
-/* const distPath = path.resolve('../Front/dist'); */
 
 // Require des routers
 const routerPublic = require('./App/routers/routerPublic');
@@ -21,11 +20,10 @@ const logger = require('./App/log');
 // creation de l'application
 const app = express();
 app.use('/card_images', express.static(imagePath));
-/* app.use(express.static(distPath));
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(distPath, 'index.html')); */
-/* }); */
-
+app.use(express.static(distPath));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(distPath, 'index.html'));
+});
 // Body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
