@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Cors
 app.use(cors({
-  origin: ('tcg-vision.fr'),
+  origin: ('https://www.tcg-vision.fr'),
   credentials: true,
   methods: 'GET, POST, PUT, PATCH, DELETE',
   allowedHeaders: 'Authorization, Content-Type',
