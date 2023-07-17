@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import './styles.scss';
+// import './styles.scss';
 
 
 export default function FormModal() {

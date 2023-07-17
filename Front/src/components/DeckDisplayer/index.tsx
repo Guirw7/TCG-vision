@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import DeckList from '../DeckList';
 
-import './styles.scss';
+// import './styles.scss';
 
 export default function DeckDisplayer(data: any) {
   const [decks, setDecks] = useState<any>(null);

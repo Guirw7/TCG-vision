@@ -7,7 +7,7 @@ import { RootState } from "../../store";
 // import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
 import { setSingleDeck } from '../SingleDeck/singleDeckSlice';
 
-import './styles.scss';
+// import './styles.scss';
 
 interface DeckProps {
   deck: {
@@ -93,14 +93,14 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
     {
       isOpen && (
         <>
-        <div className='behind-form-modal'>
-          <article onClick={(e) => e.stopPropagation()} className = "form-modal">
-          <button onClick={(e) => {e.stopPropagation(); closeConfirmModal();}} className='form-modal-exit'>X</button>
-            <div className='confirm-modal-content'>
-              <h1 className='form-modal-message'>Etes-vous sûr(e) de vouloir supprimer?</h1>
-              <div className='confirm-modal-actions'>
-                <button className='library-modal-form-button' onClick={deleteUserDeck}>Confirmer</button>
-                <button className='library-modal-form-button' onClick={closeConfirmModal}>Annuler</button>
+        <div className='modal-background'>
+          <article onClick={(e) => e.stopPropagation()} className = "modal-body">
+          <button onClick={(e) => {e.stopPropagation(); closeConfirmModal();}} className='modal-button-exit'>X</button>
+            <div className='modal-actions-container'>
+              <h1 className='modal-actions-message'>Etes-vous sûr(e) de vouloir supprimer?</h1>
+              <div className='modal-buttons'>
+                <button className='button' onClick={deleteUserDeck}>Confirmer</button>
+                <button className='button' onClick={closeConfirmModal}>Annuler</button>
               </div>
             </div>
           </article>
@@ -117,11 +117,11 @@ export default function SingleDeck({ deck, deckId, onDeckDelete }: any) {
           <p className='single-deck-description'>{deck.deck_description}</p>
         </div>
         <div className='single-deck-actions-container'>
-            <button onClick={deckDetail} className='single-deck-actions-item'>Voir</button>
+            <button onClick={deckDetail}  className='button'>Voir</button>
         {user.id === deck.user_id && (
             <>
-            <button onClick={deckEditor} className='single-deck-actions-item'>Éditer</button>
-            <button onClick={openConfirmModal} className='single-deck-actions-item'>Supprimer</button>
+            <button className='button' onClick={deckEditor}>Éditer</button>
+            <button className='button cancel' onClick={openConfirmModal}>Supprimer</button>
             </>
         )}
         </div>

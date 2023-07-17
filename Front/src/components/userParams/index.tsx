@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 
 export default function UserParams({ user, setRefresh }: any) {
@@ -163,9 +163,9 @@ export default function UserParams({ user, setRefresh }: any) {
   return (
     <div className='userParams'>
       <div className='userParams-actions'>
-        <button onClick={handleInfoOpen}>Gerer Mes Informations</button>
-        <button onClick={handlePasswordOpen}>Changer Mon Mot de Passe</button>
-        <button onClick={handleDeleteOpen}>Supprimer Mon Compte</button>
+        <button className='button' onClick={handleInfoOpen}>Gerer Mes Informations</button>
+        <button className='button' onClick={handlePasswordOpen}>Changer Mon Mot de Passe</button>
+        <button className='button' onClick={handleDeleteOpen}>Supprimer Mon Compte</button>
       </div>
       <div className='userParams-content'>
         {isInfoOpen && (
@@ -187,7 +187,7 @@ export default function UserParams({ user, setRefresh }: any) {
                 onChange={handleChangeEmail}
               />
               <h2>Sauvegarder les Changements?</h2>
-              <button>Confirmer</button>
+              <button className='button'>Confirmer</button>
             </form>
           </>
         )}
@@ -217,7 +217,7 @@ export default function UserParams({ user, setRefresh }: any) {
                 onChange={handleChangeConfirmPassword}
               />
               <h2>Sauvegarder les Changements?</h2>
-              <button type="submit">Confirmer</button>
+              <button className='button' type="submit">Confirmer</button>
             </form>
           </>
         )}
@@ -232,7 +232,7 @@ export default function UserParams({ user, setRefresh }: any) {
                   value={currentPassword}
                   onChange={handleChangeCurrentPassword}
                   />
-            <button type="submit">Confirmer</button>
+            <button className='button' type="submit">Confirmer</button>
           </form>
           </>
         )}
@@ -240,7 +240,7 @@ export default function UserParams({ user, setRefresh }: any) {
           <>
           <h2>Cliquez sur confirmer pour supprimmer votre compte</h2>
           <p>Attention, ce changement est irreversible!</p>
-          <button onClick={deleteUserAccount}>Supprimmer</button>
+          <button className='button' onClick={deleteUserAccount}>Supprimmer</button>
           </>
         )}
       </div>

@@ -1,524 +1,524 @@
-@use '../../styles/variables.scss' as v;
-@use '../../styles/reset.scss';
+// @use '../../styles/variables.scss' as v;
+// @use '../../styles/reset.scss';
 
 
 
 
-@media screen and (max-width: 414px) {
-  .card-modal {
-    width: 100vh;
-  };
+// @media screen and (max-width: 414px) {
+//   .card-modal {
+//     width: 100vh;
+//   };
 
-  .card-modal-extension {
-    max-width: fit-content
-  };
+//   .card-modal-extension {
+//     max-width: fit-content
+//   };
 
-  .card-modal-extension-select {
-    display: block;
-    font-size: v.$font-size * 1,2;
-    margin: 0 auto;
-    width: 2rem;
-    box-sizing: border-box;
-  };
-}
+//   .card-modal-extension-select {
+//     display: block;
+//     font-size: v.$font-size * 1,2;
+//     margin: 0 auto;
+//     width: 2rem;
+//     box-sizing: border-box;
+//   };
+// }
 
-@media screen and (max-width: 820px) {
-  .card-modal {
-    width: 90%;
-  }
-} 
+// @media screen and (max-width: 820px) {
+//   .card-modal {
+//     width: 90%;
+//   }
+// } 
 
-@media screen and (max-width: 968px) {
-  .card-modal-extension {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-    height: auto;
-  };
+// @media screen and (max-width: 968px) {
+//   .card-modal-extension {
+//     display: flex;
+//     flex-direction: column;
+//     width: 80%;
+//     margin: 0 auto;
+//     height: auto;
+//   };
 
-  .card-modal-extension-label {
-    margin-bottom: 1rem;
-  };
+//   .card-modal-extension-label {
+//     margin-bottom: 1rem;
+//   };
 
-  .card-modal-extension-select {
-    font-size: v.$font-size * 1,8;
-    text-align: left;
-  }
-};
+//   .card-modal-extension-select {
+//     font-size: v.$font-size * 1,8;
+//     text-align: left;
+//   }
+// };
 
-@media screen and (max-width: 1100px) {
-  .behind-card-modal {
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 5%;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-  };
+// @media screen and (max-width: 1100px) {
+//   .behind-card-modal {
+//     z-index: 1;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     position: fixed;
+//     width: 100vw;
+//     height: 100vh;
+//     top: 5%;
+//     left: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     overflow-y: auto;
+//   };
 
-  .card-modal-exit {
-    width: 3rem;
-    height: 3rem;
-    color: v.$font-color;
-    position: absolute;
-    z-index: 101;
-    top: 1rem;
-    right: 1rem;
-    color: v.$font-color;
-    font-size: v.$font-size * 5;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-purple-bright-1;
-    box-shadow: v.$box-shadow;
-  };
+//   .card-modal-exit {
+//     width: 3rem;
+//     height: 3rem;
+//     color: v.$font-color;
+//     position: absolute;
+//     z-index: 101;
+//     top: 1rem;
+//     right: 1rem;
+//     color: v.$font-color;
+//     font-size: v.$font-size * 5;
+//     cursor: pointer;
+//     background-color: transparent;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-purple-bright-1;
+//     box-shadow: v.$box-shadow;
+//   };
 
-  .card-modal {
-    backdrop-filter: blur(5px);
-    height: 90vh;
-    width: 80vw;
-    margin: 0 auto;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    padding: 1rem;
-    z-index: 100;
-    background-color: v.$background-color-modal;
-    overflow-y: auto; /* add this */
-    transition: v.$transition-speed;
-    position: relative;
-  };
+//   .card-modal {
+//     backdrop-filter: blur(5px);
+//     height: 90vh;
+//     width: 80vw;
+//     margin: 0 auto;
+//     box-shadow: v.$box-shadow;
+//     border-radius: 5px;
+//     padding: 1rem;
+//     z-index: 100;
+//     background-color: v.$background-color-modal;
+//     overflow-y: auto; /* add this */
+//     transition: v.$transition-speed;
+//     position: relative;
+//   };
 
-  .card-modal-name {
-    margin-top: 4rem;
-    font-size: v.$font-size * 5;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-  };
+//   .card-modal-name {
+//     margin-top: 4rem;
+//     font-size: v.$font-size * 5;
+//     font-weight: 700;
+//     margin-bottom: 1rem;
+//     text-align: center;
+//   };
 
-  .card-modal-informations {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  };
+//   .card-modal-informations {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     margin-bottom: 1rem;
+//   };
 
-  .card-modal-image {
-    // width: 50%;
-    width: auto;
-    height: 25rem;
-    margin: 0 auto;
-  };
+//   .card-modal-image {
+//     // width: 50%;
+//     width: auto;
+//     height: 25rem;
+//     margin: 0 auto;
+//   };
 
-  .card-modal-data {
-    // max-width: 50%;
-    width: 274.27px;
-    max-height: 25rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    font-size: 175%;
-    text-align: center;
-    font-weight: 600;
-    align-content: flex-end;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-data {
+//     // max-width: 50%;
+//     width: 274.27px;
+//     max-height: 25rem;
+//     box-sizing: border-box;
+//     display: flex;
+//     flex-direction: column;
+//     font-size: 175%;
+//     text-align: center;
+//     font-weight: 600;
+//     align-content: flex-end;
+//     align-items: center;
+//     justify-content: center;
+//   };
 
-  .card-modal-level {
-    margin-top: 1rem;
-  };
+//   .card-modal-level {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-race {
-    margin-top: 1rem;
-  };
+//   .card-modal-race {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-attribute {
-    margin-top: 1rem;
-  };
+//   .card-modal-attribute {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-stats {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    display: flex;
-    // flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-  };
+//   .card-modal-stats {
+//     display: flex;
+//     margin-top: 1rem;
+//     margin-bottom: 2rem;
+//     display: flex;
+//     // flex-direction: column;
+//     flex-wrap: nowrap;
+//     justify-content: center;
+//     align-items: center;
+//   };
   
-  .card-modal-stats-atk {
-    margin-right: 1rem;
-  };
+//   .card-modal-stats-atk {
+//     margin-right: 1rem;
+//   };
   
-  .card-modal-stats-linkval {
-    border: none;
-  };
+//   .card-modal-stats-linkval {
+//     border: none;
+//   };
   
   
-  .card-modal-description {
-    margin-top: 2rem;
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-  };
+//   .card-modal-description {
+//     margin-top: 2rem;
+//     font-size: v.$font-size * 2.4;
+//     text-align: center;
+//     padding: 1rem;
+//   };
   
-  .card-modal-extension {
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-    background-color: v.$raw-color-blue-bright-3;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: rox;
-    justify-content: center;
-  };
+//   .card-modal-extension {
+//     font-size: v.$font-size * 2.4;
+//     text-align: center;
+//     padding: 1rem;
+//     background-color: v.$raw-color-blue-bright-3;
+//     box-shadow: v.$box-shadow;
+//     border-radius: 5px;
+//     display: flex;
+//     flex-direction: rox;
+//     justify-content: center;
+//   };
   
-  .card-modal-extension-label {
-    font-weight: 700;
-    font-size: v.$font-size * 2;
-  };
+//   .card-modal-extension-label {
+//     font-weight: 700;
+//     font-size: v.$font-size * 2;
+//   };
   
-  .card-modal-extension-select {
-    // margin-left: 2rem;
-    min-width: 10rem;
-  };
+//   .card-modal-extension-select {
+//     // margin-left: 2rem;
+//     min-width: 10rem;
+//   };
   
-  .card-modal-extension-rarity {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-extension-rarity {
+//     display: flex;
+//     flex-direction: row;
+//     align-content: center;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: center;
+//   };
   
-  .card-modal-extension-rarity-item {
-    margin: 1rem 0.5rem;
-    background-color: v.$background-color-footer;
-    color: v.$font-color-dark;
-    border-radius: 5px;
-    height: 2rem;
-    font-size: v.$font-size * 1.6;
-    padding: 0.5rem 0.5rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-extension-rarity-item {
+//     margin: 1rem 0.5rem;
+//     background-color: v.$background-color-footer;
+//     color: v.$font-color-dark;
+//     border-radius: 5px;
+//     height: 2rem;
+//     font-size: v.$font-size * 1.6;
+//     padding: 0.5rem 0.5rem;
+//     text-align: center;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   };
 
-  .card-modal-quantity {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  };
+//   .card-modal-quantity {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//   };
   
-  .card-modal-quantity-increment {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-    width: 3rem;
-    text-align: center;
-  };
+//   .card-modal-quantity-increment {
+//     padding: 0.5rem 1rem;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-blue-bright-1;
+//     color: v.$font-color;
+//     font-weight: 700;
+//     cursor: pointer;
+//     width: 3rem;
+//     text-align: center;
+//   };
   
-  .card-modal-quantity-decrement {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-    width: 3rem;
-    text-align: center;
-  };
+//   .card-modal-quantity-decrement {
+//     padding: 0.5rem 1rem;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-blue-bright-1;
+//     color: v.$font-color;
+//     font-weight: 700;
+//     cursor: pointer;
+//     width: 3rem;
+//     text-align: center;
+//   };
   
-  .card-modal-quantity-counter {
-    margin: 0rem 2rem;
-    text-align: center;
-  };
+//   .card-modal-quantity-counter {
+//     margin: 0rem 2rem;
+//     text-align: center;
+//   };
   
-  .card-modal-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: v.$font-size * 2.4;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  };
+//   .card-modal-buttons {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     font-size: v.$font-size * 2.4;
+//     align-items: center;
+//     gap: 1rem;
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-submit-buttons {
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
-    font-size: v.$font-size * 2,4;
-    width: 80%;
-  };
+//   .card-modal-submit-buttons {
+//     gap: 1rem;
+//     display: flex;
+//     flex-direction: column;
+//     font-size: v.$font-size * 2,4;
+//     width: 80%;
+//   };
   
-  .card-modal-submit-button-deck {
-    background-color: v.$raw-color-blue;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
+//   .card-modal-submit-button-deck {
+//     background-color: v.$raw-color-blue;
+//     border-radius: 5px;
+//     color: v.$font-color;
+//     border: none;
+//     padding: 0.5rem 2rem;
+//     cursor: pointer;
+//   };
   
-  .card-modal-submit-button-collection {
-    background-color: v.$raw-color-purple;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
+//   .card-modal-submit-button-collection {
+//     background-color: v.$raw-color-purple;
+//     border-radius: 5px;
+//     color: v.$font-color;
+//     border: none;
+//     padding: 0.5rem 2rem;
+//     cursor: pointer;
+//   };
 
-};
+// };
 
-@media screen and (min-width: 1101px) {
-  .behind-card-modal {
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 5%;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-  };
+// @media screen and (min-width: 1101px) {
+//   .behind-card-modal {
+//     z-index: 1;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     position: fixed;
+//     width: 100vw;
+//     height: 100vh;
+//     top: 5%;
+//     left: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     overflow-y: auto;
+//   };
   
-  .card-modal-exit {
-    width: 3rem;
-    height: 3rem;
-    color: v.$font-color;
-    position: absolute;
-    z-index: 101;
-    top: 4%;
-    right: 1rem;
-    color: v.$font-color;
-    font-size: v.$font-size * 5;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-purple-bright-1;
-    box-shadow: v.$box-shadow;
-  };
+//   .card-modal-exit {
+//     width: 3rem;
+//     height: 3rem;
+//     color: v.$font-color;
+//     position: absolute;
+//     z-index: 101;
+//     top: 4%;
+//     right: 1rem;
+//     color: v.$font-color;
+//     font-size: v.$font-size * 5;
+//     cursor: pointer;
+//     background-color: transparent;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-purple-bright-1;
+//     box-shadow: v.$box-shadow;
+//   };
   
-  .card-modal {
-    backdrop-filter: blur(5px);
-    height: 90vh;
-    width: 50vw;
-    margin: 0 auto;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    padding: 1rem;
-    z-index: 100;
-    background-color: v.$background-color-modal;
-    overflow-y: auto; /* add this */
-    transition: v.$transition-speed;
-    position: relative;
-  };
+//   .card-modal {
+//     backdrop-filter: blur(5px);
+//     height: 90vh;
+//     width: 50vw;
+//     margin: 0 auto;
+//     box-shadow: v.$box-shadow;
+//     border-radius: 5px;
+//     padding: 1rem;
+//     z-index: 100;
+//     background-color: v.$background-color-modal;
+//     overflow-y: auto; /* add this */
+//     transition: v.$transition-speed;
+//     position: relative;
+//   };
   
-  .card-modal-name {
-    margin-top: 5rem;
-    font-size: v.$font-size * 5;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-  };
+//   .card-modal-name {
+//     margin-top: 5rem;
+//     font-size: v.$font-size * 5;
+//     font-weight: 700;
+//     margin-bottom: 1rem;
+//     text-align: center;
+//   };
   
-  .card-modal-informations {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    align-items: stretch;
-  };
+//   .card-modal-informations {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: center;
+//     margin-bottom: 1rem;
+//     align-items: stretch;
+//   };
   
-  .card-modal-image {
-    // width: 50%;
-    max-width: 50%;
-    max-height: 25rem;
-  };
+//   .card-modal-image {
+//     // width: 50%;
+//     max-width: 50%;
+//     max-height: 25rem;
+//   };
   
-  .card-modal-data {
-    // max-width: 50%;
-    width: 274.27px;
-    max-height: 25rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    font-size: 175%;
-    text-align: center;
-    font-weight: 600;
-    align-content: flex-end;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-data {
+//     // max-width: 50%;
+//     width: 274.27px;
+//     max-height: 25rem;
+//     box-sizing: border-box;
+//     display: flex;
+//     flex-direction: column;
+//     font-size: 175%;
+//     text-align: center;
+//     font-weight: 600;
+//     align-content: flex-end;
+//     align-items: center;
+//     justify-content: center;
+//   };
   
-  .card-modal-level {
-    margin-top: 1rem;
-  };
+//   .card-modal-level {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-race {
-    margin-top: 1rem;
-  };
+//   .card-modal-race {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-attribute {
-    margin-top: 1rem;
-  };
+//   .card-modal-attribute {
+//     margin-top: 1rem;
+//   };
   
-  .card-modal-stats {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-  };
+//   .card-modal-stats {
+//     display: flex;
+//     margin-top: 1rem;
+//     margin-bottom: 2rem;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     justify-content: center;
+//     align-items: center;
+//   };
   
-  .card-modal-stats-atk {
-    margin-right: 1rem;
-  };
+//   .card-modal-stats-atk {
+//     margin-right: 1rem;
+//   };
   
-  .card-modal-stats-linkval {
-    //placeholder
-    border: none;
-  };
+//   .card-modal-stats-linkval {
+//     //placeholder
+//     border: none;
+//   };
   
   
-  .card-modal-description {
-    margin-top: 2rem;
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-  };
+//   .card-modal-description {
+//     margin-top: 2rem;
+//     font-size: v.$font-size * 2.4;
+//     text-align: center;
+//     padding: 1rem;
+//   };
   
-  .card-modal-extension {
-    font-size: v.$font-size * 2.4;
-    text-align: center;
-    padding: 1rem;
-    background-color: v.$raw-color-blue-bright-3;
-    box-shadow: v.$box-shadow;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: rox;
-    justify-content: center;
-  };
+//   .card-modal-extension {
+//     font-size: v.$font-size * 2.4;
+//     text-align: center;
+//     padding: 1rem;
+//     background-color: v.$raw-color-blue-bright-3;
+//     box-shadow: v.$box-shadow;
+//     border-radius: 5px;
+//     display: flex;
+//     flex-direction: rox;
+//     justify-content: center;
+//   };
   
-  .card-modal-extension-label {
-    font-weight: 700;
-    font-size: v.$font-size * 2;
-  };
+//   .card-modal-extension-label {
+//     font-weight: 700;
+//     font-size: v.$font-size * 2;
+//   };
   
-  .card-modal-extension-select {
-    // margin-left: 2rem;
-    min-width: 10rem;
-  };
+//   .card-modal-extension-select {
+//     // margin-left: 2rem;
+//     min-width: 10rem;
+//   };
   
-  .card-modal-extension-rarity {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-extension-rarity {
+//     display: flex;
+//     flex-direction: row;
+//     align-content: center;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: center;
+//   };
   
-  .card-modal-extension-rarity-item {
-    margin: 1rem 0.5rem;
-    background-color: v.$background-color-footer;
-    color: v.$font-color-dark;
-    border-radius: 5px;
-    height: 2rem;
-    font-size: v.$font-size * 1.6;
-    padding: 0.5rem 0.5rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  };
+//   .card-modal-extension-rarity-item {
+//     margin: 1rem 0.5rem;
+//     background-color: v.$background-color-footer;
+//     color: v.$font-color-dark;
+//     border-radius: 5px;
+//     height: 2rem;
+//     font-size: v.$font-size * 1.6;
+//     padding: 0.5rem 0.5rem;
+//     text-align: center;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   };
   
-  .card-modal-quantity {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  };
+//   .card-modal-quantity {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//   };
   
-  .card-modal-quantity-increment {
-    padding: 0.5rem 2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-  };
+//   .card-modal-quantity-increment {
+//     padding: 0.5rem 2rem;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-blue-bright-1;
+//     color: v.$font-color;
+//     font-weight: 700;
+//     cursor: pointer;
+//   };
   
-  .card-modal-quantity-decrement {
-    padding: 0.5rem 2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: v.$raw-color-blue-bright-1;
-    color: v.$font-color;
-    font-weight: 700;
-    cursor: pointer;
-  };
+//   .card-modal-quantity-decrement {
+//     padding: 0.5rem 2rem;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: v.$raw-color-blue-bright-1;
+//     color: v.$font-color;
+//     font-weight: 700;
+//     cursor: pointer;
+//   };
   
-  .card-modal-quantity-counter {
-    margin: 0rem 2rem;
-  };
+//   .card-modal-quantity-counter {
+//     margin: 0rem 2rem;
+//   };
   
-  .card-modal-buttons {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: v.$font-size * 2.4;
-  };
+//   .card-modal-buttons {
+//     margin-top: 2rem;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     font-size: v.$font-size * 2.4;
+//   };
   
-  .card-modal-submit-buttons {
-    display: flex;
-    gap: 1rem;
-  };
+//   .card-modal-submit-buttons {
+//     display: flex;
+//     gap: 1rem;
+//   };
   
-  .card-modal-submit-button-deck {
-    background-color: v.$raw-color-blue;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
+//   .card-modal-submit-button-deck {
+//     background-color: v.$raw-color-blue;
+//     border-radius: 5px;
+//     color: v.$font-color;
+//     border: none;
+//     padding: 0.5rem 2rem;
+//     cursor: pointer;
+//   };
   
-  .card-modal-submit-button-collection {
-    background-color: v.$raw-color-purple;
-    border-radius: 5px;
-    color: v.$font-color;
-    border: none;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
-  };
-};
+//   .card-modal-submit-button-collection {
+//     background-color: v.$raw-color-purple;
+//     border-radius: 5px;
+//     color: v.$font-color;
+//     border: none;
+//     padding: 0.5rem 2rem;
+//     cursor: pointer;
+//   };
+// };

@@ -1,59 +1,59 @@
-@use '../../styles/reset';
-@use '../../styles/variables' as v;
+// @use '../../styles/reset';
+// @use '../../styles/variables' as v;
 
 
-.game-container {
-  margin: 0 auto;
-  min-height: 95vh;
-  width: 95vw;
-  background: v.$background-color-app;
-  box-shadow: v.$box-shadow;
-  transition: v.$transition-speed;
-}
+// .game-container {
+//   margin: 0 auto;
+//   min-height: 95vh;
+//   width: 95vw;
+//   background: v.$background-color-app;
+//   box-shadow: v.$box-shadow;
+//   transition: v.$transition-speed;
+// }
 
-.game-container-background {
-  background-color: white;
-  margin: 0 auto;
-  width: 98%;
-  min-height: 95vh;
-}
+// .game-container-background {
+//   background-color: white;
+//   margin: 0 auto;
+//   width: 98%;
+//   min-height: 95vh;
+// }
 
-.game-title {
-  font-size: v.$font-size * 3.2;
-  color: v.$font-color-dark;
-  text-align: center;
-  padding-top: 2rem;
-  font-weight: 700;
-  padding-top: 15vh;
-  margin-bottom: 2rem;
-  position: relative;
-}
+// .game-title {
+//   font-size: v.$font-size * 3.2;
+//   color: v.$font-color-dark;
+//   text-align: center;
+//   padding-top: 2rem;
+//   font-weight: 700;
+//   padding-top: 15vh;
+//   margin-bottom: 2rem;
+//   position: relative;
+// }
 
-.card-item {
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-  margin-top: 2rem;
-  max-width: 25rem;
-  max-height: 20rem;
-  border: 1px solid black;
-  padding: 1rem 1rem;
-  border-radius: 5px;
+// .card-item {
+//   display: flex;
+//   flex-direction: row;
+//   margin: 0 auto;
+//   margin-top: 2rem;
+//   max-width: 25rem;
+//   max-height: 20rem;
+//   border: 1px solid black;
+//   padding: 1rem 1rem;
+//   border-radius: 5px;
 
-}
+// }
 
-.card-item-img {
-  box-sizing: border-box;
-  max-width: 50%;
-  max-height: 100%;
-}
+// .card-item-img {
+//   box-sizing: border-box;
+//   max-width: 50%;
+//   max-height: 100%;
+// }
 
-.card-item-infos {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0.5rem;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
+// .card-item-infos {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   padding: 0.5rem;
+//   width: 100%;
+//   height: 100%;
+//   text-align: center;
+// }

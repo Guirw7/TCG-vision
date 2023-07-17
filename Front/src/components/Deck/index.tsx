@@ -7,7 +7,7 @@ import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import LibraryModal from '../LibraryModal';
 import SingleDeck from '../SingleDeck';
-import './styles.scss';
+// import './styles.scss';
 
 export default function Deck() {
   const modal = useSelector((state: any) => state.libraryModal.value);
@@ -100,13 +100,13 @@ export default function Deck() {
           <div className="decks-actions">
             {isLoggedIn && (
               <>
-              <button onClick={() => navigate('/deck-creator')}>Créer un deck</button>
-            <button onClick={userRequest} value="getUserDecks">
+              <button className="button" onClick={() => navigate('/deck-creator')}>Créer un deck</button>
+            <button className="button" onClick={userRequest} value="getUserDecks">
               Vos decks
             </button>
               </>
             )}
-            <button onClick={userRequest} value="getAllDecks">
+            <button className="button" onClick={userRequest} value="getAllDecks">
               Tous les decks de la communauté
             </button>
           </div>

@@ -1,4 +1,4 @@
-import "./styles.scss";
+// import "./styles.scss";
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type FormData = {

@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import FormModal from '../FormModal';
 import { openModal, setModalMessage } from '../FormModal/modalSlice';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 
 interface Data {
@@ -69,7 +69,7 @@ export default function SignUp() {
           })}
             >
             <label className='signup-input-username-label' htmlFor="">Nom d'utilisateur :</label>
-            <input autoComplete='username' className="signup-input-username" type="text" placeholder="Nom d'utilisateur"
+            <input autoComplete='username' className="text-input " type="text" placeholder="Nom d'utilisateur"
               // Méthode de react-hook form:
               {...register(
                 "username", 
@@ -90,17 +90,13 @@ export default function SignUp() {
               )
             }
             <label className="signup-input-email-label" htmlFor="">Adresse mail :</label>
-            <input autoComplete='email' className="signup-input-email" type="email" placeholder="Adresse mail" 
+            <input autoComplete='email' className="text-input " type="email" placeholder="Adresse mail" 
               {...register(
                 "email", 
                 {required: 'Ce champ est obligatoire.', 
                   maxLength: 64, 
                   pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
                 })} />
-                {/* <p className='error-message'>{errors.mail?.message}</p>
-                {errors.mail && errors.mail.type === 'pattern' && (
-                <p className='error-message'>Le format de l'adresse mail est incorrect.</p>)
-                } */}
                 {
                   errors.email?.message && (
                     <p className='error-message'>{errors.email?.message}</p>
@@ -112,7 +108,7 @@ export default function SignUp() {
                   )
                 }
             <label className='signup-input-password-label' htmlFor="">Mot de passe :</label>
-            <input autoComplete='off' className="signup-input-password" type="password" placeholder="Mot de passe"
+            <input autoComplete='off' className="text-input " type="password" placeholder="Mot de passe"
             {...register(
               "password", 
               {required: 'Ce champ est obligatoire.', 
@@ -131,7 +127,7 @@ export default function SignUp() {
               <p className='error-message'>Le mot de passe est obligatoire.</p>)
             }
             <label className='signup-input-password-confirm-label' htmlFor="">Confirmez votre mot de passe :</label>
-            <input autoComplete='off' className="signup-input-password-confirm" type="password" placeholder="Confirmez votre mot de passe" 
+            <input autoComplete='off' className="text-input " type="password" placeholder="Confirmez votre mot de passe" 
               {...register(
                 "passwordConfirmation", {
                   required: 'Veuillez confirmer votre mot de passe.',
@@ -143,7 +139,7 @@ export default function SignUp() {
                 <p className='error-message'>{errors.passwordConfirmation.message}</p>
                 )
               }
-            <input className="signup-input-button" type="submit"/>
+            <input className="button" type="submit"/>
           </form>
           {
             (modal) && (

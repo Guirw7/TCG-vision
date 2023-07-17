@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { openModal, setCardID } from '../CardModal/modalSlice';
-import { axiosRequest } from '../../utils/axiosRequest';
+import { axiosRequest } from '../../utils/axiosRequest';
 import Loading from '../Loading';
-import './styles.scss';
-
 
 export default function CardDisplayer() {
   const dispatch = useDispatch();

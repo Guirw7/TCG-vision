@@ -1,4 +1,4 @@
-import './styles.scss'
+// import './styles.scss'
 import { setSearch, clearSearch } from '../SearchResult/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';

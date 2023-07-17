@@ -1,53 +1,53 @@
-@use '../../styles/variables.scss' as v;
-@use '../../styles/reset.scss';
+// @use '../../styles/variables.scss' as v;
+// @use '../../styles/reset.scss';
 
 
-.error-container {
-  margin: 0 auto;
-  min-height: 95vh;
-  width: 95vw;
-  background: v.$background-color-app;
-  box-shadow: v.$box-shadow;
-  transition: v.$transition-speed;
-};
+// .error-container {
+//   margin: 0 auto;
+//   min-height: 95vh;
+//   width: 95vw;
+//   background: v.$background-color-app;
+//   box-shadow: v.$box-shadow;
+//   transition: v.$transition-speed;
+// };
 
-.error-container-background{
-  background-color: white;
-  margin: 0 auto;
-  width: 98%;
-  min-height: 95vh;
-  padding-bottom: 5rem;
-};
+// .error-container-background{
+//   background-color: white;
+//   margin: 0 auto;
+//   width: 98%;
+//   min-height: 95vh;
+//   padding-bottom: 5rem;
+// };
 
-.page-title {
-  font-size: v.$font-size * 3.2;
-  color: v.$font-color-dark;
-  text-align: center;
-  padding-top: 2rem;
-  font-weight: 700;
-  padding-top: 15vh;
-};
+// .page-title {
+//   font-size: v.$font-size * 3.2;
+//   color: v.$font-color-dark;
+//   text-align: center;
+//   padding-top: 2rem;
+//   font-weight: 700;
+//   padding-top: 15vh;
+// };
 
-.page-subtitle {
-  font-size: v.$font-size * 2.8;
-  color: v.$font-color-dark;
-  text-align: center;
-  padding-top: 2rem;
-  font-weight: 700;
-  margin-bottom: 5rem;
-};
+// .page-subtitle {
+//   font-size: v.$font-size * 2.8;
+//   color: v.$font-color-dark;
+//   text-align: center;
+//   padding-top: 2rem;
+//   font-weight: 700;
+//   margin-bottom: 5rem;
+// };
 
-.redirection {
-  display: block;
-  font-size: v.$font-size * 2.4;
-  color: v.$raw-color-blue-bright-1;
-  padding-top: 2rem;
-  font-weight: 700;
-  padding: 1rem 1rem;
-  width: 20rem;
-  text-decoration: none;
-  text-align: center;
-  margin: 0 auto;
-  box-shadow: v.$box-shadow-2;
-  border-radius: 5px;
-}
+// .redirection {
+//   display: block;
+//   font-size: v.$font-size * 2.4;
+//   color: v.$raw-color-blue-bright-1;
+//   padding-top: 2rem;
+//   font-weight: 700;
+//   padding: 1rem 1rem;
+//   width: 20rem;
+//   text-decoration: none;
+//   text-align: center;
+//   margin: 0 auto;
+//   box-shadow: v.$box-shadow-2;
+//   border-radius: 5px;
+// }

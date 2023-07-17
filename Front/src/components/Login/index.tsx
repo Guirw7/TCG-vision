@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { RootState } from '../../store';
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
+// import './styles.scss';
 
 
 export default function Login() {
@@ -21,14 +21,7 @@ export default function Login() {
     handleSubmit,
     setError, // permet de générer des erreur personnalisées
     formState: { errors } 
-  } = useForm(
-    // {defaultValues : 
-    //   {
-    //     username: 'kevin',
-    //     password: 'LolXd69240',
-    //   },
-    // }
-  );
+  } = useForm();
 
   const getUser = (form: any) => {
     axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/public/user/login', {
@@ -56,16 +49,16 @@ export default function Login() {
         })}
             >
           <label className='signin-input-username-label' htmlFor="">Nom d'utilisateur :</label>
-          <input className="signin-input-username" type="text" 
+          <input className="text-input" type="text" 
             {...register(
               "username", 
               {required: 'Ce champ est obligatoire'})}/>
           <label className='signin-input-password-label' htmlFor="">Mot de passe :</label>
-          <input className='signin-input-password' type ="password" id="" 
+          <input className='text-input' type ="password" id="" 
             {...register(
               "password", 
               {required: 'Ce champ est obligatoire'})}/>
-          <input className="signin-input-button" type="submit"/>
+          <input className="button" type="submit"/>
           <a className='signin-forgotten-password-message' href="">Mot de passe oublié</a>
           <p className='signup-message'>Pas encore inscrit ?</p>
           <a className='signup-message-link'href="/signup">Inscrivez vous!</a>

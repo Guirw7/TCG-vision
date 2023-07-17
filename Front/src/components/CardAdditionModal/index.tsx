@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { axiosRequest } from '../../utils/axiosRequest';
 import { getIDFromToken } from '../../utils/getIDFromToken';
 import { addCardToDeck } from '../../utils/addCardToLibrary';
-import './styles.scss';
+// import './styles.scss';
 
 interface DeckProps {
   id: number;

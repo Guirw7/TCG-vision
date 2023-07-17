@@ -1,10 +1,4 @@
 @use "./reset";
 @use "./variables" as v;
 
-body {
-  background-image: v.$background-color-yugioh;
-  background-attachment: fixed;
-  min-height: 60vh;
-  font-family: v.$font-family;
-  font-size: v.$font-size;
-}
+

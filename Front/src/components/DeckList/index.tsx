@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setUserDeck } from '../DeckEditorPage/userDeckSlice';
-import "./styles.scss";
+// import "./styles.scss";
 
 interface Card {
   id: number;

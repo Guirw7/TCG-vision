@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react"
 import { axiosRequest } from '../../utils/axiosRequest';
-import './styles.scss';
-import { getIDFromToken } from "../../utils/getIDFromToken";
-import { set } from "react-hook-form";
 
 export default function CollectionRow ({set_code, collectionID, userCollection, setRefresh}: any) {
 
