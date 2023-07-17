@@ -8,7 +8,6 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 
-const distPath = path.resolve(__dirname, 'dist');
 const imagePath = path.resolve(__dirname, 'card_images');
 
 // Require des routers
@@ -20,17 +19,14 @@ const logger = require('./App/log');
 // creation de l'application
 const app = express();
 app.use('/card_images', express.static(imagePath));
-app.use(express.static(distPath));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(distPath, 'index.html'));
-});
+
 // Body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Cors
 app.use(cors({
-  origin: ('*'),
+  origin: ('tcg-vision.fr'),
   credentials: true,
   methods: 'GET, POST, PUT, PATCH, DELETE',
   allowedHeaders: 'Authorization, Content-Type',
