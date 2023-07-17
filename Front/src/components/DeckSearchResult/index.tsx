@@ -57,7 +57,7 @@ export default function SearchResult () {
           {
               result && result.map((card: any) => (
             <article className='deck_editor-card-article' onClick={clickHandler(card.id)} key={card.id}>
-                <img className='deck_editor-card-article-image' src={`http://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`}/>
+                <img className='deck_editor-card-article-image' src={`https://daoust-jason-server.eddi.cloud/card_images/${card.id}.jpg`}/>
                 <p className='deck_editor-card-article-name'>{card.name}</p>
             </article>
             ))

@@ -9,7 +9,7 @@ export const sessionChecker = async () => {
   // Utile pour tester le cas où le token est invalide
   // const troll: string | null = token + 'troll';
   
-    await axiosRequest('get', 'http://daoust-jason-server.eddi.cloud/private/profil', {
+    await axiosRequest('get', 'https://daoust-jason-server.eddi.cloud/private/profil', {
       headers: {'Authorization': `Bearer ${token}`},
     })
     .then((response) => {
