@@ -50,7 +50,7 @@ export default function SignUp() {
               });
               console.log(data);
             } else {
-              axiosRequest('post', 'http://daoust-jason-server.eddi.cloud/public/user/signup', {
+              axiosRequest('post', 'https://daoust-jason-server.eddi.cloud/public/user/signup', {
                 data: {
                   email: data.email,
                   username: data.username,
