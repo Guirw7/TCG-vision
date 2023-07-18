@@ -8,7 +8,7 @@ const collectionRouter = require('./collectionPrivateRouter');
 
 const router = express.Router();
 
-router.use('/private/profil', userRouter);
+router.use('/private/profile', userRouter);
 router.use('/private/collection', collectionRouter);
 router.use('/private/deck', deckRouter);
 router.use('/private/decks', deckRouter);
