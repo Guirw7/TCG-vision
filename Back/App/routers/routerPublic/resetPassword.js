@@ -10,3 +10,5 @@ const router = express.Router();
 /* --------------- Routes ---------------*/
 router.post('/', controllerHandler(userController.sendPasswordResetEmail));
 router.put('/:token', controllerHandler(userController.resetPassword));
+
+module.exports = router;
