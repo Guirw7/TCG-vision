@@ -14,7 +14,7 @@ const router = express.Router();
 /* --------------- Routes ---------------*/
 router.post('/signup', validate(userBody), controllerHandler(userController.addUserForm));
 router.post('/login', controllerHandler(userController.login));
-router.post('/', controllerHandler(userController.sendPasswordResetEmail));
-router.put('/:token', controllerHandler(userController.resetPassword));
+/* router.post('/', controllerHandler(userController.sendPasswordResetEmail));
+router.put('/:token', controllerHandler(userController.resetPassword)); */
 
 module.exports = router;
