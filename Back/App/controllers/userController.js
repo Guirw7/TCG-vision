@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 const sendEmail = require('../middlewares/nodemailer');
+const sendEmailResetPassword = require('../middlewares/sendMailForPassword');
 
 const { JWT_SECRET } = process.env;
 const { ACCESS_TOKEN_EXPIRATION } = process.env;
@@ -154,6 +155,47 @@ const userController = {
     setTimeout(removeRevokedTokens, 3600000);
 
     res.status(200).json({ message: 'Déconnexion réussie.' });
+  },
+
+  async sendPasswordResetEmail(req, res) {
+    const { email } = req.body;
+    const userEmail = await userDataMapper.getByEmail(email);
+
+    // Vérifiez si l'e-mail est présent dans la demande
+    if (!userEmail) {
+      return res.status(400).json({ message: 'Veuillez fournir un e-mail.' });
+    }
+    // générer un token
+    const token = jwt.sign({ userEmail }, JWT_SECRET, { expiresIn: '1h' });
+    // envoyer un email
+    const filePath = path.resolve(__dirname, '..', '..', 'resetPassword.html');
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    sendEmailResetPassword(userEmail.email, content, token);
+    // Renvoyez une réponse réussie
+    return res.json({ message: 'Email envoyé.' });
+  },
+
+  async resetPassword(req, res) {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+    // vérifier le token
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    if (!decodedToken) {
+      return res.status(400).json({ message: 'Token invalide.' });
+    }
+    // vérifier si l'utilisateur existe
+    const user = await userDataMapper.getByEmail(decodedToken.userEmail.email);
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur introuvable.' });
+    }
+    // mettre à jour le mot de passe
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await userDataMapper.modifyUser(user);
+    // Renvoyez une réponse réussie
+    return res.json({ message: 'Mot de passe mis à jour.' });
   },
 };
 
