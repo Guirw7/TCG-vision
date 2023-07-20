@@ -9,12 +9,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmailResetPassword = (to, content, token) => {
+const sendEmailResetPassword = (to, content) => {
   const mailOptions = {
     from: 'tcgvision0@gmail.com',
     to,
     subject: 'Réinitialisation mot de passe',
-    html: content.replace('{{token}}', token), // Remplacer {{token}} par le token JWT
+    html: content,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
