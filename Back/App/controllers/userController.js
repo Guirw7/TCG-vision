@@ -169,9 +169,11 @@ const userController = {
     const token = jwt.sign({ userEmail }, JWT_SECRET, { expiresIn: '1h' });
     // envoyer un email
     const filePath = path.resolve(__dirname, '..', '..', 'resetPassword.html');
-    const content = fs.readFileSync(filePath, 'utf8');
+    let content = fs.readFileSync(filePath, 'utf8');
 
-    sendEmailResetPassword(userEmail.email, content, token);
+    content = content.replace('{{token}}', token); // Remplacer {{token}} par le token JWT
+
+    sendEmailResetPassword(userEmail.email, content);
     // Renvoyez une réponse réussie
     return res.json({ message: 'Email envoyé.' });
   },
