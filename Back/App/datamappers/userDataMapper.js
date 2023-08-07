@@ -28,6 +28,16 @@ const userDataMapper = {
     const results = await client.query(preparedQuery);
     return results.rows; //* retourne le resultat de la requete.
   },
+
+  async modifyPassword(user) {
+    const preparedQuery = {
+      //* modification des informations de l'user concernés.
+      text: 'UPDATE "user" SET password = $1 WHERE "email" = $2',
+      values: [user.password, user.email],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows; //* retourne le resultat de la requete.
+  },
   /**
    * Requête SQL pour  récupérer le détail de tout les users
    */
@@ -87,7 +97,7 @@ const userDataMapper = {
 
   async getByEmail(email) {
     const preparedQuery = {
-      text: 'SELECT email FROM "user" WHERE email = $1',
+      text: 'SELECT id, email FROM "user" WHERE email = $1',
       values: [email],
     };
     // Exécuter la requête de recherche d'un user par son username

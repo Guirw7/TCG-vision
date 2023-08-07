@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // On require le module bcrypt pour le hash du mot de passe
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -18,18 +19,21 @@ const { removeRevokedTokens } = require('../middlewares/auth');
 const userController = {
 
   /**
-   * Fonction pour ajouter un utilisateur en base de données
-   */
+ * Function to add a user to the database.
+ * @param {Object} req - The HTTP request object, expected to have an 'email', 'username' and 'password' in the body.
+ * @param {Object} res - The HTTP response object.
+ * @returns {Object} - A JSON response with a status of 200 (OK) and the added user's data. If an error occurs, it returns an error message.
+ */
   async addUserForm(req, res) {
-    // On récupère les infos envoyer par l'utilisateur
+  // Retrieve the information sent by the user
     const { email, username, password } = req.body;
     const saltRounds = 10;
-    // On hash le mot de passe avant de le passer à notre objet user
+    // Hash the password before passing it to our user object
     const passwordHash = await bcrypt.hash(password, saltRounds);
     const existEmail = await userDataMapper.getByEmail(email);
     const existUsername = await userDataMapper.getByUsername(username);
 
-    // On créer un objet avec les infos que l'utilisateur à envoyer dans le formulaire
+    // Create an object with the information that the user has sent in the form
     const user = {
       email,
       username,
@@ -37,12 +41,12 @@ const userController = {
     };
 
     if (existEmail) {
-      res.status(409).json('Email already exist');
+      res.status(409).json('Email already exists');
       return;
     }
 
     if (existUsername) {
-      res.status(409).json('Username already exist');
+      res.status(409).json('Username already exists');
       return;
     }
 
@@ -50,10 +54,10 @@ const userController = {
     const content = fs.readFileSync(filePath, 'utf8');
 
     sendEmail(user.email, content);
-    // On créer une variable en utilisant la méthode addUserInDB en lui passant notre objet user
+    // Create a variable using the addUserInDB method by passing our user object
     const newUser = await userDataMapper.addUserInDB(user);
 
-    // On renvoie la réponse au format JSON avec un status 200 (OK)
+    // Return the response in JSON format with a status of 200 (OK)
     res.status(200).json(newUser);
   },
 
@@ -113,40 +117,46 @@ const userController = {
     }
   },
 
+  /**
+ * Middleware for user login.
+ * @async
+ * @param {Object} req - The HTTP request object, expected to have a body with 'username' and 'password'.
+ * @param {Object} res - The HTTP response object.
+ * @returns {Object} - A JSON response with either a token (in case of success) or an error message.
+ */
   async login(req, res) {
     const { username, password } = req.body;
 
-    // Vérifiez si l'e-mail et le mot de passe sont présents dans la demande
+    // Check if both username and password are present in the request
     if (!username || !password) {
-      return res.status(400).json({ message: 'Veuillez fournir un pseudo et un mot de passe.' });
+      return res.status(400).json({ message: 'Please provide a username and password.' });
     }
-    // Recherchez l'utilisateur dans la base de données en utilisant le username
+    // Search for the user in the database using the username
     const user = await userDataMapper.getByUsername(username);
 
-    // Vérifiez si l'utilisateur existe
+    // Check if the user exists
     if (!user) {
-      return res.status(404).json({ message: 'Utilisateur introuvable.' });
+      return res.status(404).json({ message: 'User not found.' });
     }
 
-    // Vérifiez si le mot de passe correspond
+    // Check if the password matches
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401).json({ message: 'Mot de passe incorrect.' });
+      return res.status(401).json({ message: 'Incorrect password.' });
     }
     const data = await userDataMapper.getDetailsForToken(username);
     const token = jwt.sign({ data }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION });
 
-    // Renvoyez une réponse réussie
+    // Return a successful response
     return res.json(token);
   },
 
   /**
-   * Fonction pour effectuer la déconnexion de l'utilisateur.
-   * Récupère le token d'authentification à partir de l'en-tête Authorization.
-   * Ajoute le token à la liste des tokens révoqués.
-   * Exécution de la fonction removeRevokedTokens toutes les 1 heure (3600000 ms)
-   * Renvoie une réponse JSON avec un statut 200 (OK) indiquant que la déconnexion a réussi.
-   */
+   * Function to perform the user logout.
+   * @param {Object} req - The HTTP request object, expected to have an 'authorization' header.
+   * @param {Object} res - The HTTP response object.
+   * @returns {Object} - A JSON response indicating successful logout.
+  */
   logout(req, res) {
     const token = req.headers.authorization.split(' ')[1];
 
@@ -154,7 +164,7 @@ const userController = {
 
     setTimeout(removeRevokedTokens, 3600000);
 
-    res.status(200).json({ message: 'Déconnexion réussie.' });
+    res.status(200).json({ message: 'Successful logout.' });
   },
 
   async sendPasswordResetEmail(req, res) {
@@ -195,7 +205,7 @@ const userController = {
     // mettre à jour le mot de passe
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
-    await userDataMapper.modifyUser(user);
+    await userDataMapper.modifyPassword(user);
     // Renvoyez une réponse réussie
     return res.json({ message: 'Mot de passe mis à jour.' });
   },
