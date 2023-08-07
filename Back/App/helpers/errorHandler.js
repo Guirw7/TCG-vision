@@ -11,8 +11,11 @@ const logger = require('../log');
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (error, req, res, next) => {
   logger.error(error);
-  if (error.code === '23502' && error.table === 'collection') {
-    return res.status(400).json({ status: 'error', message: 'Le champ "collection_name" est obligatoire' });
+  if (error.code === '23502' && error.table === 'collection' && error.column === 'collection_name') {
+    return res.status(400).json({ status: 'error', message: 'The "collection_name" field is required' });
+  }
+  if (error.code === '23502' && error.table === 'collection' && error.column === 'user_id') {
+    return res.status(400).json({ status: 'error', message: 'The "user_id" field is required' });
   }
   if (error.code === '23502' && error.table === 'deck') {
     return res.status(400).json({ status: 'error', message: 'Le champ "deck_name" est obligatoire' });

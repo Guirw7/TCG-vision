@@ -8,12 +8,12 @@ const userDataMapper = require('../datamappers/userDataMapper');
 
 const collectionController = {
   /**
-   * On créer une variable en utilisant la méthode addCollectionInD
+   * A variable is created using the addCollectionInDb method.
    */
   async addCollectionInDb(req, res) {
     const { collection_name, set_code, user_id } = req.body;
     const createCollection = {
-      // on recupere toute la table collection.
+    // Retrieves the entire collection table.
       collection_name,
       set_code,
       user_id,
@@ -23,9 +23,9 @@ const collectionController = {
     );
 
     if (!newCollection) {
-      res.status(400).json({ message: 'La création de la collection à échoué !' });
+      res.status(400).json({ message: 'Collection creation failed!' });
     }
-    // on renvoie la reponse en format JSON avec un status 200.(OK)
+    // The response is returned in JSON format with a 200 status.(OK)
     res.status(200).json(newCollection);
   },
 
@@ -67,34 +67,34 @@ const collectionController = {
   },
 
   /**
-   * Fonction pour modifier une collection dans la base de données.
+   * Function to modify a collection in the database.
    */
   async updateCollectionInDB(req, res) {
     const collectionId = parseInt(req.params.id, 10);
 
-    // On récupère les informations envoyées par l'utilisateur pour la modification de la collection
+    // Retrieve the information sent by the user for the modification of the collection
     const { collection_name, set_code } = req.body;
 
-    // On appelle la méthode getOneCollection du data mapper pour récupérer la collection existante
+    // Call the getOneCollection method of the data mapper to retrieve the existing collection
     const collection = await collectionDataMapper.getOneCollection(collectionId);
 
     if (collection) {
-      // On met à jour les propriétés de la collection
+      // Update the properties of the collection
       collection.collection_name = collection_name || collection.collection_name;
 
       if (set_code) {
-        // Ajouter les nouveaux éléments de set_code à l'ancien tableau
+        // Add the new set_code elements to the old array
         collection.set_code = [...collection.set_code, ...set_code];
       }
 
-      // On appelle la méthode updateCollectionInDB du data mapper pour effectuer la modification de la collection
+      // Call the updateCollectionInDB method of the data mapper to perform the modification of the collection
       const updatedCollection = await collectionDataMapper.updateCollectionInDB(collection);
 
-      // On renvoie la réponse au format JSON avec la collection modifiée
+      // Return the response in JSON format with the modified collection
       res.status(200).json(updatedCollection);
     } else {
-      // Si la collection n'existe pas, renvoyer une réponse d'erreur appropriée
-      res.status(404).json({ message: "La collection spécifiée n'existe pas." });
+      // If the collection does not exist, return an appropriate error response
+      res.status(404).json({ message: 'The specified collection does not exist.' });
     }
   },
 
