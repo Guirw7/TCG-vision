@@ -1,3 +1,4 @@
+/* eslint-disable prefer-regex-literals */
 // On require Joi
 const Joi = require('joi');
 
@@ -31,15 +32,14 @@ const userBody = Joi.object({
     }),
   password: Joi.string()
   /**
-   * On utilise une regex pour spécifier des règles de création de mot de passe
-   * Au moins une lettre minuscule (?=.*[a-z])
-   * Au moins une lettre majuscule (?=.*[A-Z])
-   * Au moins un chiffre (?=.*[0-9])
-   * Au moins 8 caractères au minimum et 32 au maximum .{8,32}
-   * ^ signifie le début de la regex
-   * $ signifie la fin de la regex
+   * We use a regex to specify password creation rules
+   * At least one lowercase letter (?=.*[a-z])
+   * At least one uppercase letter (?=.*[A-Z])
+   * At least one digit (?=.*[0-9])
+   * At least 8 characters minimum and 32 maximum .{8,32}
+   * ^ signifies the start of the regex
+   * $ signifies the end of the regex
    */
-    // eslint-disable-next-line prefer-regex-literals
     .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,32}$'))
     .messages({
       'string.pattern.base': 'Password doit contenir au moins 1 lettres minuscule et majuscule, 1 chiffre et doit faire au minimum 8 caractères et au maximum 32.',

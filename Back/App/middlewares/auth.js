@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
-// middleware/authenticateToken.js
 
 const jwt = require('jsonwebtoken');
 
@@ -9,33 +8,32 @@ const { JWT_SECRET } = process.env;
 const revokedTokens = require('./revokedToken');
 
 /**
- * Middleware pour l'authentification du token.
- * Vérifie si le token d'authentification est inclus dans l'en-tête "Authorization".
- * Si le token est manquant ou non trouvé, renvoie une réponse avec un statut 401 (Unauthorized).
- * Si une erreur se produit lors de la vérification du token, renvoie une réponse avec un statut 403 (Forbidden).
- * Si le token est révoqué, renvoie une réponse avec un statut 401 (Unauthorized).
- * Si le token est valide, ajoute l'utilisateur extrait du token à la requête et passe à l'étape suivante.
+ * Middleware for token authentication.
+ * @param {Object} req - The HTTP request object, expected to have an 'authorization' header.
+ * @param {Object} res - The HTTP response object.
+ * @param {Function} next - Move to the next middleware.
+ * @returns {Object} - A JSON response with either a successful message (on validation) or an error message.
  */
 function authenticateToken(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).json({ message: 'Authorization dans le header manquant' });
+    return res.status(401).json({ message: 'Authorization missing in the header' });
   }
 
   const token = authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ message: 'Token non trouvé dans l\' Authorization du header' });
+    return res.status(401).json({ message: 'Token not found in the header\'s Authorization' });
   }
 
   if (revokedTokens.includes(token)) {
-    return res.status(401).json({ message: 'JWT révoqué. Veuillez vous reconnecter.' });
+    return res.status(401).json({ message: 'Revoked JWT. Please log in again.' });
   }
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
-      return res.status(403).json({ message: 'Erreur sur la verification du token' });
+      return res.status(403).json({ message: 'Error in token verification' });
     }
 
     req.user = user;
@@ -44,10 +42,11 @@ function authenticateToken(req, res, next) {
 }
 
 /**
- * Fonction pour remettre à 0 les tokens stocker dans le tableau de revokedTokens.
+ * Function to reset the tokens stored in the revokedTokens array.
+ * @returns {void} - This function doesn't return anything.
  */
 function removeRevokedTokens() {
-  // Supprime tous les tokens révoqués du tableau
+  // Remove all revoked tokens from the array
   revokedTokens.length = 0;
 }
 

@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const imagePath = path.resolve(__dirname, 'card_images');
 
-// Require des routers
+// Require routers
 const routerPublic = require('./App/routers/routerPublic');
 const routerPrivate = require('./App/routers/routerPrivate');
 
